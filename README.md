@@ -1,4 +1,4 @@
 NeuralNet
 =========
 
-Una Red Neuronal implementada mediante Backpropagation con momentum.
+Red Neuronal implementada en Java con el algoritmo de Backpropagation con momentum.
