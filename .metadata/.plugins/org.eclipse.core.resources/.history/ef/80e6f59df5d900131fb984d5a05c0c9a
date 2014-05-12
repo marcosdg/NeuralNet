@@ -1,0 +1,34 @@
+package core;
+
+public class Weight {
+
+	private double value;
+	
+	
+	public Weight(double initial) {
+		this.value = initial;
+	}
+	public Weight() {
+		this.value = Math.random();
+	}
+	
+	public void decrement(double amount) {
+		this.value -= amount;
+	}
+	public void increment(double amount) {
+		this.value += amount;
+	}
+	public double getValue() {
+		return this.value;
+	}
+	public void setValue(double new_value) {
+		this.value = new_value;
+	}
+
+	
+	public String toString() {
+		return String.valueOf(value);
+	}
+	
+	
+}
