@@ -15,8 +15,9 @@ public class Connection {
 			this.target = target;
 			this.weight = new Weight();
 		} else {
-			throw new IllegalArgumentException("Bad parameters to create"+
-												" Connection");
+			throw new IllegalArgumentException("Bad parameters"+
+                                                           " to create"+
+                                                           " Connection");
 		}
 	}
 	
@@ -28,8 +29,9 @@ public class Connection {
 			this.target = target;
 			this.weight = weight;
 		} else {
-			throw new IllegalArgumentException("Bad parameters to create"+
-												" to create Connection");
+			throw new IllegalArgumentException("Bad parameters"+
+                                                           " to create"+
+                                                           " Connection");
 		}
 	}	
 	
@@ -60,8 +62,9 @@ public class Connection {
 		if (source != null) {
 			this.source = source;
 		} else {
-			throw new IllegalArgumentException("Bad parameter to set"+
-                                                " source Neuron");
+			throw new IllegalArgumentException("Bad parameter"+
+                                                           " to set source"+
+                                                           " Neuron");
 		}
 	}
 	public void setTarget(Neuron target) {
@@ -69,15 +72,18 @@ public class Connection {
 			this.target = target;
 		} else {
 			throw new IllegalArgumentException("Bad parameter"+
-                                                " to set target Neuron");
+                                                           " to set target"+
+                                                           " Neuron");
 		}
 	}
 	public void setWeight(Weight weight) {
 		if (weight!= null) {
 			this.weight = weight;
 		} else {
-			throw new IllegalArgumentException("Bad parameter to set"+
-                                                " Neuron's weight");
+			throw new IllegalArgumentException("Bad parameter"+
+                                                           " to set"+
+                                                           " Neuron's"+
+                                                           " weight");
 		}
 	}
 }
