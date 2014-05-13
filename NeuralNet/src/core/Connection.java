@@ -29,7 +29,7 @@ public class Connection {
 			this.weight = weight;
 		} else {
 			throw new IllegalArgumentException("Bad parameters to create"+
-                                                " to create Connection");
+                                                " Connection");
 		}
 	}	
 	
