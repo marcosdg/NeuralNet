@@ -2,13 +2,13 @@ package core;
 
 public class Connection {
 
-	private Neuron source;
-	private Neuron target;
+	private Neuron source,
+                    target;
 	private Weight weight;
 	
 	
-	/* Creates a Connection with random weight.
-	 */
+	// Creates a Connection with random weight.
+	
 	public Connection(Neuron source, Neuron target) {
 		if (source != null && target != null) {
 			this.source = source;
@@ -20,8 +20,8 @@ public class Connection {
 		}
 	}
 	
-	/* Creates a Connection with the specified weight.
-	 */
+	// Creates a Connection with the specified weight.
+	
 	public Connection(Neuron source, Neuron target, Weight weight) {
 		if (source != null && target != null && weight != null) {
 			this.source = source;
@@ -33,15 +33,15 @@ public class Connection {
 		}
 	}	
 	
-	/* Returns the output signal obtained from the Source Neuron.
-	 */
+	// Returns the output signal obtained from the Source Neuron.
+	
 	public double getInput() {
 	// TODO
 		return 0;
 	}
 	
-	/* Intensified by weight.
-	 */
+	// Intensified by weight.
+	
 	public double getWeightedInput() {
 	// TODO
 		return 0;

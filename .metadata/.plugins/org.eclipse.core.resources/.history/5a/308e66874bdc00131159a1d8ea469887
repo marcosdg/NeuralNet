@@ -1,0 +1,5 @@
+package core.transfer;
+
+public class TransferFunction {
+
+}

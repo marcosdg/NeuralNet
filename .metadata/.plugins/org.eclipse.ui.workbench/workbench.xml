@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="14" version="2.0">
 <workbenchAdvisor/>
-<window height="720" width="1008" x="190" y="24">
+<window height="720" maximized="true" width="1008" x="190" y="24">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -37,6 +37,11 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Errors (1 item)"/>
+<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -289,17 +294,26 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Layer.java" tooltip="NeuralNet/src/core/Layer.java">
+<persistable path="/NeuralNet/src/core/Layer.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ActivationFunction.java" tooltip="NeuralNet/src/core/activation/ActivationFunction.java">
+<persistable path="/NeuralNet/src/core/activation/ActivationFunction.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TransferFunction.java" tooltip="NeuralNet/src/core/transfer/TransferFunction.java">
+<persistable path="/NeuralNet/src/core/transfer/TransferFunction.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InputFunction.java" tooltip="NeuralNet/src/core/input/InputFunction.java">
+<persistable path="/NeuralNet/src/core/input/InputFunction.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Neuron.java" tooltip="NeuralNet/src/core/Neuron.java">
+<persistable path="/NeuralNet/src/core/Neuron.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Connection.java" tooltip="NeuralNet/src/core/Connection.java">
 <persistable path="/NeuralNet/src/core/Connection.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weight.java" tooltip="NeuralNet/src/core/Weight.java">
 <persistable path="/NeuralNet/src/core/Weight.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Neuron.java" tooltip="NeuralNet/src/core/Neuron.java">
-<persistable path="/NeuralNet/src/core/Neuron.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Layer.java" tooltip="NeuralNet/src/core/Layer.java">
-<persistable path="/NeuralNet/src/core/Layer.java"/>
 </file>
 </mruList>
 </workbench>

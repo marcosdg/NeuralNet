@@ -1,0 +1,17 @@
+package core;
+
+import java.util.List;
+
+public class Neuron {
+
+	private Layer parentLayer;		// Neuron's associated layer.
+	private List<Connection> inputs,
+                              outputs;
+	private double netInput, 		// Total input from other Neurons.
+                     activation,
+                     output;
+	
+	private InputFunction inputFunction;
+	 
+	
+}

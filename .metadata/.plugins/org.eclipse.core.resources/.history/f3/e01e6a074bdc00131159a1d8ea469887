@@ -1,0 +1,25 @@
+package core;
+
+import java.util.List;
+
+import core.input.InputFunction;
+import core.transfer.TransferFunction;
+
+public class Neuron {
+
+	private Layer layer;
+	private List<Connection> inputs,
+                              outputs;
+	private double netInput,			// Total input from other Neurons.
+                     output,
+                     error;				// Used by supervised learning rules.
+	private InputFunction inputFunction;
+	private TransferFunction transferFunction;
+	private String label;
+	
+	public Neuron() {
+		
+	}
+	
+	
+}
