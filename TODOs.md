@@ -3,15 +3,14 @@
 AUTHOR: Marcos Díez García
 DATE:	15-05-2014
 
-CLASSES
 
 - [ ] Neuron
 
-- [ ] InputFunction.
+- [ ] InputFunction
 
-- [ ] ActivationFunction.
+- [ ] ActivationFunction
 
-- [ ] Layer.
+- [ ] Layer
 
 - [ ] Connection:
 	
