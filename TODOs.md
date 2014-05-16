@@ -1,7 +1,8 @@
 ## Tasks to complete
 
-AUTHOR: Marcos Díez García
-DATE:	15-05-2014
+AUTHOR: Marcos Díez García 
+
+DATE: 15-05-2014
 
 
 - [ ] Neuron
