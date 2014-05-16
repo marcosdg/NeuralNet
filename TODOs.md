@@ -1,7 +1,7 @@
 ## Tasks to complete
 
 AUTHOR: Marcos Díez García
-DATE:	15-05-2014
+DATE:	16-05-2014
 
 CLASSES
 	- [] Neuron.
@@ -12,8 +12,8 @@ CLASSES
 
 	- [] Layer.
 
-	- []Connection:
+	- [x] Connection:
 	
-		- [] getInput()
-		- [] getWeightedInput()
+		- [x] getInput()
+		- [x] getWeightedInput()
 

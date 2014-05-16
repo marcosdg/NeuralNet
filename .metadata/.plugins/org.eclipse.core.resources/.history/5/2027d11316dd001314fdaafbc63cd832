@@ -50,20 +50,12 @@ public class Neuron {
 		}
 	}
 	
-	
-	// Layer configuration.
-	
-	
 	public Layer getParentLayer() {
 		return this.parentLayer;
 	}
 	public void setParentLayer(Layer parentLayer) {
 		this.parentLayer = parentLayer;
 	}
-	
-	
-	// Inputs configuration.
-	
 	
 	public List<Connection> getInputs() {
 		return this.inputs;
@@ -72,11 +64,9 @@ public class Neuron {
 		boolean has = false;
 		
 		// Look for neuron
-		
 		for (Connection input: this.inputs) {
 			
 			// Found ?
-			
 			if (input.getSource() == neuron) {
 				has = true;
 				break;
@@ -85,51 +75,20 @@ public class Neuron {
 		return has;
 	}
 	public void addInputConnection(Connection input) {
-		Neuron source_neuron = input.getSource(); 
-		
-		// Null ?
-		
 		if (input != null) {
-			
-			// It is pointing to this neuron ?
-			
 			if (input.getTarget() == this) {
+				if ()
 				
-				// New ?
-				
-				if (!this.hasInputFrom(source_neuron)) {
-					
-					this.inputs.add(input); 
-					
-					// source_neuron MUST have it as output
-				}	
 			}
 		}
+		
 	}
-	
-	
-	// Outputs configuration.
-	
 	
 	public List<Connection> getOutputs() {
 		return this.outputs;
 	}
-	public boolean hasOutputTo(Neuron neuron) {
-		boolean has = false;
-		
-		// Look for neuron
-		
-		for (Connection output: this.outputs) {
-			
-			// Found ?
-			
-			if (output.getTarget() == neuron) {
-				has = true;
-				break;
-			}
-		}
-		return has;
-	}
+	
+	
 	public double getOutput() {
 		return this.output;
 	}

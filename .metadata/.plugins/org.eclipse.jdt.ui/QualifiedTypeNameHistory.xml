@@ -5,4 +5,5 @@
 <fullyQualifiedTypeName name="core.transfer.TransferFunction"/>
 <fullyQualifiedTypeName name="core.activation.ActivationFunction"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="core.Connection"/>
 </qualifiedTypeNameHistroy>

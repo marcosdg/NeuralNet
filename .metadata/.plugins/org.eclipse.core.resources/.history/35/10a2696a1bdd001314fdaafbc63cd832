@@ -50,20 +50,12 @@ public class Neuron {
 		}
 	}
 	
-	
-	// Layer configuration.
-	
-	
 	public Layer getParentLayer() {
 		return this.parentLayer;
 	}
 	public void setParentLayer(Layer parentLayer) {
 		this.parentLayer = parentLayer;
 	}
-	
-	
-	// Inputs configuration.
-	
 	
 	public List<Connection> getInputs() {
 		return this.inputs;
@@ -107,29 +99,10 @@ public class Neuron {
 		}
 	}
 	
-	
-	// Outputs configuration.
-	
-	
 	public List<Connection> getOutputs() {
 		return this.outputs;
 	}
-	public boolean hasOutputTo(Neuron neuron) {
-		boolean has = false;
-		
-		// Look for neuron
-		
-		for (Connection output: this.outputs) {
-			
-			// Found ?
-			
-			if (output.getTarget() == neuron) {
-				has = true;
-				break;
-			}
-		}
-		return has;
-	}
+	
 	public double getOutput() {
 		return this.output;
 	}

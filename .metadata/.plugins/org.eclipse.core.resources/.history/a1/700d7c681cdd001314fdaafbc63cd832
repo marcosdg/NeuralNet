@@ -114,22 +114,6 @@ public class Neuron {
 	public List<Connection> getOutputs() {
 		return this.outputs;
 	}
-	public boolean hasOutputTo(Neuron neuron) {
-		boolean has = false;
-		
-		// Look for neuron
-		
-		for (Connection output: this.outputs) {
-			
-			// Found ?
-			
-			if (output.getTarget() == neuron) {
-				has = true;
-				break;
-			}
-		}
-		return has;
-	}
 	public double getOutput() {
 		return this.output;
 	}

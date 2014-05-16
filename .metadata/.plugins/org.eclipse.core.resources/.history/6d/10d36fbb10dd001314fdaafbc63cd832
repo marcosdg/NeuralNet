@@ -36,13 +36,14 @@ public class Connection {
 	// Returns the output signal obtained from the Source Neuron.
 	
 	public double getInput() {
-		return this.source.getOutput();
+	// TODO
+		return 0;
 	}
 	
 	// Intensified by weight.
 	
 	public double getWeightedInput() {
-		return this.getInput() * this.weight.getValue();
+		return this.source.getOutput() * this.weight.getValue();
 	}
 	
 	public Neuron getSource() {

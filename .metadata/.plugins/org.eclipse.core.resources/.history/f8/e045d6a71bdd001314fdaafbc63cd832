@@ -53,7 +53,6 @@ public class Neuron {
 	
 	// Layer configuration.
 	
-	
 	public Layer getParentLayer() {
 		return this.parentLayer;
 	}
@@ -63,7 +62,6 @@ public class Neuron {
 	
 	
 	// Inputs configuration.
-	
 	
 	public List<Connection> getInputs() {
 		return this.inputs;
@@ -108,28 +106,12 @@ public class Neuron {
 	}
 	
 	
-	// Outputs configuration.
-	
+	// Outputs config.
 	
 	public List<Connection> getOutputs() {
 		return this.outputs;
 	}
-	public boolean hasOutputTo(Neuron neuron) {
-		boolean has = false;
-		
-		// Look for neuron
-		
-		for (Connection output: this.outputs) {
-			
-			// Found ?
-			
-			if (output.getTarget() == neuron) {
-				has = true;
-				break;
-			}
-		}
-		return has;
-	}
+	
 	public double getOutput() {
 		return this.output;
 	}
