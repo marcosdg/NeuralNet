@@ -5,16 +5,15 @@ DATE:	15-05-2014
 
 CLASSES
 
-	-[] Neuron.
+	* [] Neuron.
 
-	-[] InputFunction.
+	* [] InputFunction.
 
-	-[] ActivationFunction.
+	* [] ActivationFunction.
 
-	-[] Layer.
+	* [] Layer.
 
-	-[] Connection:
+	* [] Connection:
 	
-		-[] getInput()
-		-[] getWeightedInput()
-
+		* [] getInput()
+		* [] getWeightedInput()
