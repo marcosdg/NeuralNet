@@ -3,17 +3,17 @@
 AUTHOR: Marcos Díez García
 DATE:	16-05-2014
 
-CLASSES
-	- [] Neuron.
+- [ ] Neuron
 
-	- [] InputFunction.
+- [ ] InputFunction
 
-	- [] ActivationFunction.
+- [ ] ActivationFunction
 
-	- [] Layer.
+- [ ] Layer
 
-	- [x] Connection:
+- [x] Connection:
 	
-		- [x] getInput()
-		- [x] getWeightedInput()
+	- [x] getInput()
+	- [x] getWeightedInput()
 
+-------------------------------------
