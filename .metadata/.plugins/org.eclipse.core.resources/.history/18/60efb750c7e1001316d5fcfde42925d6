@@ -1,0 +1,9 @@
+package core.activation;
+
+import java.util.List;
+import core.Connection;
+
+abstract public class ActivationFunction {
+	
+	
+}

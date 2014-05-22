@@ -1,0 +1,5 @@
+package core.input;
+
+public class WeightedSum {
+	// TODO
+}

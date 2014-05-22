@@ -1,0 +1,6 @@
+package core.activation;
+
+public interface ActivationFunction {
+
+	double getOutput(double net);
+}

@@ -1,20 +1,14 @@
 package core.activation;
 
-import java.util.List;
+/* Base class for all activation functions. 
+ */
+public abstract class ActivationFunction {
 
-import cor.util.ConnectionHelper;
-import core.Connection;
-
-public class ActivationFunction {
-	
 	/**
-	 * @param connections
-	 * @return neuron's output normalized
+	 * @param netInput
+	 *            Propagation function result.
+	 * @return Activation function output.
 	 */
-	public double activationFuntion(List<Connection> connections)
-	{
-		double totalInput = ConnectionHelper.getInputSum(connections);
-		
-		return (1/(1+ Math.pow(Math.E, -totalInput)));
-	}
+	abstract double getOutput(double netInput);
+
 }

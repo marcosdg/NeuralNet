@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.activation.ActivationFunction;
-import core.input.InputFunction;
+import core.input.WeightedSum;
 
 
 public class Neuron {
@@ -17,7 +17,7 @@ public class Neuron {
                               output,
                               error;    // Local error. Used by supervised learning rules.
 	
-	private InputFunction      inputFunction;
+	private WeightedSum      inputFunction;
 	private ActivationFunction activationFunction;
 	
 	private String label;
@@ -25,7 +25,7 @@ public class Neuron {
 	
 	// Creates a Neuron. NO LAYER specified yet.
 	
-	public Neuron(InputFunction inputFunction, ActivationFunction activationFunction, String label) {
+	public Neuron(WeightedSum inputFunction, ActivationFunction activationFunction, String label) {
 		if (inputFunction != null & activationFunction != null) {
 			
 			// Connections.
@@ -35,9 +35,9 @@ public class Neuron {
 			
 			// Default values.
 			
-			this.netInput = 0;
-			this.output = 0;
-			this.error = 0;
+			this.netInput = 0.0;
+			this.output = 0.0;
+			this.error = 0.0;
 			
 			// Internal functions.
 			
@@ -102,6 +102,8 @@ public class Neuron {
 				
 				if (!this.hasInputFrom(source_neuron)) {
 					
+					// Add it if not.
+					
 					this.inputs.add(input); 
 					
 					// source_neuron MUST have it as output
@@ -139,3 +141,5 @@ public class Neuron {
 		return this.output;
 	}
 }
+
+

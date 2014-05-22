@@ -1,0 +1,11 @@
+package core.activation;
+
+public class Linear extends ActivationFunction{
+
+	@Override
+	public double getOutput(double net) {
+		
+		return 0;
+	}
+
+}

@@ -4,7 +4,6 @@ public class Weight {
 
 	private double value;
 	
-	
 	// Weight.
 	
 	public Weight(double initial) {
