@@ -57,6 +57,7 @@ public class Neuron {
 	public Layer getParentLayer() {
 		return this.parentLayer;
 	}
+	
 	public void setParentLayer(Layer parentLayer) {
 		this.parentLayer = parentLayer;
 	}
@@ -68,6 +69,7 @@ public class Neuron {
 	public List<Connection> getInputs() {
 		return this.inputs;
 	}
+	
 	public boolean hasInputFrom(Neuron neuron) {
 		boolean has = false;
 		
@@ -84,6 +86,7 @@ public class Neuron {
 		}
 		return has;
 	}
+	
 	public void addInputConnection(Connection input) {
 		Neuron source_neuron = input.getSource(); 
 		
@@ -114,6 +117,7 @@ public class Neuron {
 	public List<Connection> getOutputs() {
 		return this.outputs;
 	}
+	
 	public boolean hasOutputTo(Neuron neuron) {
 		boolean has = false;
 		
@@ -130,6 +134,7 @@ public class Neuron {
 		}
 		return has;
 	}
+	
 	public double getOutput() {
 		return this.output;
 	}
