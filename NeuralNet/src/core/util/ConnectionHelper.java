@@ -1,4 +1,4 @@
-package cor.util;
+package core.util;
 
 import java.util.List;
 
