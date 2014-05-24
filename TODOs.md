@@ -1,19 +1,33 @@
-## Tasks to complete
+## Tasks
 
 AUTHOR: Marcos Díez García
 DATE:	16-05-2014
 
-- [ ] Neuron
+### completed
 
-- [ ] InputFunction
+1. Weight
+2. Connection
+3. WeightedSum
 
-- [ ] ActivationFunction
+### to do
 
-- [ ] Layer
-
-- [x] Connection:
-	
-	- [x] getInput()
-	- [x] getWeightedInput()
-
--------------------------------------
+1. NeuralNet
+	- Layer
+		- Neuron
+			- ActivationFunction
+				- Linear
+				- Heaviside
+				- Logsig ?
+				- Tanhsig ?
+	- Learning
+		- Error
+			- SquaredError
+			- MeanSquaredError
+		- StopCriteria
+			- MaxIterations
+			- MaxError
+			- EarlyStopping
+		- BackPropagation
+2. Data
+	- Parse, Format, Sample, Normalize
+3. Additional commands to launch application
