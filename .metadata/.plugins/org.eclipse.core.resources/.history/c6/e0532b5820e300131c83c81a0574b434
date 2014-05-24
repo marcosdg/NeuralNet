@@ -1,0 +1,12 @@
+package core.activation;
+
+public class Linear implements ActivationFunction{
+
+	
+	double getOutput(double netInput) {
+		
+		return 0;
+	}
+
+
+}

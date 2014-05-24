@@ -4,12 +4,11 @@ import java.util.List;
 
 import core.Connection;
 
-/* Propagation function of the Neuron.
- */
+// Propagation function of the Neuron.
 public class WeightedSum {
-
-	// Combines all the weighted inputs.
 	
+// Combines all the weighted inputs.
+
 	public double getOutput(List<Connection> inputs) {
 		double output = 0.0;
 		

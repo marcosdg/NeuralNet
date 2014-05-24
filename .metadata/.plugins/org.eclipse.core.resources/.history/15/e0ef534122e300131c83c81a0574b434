@@ -1,0 +1,12 @@
+package core.activation;
+
+import core.ActivationFunction;
+
+public class Linear extends ActivationFunction {
+
+	@Override
+	public double getOutput(double netInput) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

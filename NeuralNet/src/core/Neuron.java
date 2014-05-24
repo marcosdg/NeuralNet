@@ -2,10 +2,10 @@ package core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import core.activation.ActivationFunction;
 import core.input.WeightedSum;
-
 
 public class Neuron {
 
@@ -23,7 +23,7 @@ public class Neuron {
 	private String label;
 	
 	
-	// Creates a Neuron. NO LAYER specified yet.
+// Creates a Neuron.
 	
 	public Neuron(WeightedSum inputFunction, ActivationFunction activationFunction, String label) {
 		if (inputFunction != null & activationFunction != null) {
@@ -50,26 +50,35 @@ public class Neuron {
 		}
 	}
 	
+// Compute output.
 	
-	// Layer configuration.
+	public void computeOutput() {
+		if (!this.inputs.isEmpty()) {
+		
+			// Propagate inputs.
+			
+			this.netInput = this.inputFunction.getOutput(inputs);
+		}
+		
+		// Fire Neuron.
+		
+		this.output = this.activationFunction.getOutput(this.netInput);
+	}
 	
+// Layer configuration.
 	
 	public Layer getParentLayer() {
 		return this.parentLayer;
 	}
-	
 	public void setParentLayer(Layer parentLayer) {
 		this.parentLayer = parentLayer;
 	}
 	
-	
-	// Inputs configuration.
-	
+// Inputs configuration.	
 	
 	public List<Connection> getInputs() {
 		return this.inputs;
 	}
-	
 	public boolean hasInputFrom(Neuron neuron) {
 		boolean has = false;
 		
@@ -86,7 +95,6 @@ public class Neuron {
 		}
 		return has;
 	}
-	
 	public void addInputConnection(Connection input) {
 		Neuron source_neuron = input.getSource(); 
 		
@@ -111,15 +119,20 @@ public class Neuron {
 			}
 		}
 	}
+	public void randomizeWeights(double min, double max, Random generator) {
+		if (generator != null && !this.inputs.isEmpty()) {
+		
+			for (Connection input: inputs) {
+				input.getWeight().randomize(min, max, generator);
+			}
+		}
+	}
 	
-	
-	// Outputs configuration.
-	
+// Outputs configuration.	
 	
 	public List<Connection> getOutputs() {
 		return this.outputs;
 	}
-	
 	public boolean hasOutputTo(Neuron neuron) {
 		boolean has = false;
 		
@@ -136,10 +149,18 @@ public class Neuron {
 		}
 		return has;
 	}
-	
 	public double getOutput() {
 		return this.output;
 	}
+	
+// Error configuration.
+	
+	public double getError() {
+		return this.error;
+	}
+	public void setError(double error) {
+		this.error = error;
+	}
+	
+	
 }
-
-

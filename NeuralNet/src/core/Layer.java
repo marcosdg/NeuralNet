@@ -6,13 +6,11 @@ public class Layer {
 	private String label;
 	private ArrayList<Neuron> neurons;
 	
-	public Layer()
-	{
+	public Layer() {
 		this.neurons = new ArrayList<Neuron>();
 	}
 	
-	public Layer(ArrayList<Neuron> neurons)
-	{
+	public Layer(ArrayList<Neuron> neurons) {
 		this.neurons = neurons;
 	}
 
@@ -32,35 +30,33 @@ public class Layer {
 		this.neurons = neurons;
 	}
 	
-	public void addNeuron(Neuron neuron)
-	{
+	public void addNeuron(Neuron neuron) {
+		
 		if (!this.neurons.contains(neuron))
 			this.neurons.add(neuron);
 	}
 	
-	public void addNeuron(int index, Neuron neuron)
-	{
+	public void addNeuron(int index, Neuron neuron) {
+		
 		if (!this.neurons.contains(neuron))
 			this.neurons.add(index, neuron);
 	}
 	
-	public boolean removeNeuronAtPosition(int index, Neuron neuron)
-	{
+	public boolean removeNeuronAtPosition(int index, Neuron neuron) {
+		
 		if (this.neurons.contains(neuron)) {
 			this.neurons.remove(index);
 			return true;
 		}
-		
 		return false;
 	}
 	
-	public boolean removeNeuron(Neuron neuron)
-	{
+	public boolean removeNeuron(Neuron neuron) {
+		
 		if (this.neurons.contains(neuron)) {
 			this.neurons.remove(neuron);
 			return true;
 		}
-		
 		return false;
 	}
 }

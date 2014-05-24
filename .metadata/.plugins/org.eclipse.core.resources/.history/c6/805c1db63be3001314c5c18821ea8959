@@ -1,0 +1,47 @@
+package core;
+
+import java.util.Random;
+
+public class Weight {
+
+	private double value;
+
+	
+// Weight.
+	
+	public Weight(double initial) {
+		this.value = initial;
+	}
+	
+// Random weight within a given interval
+	
+	public Weight(double min, double max, Random generator) {
+		this.value = this.randomWithinterval(min, max, generator);
+	}
+	
+	public void decrement(double amount) {
+		this.value -= amount;
+	}
+	public void increment(double amount) {
+		this.value += amount;
+	}
+	
+	public double getValue() {
+		return this.value;
+	}
+	public void setValue(double value) {
+		this.value = value;
+	}
+	
+	public double randomWithinterval(double min, double max, Random generator) {
+		return (min + (generator.nextDouble() * (max - min)));
+	}
+	
+	public void randomize() {
+		this.value = Math.random() - 0.5;
+	}
+	
+	public String toString() {
+		return String.valueOf(value);
+	}
+}

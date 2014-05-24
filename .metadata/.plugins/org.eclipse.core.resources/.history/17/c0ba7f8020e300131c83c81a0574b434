@@ -1,0 +1,11 @@
+package core.activation;
+
+import core.ActivationFunction;
+
+public class Linear extends ActivationFunction {
+
+	
+	
+
+
+}
