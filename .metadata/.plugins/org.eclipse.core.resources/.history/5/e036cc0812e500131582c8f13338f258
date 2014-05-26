@@ -16,9 +16,7 @@ public class Weight {
 // Creates a random Weight within a given interval.
 	
 	public Weight(double min, double max, Random generator) {
-		if (generator != null) {
-			this.value = this.randomWithin(min, max, generator);
-		}	
+		this.value = this.randomWithin(min, max, generator);
 	}
 	
 // Value configuration.

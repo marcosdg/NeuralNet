@@ -11,7 +11,7 @@ public class Connection {
 // Creates a Connection with random weight within interval [min,max].
 	
 	public Connection(Neuron source, Neuron target, double min, double max, Random generator) {
-		if (source != null && target != null && generator != null) {
+		if (source != null && target != null) {
 			this.source = source;
 			this.target = target;
 			this.weight = new Weight(min, max, generator);
