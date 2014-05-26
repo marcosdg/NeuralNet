@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import core.activation.ActivationFunction;
+import core.activation.Sigmoid;
 import core.input.WeightedSum;
 
 public class Neuron {
@@ -149,8 +150,24 @@ public class Neuron {
 		}
 		return has;
 	}
+
 	public double getOutput() {
 		return this.output;
+	}
+	
+	public double getNetInput()
+	{
+		return this.netInput;
+	}
+	
+	public double getDerivateOutput()
+	{
+		if (this.netInput != 0.0) {
+			Sigmoid activationFunction = (Sigmoid) this.activationFunction;
+			return activationFunction.getOutputDerivative(this.netInput);
+		} else {
+			throw new IllegalArgumentException("Net inputs not defined");
+		}
 	}
 	
 // Error configuration.
