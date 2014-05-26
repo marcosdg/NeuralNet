@@ -16,4 +16,15 @@ public class ConnectionHelper
 		
 		return totalInput;
 	}
+	
+	public static double getOutputWeightedSumWithDelta(List<Connection> connections, double previousDelta)
+	{
+		double total = 0.0;
+		
+		for (int i = 0; i < connections.size(); i++) {
+			total += connections.get(i).getWeight().getValue() * previousDelta;
+		}
+		
+		return total;
+	}
 }
