@@ -7,4 +7,5 @@
 <fullyQualifiedTypeName name="core.Connection"/>
 <fullyQualifiedTypeName name="core.ActivationFunction"/>
 <fullyQualifiedTypeName name="core.activation.ActivationFunction"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
 </qualifiedTypeNameHistroy>

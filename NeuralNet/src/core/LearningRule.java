@@ -4,11 +4,9 @@ import core.util.ConnectionHelper;
 
 public class LearningRule
 {
-	public double getDelta(Neuron n, int expectedResult)
+	public double getDelta(Neuron neuron, int expectedResult)
 	{
-		double neuronOutput = n.getOutput();
-		
-		return (n.getDerivateOutput() * (expectedResult - neuronOutput));		
+		return (neuron.getDerivateOutput() * (expectedResult - neuron.getOutput()));		
 	}
 	
 	public double getDelta(Neuron n, double previousDelta)
