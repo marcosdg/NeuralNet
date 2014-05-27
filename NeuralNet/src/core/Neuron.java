@@ -53,16 +53,24 @@ public class Neuron {
 	
 // Compute output.
 	
-	public void computeOutput() {
+	/**
+	 * This functions computes the total input of the neuron
+	 * ini
+	 */
+	public void computeNeuronInput()
+	{
 		if (!this.inputs.isEmpty()) {
-		
 			// Propagate inputs.
-			
 			this.netInput = this.inputFunction.getOutput(inputs);
 		}
-		
+	}
+	
+	/**
+	 * This functions computes the total output of the neuron from his netInput
+	 * ai <- g(ini)
+	 */
+	public void computeOutput() {
 		// Fire Neuron.
-		
 		this.output = this.activationFunction.getOutput(this.netInput);
 	}
 	
@@ -168,6 +176,12 @@ public class Neuron {
 		} else {
 			throw new IllegalArgumentException("Net inputs not defined");
 		}
+	}
+	
+	//For Init Layer only
+	public void setNetInput(double netInput)
+	{
+		this.netInput = netInput;
 	}
 	
 // Error configuration.

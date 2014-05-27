@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class Layer {
 	private String label;
 	private ArrayList<Neuron> neurons;
+
+	public static final String INIT_LAYER = "Init_layer";
+	public static final String OUTPUT_LAYER = "Output_layer";
 	
 	public Layer() {
 		this.neurons = new ArrayList<Neuron>();
