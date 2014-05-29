@@ -52,4 +52,17 @@ public class NeuralNetwork
 		return result;
 	}
 	
+	public Layer getOutputLayer()
+	{
+		Layer result = null;
+
+		for (int i = 0; i < this.layers.size(); i++) {
+			if (this.layers.get(i).getLabel() == Layer.OUTPUT_LAYER) {
+				result = this.layers.get(i);
+			}
+		}
+		
+		return result;
+	}
+	
 }

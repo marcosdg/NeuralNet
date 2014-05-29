@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.Layer;
+import core.LearningRule;
 import core.NeuralNetwork;
 import core.Neuron;
 
@@ -16,10 +17,14 @@ public class Backpropagation
 		this.neuralNetwork = neuralNetwork;
 	}
 	
-	public void propagation(List<Double> netInput)
+	public void forwardPropagation(List<Double> netInput)
 	{
 		Layer init = this.neuralNetwork.getInitLayer();
 		ArrayList<Neuron> neurons = init.getNeurons();
+		
+		if (netInput.size() != neurons.size()) {
+			throw new IllegalArgumentException("Wrong number of input parameters");
+		}
 		
 		/**
 		 * This bucle propagates the input sample to the second layer
@@ -40,6 +45,40 @@ public class Backpropagation
 				n.computeNeuronInput();
 				// ai <- g(ini)
 				n.computeOutput();
+			}
+		}
+	}
+	
+	public void backPropagation(List<Double> expectedOutputs)
+	{
+		Layer init = this.neuralNetwork.getOutputLayer();
+		ArrayList<Neuron> neurons = init.getNeurons();
+		
+		if (expectedOutputs.size() != neurons.size()) {
+			throw new IllegalArgumentException("Wrong number of output parameters");
+		}
+		
+		Double error;
+		Neuron currentNeuron;
+		
+		for (int i = 0; i < neurons.size(); i++) {
+			currentNeuron = neurons.get(i);
+			error = LearningRule.getDelta(currentNeuron, expectedOutputs.get(i));
+			currentNeuron.setError(error);
+		}
+		
+		List<Layer> layers = this.neuralNetwork.getLayers();
+		
+		/**
+		 * Excluding last layer and init layer
+		 */
+		for(int i = layers.size() - 1; i < 0; i--) {
+			neurons = layers.get(i).getNeurons();
+			for (Neuron n : neurons) {
+				//g'(ini)*sum(wji*deltai)
+				error = LearningRule.getDelta(n);
+				n.setError(error);
+				//TODO: Update weights
 			}
 		}
 	}

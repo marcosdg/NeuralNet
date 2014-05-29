@@ -4,14 +4,14 @@ import core.util.ConnectionHelper;
 
 public class LearningRule
 {
-	public double getDelta(Neuron neuron, int expectedResult)
+	public static double getDelta(Neuron neuron, double expectedResult)
 	{
 		return (neuron.getDerivateOutput() * (expectedResult - neuron.getOutput()));		
 	}
 	
-	public double getDelta(Neuron n, double previousDelta)
+	public static double getDelta(Neuron n)
 	{
-		double delta = ConnectionHelper.getOutputWeightedSumWithDelta(n.getOutputs(), previousDelta);
+		double delta = ConnectionHelper.getWeightedSumWithDeltas(n.getOutputs());
 		
 		return n.getDerivateOutput() * delta;
 	}
