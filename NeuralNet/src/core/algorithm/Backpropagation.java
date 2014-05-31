@@ -3,10 +3,12 @@ package core.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.Connection;
 import core.Layer;
 import core.LearningRule;
 import core.NeuralNetwork;
 import core.Neuron;
+import core.Weight;
 
 public class Backpropagation
 {
@@ -68,6 +70,7 @@ public class Backpropagation
 		}
 		
 		List<Layer> layers = this.neuralNetwork.getLayers();
+		List<Connection> connections;
 		
 		/**
 		 * Excluding last layer and init layer
@@ -78,7 +81,15 @@ public class Backpropagation
 				//g'(ini)*sum(wji*deltai)
 				error = LearningRule.getDelta(n);
 				n.setError(error);
-				//TODO: Update weights
+				//Update weights
+				connections = n.getOutputs();
+				for (Connection c : connections) {
+					//n * aj * deltai
+					double deltaWeight = LearningRule.LEARNING_FACTOR * n.getOutput() * c.getTarget().getError();
+					//TODO: Add momentum defined in NeuralNetwork
+					Weight updatedWeight = c.getWeight();
+					updatedWeight.setValue(updatedWeight.getValue() + deltaWeight);
+				}
 			}
 		}
 	}

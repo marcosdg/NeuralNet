@@ -5,6 +5,7 @@ import java.util.List;
 public class NeuralNetwork
 {
 	private List<Layer> layers;
+	public static final double MOMENTUM = 0.0;
 	
 	public NeuralNetwork(List<Layer> layers)
 	{
