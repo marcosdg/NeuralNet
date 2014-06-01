@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="14" version="2.0">
+<workbench progressCount="19" version="2.0">
 <workbenchAdvisor/>
 <window height="720" maximized="true" width="1004" x="-1" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -37,6 +37,10 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Errors"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -289,14 +293,20 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weight.java" tooltip="NeuralNet/src/core/Weight.java">
-<persistable path="/NeuralNet/src/core/Weight.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Backpropagation.java" tooltip="NeuralNet/src/core/learning/Backpropagation.java">
+<persistable path="/NeuralNet/src/core/learning/Backpropagation.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WeightedSum.java" tooltip="NeuralNet/src/core/input/WeightedSum.java">
-<persistable path="/NeuralNet/src/core/input/WeightedSum.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LearningRule.java" tooltip="NeuralNet/src/core/learning/LearningRule.java">
+<persistable path="/NeuralNet/src/core/learning/LearningRule.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sigmoid.java" tooltip="NeuralNet/src/core/activation/Sigmoid.java">
-<persistable path="/NeuralNet/src/core/activation/Sigmoid.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NeuralNetwork.java" tooltip="NeuralNet/src/core/NeuralNetwork.java">
+<persistable path="/NeuralNet/src/core/NeuralNetwork.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Neuron.java" tooltip="NeuralNet/src/core/Neuron.java">
+<persistable path="/NeuralNet/src/core/Neuron.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Layer.java" tooltip="NeuralNet/src/core/Layer.java">
+<persistable path="/NeuralNet/src/core/Layer.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Linear.java" tooltip="NeuralNet/src/core/activation/Linear.java">
 <persistable path="/NeuralNet/src/core/activation/Linear.java"/>
@@ -304,26 +314,26 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ActivationFunction.java" tooltip="NeuralNet/src/core/activation/ActivationFunction.java">
 <persistable path="/NeuralNet/src/core/activation/ActivationFunction.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LearningRule.java" tooltip="NeuralNet/src/core/LearningRule.java">
-<persistable path="/NeuralNet/src/core/LearningRule.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Layer.java" tooltip="NeuralNet/src/core/Layer.java">
-<persistable path="/NeuralNet/src/core/Layer.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Connection.java" tooltip="NeuralNet/src/core/Connection.java">
-<persistable path="/NeuralNet/src/core/Connection.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Neuron.java" tooltip="NeuralNet/src/core/Neuron.java">
-<persistable path="/NeuralNet/src/core/Neuron.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ActivationFunction.java" tooltip="NeuralNet/src/core/ActivationFunction.java">
-<persistable path="/NeuralNet/src/core/ActivationFunction.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sigmoid.java" tooltip="NeuralNet/src/core/activation/Sigmoid.java">
+<persistable path="/NeuralNet/src/core/activation/Sigmoid.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ConnectionHelper.java" tooltip="NeuralNet/src/core/util/ConnectionHelper.java">
 <persistable path="/NeuralNet/src/core/util/ConnectionHelper.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TransferFunction.java" tooltip="NeuralNet/src/core/transfer/TransferFunction.java">
-<persistable path="/NeuralNet/src/core/transfer/TransferFunction.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WeightedSum.java" tooltip="NeuralNet/src/core/input/WeightedSum.java">
+<persistable path="/NeuralNet/src/core/input/WeightedSum.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LearningRule.java" tooltip="NeuralNet/src/core/activation/LearningRule.java">
+<persistable path="/NeuralNet/src/core/activation/LearningRule.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weight.java" tooltip="NeuralNet/src/core/Weight.java">
+<persistable path="/NeuralNet/src/core/Weight.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Connection.java" tooltip="NeuralNet/src/core/Connection.java">
+<persistable path="/NeuralNet/src/core/Connection.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ActivationFunction.java" tooltip="NeuralNet/src/core/ActivationFunction.java">
+<persistable path="/NeuralNet/src/core/ActivationFunction.java"/>
 </file>
 </mruList>
 </workbench>

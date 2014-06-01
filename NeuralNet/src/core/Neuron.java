@@ -136,6 +136,21 @@ public class Neuron {
 			}
 		}
 	}
+	public double getNetInput() {
+		return this.netInput;
+	}
+	public void setNetInput(double netInput) {
+		if (this.parentLayer.getLabel() != Layer.INIT_LAYER) {
+			try {
+				throw new IllegalAccessException("Wrong layer. Cannot modify netInput");
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		} else {
+			this.netInput = netInput;
+		}
+		
+	}
 	
 // Outputs configuration.	
 	
@@ -158,30 +173,14 @@ public class Neuron {
 		}
 		return has;
 	}
-
 	public double getOutput() {
 		return this.output;
 	}
-	
-	public double getNetInput()
-	{
-		return this.netInput;
-	}
-	
-	public double getDerivateOutput()
-	{
-		if (this.netInput != 0.0) {
-			Sigmoid activationFunction = (Sigmoid) this.activationFunction;
-			return activationFunction.getOutputDerivative(this.netInput);
-		} else {
-			throw new IllegalArgumentException("Net inputs not defined");
+	public double getOutputDerived() {
+		if (this.netInput == 0.0) {
+			throw new IllegalArgumentException("Net inputs not defined");	
 		}
-	}
-	
-	//For Init Layer only
-	public void setNetInput(double netInput)
-	{
-		this.netInput = netInput;
+		return activationFunction.getOutputDerived(this.netInput);
 	}
 	
 // Error configuration.
@@ -192,6 +191,4 @@ public class Neuron {
 	public void setError(double error) {
 		this.error = error;
 	}
-	
-	
 }

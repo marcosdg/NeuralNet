@@ -5,7 +5,6 @@ import java.util.List;
 public class NeuralNetwork
 {
 	private List<Layer> layers;
-	public static final double MOMENTUM = 0.0;
 	
 	public NeuralNetwork(List<Layer> layers)
 	{
@@ -26,7 +25,6 @@ public class NeuralNetwork
 			this.layers.add(layer);
 			return true;
 		}
-		
 		return false;
 	}
 	
@@ -49,7 +47,6 @@ public class NeuralNetwork
 				result = this.layers.get(i);
 			}
 		}
-		
 		return result;
 	}
 	
@@ -62,7 +59,6 @@ public class NeuralNetwork
 				result = this.layers.get(i);
 			}
 		}
-		
 		return result;
 	}
 	

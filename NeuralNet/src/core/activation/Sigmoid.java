@@ -7,11 +7,10 @@ public class Sigmoid extends ActivationFunction {
 		return (1 / 1 + Math.exp(-netInput));
 	}
 	
-	public double getOutputDerivative(double netInput)
+	public double getOutputDerived(double netInput)
 	{
 		double output = this.getOutput(netInput);
 		
 		return (output * (1 - output));
 	}
-
 }

@@ -13,10 +13,11 @@ public class Layer {
 		this.neurons = new ArrayList<Neuron>();
 	}
 	
-	public Layer(ArrayList<Neuron> neurons) {
+	public Layer(ArrayList<Neuron> neurons, String label) {
 		this.neurons = neurons;
+		this.label = label;
 	}
-
+	
 	public String getLabel() {
 		return label;
 	}
