@@ -86,8 +86,9 @@ public class Backpropagation
 				for (Connection c : connections) {
 					//n * aj * deltai
 					double deltaWeight = LearningRule.LEARNING_FACTOR * n.getOutput() * c.getTarget().getError();
-					//TODO: Add momentum defined in NeuralNetwork
 					Weight updatedWeight = c.getWeight();
+					deltaWeight += NeuralNetwork.MOMENTUM * updatedWeight.getDeltaValue();
+					updatedWeight.setDeltaValue(deltaWeight);
 					updatedWeight.setValue(updatedWeight.getValue() + deltaWeight);
 				}
 			}

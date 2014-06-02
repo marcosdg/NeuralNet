@@ -5,12 +5,14 @@ import java.util.Random;
 public class Weight {
 
 	private double value;
+	private double deltaValue;
 
 	
 // Creates a Weight.
 	
 	public Weight(double initial) {
 		this.value = initial;
+		this.deltaValue = 0.0;
 	}
 	
 // Creates a random Weight within a given interval.
@@ -35,6 +37,14 @@ public class Weight {
 	}
 	public void setValue(double value) {
 		this.value = value;
+	}
+	
+	public double getDeltaValue() {
+		return deltaValue;
+	}
+
+	public void setDeltaValue(double deltaValue) {
+		this.deltaValue = deltaValue;
 	}
 	
 	// Random within interval.
