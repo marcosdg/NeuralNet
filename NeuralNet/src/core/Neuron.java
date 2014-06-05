@@ -21,12 +21,14 @@ public class Neuron {
 	private WeightedSum      inputFunction;
 	private ActivationFunction activationFunction;
 	
+	private ConnectionBias bias;
+	
 	private String label;
 	
 	
 // Creates a Neuron.
 	
-	public Neuron(WeightedSum inputFunction, ActivationFunction activationFunction, String label) {
+	public Neuron(WeightedSum inputFunction, ActivationFunction activationFunction, String label, ConnectionBias bias) {
 		if (inputFunction != null & activationFunction != null) {
 			
 			// Connections.
@@ -49,6 +51,8 @@ public class Neuron {
 			
 			this.label = label;
 		}
+		
+		this.bias = bias;
 	}
 	
 // Compute output.
@@ -61,7 +65,7 @@ public class Neuron {
 	{
 		if (!this.inputs.isEmpty()) {
 			// Propagate inputs.
-			this.netInput = this.inputFunction.getOutput(inputs);
+			this.netInput = this.inputFunction.getOutput(this.inputs, this.bias);
 		}
 	}
 	
@@ -181,6 +185,14 @@ public class Neuron {
 			throw new IllegalArgumentException("Net inputs not defined");	
 		}
 		return activationFunction.getOutputDerived(this.netInput);
+	}
+	
+	public ConnectionBias getBias() {
+		return this.bias;
+	}
+	
+	public void setBias(ConnectionBias bias) {
+		this.bias = bias;
 	}
 	
 // Error configuration.

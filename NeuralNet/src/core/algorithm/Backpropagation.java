@@ -3,7 +3,9 @@ package core.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.BiasNeuron;
 import core.Connection;
+import core.ConnectionBias;
 import core.Layer;
 import core.LearningRule;
 import core.NeuralNetwork;
@@ -87,6 +89,17 @@ public class Backpropagation
 					//n * aj * deltai
 					double deltaWeight = LearningRule.LEARNING_FACTOR * n.getOutput() * c.getTarget().getError();
 					Weight updatedWeight = c.getWeight();
+					deltaWeight += NeuralNetwork.MOMENTUM * updatedWeight.getDeltaValue();
+					updatedWeight.setDeltaValue(deltaWeight);
+					updatedWeight.setValue(updatedWeight.getValue() + deltaWeight);
+				}
+				
+				//Update bias weight
+				if (n.getBias() != null) {
+					ConnectionBias bias = n.getBias();
+					BiasNeuron biasNeuron = bias.getSource();
+					double deltaWeight = LearningRule.LEARNING_FACTOR * biasNeuron.getNetInput() * bias.getTarget().getError();
+					Weight updatedWeight = bias.getWeight();
 					deltaWeight += NeuralNetwork.MOMENTUM * updatedWeight.getDeltaValue();
 					updatedWeight.setDeltaValue(deltaWeight);
 					updatedWeight.setValue(updatedWeight.getValue() + deltaWeight);
