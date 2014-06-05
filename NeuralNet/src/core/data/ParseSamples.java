@@ -11,11 +11,14 @@ public class ParseSamples
 	private Integer bool_in = 0,
 					real_in = 0,
 					bool_out = 0,
-					real_out = 0;
+					real_out = 0,
+					training_samples,
+					validation_samples,
+					test_samples;
 	private Integer inputs,
 					outputs;
 
-	public List<Sample> parseFile(String filePath)
+	public Benchmark parseFile(String filePath)
 	{
 		List<Sample> samples = new ArrayList<Sample>();
 		String line;
@@ -55,7 +58,9 @@ public class ParseSamples
 			e.printStackTrace();
 		}
 		
-		return samples;
+		Benchmark benchmark = new Benchmark(this.training_samples, this.validation_samples, this.test_samples, samples);
+		
+		return benchmark;
 	}
 	
 	public void setParameters(String line)
@@ -75,6 +80,18 @@ public class ParseSamples
 		
 		if (split[0].contains("bool_out")) {
 			this.bool_out = Integer.valueOf(split[1]);
+		}
+		
+		if (split[0].contains("training_examples")) {
+			this.training_samples = Integer.valueOf(split[1]);
+		}
+		
+		if (split[0].contains("validation_examples")) {
+			this.validation_samples = Integer.valueOf(split[1]);
+		}
+		
+		if (split[0].contains("test_examples")) {
+			this.test_samples = Integer.valueOf(split[1]);
 		}
 	}
 	
