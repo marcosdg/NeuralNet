@@ -177,6 +177,30 @@ public class Neuron {
 		}
 		return has;
 	}
+	public void addOutputConnection(Connection output) {
+		Neuron source_neuron = output.getSource(); 
+		
+		// Null ?
+		
+		if (output != null) {
+			
+			// It is pointing to this neuron ?
+			
+			if (source_neuron == this) {
+				
+				// New ?
+				
+				if (!this.hasOutputTo(output.getTarget())) {
+					
+					// Add it if not.
+					
+					this.outputs.add(output); 
+					
+					// source_neuron MUST have it as output
+				}	
+			}
+		}
+	}
 	public double getOutput() {
 		return this.output;
 	}

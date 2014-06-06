@@ -8,6 +8,7 @@ public class Layer {
 
 	public static final String INIT_LAYER = "Init_layer";
 	public static final String OUTPUT_LAYER = "Output_layer";
+	public static final String HIDDEN_LAYER = "Hidden_layer";
 	
 	public Layer() {
 		this.neurons = new ArrayList<Neuron>();
