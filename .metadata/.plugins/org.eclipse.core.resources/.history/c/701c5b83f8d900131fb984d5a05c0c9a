@@ -1,8 +1,0 @@
-package core;
-
-public class Connection {
-
-	private Neuron source;
-	private Neuron target;
-	private Weight weight;
-}

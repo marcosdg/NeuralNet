@@ -1,8 +1,0 @@
-package core.activation;
-
-
-abstract public class ActivationFunction {
-
-	abstract public double getOutput(double net);
-	
-}

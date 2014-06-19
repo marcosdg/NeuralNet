@@ -1,6 +1,0 @@
-package core;
-
-public abstract class ActivationFunction {
-
-	abstract double getOutput(double netInput);
-}

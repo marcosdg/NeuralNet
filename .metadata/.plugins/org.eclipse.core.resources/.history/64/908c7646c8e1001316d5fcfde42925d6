@@ -1,7 +1,0 @@
-package core.activation;
-
-
-abstract public class ActivationFunction {
-	
-	
-}
