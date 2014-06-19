@@ -4,8 +4,10 @@ import core.Neuron;
 import core.util.ConnectionHelper;
 
 public class LearningRule {
-	public static final double LEARNING_FACTOR = 0.0;
-
+	
+	// TODO
+	
+	/* ~ Manu
 	public static double getDelta(Neuron neuron, double expectedResult)
 	{
 		return (neuron.getOutputDerived() * (expectedResult - neuron.getOutput()));		
@@ -16,5 +18,5 @@ public class LearningRule {
 		double delta = ConnectionHelper.getWeightedSumWithDeltas(neuron.getOutputs());
 		
 		return neuron.getOutputDerived() * delta;
-	}
+	}*/
 }

@@ -2,18 +2,21 @@ package core.learning;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import core.BiasNeuron;
 import core.Connection;
-import core.ConnectionBias;
 import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
 import core.Weight;
 
-public class Backpropagation
-{
+public class Backpropagation {
+	
+	// TODO
+	
+	
+	/* ~ Manu
 	private NeuralNetwork neuralNetwork;
+	
+	public static final double MOMENTUM = 0.0;
 	
 	public Backpropagation(NeuralNetwork neuralNetwork)
 	{
@@ -29,18 +32,17 @@ public class Backpropagation
 			throw new IllegalArgumentException("Wrong number of input parameters");
 		}
 		
-		/**
-		 * This bucle propagates the input sample to the second layer
-		 */
+		
+		 // This bucle propagates the input sample to the second layer
+		
 		for (int i = 0; i < neurons.size(); i++) {
 			neurons.get(i).setNetInput(netInput.get(i));
 		}
 		
 		List<Layer> layers = this.neuralNetwork.getLayers();
 		
-		/**
-		 * Excluding last layer and init layer
-		 */
+		// Excluding last layer and init layer
+		 
 		for(int i = 1; i < layers.size() - 1; i++) {
 			neurons = layers.get(i).getNeurons();
 			for (Neuron n : neurons) {
@@ -73,9 +75,9 @@ public class Backpropagation
 		List<Layer> layers = this.neuralNetwork.getLayers();
 		List<Connection> connections;
 		
-		/**
-		 * Excluding last layer and init layer
-		 */
+		
+		 // Excluding last layer and init layer
+		
 		for(int i = layers.size() - 1; i < 0; i--) {
 			neurons = layers.get(i).getNeurons();
 			for (Neuron n : neurons) {
@@ -106,4 +108,5 @@ public class Backpropagation
 			}
 		}
 	}
+	*/
 }

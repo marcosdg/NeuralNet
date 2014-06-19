@@ -3,24 +3,21 @@ package core.input;
 import java.util.List;
 
 import core.Connection;
-import core.ConnectionBias;
 
-// Propagation function of the Neuron.
+/* 
+ * Represents a specific propagation function of the Neuron.
+ * 
+ * It combines the inputs to the Neuron to calculate the total 'stimuli',
+ * which will be forwarded to the activation function.
+ */
 public class WeightedSum {
 	
-// Combines all the weighted inputs.
-
-	public double getOutput(List<Connection> inputs, ConnectionBias bias) {
+	public double getOutput(List<Connection> inputs) {
 		double output = 0.0;
 		
 		for (Connection input: inputs) {
 			output += input.getWeightedInput();
 		}
-		
-		if (bias != null) {
-			output += bias.getWeightedInput();
-		}
-		
 		return output;
 	}
 }

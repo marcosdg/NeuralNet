@@ -3,7 +3,6 @@ package core.data;
 import java.util.*;
 
 import core.Connection;
-import core.ConnectionBias;
 import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
@@ -23,7 +22,7 @@ public class Parse {
 		ActivationFunction af = new Sigmoid();
 		WeightedSum ws = new WeightedSum();
 		
-		
+		/* DO NOT UNCOMMENT UNTIL BIAS NEURON IS ADDED
 		ParseSamples ps = new ParseSamples();
 		Benchmark b = ps.parseFile("/home/manu/cancer1.dt");
 		System.out.println("Ejemplos parseados: " + b.getSamples().size());
@@ -35,7 +34,7 @@ public class Parse {
 		Layer outputLayer = new Layer();
 		Layer lastLayer = null;
 		
-		/** Init Layer **/
+		// Init Layer 
 		for (int i = 0; i < inputs; i++) {
 			Neuron n = new Neuron(ws, af, "Init Layer Neuron " + i, null);
 			initLayer.addNeuron(n);
@@ -44,7 +43,7 @@ public class Parse {
 		layers.add(initLayer);
 		
 
-		/** Hidden Layers **/
+		// Hidden Layers
 		Scanner scanner = new Scanner(System.in);
 		Boolean moreLayers = true;
 		while (moreLayers) {
@@ -72,7 +71,7 @@ public class Parse {
 			layers.add(hiddenLayer);
 		}
 		
-		/** Output Layer **/
+		// Output Layer
 		for (int i = 0; i < outputs; i++) {
 			Neuron ni = new Neuron(ws, af, "Init Layer Neuron " + i, null);
 			outputLayer.addNeuron(ni);
@@ -91,11 +90,11 @@ public class Parse {
 		for (Layer layer : layers) {
 			System.out.println("Capa: " + layer.getLabel() + " Neuronas: " + layer.getNeurons().size());
 		}
+	*/
 	}
-	
 	public static Layer getLastLayer(List<Layer> layers)
 	{
 		return layers.get(layers.size() - 1);
 	}
-
+	
 }

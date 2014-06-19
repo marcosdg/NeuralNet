@@ -1,36 +1,62 @@
 package core;
 
 import java.util.List;
+import java.util.Random;
 
-public class NeuralNetwork
-{
-	private List<Layer> layers;
-	public static final double MOMENTUM = 0.0;
+/*
+ * Represents a collection of Layers.
+ */
+
+public class NeuralNetwork {
 	
-	public NeuralNetwork(List<Layer> layers)
-	{
+	private List<Layer> layers;
+	
+
+// Creation.
+
+
+	public NeuralNetwork(List<Layer> layers) {
 		this.layers = layers;
 	}
 
-	public List<Layer> getLayers() {
-		return layers;
+	
+// Processing.
+	
+	
+	public void computeOutput() {
+		
+		for (Layer layer: this.layers) {
+			layer.computeOutput();
+		}
 	}
+	
+	/* TODO
+	public void learn(DataSet trainingSet){
+		
+	}*/
+	
 
+// Configuration.
+
+
+	public List<Layer> getLayers() {
+		return this.layers;
+	}
 	public void setLayers(List<Layer> layers) {
 		this.layers = layers;
 	}
+	public int numberOfLayers() {
+		return this.layers.size();
+	}
 	
-	public boolean addLayer(Layer layer)
-	{
+	public boolean addLayer(Layer layer) {
 		if (!this.layers.contains(layer)) {
 			this.layers.add(layer);
 			return true;
 		}
 		return false;
 	}
-	
-	public boolean removeLayer(Layer layer)
-	{
+	public boolean removeLayer(Layer layer) {
 		if (this.layers.contains(layer)) {
 			this.layers.remove(layer);
 			return true;
@@ -39,28 +65,50 @@ public class NeuralNetwork
 		return false;
 	}
 	
-	public Layer getInitLayer()
-	{
-		Layer result = null;
+	public Layer getLayerAt(int at) {
+		return this.layers.get(at);
+	}
+	public Layer getInitialLayer() {
+		Layer initial_layer = null;
 
-		for (int i = 0; i < this.layers.size(); i++) {
-			if (this.layers.get(i).getLabel() == Layer.INIT_LAYER) {
-				result = this.layers.get(i);
+		// Look in layers.
+		
+		for (Layer layer: this.layers) {
+			
+			// Found ?
+			
+			if (layer.getLabel() == Layer.INIT_LAYER) {
+				initial_layer = layer;
+				break;
 			}
 		}
-		return result;
+		return initial_layer;
 	}
-	
-	public Layer getOutputLayer()
-	{
-		Layer result = null;
+	public Layer getOutputLayer() {
+		Layer output_layer = null;
 
-		for (int i = 0; i < this.layers.size(); i++) {
-			if (this.layers.get(i).getLabel() == Layer.OUTPUT_LAYER) {
-				result = this.layers.get(i);
+		// Look in layers.
+		
+		for (Layer layer: this.layers) {
+			
+			// Found ?
+			
+			if (layer.getLabel() == Layer.OUTPUT_LAYER) {
+				output_layer = layer;
+				break;
 			}
 		}
-		return result;
+		return output_layer;
 	}
 	
+	// Randomization.
+	
+	public void randomizeWeights(double min, double max, Random generator) {
+		if (!this.layers.isEmpty()) {
+			
+			for (Layer layer: this.layers) {
+				layer.randomizeWeights(min, max, generator);
+			}
+		}
+	}
 }

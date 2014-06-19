@@ -9,4 +9,6 @@
 <fullyQualifiedTypeName name="core.activation.ActivationFunction"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="core.Neuron"/>
+<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
+<fullyQualifiedTypeName name="core.learning.LearningRule"/>
 </qualifiedTypeNameHistroy>

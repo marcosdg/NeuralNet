@@ -2,36 +2,54 @@ package core;
 
 import java.util.Random;
 
+/*
+ * Represents the synaptic strength of a 'Connection' with a 'value'.
+ *
+ * It stores the 'currentWeightChange' obtained from the current learning epoch
+ * and the 'previousWeightChange' obtained from the previous learning epoch; which are
+ * necessary to implement 'BackPropagation with momentum'.
+ */
+
 public class Weight {
 
-	private double value;
-	private double deltaValue;
+	private double value,
+                     currentWeightChange,
+                     previousWeightChange;
 
 	
-// Creates a Weight.
+// Creation.
+	
+	
+	// Simple Weight.
 	
 	public Weight(double initial) {
 		this.value = initial;
-		this.deltaValue = 0.0;
+		this.currentWeightChange = 0.0;
+		this.previousWeightChange = 0.0;
 	}
 	
-// Creates a random Weight within a given interval.
+	// Random Weight within a given range.
 	
 	public Weight(double min, double max, Random generator) {
 		if (generator != null) {
-			this.value = this.randomWithin(min, max, generator);
+			this.value = this.randomWithinRange(min, max, generator);
+			this.currentWeightChange = 0.0;
+			this.previousWeightChange = 0.0;
 		}	
 	}
 	
-// Value configuration.
+
+//	Configuration.
+
 	
-	public void decrement(double amount) {
+	// Value.
+	
+	public void decrease(double amount) {
 		this.value -= amount;
 	}
-	public void increment(double amount) {
+	public void increase(double amount) {
 		this.value += amount;
 	}
-	
 	public double getValue() {
 		return this.value;
 	}
@@ -39,32 +57,37 @@ public class Weight {
 		this.value = value;
 	}
 	
-	public double getDeltaValue() {
-		return deltaValue;
+	// Current weight change.
+	
+	public double getCurrentChange() {
+		return this.currentWeightChange;
+	}
+	public void setCurrentChange(double change) {
+		this.currentWeightChange = change;
+	}
+	
+	// Previous weight change.
+	
+	public double getPreviousChange() {
+		return this.previousWeightChange;
+	}
+	public void setPreviousChange(double change) {
+		this.previousWeightChange = change;
 	}
 
-	public void setDeltaValue(double deltaValue) {
-		this.deltaValue = deltaValue;
-	}
+	// Randomization.
 	
-	// Random within interval.
-	
-	public double randomWithin(double min, double max, Random generator) {
+	public double randomWithinRange(double min, double max, Random generator) {
 		double random = 0.0;
 		if (generator != null) {
-			
-			random = (min + (generator.nextDouble() * (max - min))); 
+
+			random = (min + (generator.nextDouble() * (max - min)));
 		}
 		return random;
 	}
-	
-	// Randomize Weight value.
-	
 	public void randomize(double min, double max, Random generator) {
-		this.value = this.randomWithin(min, max, generator);
-	}
+		this.value = this.randomWithinRange(min, max, generator);
+	}	
 	
-	public String toString() {
-		return String.valueOf(value);
-	}
+	// TODO: toString. What format?
 }

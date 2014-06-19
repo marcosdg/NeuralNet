@@ -21,15 +21,13 @@ public class Neuron {
 	private WeightedSum      inputFunction;
 	private ActivationFunction activationFunction;
 	
-	private ConnectionBias bias;
-	
 	private String label;
 	
 	
 // Creates a Neuron.
 	
-	public Neuron(WeightedSum inputFunction, ActivationFunction activationFunction, String label, ConnectionBias bias) {
-		if (inputFunction != null & activationFunction != null) {
+	public Neuron(WeightedSum inputFunction, ActivationFunction activationFunction, String label) {
+		if (inputFunction != null && activationFunction != null && label != null) {
 			
 			// Connections.
 			
@@ -42,7 +40,7 @@ public class Neuron {
 			this.output = 0.0;
 			this.error = 0.0;
 			
-			// Internal functions.
+			// Synaptic functions.
 			
 			this.inputFunction = inputFunction;
 			this.activationFunction = activationFunction;
@@ -51,34 +49,31 @@ public class Neuron {
 			
 			this.label = label;
 		}
-		
-		this.bias = bias;
 	}
 	
-// Compute output.
+
+// Processing.
 	
-	/**
-	 * This functions computes the total input of the neuron
-	 * ini
-	 */
-	public void computeNeuronInput()
-	{
+	
+	// Combines the inputs to the Neuron.
+	
+	public void computeInput() {
 		if (!this.inputs.isEmpty()) {
-			// Propagate inputs.
-			this.netInput = this.inputFunction.getOutput(this.inputs, this.bias);
+			
+			this.netInput = this.inputFunction.getOutput(this.inputs);
 		}
 	}
 	
-	/**
-	 * This functions computes the total output of the neuron from his netInput
-	 * ai <- g(ini)
-	 */
+	// Neuron response to the inputs.
+	
 	public void computeOutput() {
-		// Fire Neuron.
+		computeInput();
 		this.output = this.activationFunction.getOutput(this.netInput);
 	}
 	
+	
 // Layer configuration.
+	
 	
 	public Layer getParentLayer() {
 		return this.parentLayer;
@@ -87,11 +82,20 @@ public class Neuron {
 		this.parentLayer = parentLayer;
 	}
 	
-// Inputs configuration.	
 	
+// Inputs configuration.	
+
+	
+	public double getNetInput() {
+		return this.netInput;
+	}
+	public void setNetInput(double netInput) {
+			this.netInput = netInput;		
+	}
 	public List<Connection> getInputs() {
 		return this.inputs;
 	}
+	
 	public boolean hasInputFrom(Neuron neuron) {
 		boolean has = false;
 		
@@ -108,6 +112,7 @@ public class Neuron {
 		}
 		return has;
 	}
+	
 	public void addInputConnection(Connection input) {
 		Neuron source_neuron = input.getSource(); 
 		
@@ -132,35 +137,36 @@ public class Neuron {
 			}
 		}
 	}
+	
 	public void randomizeWeights(double min, double max, Random generator) {
-		if (generator != null && !this.inputs.isEmpty()) {
+		if (!this.inputs.isEmpty()) {
 		
 			for (Connection input: inputs) {
 				input.getWeight().randomize(min, max, generator);
 			}
 		}
 	}
-	public double getNetInput() {
-		return this.netInput;
-	}
-	public void setNetInput(double netInput) {
-		if (this.parentLayer.getLabel() != Layer.INIT_LAYER) {
-			try {
-				throw new IllegalAccessException("Wrong layer. Cannot modify netInput");
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		} else {
-			this.netInput = netInput;
-		}
-		
-	}
+
 	
 // Outputs configuration.	
+
+	
+	public double getOutput() {
+		return this.output;
+	}
+	
+	public double getOutputDerived() {
+		/*
+		if (this.netInput == 0.0) {
+			throw new IllegalArgumentException("Net inputs not defined");	
+		}*/
+		return activationFunction.getOutputDerived(this.netInput);
+	}
 	
 	public List<Connection> getOutputs() {
 		return this.outputs;
 	}
+	
 	public boolean hasOutputTo(Neuron neuron) {
 		boolean has = false;
 		
@@ -177,6 +183,7 @@ public class Neuron {
 		}
 		return has;
 	}
+	
 	public void addOutputConnection(Connection output) {
 		Neuron source_neuron = output.getSource(); 
 		
@@ -201,25 +208,10 @@ public class Neuron {
 			}
 		}
 	}
-	public double getOutput() {
-		return this.output;
-	}
-	public double getOutputDerived() {
-		if (this.netInput == 0.0) {
-			throw new IllegalArgumentException("Net inputs not defined");	
-		}
-		return activationFunction.getOutputDerived(this.netInput);
-	}
-	
-	public ConnectionBias getBias() {
-		return this.bias;
-	}
-	
-	public void setBias(ConnectionBias bias) {
-		this.bias = bias;
-	}
+
 	
 // Error configuration.
+	
 	
 	public double getError() {
 		return this.error;
