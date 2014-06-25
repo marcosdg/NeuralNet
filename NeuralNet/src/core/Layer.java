@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -10,7 +11,7 @@ import java.util.Random;
 
 public class Layer {
 
-	private ArrayList<Neuron> neurons;
+	private List<Neuron> neurons;
 
 	// Kinds.
 
@@ -23,7 +24,7 @@ public class Layer {
 // Creation.
 
 
-	public Layer(ArrayList<Neuron> neurons, String label) {
+	public Layer(List<Neuron> neurons, String label) {
 		this.neurons = neurons;
 		this.label = label;
 	}
@@ -43,10 +44,10 @@ public class Layer {
 // Configuration.
 	
 	
-	public ArrayList<Neuron> getNeurons() {
+	public List<Neuron> getNeurons() {
 		return this.neurons;
 	}
-	public void setNeurons(ArrayList<Neuron> neurons) {
+	public void setNeurons(List<Neuron> neurons) {
 		this.neurons = neurons;
 	}
 	public int numberOfNeurons() {
@@ -93,7 +94,7 @@ public class Layer {
 	// Randomization.
 	
 	public void randomizeWeights(double min, double max, Random generator) {
-		if (!this.neurons.isEmpty()) {
+		if (!(this.neurons.isEmpty())) {
 
 			for (Neuron neuron : this.neurons) {
 				neuron.randomizeWeights(min, max, generator);
