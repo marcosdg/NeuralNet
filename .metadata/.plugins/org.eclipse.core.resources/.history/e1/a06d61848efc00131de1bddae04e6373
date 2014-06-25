@@ -1,0 +1,120 @@
+package core;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+
+/* 
+ * Represents a collection of Neurons.
+ */
+
+public class Layer {
+
+	// Kinds:
+
+	public static final String 
+		INPUT_DATA_LAYER = "Input Data", 
+		INITIAL_LAYER = "Initial", 
+		HIDDEN_LAYER = "Hidden",
+        OUTPUT_LAYER = "Output";
+	
+	private List<Node> nodes;
+	private String label;
+
+
+// Creation.
+
+
+	public Layer(List<Node> nodes, String label) {
+		this.nodes = nodes;
+		this.label = label;
+	}
+
+
+// Processing.
+
+	
+	public void computeOutput() {
+		if (!(isInputDataLayer(this)))
+		for (Neuron neuron: this.neurons) {
+			neuron.computeOutput();
+		}
+	}
+	
+
+// Configuration.
+	
+	
+	public List<Node> getNodes() {
+		return this.nodes;
+	}
+	public void setNodes(List<Node> nodes) {
+		this.nodes = nodes;
+	}
+	public int numberOfNodes() {
+		return this.nodes.size();
+	}
+	
+	public void addNode(Node node) {
+		if (!(this.nodes.contains(node))) {
+		
+			this.nodes.add(node);
+		}
+	}
+	public void addNodeAt(int at, Node node) {
+		if (!this.nodes.contains(node)) {
+			
+			this.nodes.add(at, node);
+		}
+	}
+	
+	public boolean removeNodeAtPosition(int at) {
+		if (this.nodes.get(at) != null) {
+			
+			this.nodes.remove(at);
+			return true;
+		}
+		return false;
+	}
+	public boolean removeNode(Node node) {
+		if (this.nodes.contains(node)) {
+			
+			this.nodes.remove(nodes);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isInputDataLayer(Layer layer) {
+		return this.label == Layer.INPUT_DATA_LAYER;
+	}
+	public boolean isInitialLayer(Layer layer) {
+		return this.label == Layer.INITIAL_LAYER;
+	}
+	public boolean isHiddenLayer(Layer layer) {
+		return this.label == Layer.HIDDEN_LAYER;
+	}
+	public boolean isOutputLayer(Layer layer) {
+		return this.label == Layer.OUTPUT_LAYER;
+	}
+	
+	public String getLabel() {
+		return this.label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
+	// Randomization.
+	
+	public void randomizeWeights(double min, double max, Random generator) {
+		
+		if (!(this.nodes.isEmpty())) {
+
+			for (Node node : this.nodes) {
+				node.randomizeWeights(min, max, generator);
+			}
+		}
+	}
+}
