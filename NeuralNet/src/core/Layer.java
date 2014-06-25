@@ -1,6 +1,5 @@
 package core;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -11,93 +10,129 @@ import java.util.Random;
 
 public class Layer {
 
-	private List<Neuron> neurons;
+	private List<Node> nodes;
+	
+	// Possible kinds:
 
-	// Kinds.
+	public static final String 
+		INPUT_DATA_LAYER = "Input Data",
+		INITIAL_LAYER = "Initial", 
+		HIDDEN_LAYER = "Hidden",
+        OUTPUT_LAYER = "Output";
 
-	public static final String INIT_LAYER = "Initial layer",
-                                 HIDDEN_LAYER = "Hidden layer",
-                                 OUTPUT_LAYER = "Output layer";
-	private String label;
+	private String kind;
 
 
 // Creation.
 
 
-	public Layer(List<Neuron> neurons, String label) {
-		this.neurons = neurons;
-		this.label = label;
+	public Layer(List<Node> nodes, String label) {
+		this.nodes = nodes;
+		this.kind = label;
 	}
 
 
-// Processing.
+// Processing (only layers with neurons).
 
-	
+
 	public void computeOutput() {
-		
-		for (Neuron neuron: this.neurons) {
-			neuron.computeOutput();
-		}
-	}
-	
 
-// Configuration.
-	
-	
-	public List<Neuron> getNeurons() {
-		return this.neurons;
+		if (!(this.isInputDataLayer())) {
+
+			if (!(this.nodes.isEmpty())) {
+
+				for (Node node: this.nodes) {
+					((Neuron) node).computeOutput();
+				}
+			}
+		}
 	}
-	public void setNeurons(List<Neuron> neurons) {
-		this.neurons = neurons;
+
+
+// Nodes configuration.
+
+
+	public List<Node> getNodes() {
+		return this.nodes;
 	}
-	public int numberOfNeurons() {
-		return this.neurons.size();
+	public void setNodes(List<Node> nodes) {
+		this.nodes = nodes;
+	}
+	public int numberOfNodes() {
+		return this.nodes.size();
 	}
 	
-	public void addNeuron(Neuron neuron) {
-		if (!this.neurons.contains(neuron)) {
+	public void addNode(Node node) {
+		if (!(this.nodes.contains(node))) {
 		
-			this.neurons.add(neuron);
+			this.nodes.add(node);
 		}
 	}
-	public void addNeuron(int index, Neuron neuron) {
-		if (!this.neurons.contains(neuron)) {
+	public void addNodeAt(int at, Node node) {
+		if (!this.nodes.contains(node)) {
 			
-			this.neurons.add(index, neuron);
+			this.nodes.add(at, node);
 		}
 	}
 	
-	public boolean removeNeuronAtPosition(int at) {
-		if (this.neurons.get(at) != null) {
+	public boolean removeNodeAtPosition(int at) {
+		boolean was_removed = false;
+		
+		if (this.nodes.get(at) != null) {
 			
-			this.neurons.remove(at);
-			return true;
+			this.nodes.remove(at);
+			was_removed = true;
 		}
-		return false;
+		return was_removed;
 	}
-	public boolean removeNeuron(Neuron neuron) {
-		if (this.neurons.contains(neuron)) {
+	public boolean removeNode(Node node) {
+		boolean was_removed = false;
+		
+		if (this.nodes.contains(node)) {
 			
-			this.neurons.remove(neuron);
-			return true;
+			this.nodes.remove(node);
+			was_removed = true;
 		}
-		return false;
+		return was_removed;
 	}
-	
-	public String getLabel() {
-		return this.label;
+
+
+// Kind configuration.
+
+
+	public String getKind() {
+		return this.kind;
 	}
-	public void setLabel(String label) {
-		this.label = label;
+	public void setKind(String label) {
+		this.kind = label;
 	}
-	
-	// Randomization.
-	
+
+	public boolean isInputDataLayer() {
+		return this.kind == Layer.INPUT_DATA_LAYER;
+	}
+	public boolean isInitialLayer() {
+		return this.kind == Layer.INITIAL_LAYER;
+	}
+	public boolean isHiddenLayer() {
+		return this.kind == Layer.HIDDEN_LAYER;
+	}
+	public boolean isOutputLayer() {
+		return this.kind == Layer.OUTPUT_LAYER;
+	}	
+
+
+// Randomization (only layers with neurons).
+
+
 	public void randomizeWeights(double min, double max, Random generator) {
-		if (!(this.neurons.isEmpty())) {
-
-			for (Neuron neuron : this.neurons) {
-				neuron.randomizeWeights(min, max, generator);
+		
+		if (!(this.isInputDataLayer())) {
+			
+			if (!(this.nodes.isEmpty())) {
+				
+				for (Node node : this.nodes) {
+					((Neuron) node).randomizeWeights(min, max, generator);
+				}
 			}
 		}
 	}

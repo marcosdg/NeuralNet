@@ -77,7 +77,7 @@ public class NeuralNetwork {
 			
 			// Found ?
 			
-			if (layer.getLabel() == Layer.INIT_LAYER) {
+			if (layer.isInitialLayer()) {
 				initial_layer = layer;
 				break;
 			}
@@ -93,7 +93,7 @@ public class NeuralNetwork {
 			
 			// Found ?
 			
-			if (layer.getLabel() == Layer.OUTPUT_LAYER) {
+			if (layer.isOutputLayer()) {
 				output_layer = layer;
 				break;
 			}

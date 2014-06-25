@@ -4,4 +4,6 @@
 <fullyQualifiedTypeName name="core.Neuron"/>
 <fullyQualifiedTypeName name="core.activation.Linear"/>
 <fullyQualifiedTypeName name="core.propagation.WeightedSum"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="core.Layer.kind"/>
 </qualifiedTypeNameHistroy>

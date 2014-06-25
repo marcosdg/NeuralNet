@@ -128,6 +128,8 @@ public class Neuron extends Node {
 		}
 	}
 	
+	// Randomize input-connections' weights.
+	
 	public void randomizeWeights(double min, double max, Random generator) {
 		if (!this.inputs.isEmpty()) {
 		
