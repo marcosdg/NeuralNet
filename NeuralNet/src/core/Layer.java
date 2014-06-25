@@ -83,6 +83,13 @@ public class Layer {
 		return false;
 	}
 	
+	public String getLabel() {
+		return this.label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
 	// Randomization.
 	
 	public void randomizeWeights(double min, double max, Random generator) {
@@ -92,12 +99,5 @@ public class Layer {
 				neuron.randomizeWeights(min, max, generator);
 			}
 		}
-	}
-	
-	public String getLabel() {
-		return this.label;
-	}
-	public void setLabel(String label) {
-		this.label = label;
 	}
 }

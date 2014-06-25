@@ -1,0 +1,5 @@
+package core.propagation;
+
+public abstract class PropagationFunction {
+
+}

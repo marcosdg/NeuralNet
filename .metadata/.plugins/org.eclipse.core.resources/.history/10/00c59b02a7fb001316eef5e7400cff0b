@@ -1,0 +1,216 @@
+package core;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import core.activation.ActivationFunction;
+import core.propagation.PropagationFunction;
+import core.propagation.WeightedSum;
+
+/* 
+ * We must distinguish between 'Neurons' (process data) and
+ * 'Input Nodes' (capture data).
+ * 
+ * Represents a node of the first layer where data is fed in.
+ */
+
+
+public class InputNode {
+
+
+	private Layer                 parentLayer;
+	private double	               input_data;
+    private List<InputConnection> neuron_targets;
+	
+	private String label;
+
+
+// Creates an InputNode.
+
+	public InputNode(String label) {
+		if (label != null) {
+			this.label = label;
+		}
+	}
+
+	
+// Processing.
+
+
+	// Combines the inputs to the Neuron.
+	
+	public void computeInput() {
+		if (!this.inputs.isEmpty()) {
+			
+			this.netInput = this.inputFunction.getOutput(this.inputs);
+		}
+	}
+	
+	// Neuron response to the inputs.
+	
+	public void computeOutput() {
+		computeInput();
+		this.output = this.activationFunction.getOutput(this.netInput);
+	}
+
+
+// Layer configuration.
+	
+	
+		public Layer getParentLayer() {
+			return this.parentLayer;
+		}
+		public void setParentLayer(Layer parentLayer) {
+			this.parentLayer = parentLayer;
+		}
+
+	
+// Inputs configuration.	
+
+	
+	public double getNetInput() {
+		return this.netInput;
+	}
+	public void setNetInput(double netInput) {
+			this.netInput = netInput;		
+	}
+	public List<NeuralConnection> getInputs() {
+		return this.inputs;
+	}
+	
+	public boolean hasInputFrom(Neuron neuron) {
+		boolean has = false;
+		
+		// Look for neuron
+		
+		for (NeuralConnection input: this.inputs) {
+			
+			// Found ?
+			
+			if (input.getSource() == neuron) {
+				has = true;
+				break;
+			}
+		}
+		return has;
+	}
+	
+	public void addInputConnection(NeuralConnection input) {
+		Neuron source_neuron = input.getSource(); 
+		
+		// Null ?
+		
+		if (input != null) {
+			
+			// It is pointing to this neuron ?
+			
+			if (input.getTarget() == this) {
+				
+				// New ?
+				
+				if (!this.hasInputFrom(source_neuron)) {
+					
+					// Add it if not.
+					
+					this.inputs.add(input); 
+					
+					// source_neuron MUST have it as output
+				}	
+			}
+		}
+	}
+	
+	public void randomizeWeights(double min, double max, Random generator) {
+		if (!this.inputs.isEmpty()) {
+		
+			for (NeuralConnection input: inputs) {
+				input.getWeight().randomize(min, max, generator);
+			}
+		}
+	}
+
+	
+// Outputs configuration.	
+
+	
+	public double getOutput() {
+		return this.output;
+	}
+	
+	public double getOutputDerived() {
+		/*
+		if (this.netInput == 0.0) {
+			throw new IllegalArgumentException("Net inputs not defined");	
+		}*/
+		return activationFunction.getOutputDerived(this.netInput);
+	}
+	
+	public List<NeuralConnection> getOutputs() {
+		return this.outputs;
+	}
+	
+	public boolean hasOutputTo(Neuron neuron) {
+		boolean has = false;
+		
+		// Look for neuron
+		
+		for (NeuralConnection output: this.outputs) {
+			
+			// Found ?
+			
+			if (output.getTarget() == neuron) {
+				has = true;
+				break;
+			}
+		}
+		return has;
+	}
+	
+	public void addOutputConnection(NeuralConnection output) {
+		Neuron source_neuron = output.getSource(); 
+		
+		// Null ?
+		
+		if (output != null) {
+			
+			// It is pointing to this neuron ?
+			
+			if (source_neuron == this) {
+				
+				// New ?
+				
+				if (!this.hasOutputTo(output.getTarget())) {
+					
+					// Add it if not.
+					
+					this.outputs.add(output); 
+					
+					// source_neuron MUST have it as output
+				}	
+			}
+		}
+	}
+
+	
+// Error configuration.
+	
+	
+	public double getError() {
+		return this.error;
+	}
+	public void setError(double error) {
+		this.error = error;
+	}
+	
+
+// Label configuration.
+	
+
+	public String getLabel() {
+		return this.label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+}

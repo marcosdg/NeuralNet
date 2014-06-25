@@ -3,85 +3,76 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import core.activation.ActivationFunction;
-import core.activation.Sigmoid;
-import core.input.WeightedSum;
+import core.propagation.PropagationFunction;
 
-public class Neuron {
+/*
+ * A Neuron is the essential unit of computation in a Neural Network.
+ * 
+ * It will combine set of inputs and if a certain threshold is reached
+ * the Neuron will fire, producing an output (spike).
+ */
 
-	private Layer            parentLayer;
+public class Neuron extends Node {
+
 	private List<Connection> inputs,
                               outputs;
-	
+
 	private double          netInput, // Total input from other Neurons.
                               output,
-                              error;    // Local error. Used by supervised learning rules.
-	
-	private WeightedSum      inputFunction;
+                              error; // Local error. Used in supervised learning.
+
+	private PropagationFunction propagationFunction;
 	private ActivationFunction activationFunction;
-	
-	private String label;
-	
-	
-// Creates a Neuron.
-	
-	public Neuron(WeightedSum inputFunction, ActivationFunction activationFunction, String label) {
-		if (inputFunction != null && activationFunction != null && label != null) {
+
+
+// Creation.
+
+	public Neuron(PropagationFunction propagationFunction, ActivationFunction activationFunction,
+                   Layer parentLayer, String label) {
+		
+		super(parentLayer, label); // Node properties.
+		
+		if (propagationFunction != null && activationFunction != null) {
 			
 			// Connections.
-			
+
 			this.inputs = new ArrayList<Connection>();
 			this.outputs = new ArrayList<Connection>();
-			
-			// Default values.
-			
+
+			// Input/Output values.
+
 			this.netInput = 0.0;
 			this.output = 0.0;
 			this.error = 0.0;
-			
+
 			// Synaptic functions.
-			
-			this.inputFunction = inputFunction;
+
+			this.propagationFunction = propagationFunction;
 			this.activationFunction = activationFunction;
-			
-			// Label.
-			
-			this.label = label;
 		}
 	}
-	
 
+	
 // Processing.
-	
-	
+
+
 	// Combines the inputs to the Neuron.
 	
 	public void computeInput() {
 		if (!this.inputs.isEmpty()) {
 			
-			this.netInput = this.inputFunction.getOutput(this.inputs);
+			this.netInput = this.propagationFunction.getOutput(this.inputs);
 		}
 	}
 	
 	// Neuron response to the inputs.
 	
 	public void computeOutput() {
-		computeInput();
+		
 		this.output = this.activationFunction.getOutput(this.netInput);
 	}
-	
-	
-// Layer configuration.
-	
-	
-	public Layer getParentLayer() {
-		return this.parentLayer;
-	}
-	public void setParentLayer(Layer parentLayer) {
-		this.parentLayer = parentLayer;
-	}
-	
+
 	
 // Inputs configuration.	
 
@@ -96,43 +87,42 @@ public class Neuron {
 		return this.inputs;
 	}
 	
-	public boolean hasInputFrom(Neuron neuron) {
+	// A Neuron may have another Neuron or InputNode as input source.
+	
+	public boolean hasInputFrom(Node node) {
 		boolean has = false;
 		
-		// Look for neuron
+		// Look for node
 		
 		for (Connection input: this.inputs) {
 			
 			// Found ?
 			
-			if (input.getSource() == neuron) {
+			if (input.getSource() == node) {
 				has = true;
 				break;
 			}
 		}
 		return has;
 	}
-	
 	public void addInputConnection(Connection input) {
-		Neuron source_neuron = input.getSource(); 
-		
-		// Null ?
-		
+		Node source_node = input.getSource(); 
+
 		if (input != null) {
 			
-			// It is pointing to this neuron ?
+			// It is pointing to this node ?
 			
 			if (input.getTarget() == this) {
 				
 				// New ?
 				
-				if (!this.hasInputFrom(source_neuron)) {
+				if (!(this.hasInputFrom(source_node))) {
 					
-					// Add it if not.
+					// Add it if new.
 					
 					this.inputs.add(input); 
 					
-					// source_neuron MUST have it as output
+					// remind add it as output to source_neuron.
 				}	
 			}
 		}
@@ -154,18 +144,14 @@ public class Neuron {
 	public double getOutput() {
 		return this.output;
 	}
-	
 	public double getOutputDerived() {
-		/*
-		if (this.netInput == 0.0) {
-			throw new IllegalArgumentException("Net inputs not defined");	
-		}*/
 		return activationFunction.getOutputDerived(this.netInput);
 	}
-	
-	public List<Connection> getOutputs() {
+	public List<Connection> getOutputConnections() {
 		return this.outputs;
 	}
+	
+	// A Neuron does not have outputs to InputNodes
 	
 	public boolean hasOutputTo(Neuron neuron) {
 		boolean has = false;
@@ -183,32 +169,44 @@ public class Neuron {
 		}
 		return has;
 	}
-	
-	public void addOutputConnection(Connection output) {
-		Neuron source_neuron = output.getSource(); 
+	public void addOutputConnection(Connection output_connection) {
+		Node source_node = output_connection.getSource();
+		Node target_node = output_connection.getTarget();
+		Neuron source_neuron = null;
+		Neuron target_neuron = null;
 		
-		// Null ?
-		
-		if (output != null) {
+		if (output_connection != null) {
+
+			// right type of connection ?
 			
-			// It is pointing to this neuron ?
-			
-			if (source_neuron == this) {
-				
-				// New ?
-				
-				if (!this.hasOutputTo(output.getTarget())) {
-					
-					// Add it if not.
-					
-					this.outputs.add(output); 
-					
-					// source_neuron MUST have it as output
-				}	
+			if (isNeuronToNeuron(output_connection)) {
+
+				source_neuron = (Neuron) source_node;
+				target_neuron = (Neuron) target_node;
+
+				// It is pointing from this Neuron ?
+
+				if (source_neuron == this) {
+
+					// New ?
+
+					if (!(this.hasOutputTo(target_neuron))) {
+
+						// Add it if new.
+
+						this.outputs.add(output_connection);
+
+						// remind add it as input to target_neuron.
+					}
+				}
 			}
 		}
+	}	
+	public boolean isNeuronToNeuron(Connection connection) {
+		return (connection.getSource() instanceof Neuron && 
+				 connection.getTarget() instanceof Neuron);
 	}
-
+	
 	
 // Error configuration.
 	

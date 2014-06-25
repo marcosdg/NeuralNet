@@ -1,11 +1,10 @@
 package core.util;
 
 import java.util.List;
-
 import core.Connection;
 
-public class ConnectionHelper
-{
+public class ConnectionHelper {
+	/*
 	public static double getInputSum(List<Connection> connections)
 	{
 		double totalInput = 0.0;
@@ -29,4 +28,5 @@ public class ConnectionHelper
 		
 		return total;
 	}
+	*/
 }

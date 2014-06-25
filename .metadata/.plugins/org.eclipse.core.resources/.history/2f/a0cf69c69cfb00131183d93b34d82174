@@ -1,0 +1,45 @@
+package core;
+
+/* 
+ * We must distinguish between 'Neurons' (process data) and
+ * 'Input Nodes' (capture data). This class generalizes these
+ * two concepts.
+ */
+
+
+public class InputNode {
+
+	private Layer parentLayer;
+	
+	private double output;
+	
+	private String label;
+
+
+
+	public double getOutput() {
+		return this.output;
+	}
+
+
+// Layer configuration.
+	
+	
+	public Layer getParentLayer() {
+		return this.parentLayer;
+	}
+	public void setParentLayer(Layer parentLayer) {
+		this.parentLayer = parentLayer;
+	}
+
+	
+// Label configuration.
+	
+
+	public String getLabel() {
+		return this.label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+}

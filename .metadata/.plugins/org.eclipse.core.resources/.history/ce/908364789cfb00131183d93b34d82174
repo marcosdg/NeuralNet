@@ -1,0 +1,9 @@
+package core;
+
+public class InputConnection {
+
+	private InputNode input_node;
+	private Neuron output_node;
+	
+	
+}

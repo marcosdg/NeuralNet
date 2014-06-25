@@ -1,0 +1,99 @@
+package core;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import core.activation.ActivationFunction;
+import core.propagation.PropagationFunction;
+import core.propagation.WeightedSum;
+
+/* 
+ * We must distinguish between 'Neurons' (process data) and
+ * 'Input Nodes' (capture data).
+ * 
+ * Represents a node of the first layer where data is fed in.
+ */
+
+
+public class InputNode extends Node {
+
+	private double	          input_data;
+    private List<Connection> outputs;
+
+
+// Creation.
+
+
+	public InputNode(String label) {
+		this.input_data = 0.0;
+		this.outputs = new ArrayList<Connection>();
+	}
+
+	
+// Outputs configuration.
+	
+	public double getOutput() {
+		return this.input_data;
+	}
+	
+	// An InputNode does not have outputs to InputNodes
+	
+	public boolean hasOutputTo(Neuron neuron) {
+		boolean has = false;
+		
+		// Look for neuron
+		
+		for (Connection output: this.outputs) {
+			
+			// Found ?
+			
+			if (output.getTarget() == neuron) {
+				has = true;
+				break;
+			}
+		}
+		return has;
+	}
+	public void addOutputConnection(Connection output) {
+		Node source_node = output.getSource();
+		Node target_node = output.getTarget();
+		InputNode input_node = null;
+		Neuron target_neuron = null;
+		
+		if (output != null) {
+
+			// right type of connection ?
+			
+			if (source_node instanceof InputNode &&
+				target_node instanceof Neuron) {
+
+				input_node = (InputNode) source_node;
+				target_neuron = (Neuron) target_node;
+
+				// It is pointing from this InputNode ?
+
+				if (input_node == this) {
+
+					// New ?
+
+					if (!(this.hasOutputTo(target_neuron))) {
+
+						// Add it if new.
+
+						this.outputs.add(output);
+
+						// remind add it as input to target_neuron.
+					}
+				}
+			}
+		}
+	}
+	
+	// InputNode to Neuron.
+	
+	public boolean isInputConnection(Connection connection) {
+		return (connection.getSource() instanceof InputNode && 
+				 connection.getTarget() instanceof Neuron);
+	}
+}

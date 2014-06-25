@@ -1,0 +1,19 @@
+package test;
+
+import core.Neuron;
+import core.activation.Linear;
+
+public class Test {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		double slope = 2;
+		Linear activation = new Linear(slope);
+		Neuron neuron = new Neuron(inputFunction, activationFunction, "Neuron 1");
+
+	}
+
+}

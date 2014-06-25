@@ -2,6 +2,7 @@ package core;
 
 import java.util.Random;
 
+
 /*
  * A 'Connection' links a 'Source Neuron' to a 'Target Neuron' so that
  * a electric signal can go through it. Such signal can be intensified by
@@ -10,7 +11,7 @@ import java.util.Random;
 
 public class Connection {
 
-	private Neuron source,
+	private Node   source,
                     target;
 	private Weight weight;
 	
@@ -20,7 +21,7 @@ public class Connection {
 	
 	// Connection with random weight within interval [min,max].
 	
-	public Connection(Neuron source, Neuron target, double min, double max, Random generator) {
+	public Connection(Node source, Node target, double min, double max, Random generator) {
 		if (source != null && target != null && generator != null) {
 			this.source = source;
 			this.target = target;
@@ -33,7 +34,7 @@ public class Connection {
 	
 	// Connection with the specified weight.
 	
-	public Connection(Neuron source, Neuron target, Weight weight) {
+	public Connection(Node source, Node target, Weight weight) {
 		if (source != null && target != null && weight != null) {
 			this.source = source;
 			this.target = target;
@@ -43,25 +44,31 @@ public class Connection {
                                                 " Connection");
 		}
 	}
-	
-	// Input/Output Connection
-	
-	public Connection(Neuron source, Neuron target) {
-		this.source = source;
-		this.target = target;
-	}
 
 	
 // Processing.	
 	
 	
-	// Gets the output signal obtained from the Source Neuron.
+	// Gets the output signal obtained from the Source Node.
 	
 	public double getInput() {
-		return this.source.getOutput();
+		Node source_node = this.source;
+		double input = 0.0;
+		
+		// Neuron or InputNode ?
+		
+		if (source_node instanceof Neuron) {
+			
+			input = ((Neuron) source_node).getOutput();
+			
+		} else if (source_node instanceof InputNode) {
+	
+			input = ((InputNode) source_node).getOutput();
+		}
+		return input;
 	}
 	
-	// Intensified by weight.
+	// Intensified by weight (same for Neuron and InputNode).
 	
 	public double getWeightedInput() {
 		return this.getInput() * this.weight.getValue();
@@ -71,29 +78,29 @@ public class Connection {
 // Configuration.
 	
 	
-	public Neuron getSource() {
+	public Node getSource() {
 		return this.source;
 	}
-	public Neuron getTarget() {
+	public Node getTarget() {
 		return this.target;
 	}
 	public Weight getWeight() {
 		return this.weight;
 	}
-	public void setSource(Neuron source) {
+	public void setSource(Node source) {
 		if (source != null) {
 			this.source = source;
 		} else {
 			throw new IllegalArgumentException("Bad parameter to set"+
-                                                " source Neuron");
+                                                " source Node");
 		}
 	}
-	public void setTarget(Neuron target) {
+	public void setTarget(Node target) {
 		if (target != null) {
 			this.target = target;
 		} else {
 			throw new IllegalArgumentException("Bad parameter to set"+
-                                                " target Neuron");
+                                                " target Node");
 		}
 	}
 	public void setWeight(Weight weight) {
@@ -101,7 +108,7 @@ public class Connection {
 			this.weight = weight;
 		} else {
 			throw new IllegalArgumentException("Bad parameter to set"+
-                                                " Neuron's weight");
+                                                " Connection's weight");
 		}
 	}
 }

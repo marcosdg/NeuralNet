@@ -1,0 +1,10 @@
+package core.propagation;
+
+import java.util.List;
+
+import core.NeuralConnection;
+
+public abstract class PropagationFunction {
+
+	public abstract double getOutput(List<NeuralConnection> inputs);
+}
