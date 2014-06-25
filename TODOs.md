@@ -22,18 +22,23 @@ DATE:	25-06-2014
 1. Layer
 2. NeuralNetwork
 3. core.learning
-   - Error
-	- SquaredError
-	- MeanSquaredError
-   - StopCriteria
-	- MaxIterations
-	- MaxError
-	- EarlyStopping
-    - LearningRule?
-    - IterativeLearning?
-    - SupervisedLearning?
-    - BackPropagation?
-    - BackPropagationMomentum
+	
+	- Error
+	
+		* SquaredError
+		* MeanSquaredError
 
-2. core.data
-3. Additional commands to launch application
+	- StopCriteria
+
+		* MaxIterations
+		* MaxError
+		* EarlyStopping
+
+	- LearningRule?
+	- IterativeLearning?
+	- SupervisedLearning?
+	- BackPropagation?
+	- BackPropagationMomentum
+
+4. core.data
+5. Additional commands to launch application
