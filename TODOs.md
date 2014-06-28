@@ -16,12 +16,12 @@ DATE:	25-06-2014
 8. Sigmoid
 9. PropagationFunction
 10. WeightedSum
+11. Layer
 
-### to do
+### to 
 
-1. Layer
-2. NeuralNetwork
-3. core.learning
+1. NeuralNetwork
+2. core.learning
 	- Error
 		* SquaredError
 		* MeanSquaredError
@@ -34,5 +34,5 @@ DATE:	25-06-2014
 	- SupervisedLearning?
 	- BackPropagation?
 	- BackPropagationMomentum
-4. core.data
-5. Additional commands to launch application
+3. core.data
+4. Additional commands to launch application

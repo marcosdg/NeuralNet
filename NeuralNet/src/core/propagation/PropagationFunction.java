@@ -4,7 +4,7 @@ import java.util.List;
 
 import core.Connection;
 
-public abstract class PropagationFunction {
+abstract public class PropagationFunction {
 
 	public abstract double getOutput(List<Connection> inputs);
 }

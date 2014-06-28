@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="core.propagation.PropagationFunction"/>
-<fullyQualifiedTypeName name="core.Neuron"/>
-<fullyQualifiedTypeName name="core.activation.Linear"/>
-<fullyQualifiedTypeName name="core.propagation.WeightedSum"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="core.Layer.kind"/>
+<fullyQualifiedTypeName name="core.data.DataSet"/>
+<fullyQualifiedTypeName name="core.Neuron"/>
+<fullyQualifiedTypeName name="core.propagation.WeightedSum"/>
+<fullyQualifiedTypeName name="core.activation.Linear"/>
+<fullyQualifiedTypeName name="core.Layer"/>
+<fullyQualifiedTypeName name="core.InputNode"/>
+<fullyQualifiedTypeName name="core.Node"/>
+<fullyQualifiedTypeName name="core.learning.LearningRule"/>
+<fullyQualifiedTypeName name="core.NeuralNetwork"/>
+<fullyQualifiedTypeName name="core.learning.SupervisedLearning"/>
+<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="core.Connection"/>
 </qualifiedTypeNameHistroy>

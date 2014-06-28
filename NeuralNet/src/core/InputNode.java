@@ -18,15 +18,26 @@ public class InputNode extends Node {
 
 
 	public InputNode(Layer parentLayer, String label) {
-		
+
 		super(parentLayer, label); // Node properties.
-		
+
 		this.input_data = 0.0;
 		this.outputs = new ArrayList<Connection>();
-		
+
 	}
 
-	
+
+// Input Data configuration.
+
+
+	public double getInputData() {
+		return this.input_data;
+	}
+	public void setInputData(double data) {
+		this.input_data = data;
+	}
+
+
 // Outputs configuration.
 
 
@@ -36,18 +47,18 @@ public class InputNode extends Node {
 	public List<Connection> getOutputConnections() {
 		return this.outputs;
 	}
-	
+
 	// An InputNode does not have outputs to InputNodes
-	
+
 	public boolean hasOutputTo(Neuron neuron) {
 		boolean has = false;
-		
+
 		// Look for neuron
-		
+
 		for (Connection output: this.outputs) {
-			
+
 			// Found ?
-			
+
 			if (output.getTarget() == neuron) {
 				has = true;
 				break;
@@ -60,11 +71,11 @@ public class InputNode extends Node {
 		Node target_node = output_connection.getTarget();
 		InputNode input_node = null;
 		Neuron target_neuron = null;
-		
+
 		if (output_connection != null) {
 
 			// right type of connection ?
-			
+
 			if (isInputNodeToNeuron(output_connection)) {
 
 				input_node = (InputNode) source_node;
@@ -89,7 +100,7 @@ public class InputNode extends Node {
 		}
 	}
 	public boolean isInputNodeToNeuron(Connection connection) {
-		return (connection.getSource() instanceof InputNode && 
+		return (connection.getSource() instanceof InputNode &&
 				 connection.getTarget() instanceof Neuron);
 	}
 }

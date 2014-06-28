@@ -14,6 +14,7 @@ import core.propagation.WeightedSum;
 public class Parse {
 
 	public static void main(String[] args) {
+	/*
 		Integer neurons,
 				inputs,
 				outputs;
@@ -92,9 +93,4 @@ public class Parse {
 		}
 	*/
 	}
-	public static Layer getLastLayer(List<Layer> layers)
-	{
-		return layers.get(layers.size() - 1);
-	}
-	
 }

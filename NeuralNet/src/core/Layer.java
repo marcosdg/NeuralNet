@@ -1,36 +1,37 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 
-/* 
+/*
  * Represents a collection of Neurons.
  */
 
 public class Layer {
 
 	private List<Node> nodes;
-	
-	// Possible kinds:
+	private String kind;
 
-	public static final String 
+	// Kinds:
+
+	public static final String
 		INPUT_DATA_LAYER = "Input Data",
-		INITIAL_LAYER = "Initial", 
+		INITIAL_LAYER = "Initial",
 		HIDDEN_LAYER = "Hidden",
         OUTPUT_LAYER = "Output";
-
-	private String kind;
 
 
 // Creation.
 
 
-	public Layer(List<Node> nodes, String label) {
-		this.nodes = nodes;
-		this.kind = label;
+	public Layer(String label) {
+		if (label != null) {
+			this.nodes = new ArrayList<Node>();
+			this.kind = label;
+		}
 	}
-
 
 // Processing (only layers with neurons).
 
@@ -55,31 +56,31 @@ public class Layer {
 	public List<Node> getNodes() {
 		return this.nodes;
 	}
-	public void setNodes(List<Node> nodes) {
-		this.nodes = nodes;
+	public void setNodes(List<Node> those) {
+		this.nodes = those;
 	}
 	public int numberOfNodes() {
 		return this.nodes.size();
 	}
-	
+
 	public void addNode(Node node) {
 		if (!(this.nodes.contains(node))) {
-		
+
 			this.nodes.add(node);
 		}
 	}
 	public void addNodeAt(int at, Node node) {
 		if (!this.nodes.contains(node)) {
-			
+
 			this.nodes.add(at, node);
 		}
 	}
-	
+
 	public boolean removeNodeAtPosition(int at) {
 		boolean was_removed = false;
-		
+
 		if (this.nodes.get(at) != null) {
-			
+
 			this.nodes.remove(at);
 			was_removed = true;
 		}
@@ -87,15 +88,18 @@ public class Layer {
 	}
 	public boolean removeNode(Node node) {
 		boolean was_removed = false;
-		
+
 		if (this.nodes.contains(node)) {
-			
+
 			this.nodes.remove(node);
 			was_removed = true;
 		}
 		return was_removed;
 	}
 
+	public boolean hasNode(Node node) {
+		return this.nodes.contains(node);
+	}
 
 // Kind configuration.
 
@@ -118,18 +122,18 @@ public class Layer {
 	}
 	public boolean isOutputLayer() {
 		return this.kind == Layer.OUTPUT_LAYER;
-	}	
+	}
 
 
 // Randomization (only layers with neurons).
 
 
 	public void randomizeWeights(double min, double max, Random generator) {
-		
+
 		if (!(this.isInputDataLayer())) {
-			
+
 			if (!(this.nodes.isEmpty())) {
-				
+
 				for (Node node : this.nodes) {
 					((Neuron) node).randomizeWeights(min, max, generator);
 				}

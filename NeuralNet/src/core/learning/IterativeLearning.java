@@ -1,7 +1,7 @@
 package core.learning;
 
-public class IterativeLearning extends LearningRule {
+abstract public class IterativeLearning extends LearningRule {
 
-	// TODO
-	
+	// TODO: DEVELOPMENT
+
 }
