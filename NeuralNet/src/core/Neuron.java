@@ -8,7 +8,7 @@ import core.propagation.PropagationFunction;
 
 /*
  * A Neuron is the essential unit of computation in a Neural Network.
- * 
+ *
  * It will combine set of inputs and if a certain threshold is reached
  * the Neuron will fire, producing an output (spike).
  */
@@ -30,11 +30,11 @@ public class Neuron extends Node {
 
 	public Neuron(PropagationFunction propagationFunction, ActivationFunction activationFunction,
                    Layer parentLayer, String label) {
-		
+
 		super(parentLayer, label); // Node properties.
-		
+
 		if (propagationFunction != null && activationFunction != null) {
-			
+
 			// Connections.
 
 			this.inputs = new ArrayList<Connection>();
@@ -53,51 +53,55 @@ public class Neuron extends Node {
 		}
 	}
 
-	
+	public void reset() {
+		this.netInput = 0.0;
+		this.output = 0.0;
+		this.error = 0.0;
+	}
+
 // Processing.
 
 
 	// Combines the inputs to the Neuron.
-	
+
 	public void computeInput() {
 		if (!this.inputs.isEmpty()) {
-			
+
 			this.netInput = this.propagationFunction.getOutput(this.inputs);
 		}
 	}
-	
+
 	// Neuron response to the inputs.
-	
+
 	public void computeOutput() {
-		
 		this.output = this.activationFunction.getOutput(this.netInput);
 	}
 
-	
-// Inputs configuration.	
 
-	
+// Inputs configuration.
+
+
 	public double getNetInput() {
 		return this.netInput;
 	}
 	public void setNetInput(double netInput) {
-			this.netInput = netInput;		
+			this.netInput = netInput;
 	}
 	public List<Connection> getInputs() {
 		return this.inputs;
 	}
-	
+
 	// A Neuron may have another Neuron or InputNode as input source.
-	
+
 	public boolean hasInputFrom(Node node) {
 		boolean has = false;
-		
+
 		// Look for node
-		
+
 		for (Connection input: this.inputs) {
-			
+
 			// Found ?
-			
+
 			if (input.getSource() == node) {
 				has = true;
 				break;
@@ -106,43 +110,43 @@ public class Neuron extends Node {
 		return has;
 	}
 	public void addInputConnection(Connection input) {
-		Node source_node = input.getSource(); 
+		Node source_node = input.getSource();
 
 		if (input != null) {
-			
+
 			// It is pointing to this node ?
-			
+
 			if (input.getTarget() == this) {
-				
+
 				// New ?
-				
+
 				if (!(this.hasInputFrom(source_node))) {
-					
+
 					// Add it if new.
-					
-					this.inputs.add(input); 
-					
+
+					this.inputs.add(input);
+
 					// remind add it as output to source_neuron.
-				}	
+				}
 			}
 		}
 	}
-	
+
 	// Randomize input-connections' weights.
-	
+
 	public void randomizeWeights(double min, double max, Random generator) {
 		if (!this.inputs.isEmpty()) {
-		
+
 			for (Connection input: inputs) {
 				input.getWeight().randomize(min, max, generator);
 			}
 		}
 	}
 
-	
-// Outputs configuration.	
 
-	
+// Outputs configuration.
+
+
 	public double getOutput() {
 		return this.output;
 	}
@@ -152,18 +156,18 @@ public class Neuron extends Node {
 	public List<Connection> getOutputConnections() {
 		return this.outputs;
 	}
-	
+
 	// A Neuron does not have outputs to InputNodes
-	
+
 	public boolean hasOutputTo(Neuron neuron) {
 		boolean has = false;
-		
+
 		// Look for neuron
-		
+
 		for (Connection output: this.outputs) {
-			
+
 			// Found ?
-			
+
 			if (output.getTarget() == neuron) {
 				has = true;
 				break;
@@ -176,11 +180,11 @@ public class Neuron extends Node {
 		Node target_node = output_connection.getTarget();
 		Neuron source_neuron = null;
 		Neuron target_neuron = null;
-		
+
 		if (output_connection != null) {
 
 			// right type of connection ?
-			
+
 			if (isNeuronToNeuron(output_connection)) {
 
 				source_neuron = (Neuron) source_node;
@@ -203,16 +207,16 @@ public class Neuron extends Node {
 				}
 			}
 		}
-	}	
+	}
 	public boolean isNeuronToNeuron(Connection connection) {
-		return (connection.getSource() instanceof Neuron && 
+		return (connection.getSource() instanceof Neuron &&
 				 connection.getTarget() instanceof Neuron);
 	}
-	
-	
+
+
 // Error configuration.
-	
-	
+
+
 	public double getError() {
 		return this.error;
 	}

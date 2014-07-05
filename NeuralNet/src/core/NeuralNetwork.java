@@ -28,6 +28,11 @@ public class NeuralNetwork {
 		}
 	}
 
+	public void resetLayers() {
+		for (Layer layer: this.layers) {
+			layer.resetNeurons();
+		}
+	}
 
 	// Generic connection (nodes must be created first).
 
@@ -103,10 +108,10 @@ public class NeuralNetwork {
 
 		return false;
 	}
+
 	public Layer getLayerAt(int at) {
 		return this.layers.get(at);
 	}
-
 	public Layer getInitialLayer() {
 		Layer initial_layer = null;
 
