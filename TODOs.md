@@ -2,7 +2,7 @@
 
 AUTHOR: Marcos Díez García
 
-DATE:	25-06-2014
+DATE:	05-07-2014
 
 ### completed
 
@@ -17,8 +17,10 @@ DATE:	25-06-2014
 9. PropagationFunction
 10. WeightedSum
 11. Layer
+12. StopCriteria
+13. MaxEpochsStop
 
-### to 
+### to
 
 1. NeuralNetwork
 2. core.learning
@@ -26,8 +28,7 @@ DATE:	25-06-2014
 		* SquaredError
 		* MeanSquaredError
 	- StopCriteria
-		* MaxIterations
-		* MaxError
+		* MaxErrorStop
 		* EarlyStopping
 	- LearningRule?
 	- IterativeLearning?

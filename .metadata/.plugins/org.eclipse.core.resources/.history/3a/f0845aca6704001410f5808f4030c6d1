@@ -1,0 +1,6 @@
+package core.learning.stop.copy;
+
+public interface StopCriteria {
+
+	public boolean isMet();
+}

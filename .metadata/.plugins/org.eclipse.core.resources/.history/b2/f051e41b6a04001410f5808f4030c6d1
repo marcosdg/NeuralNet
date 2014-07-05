@@ -1,0 +1,12 @@
+package core.learning;
+
+//TODO: DEVELOPMENT
+
+abstract public class IterativeLearning extends LearningRule {
+
+
+	private double learning_rate;
+	private int current_epoch,
+                 max_epochs;
+	// private StopCriteria stop_criteria;
+}
