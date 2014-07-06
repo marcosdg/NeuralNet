@@ -9,7 +9,7 @@ import core.Neuron;
 import core.Weight;
 import core.data.DataSet;
 
-public class Backpropagation extends SupervisedLearning{
+public class Backpropagation extends SupervisedLearning {
 
 	// TODO: DEVELOPMENT
 

@@ -1,22 +1,44 @@
 package core.learning.stop;
 
-import core.learning.IterativeLearning;
+import core.learning.SupervisedLearning;
 
 public class MaxEpochsStop implements StopCriteria {
 
-	private IterativeLearning iterative_learning_rule;
+	private SupervisedLearning supervised_learning_rule;
+	private int max_epochs;
 
-	public MaxEpochsStop() {
+
+// Creation.
+
+
+	public MaxEpochsStop(SupervisedLearning rule, int max_epochs) {
+		this.supervised_learning_rule = rule;
+		this.max_epochs = max_epochs;
 	}
+
+
+// Criteria.
+
 
 	@Override
 	public boolean isMet() {
 		boolean met = false;
 
-		if (iterative_learning_rule.getCurrentEpoch() >= iterative_learning_rule.getMaxEpochs()) {
+		if (supervised_learning_rule.getCurrentEpoch() >= this.getMaxEpochs()) {
 			met = true;
 		}
 		return met;
+	}
+
+
+// Epochs configuration,
+
+
+	public int getMaxEpochs() {
+		return this.max_epochs;
+	}
+	public void setMaxEpochs(int epochs) {
+		this.max_epochs = epochs;
 	}
 
 }

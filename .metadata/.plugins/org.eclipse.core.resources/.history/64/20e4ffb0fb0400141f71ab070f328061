@@ -1,0 +1,23 @@
+package core.learning.stop;
+
+import core.learning.SupervisedLearning;
+
+public class MaxErrorStop implements StopCriteria {
+
+	private SupervisedLearning supervised_learning_rule;
+
+	public MaxErrorStop(SupervisedLearning rule) {
+		this.supervised_learning_rule = rule;
+	}
+
+	@Override
+	public boolean isMet() {
+		boolean met = false;
+
+		if (this.supervised_learning_rule.getCurrentNetworkError() >=
+            this.supervised_learning_rule.getMaxNetworkError()) {
+			met = true;
+		}
+		return met;
+	}
+}

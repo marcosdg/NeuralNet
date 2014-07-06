@@ -1,0 +1,22 @@
+package core.learning.stop;
+
+import core.learning.SupervisedLearning;
+
+public class MaxEpochsStop implements StopCriteria {
+
+	private SupervisedLearning supervised_learning_rule;
+
+	public MaxEpochsStop(SupervisedLearning rule) {
+		this.supervised_learning_rule = rule;
+	}
+
+	@Override
+	public boolean isMet() {
+		boolean met = false;
+
+		if (supervised_learning_rule.getCurrentEpoch() >= supervised_learning_rule.getMaxEpochs()) {
+			met = true;
+		}
+		return met;
+	}
+}

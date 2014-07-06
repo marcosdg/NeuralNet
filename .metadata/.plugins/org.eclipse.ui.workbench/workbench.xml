@@ -38,10 +38,6 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Warnings (21 items)"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -296,17 +292,23 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaxErrorStop.java" tooltip="NeuralNet/src/core/learning/stop/MaxErrorStop.java">
-<persistable path="/NeuralNet/src/core/learning/stop/MaxErrorStop.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IterativeLearning.java" tooltip="NeuralNet/src/core/learning/IterativeLearning.java">
-<persistable path="/NeuralNet/src/core/learning/IterativeLearning.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaxEpochsStop.java" tooltip="NeuralNet/src/core/learning/stop/MaxEpochsStop.java">
 <persistable path="/NeuralNet/src/core/learning/stop/MaxEpochsStop.java"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SupervisedLearning.java" tooltip="NeuralNet/src/core/learning/SupervisedLearning.java">
+<persistable path="/NeuralNet/src/core/learning/SupervisedLearning.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaxErrorStop.java" tooltip="NeuralNet/src/core/learning/stop/MaxErrorStop.java">
+<persistable path="/NeuralNet/src/core/learning/stop/MaxErrorStop.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StopCriteria.java" tooltip="NeuralNet/src/core/learning/stop/StopCriteria.java">
 <persistable path="/NeuralNet/src/core/learning/stop/StopCriteria.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BackPropagationMomentum.java" tooltip="NeuralNet/src/core/learning/BackPropagationMomentum.java">
+<persistable path="/NeuralNet/src/core/learning/BackPropagationMomentum.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Backpropagation.java" tooltip="NeuralNet/src/core/learning/Backpropagation.java">
+<persistable path="/NeuralNet/src/core/learning/Backpropagation.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LearningRule.java" tooltip="NeuralNet/src/core/learning/LearningRule.java">
 <persistable path="/NeuralNet/src/core/learning/LearningRule.java"/>
@@ -331,15 +333,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Test1.java" tooltip="NeuralNet/src/test/Test1.java">
 <persistable path="/NeuralNet/src/test/Test1.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BackPropagationMomentum.java" tooltip="NeuralNet/src/core/learning/BackPropagationMomentum.java">
-<persistable path="/NeuralNet/src/core/learning/BackPropagationMomentum.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Backpropagation.java" tooltip="NeuralNet/src/core/learning/Backpropagation.java">
-<persistable path="/NeuralNet/src/core/learning/Backpropagation.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NeuralNetwork.java" tooltip="NeuralNet/src/core/NeuralNetwork.java">
-<persistable path="/NeuralNet/src/core/NeuralNetwork.java"/>
 </file>
 </mruList>
 </workbench>
