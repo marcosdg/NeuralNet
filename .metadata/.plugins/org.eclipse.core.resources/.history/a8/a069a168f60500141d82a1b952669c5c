@@ -13,7 +13,7 @@ import core.data.DataSet;
 
 
 public class Backpropagation extends SupervisedLearning {
-
+	
 	public Backpropagation() {
 	}
 

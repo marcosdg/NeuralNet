@@ -9,10 +9,9 @@ import core.Neuron;
 import core.Weight;
 import core.data.DataSet;
 
-//TODO: COMPLETE BACKPROPAGATION CLASS
-
-
 public class Backpropagation extends SupervisedLearning {
+
+	// TODO: COMPLETE BACKPROPAGATION CLASS
 
 	public Backpropagation() {
 	}

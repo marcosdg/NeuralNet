@@ -16,34 +16,34 @@ public class Weight {
                      currentWeightChange,
                      previousWeightChange;
 
-
+	
 // Creation.
-
-
+	
+	
 	// Simple Weight.
-
+	
 	public Weight(double initial) {
 		this.value = initial;
 		this.currentWeightChange = 0.0;
 		this.previousWeightChange = 0.0;
 	}
-
+	
 	// Random Weight within a given range.
-
+	
 	public Weight(double min, double max, Random generator) {
 		if (generator != null) {
 			this.value = this.randomWithinRange(min, max, generator);
 			this.currentWeightChange = 0.0;
 			this.previousWeightChange = 0.0;
-		}
+		}	
 	}
-
+	
 
 //	Configuration.
 
-
+	
 	// Value.
-
+	
 	public void decrease(double amount) {
 		this.value -= amount;
 	}
@@ -56,18 +56,18 @@ public class Weight {
 	public void setValue(double value) {
 		this.value = value;
 	}
-
+	
 	// Current weight change.
-
+	
 	public double getCurrentChange() {
 		return this.currentWeightChange;
 	}
 	public void setCurrentChange(double change) {
 		this.currentWeightChange = change;
 	}
-
+	
 	// Previous weight change.
-
+	
 	public double getPreviousChange() {
 		return this.previousWeightChange;
 	}
@@ -76,7 +76,7 @@ public class Weight {
 	}
 
 	// Randomization.
-
+	
 	public double randomWithinRange(double min, double max, Random generator) {
 		double random = 0.0;
 		if (generator != null) {
@@ -87,7 +87,7 @@ public class Weight {
 	}
 	public void randomize(double min, double max, Random generator) {
 		this.value = this.randomWithinRange(min, max, generator);
-	}
-
+	}	
+	
 	// TODO: COMPLETE 'TOSTRING' METHOD. What format?
 }

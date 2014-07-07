@@ -2,7 +2,7 @@ package core.learning;
 
 import core.learning.stop.StopCriteria;
 
-//TODO: COMPLETE SUPERVISEDLEARNING CLASS
+//TODO: DEVELOPMENT
 
 abstract public class SupervisedLearning extends LearningRule {
 

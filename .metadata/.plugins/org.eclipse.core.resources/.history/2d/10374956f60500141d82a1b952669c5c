@@ -8,7 +8,7 @@ import core.util.ConnectionHelper;
 //TODO: COMPLETE LEARNINGRULE CLASS
 
 abstract public class LearningRule {
-
+	
 	private NeuralNetwork neuralNetwork;
 	private DataSet data; // training + validation + test sets
 
@@ -31,7 +31,7 @@ abstract public class LearningRule {
 
 	abstract public void apply(DataSet data);
 
-
+	
 
 
 

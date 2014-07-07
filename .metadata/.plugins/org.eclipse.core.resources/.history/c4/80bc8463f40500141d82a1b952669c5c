@@ -218,7 +218,7 @@ System.out.println("============= TEST 2: INPUT DATA/BIASES ==================")
 		for (Connection output_connection: input_node2.getOutputConnections()) {
 			System.out.println("\t" + output_connection.getLabel());
 		}
-
+	
 		System.out.println();
 		System.out.println("-------- BIAS 1 ---------");
 		System.out.println(" Parent Layer: " + bias1.getParentLayer().getKind());
@@ -227,12 +227,12 @@ System.out.println("============= TEST 2: INPUT DATA/BIASES ==================")
 		System.out.println(" has output to Neuron 1? " + bias1.hasOutputTo(neuron1));
 		System.out.println(" has output to Neuron 2? " + bias1.hasOutputTo(neuron2));
 		System.out.println(" has output to Neuron 3? " + bias1.hasOutputTo(neuron3));
-
+	
 		System.out.println(" Output Connections: ");
 		for (Connection output_connection: bias1.getOutputConnections()) {
 			System.out.println("\t" + output_connection.getLabel());
 		}
-
+	
 		System.out.println();
 		System.out.println("-------- BIAS 2 ---------");
 		System.out.println(" Parent Layer: " + bias2.getParentLayer().getKind());
@@ -241,12 +241,12 @@ System.out.println("============= TEST 2: INPUT DATA/BIASES ==================")
 		System.out.println(" has output to Neuron 1? " + bias2.hasOutputTo(neuron1));
 		System.out.println(" has output to Neuron 2? " + bias2.hasOutputTo(neuron2));
 		System.out.println(" has output to Neuron 3? " + bias2.hasOutputTo(neuron3));
-
+	
 		System.out.println(" Output Connections: ");
 		for (Connection output_connection: bias2.getOutputConnections()) {
 			System.out.println("\t" + output_connection.getLabel());
 		}
-
+	
 		System.out.println();
 		System.out.println("-------- BIAS 3 ---------");
 		System.out.println(" Parent Layer: " + bias3.getParentLayer().getKind());
@@ -255,7 +255,7 @@ System.out.println("============= TEST 2: INPUT DATA/BIASES ==================")
 		System.out.println(" has output to Neuron 1? " + bias3.hasOutputTo(neuron1));
 		System.out.println(" has output to Neuron 2? " + bias3.hasOutputTo(neuron2));
 		System.out.println(" has output to Neuron 3? " + bias3.hasOutputTo(neuron3));
-
+	
 		System.out.println(" Output Connections: ");
 		for (Connection output_connection: bias3.getOutputConnections()) {
 			System.out.println("\t" + output_connection.getLabel());
@@ -272,17 +272,17 @@ System.out.println("============= TEST 3: NEURONS CONFIG ==================");
 		System.out.println(" has input from Bias 1? " + neuron1.hasInputFrom(bias1));
 		System.out.println(" has input from Bias 2? " + neuron1.hasInputFrom(bias2));
 		System.out.println(" has input from Bias 3? " + neuron1.hasInputFrom(bias3));
-
+	
 		System.out.println(" Input Connections: ");
 		for (Connection input_connection: neuron1.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
 		}
-
+	
 		System.out.println(" Output Connections: ");
 		for (Connection output_connection: neuron1.getOutputConnections()) {
 			System.out.println("\t" + output_connection.getLabel());
 		}
-
+	
 		System.out.println();
 		System.out.println("-------- NEURON 2 ---------");
 		System.out.println(" Parent Layer: " + neuron2.getParentLayer().getKind());
@@ -291,17 +291,17 @@ System.out.println("============= TEST 3: NEURONS CONFIG ==================");
 		System.out.println(" has input from Bias 1? " + neuron2.hasInputFrom(bias1));
 		System.out.println(" has input from Bias 2? " + neuron2.hasInputFrom(bias2));
 		System.out.println(" has input from Bias 3? " + neuron2.hasInputFrom(bias3));
-
+	
 		System.out.println(" Input Connections: ");
 		for (Connection input_connection: neuron2.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
 		}
-
+	
 		System.out.println(" Output Connections: ");
 		for (Connection output_connection: neuron2.getOutputConnections()) {
 			System.out.println("\t" + output_connection.getLabel());
 		}
-
+	
 		System.out.println();
 		System.out.println("-------- NEURON 3 ---------");
 		System.out.println(" Parent Layer: " + neuron3.getParentLayer().getKind());
@@ -310,12 +310,12 @@ System.out.println("============= TEST 3: NEURONS CONFIG ==================");
 		System.out.println(" has input from Bias 1? " + neuron3.hasInputFrom(bias1));
 		System.out.println(" has input from Bias 2? " + neuron3.hasInputFrom(bias2));
 		System.out.println(" has input from Bias 3? " + neuron3.hasInputFrom(bias3));
-
+	
 		System.out.println(" Input Connections: ");
 		for (Connection input_connection: neuron3.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
 		}
-
+	
 		System.out.println(" Output Connections: ");
 		for (Connection output_connection: neuron3.getOutputConnections()) {
 			System.out.println("\t" + output_connection.getLabel());
@@ -328,117 +328,117 @@ System.out.println("============= TEST 4: NEURONS PROCESSING =================="
 		System.out.println("-------- NEURON 1 ---------");
 		System.out.println(" Input Processing: ");
 		System.out.println("    - Neuron netInput before: " + neuron1.getNetInput());
-
+	
 		neuron1.computeInput();
-
+	
 		System.out.println("    - Neuron netInput after: " + neuron1.getNetInput());
-
+	
 		System.out.println(" Output Processing: ");
 		System.out.println("    - Neuron output before: " + neuron1.getOutput());
-
+	
 		neuron1.computeOutput();
-
+	
 		System.out.println("    - Neuron output after: " + neuron1.getOutput());
-
+	
 		System.out.println();
 		System.out.println("-------- NEURON 2 ---------");
 		System.out.println(" Input Processing: ");
 		System.out.println("    - Neuron netInput before: " + neuron2.getNetInput());
-
+	
 		neuron2.computeInput();
-
+	
 		System.out.println("    - Neuron netInput after: " + neuron2.getNetInput());
-
+	
 		System.out.println(" Output Processing: ");
 		System.out.println("    - Neuron output before: " + neuron2.getOutput());
-
+	
 		neuron2.computeOutput();
-
+	
 		System.out.println("    - Neuron output after: " + neuron2.getOutput());
-
+	
 		System.out.println();
 		System.out.println("-------- NEURON 3 ---------");
 		System.out.println(" Input Processing: ");
 		System.out.println("    - Neuron netInput before: " + neuron3.getNetInput());
-
+	
 		neuron3.computeInput();
-
+	
 		System.out.println("    - Neuron netInput after: " + neuron3.getNetInput());
-
+	
 		System.out.println(" Output Processing: ");
 		System.out.println("    - Neuron output before: " + neuron3.getOutput());
-
+	
 		neuron3.computeOutput();
-
+	
 		System.out.println("    - Neuron output after: " + neuron3.getOutput());
-
+	
 		System.out.println();
 		System.out.println("-------- NEURONS RESET ---------");
-
+	
 		initial_layer.resetNeurons();
 		output_layer.resetNeurons();
-
+	
 		System.out.println(" Neuron 1 netInput: " + neuron1.getNetInput());
 		System.out.println(" Neuron 1 output: " + neuron1.getOutput());
-
+	
 		System.out.println(" Neuron 2 netInput: " + neuron2.getNetInput());
 		System.out.println(" Neuron 2 output: " + neuron2.getOutput());
-
+	
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
 
 System.out.println();
 System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ==================");
-
+	
 		neural_network.computeOutput();
-
+	
 		System.out.println(" Neuron 1 netInput: " + neuron1.getNetInput());
 		System.out.println(" Neuron 1 output: " + neuron1.getOutput());
-
+	
 		System.out.println(" Neuron 2 netInput: " + neuron2.getNetInput());
 		System.out.println(" Neuron 2 output: " + neuron2.getOutput());
-
+	
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
-
+	
 		System.out.println();
 		System.out.println("-------- RESET ---------");
-
+	
 		neural_network.resetLayers();
-
+	
 		System.out.println(" Neuron 1 netInput: " + neuron1.getNetInput());
 		System.out.println(" Neuron 1 output: " + neuron1.getOutput());
-
+	
 		System.out.println(" Neuron 2 netInput: " + neuron2.getNetInput());
 		System.out.println(" Neuron 2 output: " + neuron2.getOutput());
-
+	
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
-
+	
 		System.out.println();
 		System.out.println("-------- WEIGHTS' RANDOM INITIALIZATION ---------");
-
+	
 		neural_network.randomizeAllWeights(-1, 1, generator);
-
+	
 		System.out.println();
-		System.out.println(" Neuron 1: ");
+		System.out.println(" Neuron 1 weights: ");
 		for (Connection input_connection: neuron1.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
-			System.out.println("\t\t" + "Weight: " + input_connection.getWeight().getValue());
+			System.out.println("\t Weight: " + input_connection.getWeight());
 		}
-
+	
 		System.out.println();
-		System.out.println(" Neuron 2: ");
+		System.out.println(" Neuron 2 weights: ");
 		for (Connection input_connection: neuron2.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
-			System.out.println("\t\t" + "Weight: " + input_connection.getWeight().getValue());
+			System.out.println("\t Weight: " + input_connection.getWeight());
 		}
-
+	
 		System.out.println();
-		System.out.println(" Neuron 3: ");
+		System.out.println(" Neuron 3 weights: ");
 		for (Connection input_connection: neuron3.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
-			System.out.println("\t\t" + "Weight: " + input_connection.getWeight().getValue());
+			System.out.println("\t Weight: " + input_connection.getWeight());
 		}
 	}
 }

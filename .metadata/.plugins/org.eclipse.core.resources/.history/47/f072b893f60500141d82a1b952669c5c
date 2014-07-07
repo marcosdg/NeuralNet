@@ -74,7 +74,7 @@ public class NeuralNetwork {
 		}
 	}
 
-	// TODO: COMPLETE 'LEARN' METHOD
+	// TODO: DEVELOPMENT.
 	public void learn(DataSet data){
 		this.learningRule.apply(data);
 	}

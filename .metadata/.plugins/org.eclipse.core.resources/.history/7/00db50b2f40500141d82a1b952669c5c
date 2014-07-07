@@ -421,24 +421,24 @@ System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ============
 		neural_network.randomizeAllWeights(-1, 1, generator);
 
 		System.out.println();
-		System.out.println(" Neuron 1: ");
+		System.out.println(" Neuron 1 weights: ");
 		for (Connection input_connection: neuron1.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
-			System.out.println("\t\t" + "Weight: " + input_connection.getWeight().getValue());
+			System.out.println("\t Weight: " + input_connection.getWeight().getValue());
 		}
 
 		System.out.println();
-		System.out.println(" Neuron 2: ");
+		System.out.println(" Neuron 2 weights: ");
 		for (Connection input_connection: neuron2.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
-			System.out.println("\t\t" + "Weight: " + input_connection.getWeight().getValue());
+			System.out.println("\t Weight: " + input_connection.getWeight().getValue());
 		}
 
 		System.out.println();
-		System.out.println(" Neuron 3: ");
+		System.out.println(" Neuron 3 weights: ");
 		for (Connection input_connection: neuron3.getInputs()) {
 			System.out.println("\t" + input_connection.getLabel());
-			System.out.println("\t\t" + "Weight: " + input_connection.getWeight().getValue());
+			System.out.println("\t Weight: " + input_connection.getWeight().getValue());
 		}
 	}
 }
