@@ -3,41 +3,45 @@ package core.data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sample
-{
-	private List<Double> inputs;
-	private List<Double> outputs;
-	
-	public Sample()
-	{
-		this.inputs = new ArrayList<Double>();
-		this.outputs = new ArrayList<Double>();
-	}
-	
-	public void addInput(String input)
-	{
-		this.inputs.add(Double.parseDouble(input));
-	}
-	
-	public void addOutput(String output)
-	{
-		this.outputs.add(Double.parseDouble(output));
+public class Sample {
+
+	private List<Double> input_vector;
+	private List<Double> desired_output_vector;
+
+
+// Creation.
+
+
+	public Sample() {
+		this.input_vector = new ArrayList<Double>();
+		this.desired_output_vector = new ArrayList<Double>();
 	}
 
-	public List<Double> getInputs() {
-		return inputs;
+
+// Input vector configuration.
+
+
+	public List<Double> getInputVector() {
+		return input_vector;
+	}
+	public void setInputVector(List<Double> input_vector) {
+		this.input_vector = input_vector;
+	}
+	public void addInput(Double input) {
+		this.input_vector.add(input);
 	}
 
-	public void setInputs(List<Double> inputs) {
-		this.inputs = inputs;
-	}
 
-	public List<Double> getOutputs() {
-		return outputs;
-	}
+// Desired output vector configuration.
 
-	public void setOutputs(List<Double> outputs) {
-		this.outputs = outputs;
+
+	public List<Double> getDesiredOutputVector() {
+		return desired_output_vector;
 	}
-	
+	public void setDesiredOutputVector(List<Double> desired_output) {
+		this.desired_output_vector = desired_output;
+	}
+	public void addOutput(Double output) {
+		this.desired_output_vector.add(output);
+	}
 }

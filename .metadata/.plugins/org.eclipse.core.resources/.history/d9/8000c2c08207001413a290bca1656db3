@@ -1,0 +1,58 @@
+package core.data;
+
+import java.util.List;
+
+public class Benchmark
+{
+	private Integer num_training_samples,
+                     num_validation_samples,
+                     num_test_samples;
+	private List<Sample> samples;
+
+	public Benchmark(Integer num_training, Integer num_validation, Integer num_test,
+                      List<Sample> samples) {
+		if (num_training < 0 || num_validation < 0 || num_test < 0 || 
+			samples.isEmpty()) {
+			
+		}
+		
+		this.training_samples = training;
+		this.validation_samples = validation;
+		this.test_samples = test;
+		this.samples = samples;
+	}
+
+	public Integer getTraining_samples() {
+		return training_samples;
+	}
+
+	public void setTraining_samples(Integer training_samples) {
+		this.training_samples = training_samples;
+	}
+
+	public Integer getValidation_samples() {
+		return validation_samples;
+	}
+
+	public void setValidation_samples(Integer validation_samples) {
+		this.validation_samples = validation_samples;
+	}
+
+	public Integer getTest_samples() {
+		return test_samples;
+	}
+
+	public void setTest_samples(Integer test_samples) {
+		this.test_samples = test_samples;
+	}
+
+	public List<Sample> getSamples() {
+		return samples;
+	}
+
+	public void setSamples(List<Sample> samples) {
+		this.samples = samples;
+	}
+
+
+}
