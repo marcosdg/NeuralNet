@@ -1,0 +1,15 @@
+package test;
+
+import core.data.FileParser;
+
+public class TestParse {
+	public static void main(String[] args) {
+
+		String cancer1 = "/home/marcos/Escritorio/cancer1.dt";
+
+		FileParser parser = new FileParser(cancer1);
+
+
+	}
+
+}

@@ -44,8 +44,6 @@ public class FileParser {
             this.num_test_samples = 0;
             this.total_inputs = 0;
             this.total_outputs = 0;
-
-
 			this.file_path = file_path;
 		}
 	}
@@ -57,41 +55,28 @@ public class FileParser {
 	// File.
 
 	public Benchmark parseFile() {
-		Exception exception = null;
 		List<Sample> samples = new ArrayList<Sample>();
-
 		try {
 			FileReader freader = new FileReader(this.file_path);
 			BufferedReader breader = new BufferedReader(freader);
 
-			String line = breader.readLine();
-			while (line != null) {
+			this.parseHeader(breader);
 
-				// Is header line ?
+			// Prepare data parsing.
 
-				if (line.contains("=")) {
-					this.parseHeaderLine(line);
+			this.calculateTotalInputs();
+			this.calculateTotalOutputs();
 
-				// Is data line ?
+			this.parseData(breader, samples);
 
-				} else {
-					Sample sample = parseDataLine(line);
-					samples.add(sample);
-				}
-				// Advance line.
-
-				line = breader.readLine();
-			}
 			breader.close();
 
 		} catch (FileNotFoundException file_not_found) {
 			System.out.println("File not found: " + this.file_path);
-			exception = file_not_found;
+			file_not_found.printStackTrace();
 		} catch (IOException io) {
 			System.out.println("Could not read line from file: " + this.file_path);
-			exception = io;
-		} finally {
-			exception.printStackTrace();
+			io.printStackTrace();
 		}
 		return new Benchmark(this.num_training_samples,
                                   this.num_validation_samples,
@@ -102,6 +87,15 @@ public class FileParser {
 
 	// Header.
 
+	public void parseHeader(BufferedReader breader) throws IOException {
+
+		String line = breader.readLine();
+		while (line.contains("=")) {
+
+			this.parseHeaderLine(line);
+			line = breader.readLine();
+		}
+	}
 	public void parseHeaderLine(String line) {
 
 		// Split line (parameter = integer).
@@ -115,63 +109,71 @@ public class FileParser {
 
 		// Select which parameter to be set.
 
-		Integer which = null;
-
 		if (left.contains("real_in")) {
-			which = this.num_real_inputs;
+			this.num_real_inputs = right;
 
 		} else if (left.contains("bool_in")) {
-			which = this.num_bool_inputs;
+			this.num_bool_inputs = right;
 
 		} else if (left.contains("real_out")) {
-			which = this.num_real_outputs;
+			this.num_real_outputs = right;
 
 		} else if (left.contains("bool_out")) {
-			which = this.num_bool_outputs;
+			this.num_bool_outputs = right;
 
 		} else if (left.contains("training_examples")) {
-			which = this.num_training_samples;
+			this.num_training_samples = right;
 
 		} else if (left.contains("validation_examples")) {
-			which = this.num_validation_samples;
+			this.num_validation_samples = right;
 
 		} else if (left.contains("test_examples")) {
-			which = this.num_test_samples;
+			this.num_test_samples = right;
 		}
-		which = right;
 	}
 
 	// Data.
 
+	public void parseData(BufferedReader breader, List<Sample> samples) throws IOException {
+
+		String line = breader.readLine();
+		while (line != null) {
+
+			samples.add(this.parseDataLine(line));
+			line = breader.readLine();
+		}
+	}
 	public Sample parseDataLine(String line) {
 		Sample sample = new Sample();
 		String[] data = {};
 		int at = 0;
 
-		// To separate inputs from outputs within a line.
-
-		this.calculateTotalInputs();
-		this.calculateTotalOutputs();
-
-		// Parse.
-
 		data = line.split(" ");
+
 		for (String datum: data) {
 
 			// Is datum an input ?
 
-			if (at <= this.total_inputs) {
+			if (at < this.total_inputs) {
 				sample.addInput(this.stringToDouble(datum));
 
 			// Is datum an output ?
 
-			} else if ((this.total_inputs < at) &&
+			} else if ((this.total_inputs <= at) &&
                         (at <= (this.total_inputs + this.total_outputs))){
 				sample.addOutput(this.stringToDouble(datum));
 			}
+			at += 1;
 		}
 		return sample;
 	}
+
+	/*
+	 * 'calculateTotalInputs' and 'calculateTotalOutputs' are used when
+	 * parsing data lines. They allow to distinguish which data is input
+	 * and output.
+	 */
+
 	public void calculateTotalInputs() {
 
 		// boolean inputs ?

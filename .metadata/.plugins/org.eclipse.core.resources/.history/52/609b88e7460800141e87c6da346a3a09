@@ -1,0 +1,18 @@
+package test;
+
+import core.data.Benchmark;
+import core.data.FileParser;
+
+public class TestParse {
+	public static void main(String[] args) {
+
+		String cancer1_path = "/home/marcos/Escritorio/cancer1.dt";
+
+		FileParser parser = new FileParser(cancer1_path);
+		
+		Benchmark cancer1 = parser.parseFile();
+
+
+	}
+
+}

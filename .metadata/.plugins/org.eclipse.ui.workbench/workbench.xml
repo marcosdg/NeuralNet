@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="15" version="2.0">
+<workbench progressCount="23" version="2.0">
 <workbenchAdvisor/>
 <window height="720" maximized="true" width="1004" x="-1" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -13,12 +13,12 @@
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="120" y="30"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="68" y="30"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="184" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -27,31 +27,10 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataParser.java" partName="DataParser.java" path="/home/marcos/Escritorio/NeuralNet/NeuralNet/src/core/data/DataParser.java" title="DataParser.java" tooltip="NeuralNet/src/core/data/DataParser.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/NeuralNet/src/core/data/DataParser.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1761" selectionTopPixel="663"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataSet.java" partName="DataSet.java" path="/home/marcos/Escritorio/NeuralNet/NeuralNet/src/core/data/DataSet.java" title="DataSet.java" tooltip="NeuralNet/src/core/data/DataSet.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/NeuralNet/src/core/data/DataSet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Parse.java" partName="Parse.java" path="/home/marcos/Escritorio/NeuralNet/NeuralNet/src/core/data/Parse.java" title="Parse.java" tooltip="NeuralNet/src/core/data/Parse.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/NeuralNet/src/core/data/Parse.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sample.java" partName="Sample.java" path="/home/marcos/Escritorio/NeuralNet/NeuralNet/src/core/data/Sample.java" title="Sample.java" tooltip="NeuralNet/src/core/data/Sample.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/NeuralNet/src/core/data/Sample.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="7"/>
-</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
@@ -62,6 +41,7 @@
 <expanded>
 <category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings (22 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -123,7 +103,7 @@
 </view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
@@ -308,86 +288,7 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory>
-<editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NeuralNet/src/core/data/DataParser.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NeuralNet/src/core/data/DataSet.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NeuralNet/src/core/data/Parse.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NeuralNet/src/core/data/Sample.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NeuralNet/src/core/Neuron.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NeuralNet/src/core/InputNode.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NeuralNet/src/core/data/Benchmark.java"/>
-</editors>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DataSet.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Parse.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Sample.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="2407" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position/>
-</item>
-<item historyLabel="Neuron.java" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="InputNode.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Neuron.java" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="3736" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="4140" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="3846" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="1692" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="4123" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="1279" y="0"/>
-</item>
-<item historyLabel="Benchmark.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="1279" y="0"/>
-</item>
-<item active="true" historyLabel="DataParser.java" index="0">
-<position info="not_deleted" x="1690" y="0"/>
-</item>
-</navigationHistory>
+<navigationHistory/>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -404,50 +305,47 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Benchmark.java" tooltip="NeuralNet/src/core/data/Benchmark.java">
-<persistable path="/NeuralNet/src/core/data/Benchmark.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InputNode.java" tooltip="NeuralNet/src/core/InputNode.java">
-<persistable path="/NeuralNet/src/core/InputNode.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Neuron.java" tooltip="NeuralNet/src/core/Neuron.java">
-<persistable path="/NeuralNet/src/core/Neuron.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FileParser.java" tooltip="NeuralNet/src/core/data/FileParser.java">
+<persistable path="/NeuralNet/src/core/data/FileParser.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sample.java" tooltip="NeuralNet/src/core/data/Sample.java">
 <persistable path="/NeuralNet/src/core/data/Sample.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Parse.java" tooltip="NeuralNet/src/core/data/Parse.java">
-<persistable path="/NeuralNet/src/core/data/Parse.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataSet.java" tooltip="NeuralNet/src/core/data/DataSet.java">
 <persistable path="/NeuralNet/src/core/data/DataSet.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DataParser.java" tooltip="NeuralNet/src/core/data/DataParser.java">
-<persistable path="/NeuralNet/src/core/data/DataParser.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaxEpochsStop.java" tooltip="NeuralNet/src/core/learning/stop/MaxEpochsStop.java">
-<persistable path="/NeuralNet/src/core/learning/stop/MaxEpochsStop.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weight.java" tooltip="NeuralNet/src/core/Weight.java">
-<persistable path="/NeuralNet/src/core/Weight.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NeuralNetwork.java" tooltip="NeuralNet/src/core/NeuralNetwork.java">
-<persistable path="/NeuralNet/src/core/NeuralNetwork.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SupervisedLearning.java" tooltip="NeuralNet/src/core/learning/SupervisedLearning.java">
-<persistable path="/NeuralNet/src/core/learning/SupervisedLearning.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Backpropagation.java" tooltip="NeuralNet/src/core/learning/Backpropagation.java">
-<persistable path="/NeuralNet/src/core/learning/Backpropagation.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LearningRule.java" tooltip="NeuralNet/src/core/learning/LearningRule.java">
 <persistable path="/NeuralNet/src/core/learning/LearningRule.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BackPropagationMomentum.java" tooltip="NeuralNet/src/core/learning/BackPropagationMomentum.java">
-<persistable path="/NeuralNet/src/core/learning/BackPropagationMomentum.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Backpropagation.java" tooltip="NeuralNet/src/core/learning/Backpropagation.java">
+<persistable path="/NeuralNet/src/core/learning/Backpropagation.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Layer.java" tooltip="NeuralNet/src/core/Layer.java">
-<persistable path="/NeuralNet/src/core/Layer.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Benchmark.java" tooltip="NeuralNet/src/core/data/Benchmark.java">
+<persistable path="/NeuralNet/src/core/data/Benchmark.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Parse.java" tooltip="NeuralNet/src/core/data/Parse.java">
+<persistable path="/NeuralNet/src/core/data/Parse.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NeuralNetwork.java" tooltip="NeuralNet/src/core/NeuralNetwork.java">
+<persistable path="/NeuralNet/src/core/NeuralNetwork.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Connection.java" tooltip="NeuralNet/src/core/Connection.java">
+<persistable path="/NeuralNet/src/core/Connection.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InputNode.java" tooltip="NeuralNet/src/core/InputNode.java">
+<persistable path="/NeuralNet/src/core/InputNode.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Node.java" tooltip="NeuralNet/src/core/Node.java">
+<persistable path="/NeuralNet/src/core/Node.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weight.java" tooltip="NeuralNet/src/core/Weight.java">
+<persistable path="/NeuralNet/src/core/Weight.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Neuron.java" tooltip="NeuralNet/src/core/Neuron.java">
+<persistable path="/NeuralNet/src/core/Neuron.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaxEpochsStop.java" tooltip="NeuralNet/src/core/learning/stop/MaxEpochsStop.java">
+<persistable path="/NeuralNet/src/core/learning/stop/MaxEpochsStop.java"/>
 </file>
 </mruList>
 </workbench>
