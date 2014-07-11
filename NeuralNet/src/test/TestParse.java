@@ -1,5 +1,7 @@
 package test;
 
+import java.util.List;
+
 import core.data.Benchmark;
 import core.data.FileParser;
 import core.data.Sample;
@@ -10,37 +12,46 @@ public class TestParse {
 
 // Data file.
 
-		String cancer1_path = "/home/marcos/Escritorio/cancer1.dt";
+		String proben_dir = "gene";
+		String proben_file_name = "gene1.dt";
 
 // Parsing.
 
-		FileParser parser = new FileParser(cancer1_path);
-		Benchmark cancer1 = parser.parseFile();
+		FileParser parser = new FileParser(proben_dir, proben_file_name);
+
+		Benchmark benchmark = parser.parseFile();
 
 System.out.println("============= TEST: DATA FILE PARSING  ==================");
 
-		System.out.println(" Data file parsed: " + cancer1.getLabel());
+		System.out.println(" Data file parsed: " + benchmark.getLabel());
 
 		System.out.println(" Num. training samples: " +
-                            cancer1.getNumberOfTrainingSamples());
+				benchmark.getNumberOfTrainingSamples());
 		System.out.println(" Num. validation samples: " +
-                cancer1.getNumberOfValidationSamples());
+				benchmark.getNumberOfValidationSamples());
 		System.out.println(" Num. test samples: " +
-                cancer1.getNumberOfTestSamples());
+				benchmark.getNumberOfTestSamples());
 
-		System.out.println(" First sample parsed:");
-		Sample sample1 = cancer1.getSamples().get(0);
+		List<Sample> samples = benchmark.getSamples();
+		Sample sample = null;
 
-		System.out.println("\t --- Inputs ---");
-		for (Double input: sample1.getInputVector()) {
-			System.out.print(input + " ");
-		}
+		System.out.println("\t" + "FIRST 3 SAMPLES PARSED");
 
-		System.out.println();
+		for (int i = 0; i < 3; i += 1) {
+			sample = samples.get(i);
+			System.out.println("----- SAMPLE " + i + " -----");
 
-		System.out.println("\t --- Desired Outputs ---");
-		for (Double desired: sample1.getDesiredOutputVector()) {
-			System.out.print(desired + " ");
+			System.out.println("  * Inputs *");
+			for (Double input: sample.getInputVector()) {
+				System.out.print(input + " ");
+			}
+			System.out.println();
+
+			System.out.println("  * Desired Outputs *");
+			for (Double desired: sample.getDesiredOutputVector()) {
+				System.out.print(desired + " ");
+			}
+			System.out.println();
 		}
 	}
 }

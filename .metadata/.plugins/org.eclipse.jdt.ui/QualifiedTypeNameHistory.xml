@@ -13,10 +13,13 @@
 <fullyQualifiedTypeName name="core.learning.SupervisedLearning"/>
 <fullyQualifiedTypeName name="core.learning.Backpropagation"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="core.Connection"/>
 <fullyQualifiedTypeName name="core.learning.LearningRule"/>
 <fullyQualifiedTypeName name="core.learning.IterativeLearning"/>
 <fullyQualifiedTypeName name="core.learning.stop.StopCriteria"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="core.data.Benchmark"/>
+<fullyQualifiedTypeName name="core.data.Sample"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="core.data.FileParser"/>
 </qualifiedTypeNameHistroy>
