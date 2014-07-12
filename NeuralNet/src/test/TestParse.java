@@ -12,14 +12,16 @@ public class TestParse {
 
 // Data file.
 
-		String proben_dir = "gene";
-		String proben_file_name = "gene1.dt";
+		String proben_dir = "horse";
+		String proben_file_name = "horse1.dt";
 
 // Parsing.
 
 		FileParser parser = new FileParser(proben_dir, proben_file_name);
 
-		Benchmark benchmark = parser.parseFile();
+		parser.parseFile();
+
+		Benchmark benchmark = parser.getBenchmark();
 
 System.out.println("============= TEST: DATA FILE PARSING  ==================");
 

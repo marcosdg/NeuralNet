@@ -18,7 +18,7 @@ public class Sample {
 	}
 
 
-// Input vector configuration.
+// Input-vector configuration.
 
 
 	public List<Double> getInputVector() {
@@ -32,7 +32,7 @@ public class Sample {
 	}
 
 
-// Desired output vector configuration.
+// Desired-output-vector configuration.
 
 
 	public List<Double> getDesiredOutputVector() {
