@@ -131,18 +131,13 @@ public class Connection {
 		this.label = label;
 	}
 
-
+	
 // Kind.
-
-
+	
+	
 	public boolean isInputNodeToNeuron() {
 		return (this.source instanceof InputNode &&
 				 this.target instanceof Neuron);
-	}
-	public boolean isNeuronToNeuron() {
-		return (this.source instanceof Neuron &&
-				 this.target instanceof Neuron);
-	}
-
+	}	
 
 }

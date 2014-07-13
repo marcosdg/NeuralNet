@@ -182,7 +182,6 @@ public class NeuralNetwork {
 
 // Label configuration.
 
-
 	public String getLabel() {
 		return this.label;
 	}

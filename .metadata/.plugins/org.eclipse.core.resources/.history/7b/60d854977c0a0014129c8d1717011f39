@@ -99,4 +99,8 @@ public class InputNode extends Node {
 			}
 		}
 	}
+	public boolean isInputNodeToNeuron(Connection connection) {
+		return (connection.getSource() instanceof InputNode &&
+				 connection.getTarget() instanceof Neuron);
+	}
 }

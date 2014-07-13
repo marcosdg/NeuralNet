@@ -22,4 +22,5 @@
 <fullyQualifiedTypeName name="core.data.FileParser"/>
 <fullyQualifiedTypeName name="core.data.Benchmark"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 </qualifiedTypeNameHistroy>

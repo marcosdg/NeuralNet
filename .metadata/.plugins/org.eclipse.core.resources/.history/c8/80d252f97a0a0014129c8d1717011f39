@@ -51,7 +51,7 @@ public class NeuralNetwork {
 
 				((Neuron) from).addOutputConnection(connection);
 
-			// from InputNode ?
+				// from InputNode ?
 
 			} else if (from instanceof InputNode) {
 
@@ -181,7 +181,6 @@ public class NeuralNetwork {
 
 
 // Label configuration.
-
 
 	public String getLabel() {
 		return this.label;

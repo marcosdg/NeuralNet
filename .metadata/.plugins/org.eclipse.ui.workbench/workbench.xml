@@ -39,6 +39,10 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings (20 items)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -81,7 +85,7 @@
 </view>
 <view id="org.eclipse.ui.views.TaskList" partName="Tasks">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.priorityField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
-<columnWidths org.eclipse.ui.ide.completionField="61" org.eclipse.ui.ide.descriptionField="440" org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="214" org.eclipse.ui.ide.priorityField="86" org.eclipse.ui.ide.resourceField="224"/>
+<columnWidths org.eclipse.ui.ide.completionField="61" org.eclipse.ui.ide.descriptionField="440" org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="214" org.eclipse.ui.ide.priorityField="43" org.eclipse.ui.ide.resourceField="224"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.completionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.priorityField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.descriptionField"/>
@@ -100,7 +104,7 @@
 </view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
@@ -254,7 +258,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="right" ratio="0.77837354" ratioLeft="871" ratioRight="248" relationship="2" relative="org.eclipse.ui.editorss">
+<info folder="true" part="right" ratio="0.6470063" ratioLeft="724" ratioRight="395" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.TaskList" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
@@ -266,7 +270,7 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@7c4fc360" ratio="0.7292724" ratioLeft="431" ratioRight="160" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@7c4fc360" ratio="0.85617596" ratioLeft="506" ratioRight="85" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -302,6 +306,27 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TestBasics.java" tooltip="NeuralNet/src/test/TestBasics.java">
+<persistable path="/NeuralNet/src/test/TestBasics.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Connection.java" tooltip="NeuralNet/src/core/Connection.java">
+<persistable path="/NeuralNet/src/core/Connection.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InputNode.java" tooltip="NeuralNet/src/core/InputNode.java">
+<persistable path="/NeuralNet/src/core/InputNode.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Neuron.java" tooltip="NeuralNet/src/core/Neuron.java">
+<persistable path="/NeuralNet/src/core/Neuron.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NeuralNetwork.java" tooltip="NeuralNet/src/core/NeuralNetwork.java">
+<persistable path="/NeuralNet/src/core/NeuralNetwork.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="cancer1.dt" tooltip="NeuralNet/src/proben1/cancer/cancer1.dt">
+<persistable path="/NeuralNet/src/proben1/cancer/cancer1.dt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TestParse.java" tooltip="NeuralNet/src/test/TestParse.java">
+<persistable path="/NeuralNet/src/test/TestParse.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Benchmark.java" tooltip="NeuralNet/src/core/data/Benchmark.java">
 <persistable path="/NeuralNet/src/core/data/Benchmark.java"/>
 </file>
@@ -320,32 +345,11 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sample.java" tooltip="NeuralNet/src/core/data/Sample.java">
 <persistable path="/NeuralNet/src/core/data/Sample.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TestParse.java" tooltip="NeuralNet/src/test/TestParse.java">
-<persistable path="/NeuralNet/src/test/TestParse.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="gene1.dt" tooltip="NeuralNet/src/proben1/gene/gene1.dt">
 <persistable path="/NeuralNet/src/proben1/gene/gene1.dt"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="mushroom1.dt" tooltip="NeuralNet/src/proben1/mushroom/mushroom1.dt">
 <persistable path="/NeuralNet/src/proben1/mushroom/mushroom1.dt"/>
-</file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="BufferedReader.class" tooltip="java.io.BufferedReader">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=NeuralNet/\/usr\/lib\/jvm\/java-6-openjdk-amd64\/jre\/lib\/rt.jar&lt;java.io(BufferedReader.class"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="cancer1.dt" tooltip="NeuralNet/src/proben1/cancer/cancer1.dt">
-<persistable path="/NeuralNet/src/proben1/cancer/cancer1.dt"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="horse1.dt" tooltip="NeuralNet/src/proben1/horse/horse1.dt">
-<persistable path="/NeuralNet/src/proben1/horse/horse1.dt"/>
-</file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Double.class" tooltip="java.lang.Double">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=NeuralNet/\/usr\/lib\/jvm\/java-6-openjdk-amd64\/jre\/lib\/rt.jar&lt;java.lang(Double.class"/>
-</file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="FileInputStream.class" tooltip="java.io.FileInputStream">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=NeuralNet/\/usr\/lib\/jvm\/java-6-openjdk-amd64\/jre\/lib\/rt.jar&lt;java.io(FileInputStream.class"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TestBasics.java" tooltip="NeuralNet/src/test/TestBasics.java">
-<persistable path="/NeuralNet/src/test/TestBasics.java"/>
 </file>
 </mruList>
 </workbench>
