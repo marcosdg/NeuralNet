@@ -1,5 +1,6 @@
 package core.data;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -198,8 +199,48 @@ public class Benchmark {
 		this.samples = samples;
 	}
 
-	// TODO: Methods to extract training, validation and test set from samples.
 
+	/*
+	 * PROBEN1 files assume that samples come in the following order:
+	 *
+	 *    1. Training.
+	 *    2. Validation.
+	 *    3. Test.
+	 */
+
+	public List<Sample> getTrainingSamples() {
+		return this.samples.subList(this.getTrainingRange()[0],
+                                      this.getTrainingRange()[1]);
+	}
+	public List<Sample> getValidationSamples() {
+		return this.samples.subList(this.getValidationRange()[0],
+                                      this.getValidationRange()[1]);
+	}
+	public List<Sample> getTestSamples() {
+		return this.samples.subList(this.getTestRange()[0],
+                                      this.getTestRange()[1]);
+	}
+
+	// Training, Validation and Test sets ranges.
+
+	public Integer[] getTrainingRange() {
+		Integer[] training_range = {0, this.num_training_samples};
+		return training_range;
+	}
+	public Integer[] getValidationRange() {
+		Integer validation_end = this.num_training_samples +
+                                 this.num_validation_samples;
+
+		Integer[] validation_range = {this.num_training_samples, validation_end};
+		return validation_range;
+	}
+	public Integer[] getTestRange() {
+		Integer validation_end = this.num_training_samples +
+                                 this.num_validation_samples;
+
+		Integer[] test_range = {validation_end, this.samples.size()};
+		return test_range;
+	}
 
 // Label.
 
