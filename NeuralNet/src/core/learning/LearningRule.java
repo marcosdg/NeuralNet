@@ -2,15 +2,15 @@ package core.learning;
 
 import core.NeuralNetwork;
 import core.Neuron;
-import core.data.DataSet;
+import core.data.Benchmark;
 import core.util.ConnectionHelper;
 
 //TODO: COMPLETE LEARNINGRULE CLASS
 
 abstract public class LearningRule {
 
+	private Benchmark benchmark;
 	private NeuralNetwork neuralNetwork;
-	private DataSet data; // training + validation + test sets
 
 	public LearningRule() {
 	}
@@ -22,18 +22,14 @@ abstract public class LearningRule {
 		this.neuralNetwork = that;
 	}
 
-	public DataSet getData() {
-		return this.data;
+	public Benchmark getBenchmark() {
+		return this.benchmark;
 	}
-	public void setData(DataSet that) {
-		this.data = that;
+	public void setBenchmark(Benchmark that) {
+		this.benchmark = that;
 	}
 
-	abstract public void apply(DataSet data);
-
-
-
-
+	abstract public void apply();
 
 	/* ~ Manu
 	public static double getDelta(Neuron neuron, double expectedResult)

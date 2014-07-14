@@ -7,16 +7,15 @@ import core.learning.stop.StopCriteria;
 abstract public class SupervisedLearning extends LearningRule {
 
 
-	private double learning_rate,
-                     current_network_error;
-
 	private int current_epoch;
+
+	private double current_training_error,
+                     learning_rate;
 
 	private StopCriteria stop_criteria;
 
 
-
-// Learning Rate configuration.
+// Learning rate configuration.
 
 
 	public double getLearningRate() {
@@ -30,11 +29,11 @@ abstract public class SupervisedLearning extends LearningRule {
 // Error configuration.
 
 
-	public double getCurrentNetworkError() {
-		return this.current_network_error;
+	public double getCurrentTrainingError() {
+		return this.current_training_error;
 	}
-	public void setCurrentNetworkError(double error) {
-		this.current_network_error = error;
+	public void setCurrentTrainingError(double error) {
+		this.current_training_error = error;
 	}
 
 
@@ -43,6 +42,9 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	public int getCurrentEpoch() {
 		return this.current_epoch;
+	}
+	public void setCurrentEpoch(int epoch) {
+		this.current_epoch = epoch;
 	}
 
 

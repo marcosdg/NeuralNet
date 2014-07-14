@@ -415,7 +415,7 @@ System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ============
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
 
 		System.out.println();
-		System.out.println("-------- WEIGHTS' RANDOM INITIALIZATION ---------");
+		System.out.println("-------- WEIGHTS RANDOM INITIALIZATION ---------");
 
 		neural_network.randomizeAllWeights(-1, 1, generator);
 

@@ -1,6 +1,6 @@
 package core.data;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,7 +112,7 @@ public class Benchmark {
 	}
 
 
-// Number of training samples .
+// Number of training samples.
 
 
 	public Integer getNumberOfTrainingSamples() {
@@ -200,12 +200,14 @@ public class Benchmark {
 	}
 
 
+
+
 	/*
 	 * PROBEN1 files assume that samples come in the following order:
 	 *
-	 *    1. Training.
-	 *    2. Validation.
-	 *    3. Test.
+	 *    1. Training.   {0, num_training}
+	 *    2. Validation. {num_training, validation_end}
+	 *    3. Test.       {validation_end, samples.size()}
 	 */
 
 	public List<Sample> getTrainingSamples() {
@@ -241,6 +243,7 @@ public class Benchmark {
 		Integer[] test_range = {validation_end, this.samples.size()};
 		return test_range;
 	}
+
 
 // Label.
 

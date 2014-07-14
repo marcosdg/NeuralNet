@@ -3,7 +3,7 @@ package core;
 import java.util.List;
 import java.util.Random;
 
-import core.data.DataSet;
+import core.data.Benchmark;
 import core.learning.LearningRule;
 
 /*
@@ -75,8 +75,8 @@ public class NeuralNetwork {
 	}
 
 	// TODO: COMPLETE 'LEARN' METHOD
-	public void learn(DataSet data){
-		this.learningRule.apply(data);
+	public void learn() {
+		this.learningRule.apply();
 	}
 
 

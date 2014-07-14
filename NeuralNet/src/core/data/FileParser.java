@@ -118,8 +118,6 @@ public class FileParser {
 
 		String[] left_right = line.split(this.benchmark.EQUAL());
 
-		// Separate its parts.
-
 		String left = left_right[0];
 		Integer right = this.stringToInteger(left_right[1]);
 

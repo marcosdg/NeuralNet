@@ -7,20 +7,42 @@ import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
 import core.Weight;
-import core.data.DataSet;
+
 
 //TODO: COMPLETE BACKPROPAGATION CLASS
 
 
 public class Backpropagation extends SupervisedLearning {
 
+	private double momentum;
+
+
+// Creation.
+
+
 	public Backpropagation() {
 	}
 
+
+// Processing.
+
+
 	@Override
-	public void apply(DataSet data) {
+	public void apply() {
 
 	}
+
+
+// Momentum configuration.
+
+
+	public double getMomemtum() {
+		return this.momentum;
+	}
+	public void setMomentum(double momentum) {
+		this.momentum = momentum;
+	}
+
 
 
 	/* ~ Manu

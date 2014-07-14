@@ -40,5 +40,4 @@ public class MaxEpochsStop implements StopCriteria {
 	public void setMaxEpochs(int epochs) {
 		this.max_epochs = epochs;
 	}
-
 }
