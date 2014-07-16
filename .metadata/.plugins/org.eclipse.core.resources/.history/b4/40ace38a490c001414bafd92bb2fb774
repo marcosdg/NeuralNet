@@ -1,0 +1,69 @@
+package core.learning.error;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SquaredError {
+
+	private List<Double> desired_output_vector, // from sample.
+                          output_vector;         // from network.
+
+
+	public SquaredError() {
+		this.desired_output_vector = new ArrayList<Double>();
+		this.output_vector = new ArrayList<Double>();
+	}
+
+	public Double getSquaredError() {
+		Double squared_error = 0.0,
+               desired_output,
+               output;
+		
+		if (!areAdequate(this.desired_output_vector, this.output_vector)) {
+			throw new IllegalArgumentException("SquaredError: empty or" + 
+                                                " different sizes vectors.");
+		} else {
+			int n = this.output_vector.size(); // desired_output_vector works too.
+			
+			// SUM{i,n}: (d{i} - o{i}) ^ 2
+			
+			for (int i = 0; i < n; i += 1) {
+				desired_output = this.desired_output_vector.get(i);
+				output = this.output_vector.get(i);
+				
+				squared_error += Math.pow((desired_output - output), 2); 
+			}
+		}
+		return 
+
+	}
+
+	public boolean areAdequate(List<Double> desired_output_vector,
+                                 List<Double> output_vector) {
+		boolean are = false;
+
+		if (!this.desired_output_vector.isEmpty() &&
+            !this.output_vector.isEmpty()) {
+
+			if (this.desired_output_vector.size() == this.output_vector.size()) {
+				are = true;
+			}
+		}
+		return are;
+	}
+
+	public List<Double> getDesiredOutputVector() {
+		return this.desired_output_vector;
+	}
+	public void setDesiredOutputVector(List<Double> desired_output_vector) {
+		this.desired_output_vector = desired_output_vector ;
+	}
+
+	public List<Double> getOutputVector() {
+		return this.output_vector;
+	}
+	public void setOutputVector(List<Double> output_vector) {
+		this.output_vector = output_vector ;
+	}
+
+}

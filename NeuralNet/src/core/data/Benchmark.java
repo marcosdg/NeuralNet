@@ -199,9 +199,6 @@ public class Benchmark {
 		this.samples = samples;
 	}
 
-
-
-
 	/*
 	 * PROBEN1 files assume that samples come in the following order:
 	 *

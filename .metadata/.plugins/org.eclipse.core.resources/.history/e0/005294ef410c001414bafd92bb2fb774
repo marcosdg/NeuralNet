@@ -1,0 +1,10 @@
+package core.learning.error;
+
+import java.util.List;
+
+public class SquaredError {
+	
+	private List<Double> desired_output_vector,
+                          output_vector;
+	
+}
