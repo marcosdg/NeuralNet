@@ -6,8 +6,8 @@ import java.util.Random;
  * Represents the synaptic strength of a 'Connection' with a 'value'.
  *
  * It stores the 'currentWeightChange' obtained from the current learning epoch
- * and the 'previousWeightChange' obtained from the previous learning epoch; which are
- * necessary to implement 'BackPropagation with momentum'.
+ * and the 'previousWeightChange' obtained from the previous learning epoch;
+ * which are necessary to implement 'BackPropagation with momentum'.
  */
 
 public class Weight {

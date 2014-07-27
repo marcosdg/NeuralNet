@@ -26,7 +26,7 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 
 
-// Error configuration.
+// Error configuration. TODO: should be in NeuralNetwork?
 
 
 	public double getCurrentTrainingError() {

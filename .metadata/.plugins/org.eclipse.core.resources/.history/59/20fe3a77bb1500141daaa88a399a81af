@@ -57,5 +57,6 @@ System.out.println("============= TEST: DATA FILE PARSING  ==================");
 			}
 			System.out.println();
 		}
+		System.out.println("total samples: " + samples.size());
 	}
 }

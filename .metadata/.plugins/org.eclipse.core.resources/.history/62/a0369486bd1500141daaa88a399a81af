@@ -72,7 +72,7 @@ public class SquaredError {
 		return this.desired_output_vector;
 	}
 	public void setDesiredOutputVector(List<Double> desired_output_vector) {
-		this.desired_output_vector = desired_output_vector;
+		this.desired_output_vector = desired_output_vector ;
 	}
 
 

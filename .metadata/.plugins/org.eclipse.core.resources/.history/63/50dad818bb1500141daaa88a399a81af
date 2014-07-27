@@ -12,8 +12,8 @@ public class TestParse {
 
 // Data file.
 
-		String proben_dir = "gene";
-		String proben_file_name = "gene1.dt";
+		String proben_dir = "cancer";
+		String proben_file_name = "cancer1.dt";
 
 // Parsing.
 
@@ -29,10 +29,10 @@ System.out.println("============= TEST: DATA FILE PARSING  ==================");
 
 		System.out.println(" Num. training samples: " +
 				benchmark.getNumberOfTrainingSamples());
-
+		
 		System.out.println(" Num. validation samples: " +
 				benchmark.getNumberOfValidationSamples());
-
+		
 		System.out.println(" Num. test samples: " +
 				benchmark.getNumberOfTestSamples());
 

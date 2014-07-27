@@ -143,6 +143,4 @@ public class Connection {
 		return (this.source instanceof Neuron &&
 				 this.target instanceof Neuron);
 	}
-
-
 }
