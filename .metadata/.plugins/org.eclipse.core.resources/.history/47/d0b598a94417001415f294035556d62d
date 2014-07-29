@@ -15,8 +15,6 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	private List<StopCriteria> stop_criterias; // all combined.
 
-	private List<List<Double>> output_vectors;
-	private List<Double> evas;
 
 
 
@@ -47,7 +45,7 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 
 
-// Stop criterias configuration.
+// Stop criteria configuration.
 
 
 	public List<StopCriteria> getStopCriterias() {
@@ -63,5 +61,4 @@ abstract public class SupervisedLearning extends LearningRule {
 			this.stop_criterias.add(criteria);
 		}
 	}
-
 }

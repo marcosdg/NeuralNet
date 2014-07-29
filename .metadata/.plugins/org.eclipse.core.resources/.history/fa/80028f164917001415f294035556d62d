@@ -40,8 +40,8 @@ public class EarlyStop implements StopCriteria {
 
 
 // Error measures.
-
-
+	
+	
 	// Etr(t).
 
 	public Double getAverageErrorPerTrainingSample(List<List<Double>> output_vectors) {
@@ -82,7 +82,7 @@ public class EarlyStop implements StopCriteria {
 
 	// GL(t).
 
-	public Double getGeneralizationLoss(List<List<Double>> output_vectors,
+	public Double generalizationLoss(List<List<Double>> output_vectors,
                                       List<Double> evas) {
 		Double eva = this.getAverageErrorPerValidationSample(output_vectors),
                eopt = this.getMinAverageErrorPerValidationSample(evas);

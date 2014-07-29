@@ -17,7 +17,7 @@ public class MaxEpochsStop implements StopCriteria {
 	}
 
 
-// Checking.
+// Criteria.
 
 
 	@Override

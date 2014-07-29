@@ -15,8 +15,6 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	private List<StopCriteria> stop_criterias; // all combined.
 
-	private List<List<Double>> output_vectors;
-	private List<Double> evas;
 
 
 

@@ -17,9 +17,6 @@ public class EarlyStop implements StopCriteria {
 	private double max_generalization_loss,
                      min_training_progress;
 
-
-// Creation.
-
 	public EarlyStop(SupervisedLearning rule, int strip_length,
                       double max_generalization_loss,
                       double min_training_progress) {
@@ -31,15 +28,10 @@ public class EarlyStop implements StopCriteria {
 	}
 
 
-// Checking.
-
 	@Override
 	public boolean isMet() {
 		return false;
 	}
-
-
-// Error measures.
 
 
 	// Etr(t).
@@ -82,11 +74,10 @@ public class EarlyStop implements StopCriteria {
 
 	// GL(t).
 
-	public Double getGeneralizationLoss(List<List<Double>> output_vectors,
-                                      List<Double> evas) {
-		Double eva = this.getAverageErrorPerValidationSample(output_vectors),
-               eopt = this.getMinAverageErrorPerValidationSample(evas);
+	public Double generalizationLoss() {
 
-		return 100 * ((eva / eopt) - 1);
 	}
+
+
+
 }
