@@ -14,7 +14,10 @@ public class NeuralNetwork {
 
 	private List<Layer> layers;
 	private LearningRule learningRule;
+	private double current_training_error;
 	private String label;
+
+
 
 
 // Creation.
@@ -89,7 +92,7 @@ public class NeuralNetwork {
 	public void setLayers(List<Layer> layers) {
 		this.layers = layers;
 	}
-	public int numberOfLayers() {
+	public int getNumberOfLayers() {
 		return this.layers.size();
 	}
 
@@ -177,6 +180,17 @@ public class NeuralNetwork {
 	}
 	public void setLearningRule(LearningRule that) {
 		this.learningRule = that;
+	}
+
+
+// Error configuration.
+
+
+	public double getCurrentTrainingError() {
+		return this.current_training_error;
+	}
+	public void setCurrentTrainingError(double error) {
+		this.current_training_error = error;
 	}
 
 

@@ -1,5 +1,0 @@
-package core.learning.error;
-
-public class SquaredError {
-
-}

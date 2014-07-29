@@ -1,8 +1,0 @@
-bool_in=0
-real_in=1
-bool_out=0
-real_out=1
-training_examples=1588
-validation_examples=794
-test_examples=793
-1.0 0.0

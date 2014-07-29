@@ -9,8 +9,7 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	private int current_epoch;
 
-	private double current_training_error,
-                     learning_rate;
+	private double learning_rate;
 
 	private StopCriteria stop_criteria;
 
@@ -23,17 +22,6 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 	public void setLearninRate(double learning_rate) {
 		this.learning_rate = learning_rate;
-	}
-
-
-// Error configuration. TODO: should be in NeuralNetwork?
-
-
-	public double getCurrentTrainingError() {
-		return this.current_training_error;
-	}
-	public void setCurrentTrainingError(double error) {
-		this.current_training_error = error;
 	}
 
 

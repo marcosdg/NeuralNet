@@ -6,6 +6,11 @@ import java.util.List;
 
 public class Benchmark {
 
+	// Header and Data splitting format.
+
+    private static final String EQUAL = "=",
+                                  ONE_OR_MORE_SPACES = "\\s+";
+
 	// PROBEN1 data files header.
 
 	private Integer num_bool_inputs,
@@ -16,18 +21,22 @@ public class Benchmark {
                      num_validation_samples,
                      num_test_samples;
 
-	// FileParser use them to distinguish input/output datum in a data row.
-
-    private Integer total_inputs,
-                     total_outputs;
-
 	private List<Sample> samples;
-	private String label; // parser sets it, by default, to data's file path.
 
-	// Header and Data splitting format.
+	// Distinguish input/output datum in a data row (used by FileParser).
 
-    private static final String EQUAL = "=",
-                                  ONE_OR_MORE_SPACES = "\\s+";
+    private Integer total_inputs, total_outputs;
+
+    /*
+     * PROBEN1 data files have desired output values scaled
+     * within {0.0, 1.0}. Will be used in error normalization.
+     */
+
+	private static Double output_min, output_max;
+
+    // FileParser sets it to data's file path (default).
+
+ 	private String label;
 
 
 // Creation.
@@ -51,12 +60,17 @@ public class Benchmark {
 			this.num_bool_outputs = num_bool_outputs;
 			this.num_real_inputs = num_real_inputs;
 			this.num_real_outputs = num_real_outputs;
-
 			this.num_training_samples = num_training;
 			this.num_validation_samples = num_validation;
 			this.num_test_samples = num_test;
 
 			this.samples = samples;
+
+			// total_inputs/outputs were set during parsing.
+
+			Benchmark.output_min = 0.0;
+			Benchmark.output_max = 1.0;
+
 			this.label = label;
 		}
 	}
@@ -70,11 +84,26 @@ public class Benchmark {
         this.num_validation_samples = 0;
         this.num_test_samples = 0;
 
+        this.samples = new ArrayList<Sample>();
+
         this.total_inputs = 0;
         this.total_outputs = 0;
 
-        this.samples = new ArrayList<Sample>();
+        Benchmark.output_min = 0.0;
+		Benchmark.output_max = 1.0;
+
         this.label = "";
+	}
+
+
+// File format.
+
+
+	public String EQUAL() {
+		return Benchmark.EQUAL;
+	}
+	public String ONE_OR_MORE_SPACES() {
+		return Benchmark.ONE_OR_MORE_SPACES;
 	}
 
 
@@ -145,6 +174,60 @@ public class Benchmark {
 	}
 
 
+// Samples.
+
+
+	public List<Sample> getSamples() {
+		return samples;
+	}
+	public void setSamples(List<Sample> samples) {
+		this.samples = samples;
+	}
+
+	/*
+	 * PROBEN1 files assume that samples come in the following order:
+	 *
+	 *    1. Training.   {0, num_training}
+	 *    2. Validation. {num_training, validation_end}
+	 *    3. Test.       {validation_end, samples.size()}
+	 */
+
+	public List<Sample> getTrainingSamples() {
+		return this.samples.subList(this.getTrainingRange()[0],
+                                      this.getTrainingRange()[1]);
+	}
+	public List<Sample> getValidationSamples() {
+		return this.samples.subList(this.getValidationRange()[0],
+                                      this.getValidationRange()[1]);
+	}
+	public List<Sample> getTestSamples() {
+		return this.samples.subList(this.getTestRange()[0],
+                                      this.getTestRange()[1]);
+	}
+
+	// Training, Validation and Test sets ranges.
+
+	public Integer[] getTrainingRange() {
+		Integer[] training_range = {0, this.num_training_samples};
+		return training_range;
+	}
+	public Integer[] getValidationRange() {
+		Integer validation_end = this.num_training_samples +
+                                 this.num_validation_samples;
+
+		Integer[] validation_range = {this.num_training_samples,
+                                      validation_end};
+		return validation_range;
+	}
+	public Integer[] getTestRange() {
+		Integer validation_end = this.num_training_samples +
+	                             this.num_validation_samples;
+
+		Integer[] test_range = {validation_end, this.samples.size()};
+		return test_range;
+	}
+
+
 // Total inputs/outputs.
 
 
@@ -189,56 +272,23 @@ public class Benchmark {
 	}
 
 
-// Samples.
+// Desired output values range.
 
 
-	public List<Sample> getSamples() {
-		return samples;
+	public static Double getMinDesiredOutputValue() {
+		return Benchmark.output_min;
 	}
-	public void setSamples(List<Sample> samples) {
-		this.samples = samples;
+	public static Double getMaxDesiredOutputValue() {
+		return Benchmark.output_max;
 	}
-
-	/*
-	 * PROBEN1 files assume that samples come in the following order:
-	 *
-	 *    1. Training.   {0, num_training}
-	 *    2. Validation. {num_training, validation_end}
-	 *    3. Test.       {validation_end, samples.size()}
-	 */
-
-	public List<Sample> getTrainingSamples() {
-		return this.samples.subList(this.getTrainingRange()[0],
-                                      this.getTrainingRange()[1]);
-	}
-	public List<Sample> getValidationSamples() {
-		return this.samples.subList(this.getValidationRange()[0],
-                                      this.getValidationRange()[1]);
-	}
-	public List<Sample> getTestSamples() {
-		return this.samples.subList(this.getTestRange()[0],
-                                      this.getTestRange()[1]);
-	}
-
-	// Training, Validation and Test sets ranges.
-
-	public Integer[] getTrainingRange() {
-		Integer[] training_range = {0, this.num_training_samples};
-		return training_range;
-	}
-	public Integer[] getValidationRange() {
-		Integer validation_end = this.num_training_samples +
-                                 this.num_validation_samples;
-
-		Integer[] validation_range = {this.num_training_samples, validation_end};
-		return validation_range;
-	}
-	public Integer[] getTestRange() {
-		Integer validation_end = this.num_training_samples +
-                                 this.num_validation_samples;
-
-		Integer[] test_range = {validation_end, this.samples.size()};
-		return test_range;
+	public void setDesiredOutputValuesRange(Double output_min,
+                                              Double output_max) {
+		if (output_min == null || output_max == null) {
+			throw new IllegalArgumentException("Desired output values range is null");
+		} else {
+			this.output_min = output_min;
+			this.output_max = output_max;
+		}
 	}
 
 
@@ -250,16 +300,5 @@ public class Benchmark {
 	}
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-
-// File format.
-
-
-	public String EQUAL() {
-		return Benchmark.EQUAL;
-	}
-	public String ONE_OR_MORE_SPACES() {
-		return Benchmark.ONE_OR_MORE_SPACES;
 	}
 }

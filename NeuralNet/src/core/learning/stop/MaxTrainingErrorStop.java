@@ -1,5 +1,6 @@
 package core.learning.stop;
 
+import core.NeuralNetwork;
 import core.learning.SupervisedLearning;
 
 public class MaxTrainingErrorStop implements StopCriteria {
@@ -22,9 +23,10 @@ public class MaxTrainingErrorStop implements StopCriteria {
 
 	@Override
 	public boolean isMet() {
+		NeuralNetwork neuralNetwork = this.supervised_learning_rule.getNeuralNetwork();
 		boolean met = false;
-
-		if (this.supervised_learning_rule.getCurrentTrainingError() >=
+		
+		if (neuralNetwork.getCurrentTrainingError() >= 
             this.getMaxTrainingError()) {
 			met = true;
 		}
