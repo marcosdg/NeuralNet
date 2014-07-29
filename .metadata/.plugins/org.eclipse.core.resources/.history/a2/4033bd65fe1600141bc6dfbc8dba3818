@@ -1,0 +1,5 @@
+package core.learning.stop;
+
+public class EarlyStopping {
+
+}

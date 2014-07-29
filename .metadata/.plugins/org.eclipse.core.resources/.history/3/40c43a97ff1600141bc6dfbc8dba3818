@@ -1,0 +1,22 @@
+package core.learning.stop;
+
+import core.learning.SupervisedLearning;
+
+public class EarlyStop implements StopCriteria {
+
+
+	private SupervisedLearning supervised_learning_rule;
+
+	private double max_generalization_loss,
+                     min_training_progress;
+
+
+
+
+	@Override
+	public boolean isMet() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

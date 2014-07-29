@@ -1,0 +1,91 @@
+package core.learning.error;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import core.data.Sample;
+
+public class SquaredError {
+
+// Creation.
+
+/*
+	public SquaredError() {
+	}
+
+*/
+
+// SUM{i,num_outputs}: (desired{i} - output{i}) ^ 2
+
+
+	public static Double getSquaredError(List<Double> desired_output_vector,
+                                           List<Double> output_vector) {
+		Double squared_error = 0.0,
+               desired_output,
+               output;
+
+		int i, num_outputs;
+
+		if (areAdequate(desired_output_vector, output_vector)) {
+			num_outputs = output_vector.size(); // desired_output_vector works too.
+
+			for (i = 0; i < num_outputs; i += 1) {
+				desired_output = desired_output_vector.get(i);
+				output = output_vector.get(i);
+
+				squared_error += Math.pow((desired_output - output), 2);
+			}
+		}
+		return squared_error;
+	}
+	public static boolean areAdequate(List<Double> desired_output_vector,
+                                         List<Double> output_vector) {
+		boolean are = false;
+
+		// empty ?
+
+		if (desired_output_vector.isEmpty() || output_vector.isEmpty()) {
+
+			throw new IllegalArgumentException("SquaredError: empty vectors.");
+
+		// different sizes ?
+
+		} else if (desired_output_vector.size() != output_vector.size()) {
+
+			throw new IllegalArgumentException("SquaredError: vectors of" +
+                                                " different sizes.");
+		} else {
+			are = true;
+		}
+		return are;
+	}
+
+
+// TODO: Squared Error Percentage.
+
+
+	/*
+	 *  'output_values' argument is the result of flattening the
+	 *  list containing the output_vectors from all the samples
+	 */
+
+	public static Double getSquaredErrorPercentage(List<Sample> samples,
+                                             List<List<Double>> output_vectors) {
+
+		List<Double> desired_output_vector = null;
+		List<Double> output_vector = null;
+
+		for (int i = 0; i < samples.size(); i += 1) {
+
+			desired_output_vector = samples.get(i).getDesiredOutputVector();
+			output_vector = output_vectors.get(i);
+
+			getSquaredError(desired_output_vector, output_vector)
+		}
+
+
+		return null;
+	}
+
+
+}
