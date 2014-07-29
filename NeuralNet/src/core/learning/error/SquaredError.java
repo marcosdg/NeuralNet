@@ -1,6 +1,5 @@
 package core.learning.error;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import core.data.Benchmark;
@@ -9,7 +8,7 @@ import core.data.Sample;
 public class SquaredError {
 
 
-// SUM{i,num_outputs}: (desired{i} - output{i}) ^ 2
+// SUM{i,N}: (desired{i} - output{i}) ^ 2
 
 
 	public static Double getSquaredError(List<Double> desired_output_vector,

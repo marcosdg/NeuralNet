@@ -14,6 +14,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	private StopCriteria stop_criteria;
 
 
+	public SupervisedLearning() {
+	}
+
 // Learning rate configuration.
 
 

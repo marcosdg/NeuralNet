@@ -29,7 +29,7 @@ public class Benchmark {
 
     /*
      * PROBEN1 data files have desired output values scaled
-     * within {0.0, 1.0}. Will be used in error normalization.
+     * within [0.0, 1.0]. Will be used in error normalization.
      */
 
 	private static Double output_min, output_max;
