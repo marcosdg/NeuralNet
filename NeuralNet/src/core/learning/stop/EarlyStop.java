@@ -2,6 +2,7 @@ package core.learning.stop;
 
 import java.util.List;
 
+import core.NeuralNetwork;
 import core.data.Sample;
 import core.learning.SupervisedLearning;
 import core.learning.error.SquaredError;
@@ -20,6 +21,7 @@ public class EarlyStop implements StopCriteria {
 
 // Creation.
 
+
 	public EarlyStop(SupervisedLearning rule, int strip_length,
                       double max_generalization_loss,
                       double min_training_progress) {
@@ -33,9 +35,26 @@ public class EarlyStop implements StopCriteria {
 
 // Checking.
 
+
 	@Override
 	public boolean isMet() {
-		return false;
+		boolean met = false;
+
+		List<Double> evas = this.supervised_learning_rule.getEvasRecord(),
+                     etrs = this.supervised_learning_rule.getEtrsRecord();
+
+		List<List<Double>> output_vectors = this
+                                            .supervised_learning_rule
+                                            .getOutputVectorsRecord();
+
+		Double loss = this.getGeneralizationLoss(output_vectors, evas),
+               progress = this.getTrainingProgress(etrs);
+
+		if ((loss > this.max_generalization_loss) ||
+            (progress < this.min_training_progress)) {
+			met = true;
+		}
+		return met;
 	}
 
 
@@ -88,5 +107,27 @@ public class EarlyStop implements StopCriteria {
                eopt = this.getMinAverageErrorPerValidationSample(evas);
 
 		return 100 * ((eva / eopt) - 1);
+	}
+
+	// Pk(t). Etrs obtained from the last k (strip length) epochs.
+
+	public Double getTrainingProgress(List<Double> etrs) {
+
+		Double total_etrs = 0.0,
+               min_etr = etrs.get(0);
+
+		for (Double etr: etrs) {
+
+			// Get the minimum etr.
+
+			if (etr < min_etr) {
+				min_etr = etr;
+			}
+
+			// Get the total of etrs.
+
+			total_etrs += etr;
+		}
+		return 1000 * ((total_etrs / (EarlyStop.strip_length * min_etr)) - 1);
 	}
 }

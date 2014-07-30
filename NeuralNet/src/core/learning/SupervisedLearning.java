@@ -8,22 +8,26 @@ import core.learning.stop.StopCriteria;
 
 abstract public class SupervisedLearning extends LearningRule {
 
-
 	private int current_epoch;
 
 	private double learning_rate;
 
 	private List<StopCriteria> stop_criterias; // all combined.
 
+	// Record of all outputs obtained up to current epoch.
+
 	private List<List<Double>> output_vectors;
-	private List<Double> evas;
+
+	private List<Double> evas, // Record of all the evas up to current epoch.
+                          etrs; // 'Buffer' with all the etrs during each strip.
 
 
-
+// Creation.
 
 
 	public SupervisedLearning() {
 	}
+
 
 // Learning rate configuration.
 
@@ -64,4 +68,35 @@ abstract public class SupervisedLearning extends LearningRule {
 		}
 	}
 
+
+// Output vectors.
+
+
+	public List<List<Double>> getOutputVectorsRecord() {
+		return this.output_vectors;
+	}
+
+
+// Errors.
+
+	// Evas.
+
+	public List<Double> getEvasRecord() {
+		return this.evas;
+	}
+	public void addEva(Double eva) {
+		this.evas.add(eva);
+	}
+
+	// Etrs.
+
+	public List<Double> getEtrsRecord() {
+		return this.etrs;
+	}
+	public void addEtr(Double etr) {
+		this.etrs.add(etr);
+	}
+	public void clearEtrs() {
+		this.etrs.clear();
+	}
 }

@@ -66,8 +66,10 @@ public class Neuron extends Node {
 	// Combines the inputs to the Neuron.
 
 	public void computeInput() {
-		if (!this.inputs.isEmpty()) {
-
+		if (this.inputs.isEmpty()) {
+			throw new IllegalStateException("Neuron " + getLabel() +
+                                             " has no inputs set." );
+		} else {
 			this.netInput = this.propagationFunction.getOutput(this.inputs);
 		}
 	}

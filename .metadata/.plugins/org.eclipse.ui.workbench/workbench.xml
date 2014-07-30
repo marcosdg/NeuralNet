@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="15" version="2.0">
+<workbench progressCount="21" version="2.0">
 <workbenchAdvisor/>
 <window height="720" maximized="true" width="1004" x="-1" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -40,7 +40,8 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (15 items)"/>
+<category IMemento.internal.id="Warnings (19 items)"/>
+<category IMemento.internal.id="Errors"/>
 <category IMemento.internal.id="Warnings"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
@@ -249,7 +250,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.19188192" ratioLeft="260" ratioRight="1095" relationship="2" relative="left"/>
+<info part="org.eclipse.ui.editorss" ratio="0.18376383" ratioLeft="249" ratioRight="1106" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.85617596" ratioLeft="506" ratioRight="85" relationship="4" relative="org.eclipse.ui.editorss">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
@@ -295,12 +296,6 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="left"/>
-</trimArea>
-<trimArea IMemento.internal.id="131072">
-<trimItem IMemento.internal.id="right"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -308,7 +303,6 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@7c4fc360"/>
 </trimArea>
 </trimLayout>
 </window>
@@ -316,32 +310,35 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SquaredError.java" tooltip="NeuralNet/src/core/learning/error/SquaredError.java">
 <persistable path="/NeuralNet/src/core/learning/error/SquaredError.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SupervisedLearning.java" tooltip="NeuralNet/src/core/learning/SupervisedLearning.java">
-<persistable path="/NeuralNet/src/core/learning/SupervisedLearning.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StopCriteria.java" tooltip="NeuralNet/src/core/learning/stop/StopCriteria.java">
-<persistable path="/NeuralNet/src/core/learning/stop/StopCriteria.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Benchmark.java" tooltip="NeuralNet/src/core/data/Benchmark.java">
-<persistable path="/NeuralNet/src/core/data/Benchmark.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaxEpochsStop.java" tooltip="NeuralNet/src/core/learning/stop/MaxEpochsStop.java">
+<persistable path="/NeuralNet/src/core/learning/stop/MaxEpochsStop.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NeuralNetwork.java" tooltip="NeuralNet/src/core/NeuralNetwork.java">
 <persistable path="/NeuralNet/src/core/NeuralNetwork.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaxEpochsStop.java" tooltip="NeuralNet/src/core/learning/stop/MaxEpochsStop.java">
-<persistable path="/NeuralNet/src/core/learning/stop/MaxEpochsStop.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ConnectionHelper.java" tooltip="NeuralNet/src/core/util/ConnectionHelper.java">
+<persistable path="/NeuralNet/src/core/util/ConnectionHelper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SupervisedLearning.java" tooltip="NeuralNet/src/core/learning/SupervisedLearning.java">
+<persistable path="/NeuralNet/src/core/learning/SupervisedLearning.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MaxTrainingErrorStop.java" tooltip="NeuralNet/src/core/learning/stop/MaxTrainingErrorStop.java">
 <persistable path="/NeuralNet/src/core/learning/stop/MaxTrainingErrorStop.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EarlyStop.java" tooltip="NeuralNet/src/core/learning/stop/EarlyStop.java">
-<persistable path="/NeuralNet/src/core/learning/stop/EarlyStop.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Backpropagation.java" tooltip="NeuralNet/src/core/learning/Backpropagation.java">
 <persistable path="/NeuralNet/src/core/learning/Backpropagation.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LearningRule.java" tooltip="NeuralNet/src/core/learning/LearningRule.java">
 <persistable path="/NeuralNet/src/core/learning/LearningRule.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StopCriteria.java" tooltip="NeuralNet/src/core/learning/stop/StopCriteria.java">
+<persistable path="/NeuralNet/src/core/learning/stop/StopCriteria.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EarlyStop.java" tooltip="NeuralNet/src/core/learning/stop/EarlyStop.java">
+<persistable path="/NeuralNet/src/core/learning/stop/EarlyStop.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Benchmark.java" tooltip="NeuralNet/src/core/data/Benchmark.java">
+<persistable path="/NeuralNet/src/core/data/Benchmark.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Neuron.java" tooltip="NeuralNet/src/core/Neuron.java">
 <persistable path="/NeuralNet/src/core/Neuron.java"/>

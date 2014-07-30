@@ -1,5 +1,6 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -70,11 +71,25 @@ public class NeuralNetwork {
 // Processing.
 
 
-	public void computeOutput() {
+	public List<Double> computeOutput() {
+
+		List<Double> output_vector = new ArrayList<Double>();
+		List<Node> output_nodes = null;
+
+		// Forward input data through the net.
 
 		for (Layer layer: this.layers) {
 			layer.computeOutput();
 		}
+
+		// Now retrieve the output vector.
+
+		output_nodes = this.getOutputLayer().getNodes();
+
+		for (Node node: output_nodes) {
+			output_vector.add(((Neuron) node).getOutput());
+		}
+		return output_vector;
 	}
 
 	// TODO: COMPLETE 'LEARN' METHOD
@@ -183,7 +198,7 @@ public class NeuralNetwork {
 	}
 
 
-// Error configuration.
+// Error configuration. TODO: MOVE TO SUPERVISED LEARNING ???
 
 
 	public double getCurrentTrainingError() {
