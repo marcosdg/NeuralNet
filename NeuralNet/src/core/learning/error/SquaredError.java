@@ -12,15 +12,15 @@ public class SquaredError {
 
 
 	public static Double getSquaredError(List<Double> desired_output_vector,
-                                           List<Double> output_vector) {
+                                           List<Double> output_vector,
+                                           int num_output_nodes) {
 		Double squared_error = 0.0,
                desired_output,
                output;
-
-		int i, N;
+		int i,
+             N = num_output_nodes;
 
 		if (areAdequate(desired_output_vector, output_vector)) {
-			N = output_vector.size(); // desired_output_vector works too.
 
 			for (i = 0; i < N; i += 1) {
 				desired_output = desired_output_vector.get(i);
@@ -54,16 +54,33 @@ public class SquaredError {
 	}
 
 
-// Normalized version of MeanSquaredError (one sample per output_vector).
+// Mean Squared Error
+
+
+	public 	Double getMeanSquaredError(List<Double> desired_output_vector,
+                                       List<Double> output_vector,
+                                       int num_output_nodes) {
+
+		int N = num_output_nodes;
+		Double squared_error = SquaredError
+                               .getSquaredError(desired_output_vector,
+                                                output_vector,
+                                                N);
+
+		return squared_error / N;
+	}
+
+// Normalized Average Squared Error of all the samples.
 
 
 	public static Double getSquaredErrorPercentage(List<Sample> samples,
-                                                     List<List<Double>> output_vectors) {
+                                                     List<List<Double>> output_vectors,
+                                                     int num_output_nodes) {
+		int N = num_output_nodes,
+            P = samples.size();
 
-		Integer N = samples.size(),
-                P = output_vectors.size();
-
-		Double total_squared_error = 0.0,
+		Double squared_error = 0.0,
+		       total_squared_error = 0.0,
                norm_factor = 0.0,
                output_min = Benchmark.getMinDesiredOutputValue(),
                output_max = Benchmark.getMaxDesiredOutputValue();
@@ -71,14 +88,16 @@ public class SquaredError {
 		List<Double> desired_output_vector = null,
                      output_vector = null;
 
+
 		norm_factor = 100 * ((output_max - output_min) / (N * P));
 
 		for (int i = 0; i < P; i += 1) {
 			desired_output_vector = samples.get(i).getDesiredOutputVector();
 			output_vector = output_vectors.get(i);
-
-			total_squared_error += getSquaredError(desired_output_vector,
-                                                   output_vector);
+			squared_error = getSquaredError(desired_output_vector,
+                                            output_vector,
+                                            N);
+			total_squared_error += squared_error;
 		}
 		return norm_factor * total_squared_error;
 	}

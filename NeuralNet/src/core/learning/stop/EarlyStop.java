@@ -68,9 +68,15 @@ public class EarlyStop implements StopCriteria {
                                         .supervised_learning_rule
                                         .getBenchmark()
                                         .getTrainingSamples();
+		int num_output_nodes = this
+                                .supervised_learning_rule
+                                .getNeuralNetwork()
+                                .getOutputLayer()
+                                .numberOfNodes();
 
 		return SquaredError.getSquaredErrorPercentage(training_samples,
-                                                       output_vectors);
+                                                       output_vectors,
+                                                       num_output_nodes);
 	}
 
 	// Eva(t).
@@ -80,9 +86,15 @@ public class EarlyStop implements StopCriteria {
                                           .supervised_learning_rule
                                           .getBenchmark()
                                           .getValidationSamples();
+		int num_output_nodes = this
+                                .supervised_learning_rule
+                                .getNeuralNetwork()
+                                .getOutputLayer()
+                                .numberOfNodes();
 
 		return SquaredError.getSquaredErrorPercentage(validation_samples,
-                                                       output_vectors);
+                                                       output_vectors,
+                                                       num_output_nodes);
 	}
 
 	// Eopt(t).

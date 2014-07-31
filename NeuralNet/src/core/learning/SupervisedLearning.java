@@ -8,18 +8,23 @@ import core.learning.stop.StopCriteria;
 
 abstract public class SupervisedLearning extends LearningRule {
 
-	private int current_epoch;
 
 	private double learning_rate;
+	private List<StopCriteria> stop_criterias;
 
-	private List<StopCriteria> stop_criterias; // all combined.
+	private int current_epoch;
+
+	// Record of all the evas up to current epoch.
+
+	private List<Double> evas,
+
+	// 'Buffer' with all the etrs during each strip.
+
+                          etrs;
 
 	// Record of all outputs obtained up to current epoch.
 
 	private List<List<Double>> output_vectors;
-
-	private List<Double> evas, // Record of all the evas up to current epoch.
-                          etrs; // 'Buffer' with all the etrs during each strip.
 
 
 // Creation.
@@ -40,24 +45,13 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 
 
-// Epochs configuration.
-
-
-	public int getCurrentEpoch() {
-		return this.current_epoch;
-	}
-	public void setCurrentEpoch(int epoch) {
-		this.current_epoch = epoch;
-	}
-
-
 // Stop criterias configuration.
 
 
 	public List<StopCriteria> getStopCriterias() {
 		return this.stop_criterias;
 	}
-	public void setStopCriterias(List<StopCriteria> criterias){
+	public void setStopCriterias(List<StopCriteria> criterias) {
 		this.stop_criterias = criterias;
 	}
 	public void addStopCriteria(StopCriteria criteria) {
@@ -69,15 +63,26 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 
 
-// Output vectors.
+// Epochs configuration.
 
 
-	public List<List<Double>> getOutputVectorsRecord() {
-		return this.output_vectors;
+	public int getCurrentEpoch() {
+		return this.current_epoch;
+	}
+	public void setCurrentEpoch(int epoch) {
+		this.current_epoch = epoch;
 	}
 
 
 // Errors.
+
+
+	// TODO: Current training error.
+
+	public double getCurrentTrainingError() {
+
+		return 0.0;
+	}
 
 	// Evas.
 
@@ -99,4 +104,13 @@ abstract public class SupervisedLearning extends LearningRule {
 	public void clearEtrs() {
 		this.etrs.clear();
 	}
+
+
+// Output vectors.
+
+
+	public List<List<Double>> getOutputVectorsRecord() {
+		return this.output_vectors;
+	}
+
 }

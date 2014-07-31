@@ -15,10 +15,7 @@ public class NeuralNetwork {
 
 	private List<Layer> layers;
 	private LearningRule learningRule;
-	private double current_training_error;
 	private String label;
-
-
 
 
 // Creation.
@@ -32,7 +29,7 @@ public class NeuralNetwork {
 		}
 	}
 
-	public void resetLayers() {
+	public void reset() {
 		for (Layer layer: this.layers) {
 			layer.resetNeurons();
 		}
@@ -71,28 +68,24 @@ public class NeuralNetwork {
 // Processing.
 
 
+	// Forwards input data through the net to get the output vector.
+
+
 	public List<Double> computeOutput() {
-
 		List<Double> output_vector = new ArrayList<Double>();
-		List<Node> output_nodes = null;
-
-		// Forward input data through the net.
 
 		for (Layer layer: this.layers) {
 			layer.computeOutput();
 		}
 
-		// Now retrieve the output vector.
-
-		output_nodes = this.getOutputLayer().getNodes();
-
-		for (Node node: output_nodes) {
+		for (Node node: this.getOutputLayer().getNodes()) {
 			output_vector.add(((Neuron) node).getOutput());
 		}
 		return output_vector;
 	}
 
 	// TODO: COMPLETE 'LEARN' METHOD
+
 	public void learn() {
 		this.learningRule.apply();
 	}
@@ -113,6 +106,7 @@ public class NeuralNetwork {
 
 	public boolean addLayer(Layer layer) {
 		if (!this.layers.contains(layer)) {
+
 			this.layers.add(layer);
 			return true;
 		}
@@ -120,10 +114,10 @@ public class NeuralNetwork {
 	}
 	public boolean removeLayer(Layer layer) {
 		if (this.layers.contains(layer)) {
+
 			this.layers.remove(layer);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -195,17 +189,6 @@ public class NeuralNetwork {
 	}
 	public void setLearningRule(LearningRule that) {
 		this.learningRule = that;
-	}
-
-
-// Error configuration. TODO: MOVE TO SUPERVISED LEARNING ???
-
-
-	public double getCurrentTrainingError() {
-		return this.current_training_error;
-	}
-	public void setCurrentTrainingError(double error) {
-		this.current_training_error = error;
 	}
 
 

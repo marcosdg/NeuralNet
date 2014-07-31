@@ -23,11 +23,12 @@ public class MaxTrainingErrorStop implements StopCriteria {
 
 	@Override
 	public boolean isMet() {
-		NeuralNetwork neuralNetwork = this.supervised_learning_rule.getNeuralNetwork();
 		boolean met = false;
+		double current_training_error = this
+                                         .supervised_learning_rule
+                                         .getCurrentTrainingError();
 
-		if (neuralNetwork.getCurrentTrainingError() >=
-            this.getMaxTrainingError()) {
+		if (current_training_error >= this.getMaxTrainingError()) {
 			met = true;
 		}
 		return met;

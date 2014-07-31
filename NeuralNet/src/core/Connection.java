@@ -49,6 +49,10 @@ public class Connection {
 		}
 	}
 
+	public void resetWeight() {
+		this.weight.reset();
+	}
+
 
 // Processing.
 
@@ -93,6 +97,7 @@ public class Connection {
                                                 " source Node");
 		}
 	}
+
 	public Node getTarget() {
 		return this.target;
 	}
@@ -123,6 +128,7 @@ public class Connection {
 
 
 // Label configuration.
+
 
 	public String getLabel() {
 		return this.label;

@@ -38,6 +38,12 @@ public class Weight {
 		}
 	}
 
+	public void reset() {
+		this.value = 0.0;
+		this.currentWeightChange = 0.0;
+		this.previousWeightChange = 0.0;
+	}
+
 
 //	Configuration.
 

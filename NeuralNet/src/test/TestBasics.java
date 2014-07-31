@@ -403,7 +403,7 @@ System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ============
 		System.out.println();
 		System.out.println("-------- RESET ---------");
 
-		neural_network.resetLayers();
+		neural_network.reset();
 
 		System.out.println(" Neuron 1 netInput: " + neuron1.getNetInput());
 		System.out.println(" Neuron 1 output: " + neuron1.getOutput());
