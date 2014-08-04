@@ -1,5 +1,6 @@
 package core.learning.stop;
 
+import core.NeuralNetwork;
 import core.learning.SupervisedLearning;
 
 public class MaxTrainingErrorStop implements StopCriteria {

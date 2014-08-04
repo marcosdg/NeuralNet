@@ -68,6 +68,7 @@ public class NeuralNetwork {
 
 	// Forwards input data through the net to get the output vector.
 
+
 	public List<Double> computeOutput() {
 		List<Double> output_vector = new ArrayList<Double>();
 

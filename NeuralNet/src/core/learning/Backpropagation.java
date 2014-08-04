@@ -1,13 +1,5 @@
 package core.learning;
 
-import java.util.ArrayList;
-import java.util.List;
-import core.Connection;
-import core.Layer;
-import core.NeuralNetwork;
-import core.Neuron;
-import core.Weight;
-
 
 //TODO: COMPLETE BACKPROPAGATION CLASS
 

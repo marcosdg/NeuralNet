@@ -112,4 +112,5 @@ abstract public class SupervisedLearning extends LearningRule {
 	public List<List<Double>> getOutputVectorsRecord() {
 		return this.output_vectors;
 	}
+
 }

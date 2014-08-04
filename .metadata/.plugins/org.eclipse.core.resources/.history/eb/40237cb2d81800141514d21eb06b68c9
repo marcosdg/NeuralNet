@@ -2,6 +2,7 @@ package core.learning.stop;
 
 import java.util.List;
 
+import core.NeuralNetwork;
 import core.data.Sample;
 import core.learning.SupervisedLearning;
 import core.learning.error.SquaredError;

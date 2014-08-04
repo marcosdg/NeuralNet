@@ -66,6 +66,7 @@ public class SquaredError {
                                .getSquaredError(desired_output_vector,
                                                 output_vector,
                                                 N);
+
 		return squared_error / N;
 	}
 
