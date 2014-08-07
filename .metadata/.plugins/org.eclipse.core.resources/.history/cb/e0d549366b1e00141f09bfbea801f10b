@@ -25,7 +25,11 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	// Record of all outputs obtained up to current epoch.
 
-	private List<List<Double>> output_vectors;
+	private List<List<Double>> output_vectors,
+
+	// Record of (desired - output) errors up to current epoch.
+
+	                            output_error_vectors;
 
 
 // Creation.
@@ -78,7 +82,7 @@ abstract public class SupervisedLearning extends LearningRule {
 // Errors.
 
 
-	// To simplify the calculation of the weights' corrections (deltas).
+	// To simplify the calculation of the weights' corrections (deltas)
 
 	public List<Double> getOutputErrorVector(List<Double> desired_output_vector,
                                               List<Double> output_vector) {
@@ -127,4 +131,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	public void addOutputVector(List<Double> output_vector) {
 		this.output_vectors.add(output_vector);
 	}
+
+
+
+
+
 }

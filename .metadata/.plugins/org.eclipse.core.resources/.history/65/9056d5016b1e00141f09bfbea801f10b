@@ -1,6 +1,5 @@
 package core.learning;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import core.learning.stop.StopCriteria;
@@ -25,7 +24,11 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	// Record of all outputs obtained up to current epoch.
 
-	private List<List<Double>> output_vectors;
+	private List<List<Double>> output_vectors,
+
+	// Record of (desired - output) errors up to current epoch.
+
+	                            output_error_vectors;
 
 
 // Creation.
@@ -78,22 +81,12 @@ abstract public class SupervisedLearning extends LearningRule {
 // Errors.
 
 
-	// To simplify the calculation of the weights' corrections (deltas).
+	// Current training error: just the last Etr we got.
 
-	public List<Double> getOutputErrorVector(List<Double> desired_output_vector,
-                                              List<Double> output_vector) {
-		Double error = 0.0;
-		List<Double> error_vector = new ArrayList<Double>();
-		int num_nodes = this
-                         .getNeuralNetwork()
-                         .getOutputLayer()
-                         .numberOfNodes();
+	public Double getCurrentTrainingError() {
+		int last = this.etrs.size() - 1;
 
-		for (int i = 0; i < num_nodes; i += 1) {
-			error = desired_output_vector.get(i) - output_vector.get(i);
-			error_vector.add(error);
-		}
-		return error_vector;
+		return this.etrs.get(last);
 	}
 
 	// Evas.
@@ -127,4 +120,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	public void addOutputVector(List<Double> output_vector) {
 		this.output_vectors.add(output_vector);
 	}
+
+
+
+
+
 }
