@@ -3,6 +3,8 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import core.data.Sample;
 import core.learning.LearningRule;
 
 /*
@@ -68,10 +70,12 @@ public class NeuralNetwork {
 
 	// Forwards input data through the net to get the output vector.
 
-	public List<Double> computeOutput() {
+	public List<Double> computeOutput(Sample training_sample) {
 		List<Double> output_vector = new ArrayList<Double>();
 
-		for (Layer layer: this.layers) {
+		this.loadTrainingSample(training_sample);
+
+		for (Layer layer: this.layers) { // they must be ordered.
 			layer.computeOutput();
 		}
 
@@ -79,6 +83,31 @@ public class NeuralNetwork {
 			output_vector.add(((Neuron) node).getOutput());
 		}
 		return output_vector;
+	}
+	public void loadTrainingSample(Sample sample) {
+		Layer input_data_layer = this.getInputDataLayer();
+		InputNode input_node = null;
+		Double datum = 0.0;
+
+		// The nodes to set up.
+
+		List<Node> input_nodes = input_data_layer.getNodes();
+
+		// The values to be loaded.
+
+		List<Double> input_vector = sample.getInputVector();
+
+		if (input_nodes.size() != input_vector.size()) {
+			throw new IllegalArgumentException("NeuralNetwork:" +
+                                                " wrong sample to be loaded");
+		}
+
+		for (int i = 0; i < input_data_layer.numberOfNodes(); i += 1) {
+			input_node = (InputNode) input_nodes.get(i);
+			datum = input_vector.get(i);
+
+			input_node.setInputData(datum);
+		}
 	}
 
 	// TODO: COMPLETE 'LEARN' METHOD
@@ -121,14 +150,22 @@ public class NeuralNetwork {
 	public Layer getLayerAt(int at) {
 		return this.layers.get(at);
 	}
-	public Layer getInitialLayer() {
+	public Layer getInputDataLayer() {
 		Layer initial_layer = null;
-
-		// Look in layers.
 
 		for (Layer layer: this.layers) {
 
-			// Found ?
+			if (layer.isInputDataLayer()) {
+				initial_layer = layer;
+				break;
+			}
+		}
+		return initial_layer;
+	}
+	public Layer getInitialLayer() {
+		Layer initial_layer = null;
+
+		for (Layer layer: this.layers) {
 
 			if (layer.isInitialLayer()) {
 				initial_layer = layer;
@@ -140,11 +177,7 @@ public class NeuralNetwork {
 	public Layer getOutputLayer() {
 		Layer output_layer = null;
 
-		// Look in layers.
-
 		for (Layer layer: this.layers) {
-
-			// Found ?
 
 			if (layer.isOutputLayer()) {
 				output_layer = layer;

@@ -3,6 +3,8 @@ package core.learning;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.learning.stop.EarlyStop;
+import core.learning.stop.MaxEpochsStop;
 import core.learning.stop.StopCriteria;
 
 //TODO: COMPLETE SUPERVISEDLEARNING CLASS
@@ -63,6 +65,32 @@ abstract public class SupervisedLearning extends LearningRule {
 		}
 	}
 
+	// Get them individually,
+
+	public MaxEpochsStop getMaxEpochsStop() {
+		MaxEpochsStop max_epochs_stop = null;
+
+		for (StopCriteria criteria: this.stop_criterias) {
+
+			if (StopCriteria.isMaxEpochsStop(criteria)) {
+				max_epochs_stop = (MaxEpochsStop) criteria;
+			}
+		}
+		return max_epochs_stop;
+	}
+	public EarlyStop getEarlyStop() {
+		EarlyStop early_stop = null;
+
+		for (StopCriteria criteria: this.stop_criterias) {
+
+			if (StopCriteria.isEarlyStop(criteria)) {
+				early_stop = (EarlyStop) criteria;
+			}
+		}
+		return early_stop;
+	}
+
+	/*
 	public boolean anyStopCriteriasMet() {
 		boolean met = false;
 
@@ -73,7 +101,7 @@ abstract public class SupervisedLearning extends LearningRule {
 			}
 		}
 		return met;
-	}
+	}*/
 
 
 // Epochs configuration.

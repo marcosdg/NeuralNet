@@ -38,7 +38,7 @@ public class EarlyStop extends StopCriteria {
 	public boolean isMet() {
 		boolean met = false;
 
-		if (maxGeneralizationLossMet() || minTrainingProgressMet()) {
+		if (isMaxGeneralizationLossMet() || isMinTrainingProgressMet()) {
 			met = true;
 		}
 		return met;
@@ -48,7 +48,7 @@ public class EarlyStop extends StopCriteria {
 	 * the end of the learning process which one happened.
 	 */
 
-	public boolean maxGeneralizationLossMet() {
+	public boolean isMaxGeneralizationLossMet() {
 		List<Double> evas = this.supervised_learning_rule.getEvasRecord();
 		List<List<Double>> output_vectors = this
                                             .supervised_learning_rule
@@ -58,7 +58,7 @@ public class EarlyStop extends StopCriteria {
 
 		return (loss > this.max_generalization_loss);
 	}
-	public boolean minTrainingProgressMet() {
+	public boolean isMinTrainingProgressMet() {
 		List<Double> etrs = this.supervised_learning_rule.getEtrsRecord();
 		Double progress = this.getTrainingProgress(etrs);
 

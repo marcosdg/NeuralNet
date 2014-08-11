@@ -386,6 +386,8 @@ System.out.println("============= TEST 4: NEURONS PROCESSING =================="
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
 
+/*                           [DEVELOPMENT STAGE]
+
 System.out.println();
 System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ==================");
 
@@ -413,7 +415,7 @@ System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ============
 
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
-
+*/
 		System.out.println();
 		System.out.println("-------- WEIGHTS RANDOM INITIALIZATION ---------");
 

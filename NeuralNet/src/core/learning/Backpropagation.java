@@ -1,5 +1,9 @@
 package core.learning;
 
+import java.util.List;
+
+import core.data.Sample;
+
 
 //TODO: COMPLETE BACKPROPAGATION CLASS
 
@@ -18,11 +22,34 @@ public class Backpropagation extends SupervisedLearning {
 
 // Processing.
 
+
 	@Override
 	public void apply() {
 
+		while (!this.getMaxEpochsStop().isMet()) {
+
+			List<Sample> training_samples = this
+                                            .getBenchmark()
+                                            .getTrainingSamples();
+
+			for (Sample training_sample: training_samples) {
+
+				forwardPropagate(training_sample);
+				// backwardPropagate(training_sample)
+			}
+			// did pass k (strip-length) epochs ?
+			//   then check EarlyStop
+		}
 
 	}
+
+	public List<Double> forwardPropagate(Sample training_sample) {
+		return this.getNeuralNetwork().computeOutput(training_sample);
+	}
+
+	// Backward propagate.
+
+	// Weights update.
 
 
 // Momentum configuration.

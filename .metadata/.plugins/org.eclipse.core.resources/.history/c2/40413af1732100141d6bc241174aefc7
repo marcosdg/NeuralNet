@@ -1,0 +1,14 @@
+package core.learning.stop;
+
+abstract public class StopCriteria {
+
+	abstract public boolean isMet();
+	
+	public boolean isMaxEpochsStop(StopCriteria criteria) {
+		return (criteria instanceof MaxEpochsStop);
+	}
+	public boolean isEarlyStop(StopCriteria criteria) {
+		return (criteria instanceof EarlyStop);
+	}
+	
+}
