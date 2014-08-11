@@ -2,7 +2,7 @@ package core.learning.stop;
 
 import core.learning.SupervisedLearning;
 
-public class MaxEpochsStop implements StopCriteria {
+public class MaxEpochsStop extends StopCriteria {
 
 	private SupervisedLearning supervised_learning_rule;
 	private int max_epochs;

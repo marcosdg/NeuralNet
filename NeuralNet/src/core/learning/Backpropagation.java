@@ -18,9 +18,9 @@ public class Backpropagation extends SupervisedLearning {
 
 // Processing.
 
-
 	@Override
 	public void apply() {
+
 
 	}
 
@@ -34,8 +34,6 @@ public class Backpropagation extends SupervisedLearning {
 	public void setMomentum(double momentum) {
 		this.momentum = momentum;
 	}
-
-
 
 	/* ~ Manu
 	private NeuralNetwork neuralNetwork;

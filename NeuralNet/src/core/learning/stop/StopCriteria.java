@@ -1,6 +1,6 @@
 package core.learning.stop;
 
-public interface StopCriteria {
+abstract public class StopCriteria {
 
-	public boolean isMet();
+	abstract public boolean isMet();
 }

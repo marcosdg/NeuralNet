@@ -8,7 +8,7 @@ import core.learning.error.SquaredError;
 
 // TODO: complete EarlyStop.
 
-public class EarlyStop implements StopCriteria {
+public class EarlyStop extends StopCriteria {
 
 	private SupervisedLearning supervised_learning_rule;
 
@@ -16,7 +16,6 @@ public class EarlyStop implements StopCriteria {
 
 	private double max_generalization_loss,
                      min_training_progress;
-
 
 // Creation.
 
@@ -39,21 +38,31 @@ public class EarlyStop implements StopCriteria {
 	public boolean isMet() {
 		boolean met = false;
 
-		List<Double> evas = this.supervised_learning_rule.getEvasRecord(),
-                     etrs = this.supervised_learning_rule.getEtrsRecord();
+		if (maxGeneralizationLossMet() || minTrainingProgressMet()) {
+			met = true;
+		}
+		return met;
+	}
 
+	/* By separating them, will be easier to check at
+	 * the end of the learning process which one happened.
+	 */
+
+	public boolean maxGeneralizationLossMet() {
+		List<Double> evas = this.supervised_learning_rule.getEvasRecord();
 		List<List<Double>> output_vectors = this
                                             .supervised_learning_rule
                                             .getOutputVectorsRecord();
 
-		Double loss = this.getGeneralizationLoss(output_vectors, evas),
-               progress = this.getTrainingProgress(etrs);
+		Double loss = this.getGeneralizationLoss(output_vectors, evas);
 
-		if ((loss > this.max_generalization_loss) ||
-            (progress < this.min_training_progress)) {
-			met = true;
-		}
-		return met;
+		return (loss > this.max_generalization_loss);
+	}
+	public boolean minTrainingProgressMet() {
+		List<Double> etrs = this.supervised_learning_rule.getEtrsRecord();
+		Double progress = this.getTrainingProgress(etrs);
+
+		return (progress < this.min_training_progress);
 	}
 
 

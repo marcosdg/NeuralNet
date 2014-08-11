@@ -63,6 +63,18 @@ abstract public class SupervisedLearning extends LearningRule {
 		}
 	}
 
+	public boolean anyStopCriteriasMet() {
+		boolean met = false;
+
+		for (StopCriteria criteria: this.stop_criterias) {
+			if (criteria.isMet()) {
+				met = true;
+
+			}
+		}
+		return met;
+	}
+
 
 // Epochs configuration.
 
