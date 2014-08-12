@@ -68,7 +68,6 @@ System.out.println("========= FILE =========");
 			}
 			System.out.println();
 		}
-		System.out.println();
 
 
 // LOAD NEURAL NETWORK.
@@ -219,7 +218,7 @@ System.out.println("========= FILE =========");
 
 		neural_network.learn();
 
-System.out.println("===== NEURAL NETWORK STATE AFTER FORWARD-PROPAGATION =====");
+System.out.println("=== NEURAL NETWORK STATE AFTER FORWARD-PROPAGATION ===");
 System.out.println();
 
 		System.out.println("Neuron 1 [netinput]: " + neuron1.getNetInput());
