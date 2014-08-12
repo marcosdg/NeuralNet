@@ -26,26 +26,40 @@ public class Backpropagation extends SupervisedLearning {
 	@Override
 	public void apply() {
 
-		while (!getMaxEpochsStop().isMet()) {
+		//while (!getMaxEpochsStop().isMet()) {
 
 			List<Sample> training_samples = getBenchmark().getTrainingSamples();
 
 			for (Sample training_sample: training_samples) {
 
-				forwardPropagate(training_sample);
-				// backwardPropagate(training_sample)
+				List<Double> output_vector = forwardPropagate(training_sample);
+
+				//getOutputErrors(training_sample, output_vector);
+				//backwardPropagate();
 			}
 			// did pass k (strip-length) epochs ?
 			//   then check EarlyStop
 		}
 
-	}
+	//}
 
 	public List<Double> forwardPropagate(Sample training_sample) {
 		return getNeuralNetwork().computeOutput(training_sample);
 	}
 
-	// Backward propagate.
+	// TODO
+	/*
+	public void backwardPropagate() {
+	}
+	*/
+
+	// TODO
+	/*
+	public List<Double> getOutputErrors(Sample training_sample,
+                                         List<Double> output_vector) {
+		return null;
+	}*/
+
 
 	// Weights update.
 
@@ -61,45 +75,7 @@ public class Backpropagation extends SupervisedLearning {
 	}
 
 	/* ~ Manu
-	private NeuralNetwork neuralNetwork;
 
-	public static final double MOMENTUM = 0.0;
-
-	public Backpropagation(NeuralNetwork neuralNetwork)
-	{
-		this.neuralNetwork = neuralNetwork;
-	}
-
-	public void forwardPropagation(List<Double> netInput)
-	{
-		Layer init = this.neuralNetwork.getInitLayer();
-		ArrayList<Neuron> neurons = init.getNeurons();
-
-		if (netInput.size() != neurons.size()) {
-			throw new IllegalArgumentException("Wrong number of input parameters");
-		}
-
-
-		 // This bucle propagates the input sample to the second layer
-
-		for (int i = 0; i < neurons.size(); i++) {
-			neurons.get(i).setNetInput(netInput.get(i));
-		}
-
-		List<Layer> layers = this.neuralNetwork.getLayers();
-
-		// Excluding last layer and init layer
-
-		for(int i = 1; i < layers.size() - 1; i++) {
-			neurons = layers.get(i).getNeurons();
-			for (Neuron n : neurons) {
-				// ini
-				n.computeNeuronInput();
-				// ai <- g(ini)
-				n.computeOutput();
-			}
-		}
-	}
 
 	public void backPropagation(List<Double> expectedOutputs)
 	{

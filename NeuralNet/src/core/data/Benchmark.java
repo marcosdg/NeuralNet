@@ -99,10 +99,10 @@ public class Benchmark {
 // File format.
 
 
-	public String EQUAL() {
+	public static String EQUAL() {
 		return Benchmark.EQUAL;
 	}
-	public String ONE_OR_MORE_SPACES() {
+	public static String ONE_OR_MORE_SPACES() {
 		return Benchmark.ONE_OR_MORE_SPACES;
 	}
 

@@ -13,16 +13,23 @@ public class InputNode extends Node {
 	private double	          input_data;
     private List<Connection> outputs;
 
+    // To distinguish Input-Data nodes from Bias nodes
+
+    private String kind;
+    private static final String INPUT_DATA_NODE = "Input Data Node",
+                                   BIAS_NODE = "Bias Node";
+
 
 // Creation.
 
 
-	public InputNode(Layer parentLayer, String label) {
+	public InputNode(Layer parentLayer, String label, String kind) {
 
 		super(parentLayer, label); // Node properties.
 
 		this.input_data = 0.0;
 		this.outputs = new ArrayList<Connection>();
+		this.kind = kind;
 
 	}
 
@@ -92,5 +99,32 @@ public class InputNode extends Node {
 				}
 			}
 		}
+	}
+
+
+// Kind configuration.
+
+
+	public String getKind() {
+		return this.kind;
+	}
+	public void setKind(String kind) {
+		if (kind == null) {
+			throw new IllegalArgumentException("InputNode: kind must be not null");
+		}
+	}
+
+	public static String INPUT_DATA_NODE() {
+		return InputNode.INPUT_DATA_NODE;
+	}
+	public static String BIAS_NODE() {
+		return InputNode.BIAS_NODE;
+	}
+
+	public boolean isInputDataNode() {
+		return this.kind == InputNode.INPUT_DATA_NODE;
+	}
+	public boolean isBiasNode() {
+		return this.kind == InputNode.BIAS_NODE;
 	}
 }

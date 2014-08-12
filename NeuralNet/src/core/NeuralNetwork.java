@@ -91,26 +91,23 @@ public class NeuralNetwork {
 
 		// The nodes to set up.
 
-		List<Node> input_nodes = input_data_layer.getNodes();
+		List<InputNode> input_data_nodes = input_data_layer.getInputDataNodes();
 
 		// The values to be loaded.
 
 		List<Double> input_vector = sample.getInputVector();
 
-		if (input_nodes.size() != input_vector.size()) {
+		if (input_data_nodes.size() != input_vector.size()) {
 			throw new IllegalArgumentException("NeuralNetwork:" +
                                                 " wrong sample to be loaded");
 		}
-
-		for (int i = 0; i < input_data_layer.numberOfNodes(); i += 1) {
-			input_node = (InputNode) input_nodes.get(i);
+		for (int i = 0; i < input_data_nodes.size(); i += 1) {
+			input_node = input_data_nodes.get(i);
 			datum = input_vector.get(i);
 
 			input_node.setInputData(datum);
 		}
 	}
-
-	// TODO: COMPLETE 'LEARN' METHOD
 
 	public void learn() {
 		this.learningRule.apply();

@@ -12,8 +12,8 @@ public class TestParse {
 
 // Data file.
 
-		String proben_dir = "gene";
-		String proben_file_name = "gene1.dt";
+		String proben_dir = "experiment";
+		String proben_file_name = "experiment1.dt";
 
 // Parsing.
 

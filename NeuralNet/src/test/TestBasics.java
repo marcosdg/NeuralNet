@@ -83,16 +83,20 @@ public class TestBasics {
 
 		// Input Nodes.
 
-		InputNode input_node1 = new InputNode(input_data_layer, "Input Node 1");
-		InputNode input_node2 = new InputNode(input_data_layer, "Input Node 2");
+		InputNode input_node1 = new InputNode(input_data_layer, "Input Node 1",
+		                                      InputNode.INPUT_DATA_NODE());
+		InputNode input_node2 = new InputNode(input_data_layer, "Input Node 2",
+                                              InputNode.INPUT_DATA_NODE());
 
 		input_node1.setInputData(2);
 		input_node2.setInputData(2);
 
-		InputNode bias1 = new InputNode(input_data_layer, "Bias for Neuron 1");
-		InputNode bias2 = new InputNode(input_data_layer, "Bias for Neuron 2");
-		InputNode bias3 = new InputNode(input_data_layer, "Bias for Neuron 3");
-
+		InputNode bias1 = new InputNode(input_data_layer, "Bias for Neuron 1",
+                                         InputNode.BIAS_NODE());
+		InputNode bias2 = new InputNode(input_data_layer, "Bias for Neuron 2",
+                                         InputNode.BIAS_NODE());
+		InputNode bias3 = new InputNode(input_data_layer, "Bias for Neuron 3",
+                                         InputNode.BIAS_NODE());
 		bias1.setInputData(1);
 		bias2.setInputData(1);
 		bias3.setInputData(1);

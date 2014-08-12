@@ -65,7 +65,7 @@ public class SquaredError {
 		Double squared_error = getSquaredError(desired_output_vector,
                                                output_vector,
                                                N);
-		return squared_error / N;
+		return (squared_error / N);
 	}
 
 // Normalized Average Squared Error of all the samples.
@@ -97,6 +97,6 @@ public class SquaredError {
                                             N);
 			total_squared_error += squared_error;
 		}
-		return norm_factor * total_squared_error;
+		return (norm_factor * total_squared_error);
 	}
 }

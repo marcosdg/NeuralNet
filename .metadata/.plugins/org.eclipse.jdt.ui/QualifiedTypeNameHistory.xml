@@ -10,9 +10,7 @@
 <fullyQualifiedTypeName name="core.InputNode"/>
 <fullyQualifiedTypeName name="core.Node"/>
 <fullyQualifiedTypeName name="core.learning.SupervisedLearning"/>
-<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
 <fullyQualifiedTypeName name="core.Connection"/>
-<fullyQualifiedTypeName name="core.learning.LearningRule"/>
 <fullyQualifiedTypeName name="core.learning.IterativeLearning"/>
 <fullyQualifiedTypeName name="core.learning.stop.StopCriteria"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
@@ -29,4 +27,8 @@
 <fullyQualifiedTypeName name="core.learning.stop.EarlyStop"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="core.data.Sample"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="core.activation.Sigmoid"/>
+<fullyQualifiedTypeName name="core.learning.LearningRule"/>
+<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
 </qualifiedTypeNameHistroy>

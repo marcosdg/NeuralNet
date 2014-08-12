@@ -71,7 +71,6 @@ public class Layer {
 	public int numberOfNodes() {
 		return this.nodes.size();
 	}
-
 	public void addNode(Node node) {
 		if (!(this.nodes.contains(node))) {
 
@@ -84,7 +83,6 @@ public class Layer {
 			this.nodes.add(at, node);
 		}
 	}
-
 	public boolean removeNodeAtPosition(int at) {
 		boolean removed = false;
 
@@ -105,10 +103,43 @@ public class Layer {
 		}
 		return removed;
 	}
-
 	public boolean hasNode(Node node) {
 		return this.nodes.contains(node);
 	}
+
+	// About InputNodes.
+
+	public List<InputNode> getInputDataNodes() {
+		InputNode input_node = null;
+		List<InputNode> input_data_nodes = new ArrayList<InputNode>();
+		if (this.isInputDataLayer() && (!this.nodes.isEmpty())) {
+
+			for (Node node: this.nodes) {
+				input_node = (InputNode) node;
+
+				if (input_node.isInputDataNode()) {
+					input_data_nodes.add(input_node);
+				}
+			}
+		}
+		return input_data_nodes;
+	}
+	public List<InputNode> getBiasNodes() {
+		InputNode input_node = null;
+		List<InputNode> biases = new ArrayList<InputNode>();
+		if (this.isInputDataLayer() && (!this.nodes.isEmpty())) {
+
+			for (Node node: this.nodes) {
+				input_node = (InputNode) node;
+
+				if (input_node.isBiasNode()) {
+					biases.add(input_node);
+				}
+			}
+		}
+		return biases;
+	}
+
 
 // Kind configuration.
 

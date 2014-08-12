@@ -119,7 +119,7 @@ abstract public class SupervisedLearning extends LearningRule {
 
 
 	// To simplify the calculation of the weights' corrections (deltas).
-
+/*
 	public List<Double> getOutputErrorVector(List<Double> desired_output_vector,
                                               List<Double> output_vector) {
 		Double error = 0.0;
@@ -133,7 +133,7 @@ abstract public class SupervisedLearning extends LearningRule {
 		}
 		return error_vector;
 	}
-
+*/
 	// Evas.
 
 	public List<Double> getEvasRecord() {

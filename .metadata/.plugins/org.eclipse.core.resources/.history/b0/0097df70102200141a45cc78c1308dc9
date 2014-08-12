@@ -1,0 +1,143 @@
+package core.learning;
+
+import java.util.List;
+
+import core.data.Sample;
+
+
+//TODO: COMPLETE BACKPROPAGATION CLASS
+
+
+public class Backpropagation extends SupervisedLearning {
+
+	private double momentum;
+
+
+// Creation.
+
+
+	public Backpropagation() {
+	}
+
+
+// Processing.
+
+
+	@Override
+	public void apply() {
+
+		while (!getMaxEpochsStop().isMet()) {
+
+			List<Sample> training_samples = getBenchmark().getTrainingSamples();
+
+			for (Sample training_sample: training_samples) {
+
+				List<Double> output_vector = forwardPropagate(training_sample);
+
+				// -------------- [TEST] -------------------
+				System.out.println(" * ForwardPropagate output vector: ");
+				for (Double output: output_vector) {
+					System.out.print(output);
+					System.out.print(", ");
+				}
+				// -----------------------------------------
+
+				//getOutputErrors(training_sample, output_vector);
+				//backwardPropagate();
+			}
+			// did pass k (strip-length) epochs ?
+			//   then check EarlyStop
+		}
+
+	}
+
+	public List<Double> forwardPropagate(Sample training_sample) {
+		return getNeuralNetwork().computeOutput(training_sample);
+	}
+
+	// TODO
+	/*
+	public void backwardPropagate() {
+	}
+	*/
+
+	// TODO
+	/*
+	public List<Double> getOutputErrors(Sample training_sample,
+                                         List<Double> output_vector) {
+		return null;
+	}*/
+
+
+	// Weights update.
+
+
+// Momentum configuration.
+
+
+	public double getMomemtum() {
+		return this.momentum;
+	}
+	public void setMomentum(double momentum) {
+		this.momentum = momentum;
+	}
+
+	/* ~ Manu
+
+
+	public void backPropagation(List<Double> expectedOutputs)
+	{
+		Layer init = this.neuralNetwork.getOutputLayer();
+		ArrayList<Neuron> neurons = init.getNeurons();
+
+		if (expectedOutputs.size() != neurons.size()) {
+			throw new IllegalArgumentException("Wrong number of output parameters");
+		}
+
+		Double error;
+		Neuron currentNeuron;
+
+		for (int i = 0; i < neurons.size(); i++) {
+			currentNeuron = neurons.get(i);
+			error = LearningRule.getDelta(currentNeuron, expectedOutputs.get(i));
+			currentNeuron.setError(error);
+		}
+
+		List<Layer> layers = this.neuralNetwork.getLayers();
+		List<Connection> connections;
+
+
+		 // Excluding last layer and init layer
+
+		for(int i = layers.size() - 1; i < 0; i--) {
+			neurons = layers.get(i).getNeurons();
+			for (Neuron n : neurons) {
+				//g'(ini)*sum(wji*deltai)
+				error = LearningRule.getDelta(n);
+				n.setError(error);
+				//Update weights
+				connections = n.getOutputs();
+				for (Connection c : connections) {
+					//n * aj * deltai
+					double deltaWeight = LearningRule.LEARNING_FACTOR * n.getOutput() * c.getTarget().getError();
+					Weight updatedWeight = c.getWeight();
+					deltaWeight += NeuralNetwork.MOMENTUM * updatedWeight.getDeltaValue();
+					updatedWeight.setDeltaValue(deltaWeight);
+					updatedWeight.setValue(updatedWeight.getValue() + deltaWeight);
+				}
+
+				//Update bias weight
+				if (n.getBias() != null) {
+					ConnectionBias bias = n.getBias();
+					BiasNeuron biasNeuron = bias.getSource();
+					double deltaWeight = LearningRule.LEARNING_FACTOR * biasNeuron.getNetInput() * bias.getTarget().getError();
+					Weight updatedWeight = bias.getWeight();
+					deltaWeight += NeuralNetwork.MOMENTUM * updatedWeight.getDeltaValue();
+					updatedWeight.setDeltaValue(deltaWeight);
+					updatedWeight.setValue(updatedWeight.getValue() + deltaWeight);
+				}
+			}
+		}
+	}
+	*/
+}

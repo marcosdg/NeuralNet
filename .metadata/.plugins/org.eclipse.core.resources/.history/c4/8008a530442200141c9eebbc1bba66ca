@@ -1,0 +1,10 @@
+bool_in=0
+real_in=2
+bool_out=0
+real_out=1
+training_examples=1
+validation_examples=1
+test_examples=1
+4 4 1
+2 2 2
+3 3 3
