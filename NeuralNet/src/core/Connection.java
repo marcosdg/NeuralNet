@@ -24,28 +24,32 @@ public class Connection {
 	// Connection with random weight within interval [min,max].
 
 	public Connection(Node source, Node target, double min, double max, Random generator, String label) {
-		if (source != null && target != null && generator != null && label != null) {
+		if (source == null || target == null ||
+            generator == null || label == null) {
+
+			throw new IllegalArgumentException("Bad parameters to create"+
+                    " Connection");
+		} else {
 			this.source = source;
 			this.target = target;
 			this.weight = new Weight(min, max, generator);
 			this.label = label;
-		} else {
-			throw new IllegalArgumentException("Bad parameters to create"+
-                                                " Connection");
 		}
 	}
 
 	// Connection with the specified weight.
 
 	public Connection(Node source, Node target, Weight weight, String label) {
-		if (source != null && target != null && weight != null && label != null) {
+		if (source == null || target == null ||
+            weight == null || label == null) {
+
+			throw new IllegalArgumentException("Bad parameters to create"+
+                    " Connection");
+		} else {
 			this.source = source;
 			this.target = target;
 			this.weight = weight;
 			this.label = label;
-		} else {
-			throw new IllegalArgumentException("Bad parameters to create"+
-                                                " Connection");
 		}
 	}
 
@@ -90,11 +94,11 @@ public class Connection {
 		return this.source;
 	}
 	public void setSource(Node source) {
-		if (source != null) {
-			this.source = source;
-		} else {
+		if (source == null) {
 			throw new IllegalArgumentException("Bad parameter to set"+
                                                 " source Node");
+		} else {
+			this.source = source;
 		}
 	}
 
@@ -102,11 +106,11 @@ public class Connection {
 		return this.target;
 	}
 	public void setTarget(Node target) {
-		if (target != null) {
-			this.target = target;
-		} else {
+		if (target == null) {
 			throw new IllegalArgumentException("Bad parameter to set"+
                                                 " target Node");
+		} else {
+			this.target = target;
 		}
 	}
 
@@ -118,11 +122,11 @@ public class Connection {
 		return this.weight;
 	}
 	public void setWeight(Weight weight) {
-		if (weight!= null) {
-			this.weight = weight;
-		} else {
+		if (weight == null) {
 			throw new IllegalArgumentException("Bad parameter to set"+
                                                 " Connection's weight");
+		} else {
+			this.weight = weight;
 		}
 	}
 

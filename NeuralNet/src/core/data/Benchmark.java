@@ -286,8 +286,8 @@ public class Benchmark {
 		if (output_min == null || output_max == null) {
 			throw new IllegalArgumentException("Desired output values range is null");
 		} else {
-			this.output_min = output_min;
-			this.output_max = output_max;
+			Benchmark.output_min = output_min;
+			Benchmark.output_max = output_max;
 		}
 	}
 

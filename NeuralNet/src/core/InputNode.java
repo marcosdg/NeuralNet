@@ -53,11 +53,7 @@ public class InputNode extends Node {
 	public boolean hasOutputTo(Neuron neuron) {
 		boolean has = false;
 
-		// Look for neuron
-
 		for (Connection output: this.outputs) {
-
-			// Found ?
 
 			if (output.getTarget() == neuron) {
 				has = true;
@@ -88,8 +84,6 @@ public class InputNode extends Node {
 					// New ?
 
 					if (!(this.hasOutputTo(target_neuron))) {
-
-						// Add it if new.
 
 						this.outputs.add(output_connection);
 

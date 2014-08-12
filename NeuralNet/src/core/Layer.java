@@ -86,24 +86,24 @@ public class Layer {
 	}
 
 	public boolean removeNodeAtPosition(int at) {
-		boolean was_removed = false;
+		boolean removed = false;
 
 		if (this.nodes.get(at) != null) {
 
 			this.nodes.remove(at);
-			was_removed = true;
+			removed = true;
 		}
-		return was_removed;
+		return removed;
 	}
 	public boolean removeNode(Node node) {
-		boolean was_removed = false;
+		boolean removed = false;
 
 		if (this.nodes.contains(node)) {
 
 			this.nodes.remove(node);
-			was_removed = true;
+			removed = true;
 		}
-		return was_removed;
+		return removed;
 	}
 
 	public boolean hasNode(Node node) {

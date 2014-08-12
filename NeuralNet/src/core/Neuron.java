@@ -95,7 +95,7 @@ public class Neuron extends Node {
 		return this.netInput;
 	}
 	public void setNetInput(double netInput) {
-			this.netInput = netInput;
+		this.netInput = netInput;
 	}
 	public List<Connection> getInputs() {
 		return this.inputs;
@@ -106,11 +106,7 @@ public class Neuron extends Node {
 	public boolean hasInputFrom(Node node) {
 		boolean has = false;
 
-		// Look for node
-
 		for (Connection input: this.inputs) {
-
-			// Found ?
 
 			if (input.getSource() == node) {
 				has = true;
@@ -172,11 +168,7 @@ public class Neuron extends Node {
 	public boolean hasOutputTo(Neuron neuron) {
 		boolean has = false;
 
-		// Look for neuron
-
 		for (Connection output: this.outputs) {
-
-			// Found ?
 
 			if (output.getTarget() == neuron) {
 				has = true;
@@ -207,8 +199,6 @@ public class Neuron extends Node {
 					// New ?
 
 					if (!(this.hasOutputTo(target_neuron))) {
-
-						// Add it if new.
 
 						this.outputs.add(output_connection);
 

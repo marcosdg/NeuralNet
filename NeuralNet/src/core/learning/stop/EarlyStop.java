@@ -36,12 +36,8 @@ public class EarlyStop extends StopCriteria {
 
 	@Override
 	public boolean isMet() {
-		boolean met = false;
-
-		if (isMaxGeneralizationLossMet() || isMinTrainingProgressMet()) {
-			met = true;
-		}
-		return met;
+		return (this.isMaxGeneralizationLossMet() ||
+	             this.isMinTrainingProgressMet());
 	}
 
 	/* By separating them, will be easier to check at

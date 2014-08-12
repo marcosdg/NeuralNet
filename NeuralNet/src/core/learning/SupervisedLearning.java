@@ -124,10 +124,8 @@ abstract public class SupervisedLearning extends LearningRule {
                                               List<Double> output_vector) {
 		Double error = 0.0;
 		List<Double> error_vector = new ArrayList<Double>();
-		int num_nodes = this
-                         .getNeuralNetwork()
-                         .getOutputLayer()
-                         .numberOfNodes();
+
+		int num_nodes = getNeuralNetwork().getOutputLayer().numberOfNodes();
 
 		for (int i = 0; i < num_nodes; i += 1) {
 			error = desired_output_vector.get(i) - output_vector.get(i);

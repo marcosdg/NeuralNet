@@ -62,10 +62,9 @@ public class SquaredError {
                                        int num_output_nodes) {
 
 		int N = num_output_nodes;
-		Double squared_error = SquaredError
-                               .getSquaredError(desired_output_vector,
-                                                output_vector,
-                                                N);
+		Double squared_error = getSquaredError(desired_output_vector,
+                                               output_vector,
+                                               N);
 		return squared_error / N;
 	}
 

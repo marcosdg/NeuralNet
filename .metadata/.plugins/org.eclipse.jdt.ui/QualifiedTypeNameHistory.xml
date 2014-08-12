@@ -22,9 +22,11 @@
 <fullyQualifiedTypeName name="core.learning.error.MeanSquaredError"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 <fullyQualifiedTypeName name="core.data.Benchmark"/>
-<fullyQualifiedTypeName name="core.data.Sample"/>
 <fullyQualifiedTypeName name="core.learning.error.SquaredError"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="core.NeuralNetwork"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="core.learning.stop.MaxEpochsStop"/>
+<fullyQualifiedTypeName name="core.learning.stop.EarlyStop"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="core.data.Sample"/>
 </qualifiedTypeNameHistroy>

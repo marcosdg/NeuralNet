@@ -26,11 +26,9 @@ public class Backpropagation extends SupervisedLearning {
 	@Override
 	public void apply() {
 
-		while (!this.getMaxEpochsStop().isMet()) {
+		while (!getMaxEpochsStop().isMet()) {
 
-			List<Sample> training_samples = this
-                                            .getBenchmark()
-                                            .getTrainingSamples();
+			List<Sample> training_samples = getBenchmark().getTrainingSamples();
 
 			for (Sample training_sample: training_samples) {
 
@@ -44,7 +42,7 @@ public class Backpropagation extends SupervisedLearning {
 	}
 
 	public List<Double> forwardPropagate(Sample training_sample) {
-		return this.getNeuralNetwork().computeOutput(training_sample);
+		return getNeuralNetwork().computeOutput(training_sample);
 	}
 
 	// Backward propagate.
