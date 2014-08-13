@@ -78,7 +78,6 @@ public class NeuralNetwork {
 		for (Layer layer: this.layers) { // they must be ordered.
 			layer.computeOutput();
 		}
-
 		for (Node node: this.getOutputLayer().getNodes()) {
 			output_vector.add(((Neuron) node).getOutput());
 		}

@@ -1,6 +1,5 @@
 package core.learning;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import core.learning.stop.EarlyStop;
@@ -118,22 +117,6 @@ abstract public class SupervisedLearning extends LearningRule {
 // Errors.
 
 
-	// To simplify the calculation of the weights' corrections (deltas).
-/*
-	public List<Double> getOutputErrorVector(List<Double> desired_output_vector,
-                                              List<Double> output_vector) {
-		Double error = 0.0;
-		List<Double> error_vector = new ArrayList<Double>();
-
-		int num_nodes = getNeuralNetwork().getOutputLayer().numberOfNodes();
-
-		for (int i = 0; i < num_nodes; i += 1) {
-			error = desired_output_vector.get(i) - output_vector.get(i);
-			error_vector.add(error);
-		}
-		return error_vector;
-	}
-*/
 	// Evas.
 
 	public List<Double> getEvasRecord() {

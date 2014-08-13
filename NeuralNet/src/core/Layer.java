@@ -112,8 +112,14 @@ public class Layer {
 	public List<InputNode> getInputDataNodes() {
 		InputNode input_node = null;
 		List<InputNode> input_data_nodes = new ArrayList<InputNode>();
-		if (this.isInputDataLayer() && (!this.nodes.isEmpty())) {
 
+		if (!this.isInputDataLayer()) {
+			throw new IllegalStateException("Input data nodes can only be" +
+                                             " accessed in input data layers");
+		} else if (this.nodes.isEmpty()) {
+			throw new IllegalStateException("Empty input data layer");
+
+		} else {
 			for (Node node: this.nodes) {
 				input_node = (InputNode) node;
 
@@ -127,8 +133,14 @@ public class Layer {
 	public List<InputNode> getBiasNodes() {
 		InputNode input_node = null;
 		List<InputNode> biases = new ArrayList<InputNode>();
-		if (this.isInputDataLayer() && (!this.nodes.isEmpty())) {
 
+		if (!this.isInputDataLayer()) {
+			throw new IllegalStateException("Bias nodes can only be" +
+                                             " accessed in input data layers");
+		} else if (this.nodes.isEmpty()) {
+			throw new IllegalStateException("Empty input data layer");
+
+		} else {
 			for (Node node: this.nodes) {
 				input_node = (InputNode) node;
 
@@ -138,6 +150,24 @@ public class Layer {
 			}
 		}
 		return biases;
+	}
+
+	// About Output nodes.
+
+	public List<Double> getOutputsDerived() {
+		Double output_derived = 0.0;
+		List<Double> outputs_derived = new ArrayList<Double>();
+
+		if (this.isInputDataLayer()) {
+			throw new IllegalStateException("Not applicable to input data layer");
+
+		} else {
+			for (Node output_node: this.getNodes()) {
+				output_derived = ((Neuron) output_node).getOutputDerived();
+				outputs_derived.add(output_derived);
+			}
+		}
+		return outputs_derived;
 	}
 
 
