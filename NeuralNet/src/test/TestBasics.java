@@ -149,7 +149,7 @@ public class TestBasics {
 
 // ---------------------------------------- TEST -------------------------------------
 
-System.out.println("============= TEST 1: GENERAL INFO ABOUT LAYERS ==================");
+System.out.println("=============[ TEST 1: GENERAL INFO ABOUT LAYERS ]==================");
 
 		System.out.println("------- LAYER 1 --------");
 		System.out.println(" Kind: " + input_data_layer.getKind());
@@ -193,7 +193,7 @@ System.out.println("============= TEST 1: GENERAL INFO ABOUT LAYERS ============
 		}
 
 System.out.println();
-System.out.println("============= TEST 2: INPUT DATA/BIASES ==================");
+System.out.println("=============[ TEST 2: INPUT DATA/BIASES ]==================");
 
 		System.out.println("------- INPUT NODE 1 --------");
 		System.out.println(" Parent Layer: " + input_node1.getParentLayer().getKind());
@@ -265,7 +265,7 @@ System.out.println("============= TEST 2: INPUT DATA/BIASES ==================")
 		}
 
 System.out.println();
-System.out.println("============= TEST 3: NEURONS CONFIG ==================");
+System.out.println("=============[ TEST 3: NEURONS CONFIG ]==================");
 
 	System.out.println();
 		System.out.println("-------- NEURON 1 ---------");
@@ -282,7 +282,7 @@ System.out.println("============= TEST 3: NEURONS CONFIG ==================");
 		}
 
 		System.out.println(" Output Connections: ");
-		for (Connection output_connection: neuron1.getOutputConnections()) {
+		for (Connection output_connection: neuron1.getOutputs()) {
 			System.out.println("\t" + output_connection.getLabel());
 		}
 
@@ -301,7 +301,7 @@ System.out.println("============= TEST 3: NEURONS CONFIG ==================");
 		}
 
 		System.out.println(" Output Connections: ");
-		for (Connection output_connection: neuron2.getOutputConnections()) {
+		for (Connection output_connection: neuron2.getOutputs()) {
 			System.out.println("\t" + output_connection.getLabel());
 		}
 
@@ -320,12 +320,12 @@ System.out.println("============= TEST 3: NEURONS CONFIG ==================");
 		}
 
 		System.out.println(" Output Connections: ");
-		for (Connection output_connection: neuron3.getOutputConnections()) {
+		for (Connection output_connection: neuron3.getOutputs()) {
 			System.out.println("\t" + output_connection.getLabel());
 		}
 
 System.out.println();
-System.out.println("============= TEST 4: NEURONS PROCESSING ==================");
+System.out.println("=============[ TEST 4: NEURONS PROCESSING ]==================");
 
 		System.out.println();
 		System.out.println("-------- NEURON 1 ---------");
@@ -374,7 +374,7 @@ System.out.println("============= TEST 4: NEURONS PROCESSING =================="
 		neuron3.computeOutput();
 
 		System.out.println("    - Neuron output after: " + neuron3.getOutput());
-
+/*
 		System.out.println();
 		System.out.println("-------- NEURONS RESET ---------");
 
@@ -389,6 +389,34 @@ System.out.println("============= TEST 4: NEURONS PROCESSING =================="
 
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
+*/
+
+System.out.println();
+System.out.println("=============[ TEST 5: NEURAL NETWORK ]==================");
+
+		System.out.println("-------- [ INPUT DATA WEIGHTS ] -------- ");
+		System.out.println("Input Node 1 -- Neuron 1: ");
+		System.out.print(neural_network.getInputDataWeight(input_node1, neuron1));
+		System.out.println();
+		System.out.println("Input Node 2 -- Neuron 2: ");
+		System.out.print(neural_network.getInputDataWeight(input_node2, neuron2));
+
+		System.out.println("-------- [ BIAS WEIGHTS ] -------- ");
+		System.out.println("Bias 1 -- Neuron 1: ");
+		System.out.print(neural_network.getBiasWeight(bias1, neuron1));
+		System.out.println();
+		System.out.println("Bias 2 -- Neuron 2: ");
+		System.out.print(neural_network.getBiasWeight(bias2, neuron2));
+		System.out.println();
+		System.out.println("Bias 3 -- Neuron 3: ");
+		System.out.print(neural_network.getBiasWeight(bias3, neuron3));
+
+		System.out.println("-------- [ NEURON WEIGHTS ] -------- ");
+		System.out.println("Neuron 1 -- Neuron 3: ");
+		System.out.print(neural_network.getWeight(neuron1, neuron2));
+		System.out.println();
+		System.out.println("Neuron 2 -- Neuron 3: ");
+		System.out.print(neural_network.getWeight(neuron1, neuron3));
 
 /*                           [DEVELOPMENT STAGE]
 
@@ -420,6 +448,7 @@ System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ============
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
 */
+/*
 		System.out.println();
 		System.out.println("-------- WEIGHTS RANDOM INITIALIZATION ---------");
 
@@ -445,5 +474,6 @@ System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ============
 			System.out.println("\t" + input_connection.getLabel());
 			System.out.println("\t\t" + "Weight: " + input_connection.getWeight().getValue());
 		}
+*/
 	}
 }

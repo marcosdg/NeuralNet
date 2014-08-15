@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import core.activation.ActivationFunction;
@@ -27,6 +28,7 @@ public class Neuron extends Node {
 
 
 // Creation.
+
 
 	public Neuron(PropagationFunction propagationFunction, ActivationFunction activationFunction,
                    Layer parentLayer, String label) {
@@ -70,7 +72,7 @@ public class Neuron extends Node {
 // Processing.
 
 
-	// Combines the inputs to the Neuron.
+	// Combines the Neuron's inputs.
 
 	public void computeInput() {
 		if (this.inputs.isEmpty()) {
@@ -81,10 +83,19 @@ public class Neuron extends Node {
 		}
 	}
 
-	// Neuron response to the inputs.
+	// Neuron's response to the inputs.
 
 	public void computeOutput() {
 		this.output = this.activationFunction.getOutput(this.netInput);
+	}
+
+// Connections.
+
+	public List<Connection> getConnections() {
+		List<Connection> connections = new ArrayList<Connection>(this.inputs);
+		connections.addAll(this.outputs);
+
+		return connections;
 	}
 
 
@@ -117,7 +128,6 @@ public class Neuron extends Node {
 	}
 	public void addInputConnection(Connection input) {
 		Node source_node = input.getSource();
-
 		if (input != null) {
 
 			// It is pointing to this node ?
@@ -159,7 +169,7 @@ public class Neuron extends Node {
 	public double getOutputDerived() {
 		return activationFunction.getOutputDerived(this.netInput);
 	}
-	public List<Connection> getOutputConnections() {
+	public List<Connection> getOutputs() {
 		return this.outputs;
 	}
 
@@ -180,8 +190,6 @@ public class Neuron extends Node {
 	public void addOutputConnection(Connection output_connection) {
 		Node source_node = output_connection.getSource();
 		Node target_node = output_connection.getTarget();
-		Neuron source_neuron = null;
-		Neuron target_neuron = null;
 
 		if (output_connection != null) {
 
@@ -189,8 +197,8 @@ public class Neuron extends Node {
 
 			if (output_connection.isNeuronToNeuron()) {
 
-				source_neuron = (Neuron) source_node;
-				target_neuron = (Neuron) target_node;
+				Neuron source_neuron = (Neuron) source_node;
+				Neuron target_neuron = (Neuron) target_node;
 
 				// It is pointing from this Neuron ?
 

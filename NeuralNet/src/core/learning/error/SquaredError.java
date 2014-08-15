@@ -86,7 +86,6 @@ public class SquaredError {
 		List<Double> desired_output_vector = null,
                      output_vector = null;
 
-
 		norm_factor = 100 * ((output_max - output_min) / (N * P));
 
 		for (int i = 0; i < P; i += 1) {

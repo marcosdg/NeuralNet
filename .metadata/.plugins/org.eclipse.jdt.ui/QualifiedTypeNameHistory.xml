@@ -3,11 +3,8 @@
 <fullyQualifiedTypeName name="core.propagation.PropagationFunction"/>
 <fullyQualifiedTypeName name="core.Layer.kind"/>
 <fullyQualifiedTypeName name="core.data.DataSet"/>
-<fullyQualifiedTypeName name="core.Neuron"/>
 <fullyQualifiedTypeName name="core.propagation.WeightedSum"/>
 <fullyQualifiedTypeName name="core.activation.Linear"/>
-<fullyQualifiedTypeName name="core.Layer"/>
-<fullyQualifiedTypeName name="core.Node"/>
 <fullyQualifiedTypeName name="core.learning.SupervisedLearning"/>
 <fullyQualifiedTypeName name="core.Connection"/>
 <fullyQualifiedTypeName name="core.learning.IterativeLearning"/>
@@ -20,15 +17,18 @@
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 <fullyQualifiedTypeName name="core.data.Benchmark"/>
 <fullyQualifiedTypeName name="core.learning.error.SquaredError"/>
-<fullyQualifiedTypeName name="core.NeuralNetwork"/>
 <fullyQualifiedTypeName name="core.learning.stop.MaxEpochsStop"/>
 <fullyQualifiedTypeName name="core.learning.stop.EarlyStop"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="core.data.Sample"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="core.activation.Sigmoid"/>
 <fullyQualifiedTypeName name="core.learning.LearningRule"/>
 <fullyQualifiedTypeName name="core.learning.Backpropagation"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="core.InputNode"/>
+<fullyQualifiedTypeName name="core.Layer"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="core.Node"/>
+<fullyQualifiedTypeName name="core.NeuralNetwork"/>
+<fullyQualifiedTypeName name="core.Neuron"/>
 </qualifiedTypeNameHistroy>

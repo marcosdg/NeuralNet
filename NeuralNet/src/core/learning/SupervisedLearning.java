@@ -12,9 +12,8 @@ abstract public class SupervisedLearning extends LearningRule {
 
 
 	private double learning_rate;
-	private List<StopCriteria> stop_criterias;
-
 	private int current_epoch;
+	private List<StopCriteria> stop_criterias;
 
 	// Record of all the evas up to current epoch.
 
@@ -29,12 +28,6 @@ abstract public class SupervisedLearning extends LearningRule {
 	private List<List<Double>> output_vectors;
 
 
-// Creation.
-
-
-	public SupervisedLearning() {
-	}
-
 
 // Learning rate configuration.
 
@@ -44,6 +37,17 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 	public void setLearninRate(double learning_rate) {
 		this.learning_rate = learning_rate;
+	}
+
+
+// Epochs configuration.
+
+
+	public int getCurrentEpoch() {
+		return this.current_epoch;
+	}
+	public void setCurrentEpoch(int epoch) {
+		this.current_epoch = epoch;
 	}
 
 
@@ -101,17 +105,6 @@ abstract public class SupervisedLearning extends LearningRule {
 		}
 		return met;
 	}*/
-
-
-// Epochs configuration.
-
-
-	public int getCurrentEpoch() {
-		return this.current_epoch;
-	}
-	public void setCurrentEpoch(int epoch) {
-		this.current_epoch = epoch;
-	}
 
 
 // Errors.

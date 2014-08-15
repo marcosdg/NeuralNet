@@ -83,6 +83,7 @@ public class NeuralNetwork {
 		}
 		return output_vector;
 	}
+
 	public void loadTrainingSample(Sample sample) {
 		Layer input_data_layer = this.getInputDataLayer();
 		InputNode input_node = null;
@@ -113,19 +114,24 @@ public class NeuralNetwork {
 	}
 
 
-// Layers configuration.
+// Layers.
 
+
+	// General.
 
 	public List<Layer> getLayers() {
 		return this.layers;
 	}
-	public void setLayers(List<Layer> layers) {
-		this.layers = layers;
+	public Layer getLayerAt(int at) {
+		return this.layers.get(at);
 	}
 	public int getNumberOfLayers() {
 		return this.layers.size();
 	}
 
+	public void setLayers(List<Layer> layers) {
+		this.layers = layers;
+	}
 	public boolean addLayer(Layer layer) {
 		if (!this.layers.contains(layer)) {
 
@@ -143,9 +149,8 @@ public class NeuralNetwork {
 		return false;
 	}
 
-	public Layer getLayerAt(int at) {
-		return this.layers.get(at);
-	}
+	// Kinds.
+
 	public Layer getInputDataLayer() {
 		Layer initial_layer = null;
 
@@ -183,10 +188,14 @@ public class NeuralNetwork {
 		return output_layer;
 	}
 
+
+// Nodes.
+
+
 	public boolean hasNode(Node node) {
 		boolean has = false;
 
-		for (Layer layer: this.layers) {
+		for (Layer layer : this.layers) {
 			if (layer.hasNode(node)) {
 				has = true;
 				break;
@@ -194,8 +203,156 @@ public class NeuralNetwork {
 		}
 		return has;
 	}
+	public List<Neuron> getNeurons() {
+		List<Neuron> neurons = new ArrayList<Neuron>();
 
-	// Randomization.
+		for (Layer layer: this.layers) {
+			if (!layer.isInputDataLayer()) {
+
+				for (Node node: layer.getNodes()) {
+					neurons.add(((Neuron) node));
+				}
+			}
+		}
+		return neurons;
+	}
+
+
+// Connections.
+
+
+	// InputDataNode - Neuron.
+
+	public List<Connection> getInputDataSynapses() {
+		List<Connection> data_synapses = new ArrayList<Connection>();
+
+		for (InputNode data_node: this.getInputDataLayer().getInputDataNodes()) {
+			data_synapses.addAll(data_node.getOutputConnections());
+		}
+		return data_synapses;
+	}
+	public Connection findInputDataSynapse(InputNode from, Neuron to) {
+		Connection lost = null;
+		List<Connection> synapses = this.getInputDataSynapses();
+
+		for (Connection synapse: synapses) {
+			if (synapse.getSource() == from && synapse.getTarget() == to) {
+				lost = synapse;
+				break;
+			}
+		}
+		return lost;
+	}
+
+	// Bias - Neuron.
+
+	public List<Connection> getBiasSynapses() {
+		List<Connection> bias_synapses = new ArrayList<Connection>();
+
+		for (InputNode bias: this.getInputDataLayer().getBiasNodes()) {
+			bias_synapses.addAll(bias.getOutputConnections());
+		}
+		return bias_synapses;
+	}
+	public Connection findBiasSynapse(InputNode from, Neuron to) {
+		Connection lost = null;
+		List<Connection> synapses = this.getBiasSynapses();
+
+		for (Connection synapse: synapses) {
+			if (synapse.getSource() == from && synapse.getTarget() == to) {
+				lost = synapse;
+				break;
+			}
+		}
+		return lost;
+	}
+
+	// Neuron - Neuron.
+
+	public List<Connection> getNeuroSynapses() {
+		List<Connection> synapses = new ArrayList<Connection>();
+
+		for (Layer layer: this.layers) {
+			if (!layer.isInputDataLayer()) {
+
+				for (Node node: layer.getNodes()) {
+					synapses.addAll(((Neuron) node).getConnections());
+				}
+			}
+		}
+		return synapses;
+	}
+	public Connection findNeuroSynapse(Neuron from, Neuron to) {
+		Connection lost = null;
+		List<Connection> synapses = this.getNeuroSynapses();
+
+		for (Connection synapse: synapses) {
+			if (synapse.getSource() == from && synapse.getTarget() == to) {
+				lost = synapse;
+				break;
+			}
+		}
+		return lost;
+	}
+
+
+// Weights.
+
+
+	public Double getInputDataWeight(InputNode from, Neuron to) {
+		Double weight = 0.0;
+		Connection input_data_synapse = this.findInputDataSynapse(from, to);
+
+		if (input_data_synapse == null) {
+			StringBuilder message = new StringBuilder();
+			throw new IllegalArgumentException(message
+                                                .append("Data synapse: ")
+                                                .append(from.getLabel())
+                                                .append(", ")
+                                                .append(to.getLabel())
+                                                .append(" does not exists")
+                                                .toString());
+		} else {
+			weight = input_data_synapse.getWeight().getValue();
+		}
+		return weight;
+	}
+	public Double getBiasWeight(InputNode from, Neuron to) {
+		Double weight = 0.0;
+		Connection bias_synapse = this.findBiasSynapse(from, to);
+
+		if (bias_synapse == null) {
+			StringBuilder message = new StringBuilder();
+			throw new IllegalArgumentException(message
+                                                .append("Bias synapse: ")
+                                                .append(from.getLabel())
+                                                .append(", ")
+                                                .append(to.getLabel())
+                                                .append(" does not exists")
+                                                .toString());
+		} else {
+			weight = bias_synapse.getWeight().getValue();
+		}
+		return weight;
+	}
+	public Double getWeight(Neuron from, Neuron to) {
+		Double weight = 0.0;
+		Connection synapse = this.findNeuroSynapse(from, to);
+
+		if (synapse == null) {
+			StringBuilder message = new StringBuilder();
+			throw new IllegalArgumentException(message
+                                                .append("Neuro synapse: ")
+                                                .append(from.getLabel())
+                                                .append(", ")
+                                                .append(to.getLabel())
+                                                .append(" does not exists")
+                                                .toString());
+		} else {
+			weight = synapse.getWeight().getValue();
+		}
+		return weight;
+	}
 
 	public void randomizeAllWeights(double min, double max, Random generator) {
 		if (!this.layers.isEmpty()) {

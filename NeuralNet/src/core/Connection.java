@@ -13,7 +13,9 @@ public class Connection {
 
 	private Node   source,
                     target;
-	private Weight weight;
+	private Weight weight,
+	                last_weight;
+
 
 	private String label;
 
@@ -118,6 +120,8 @@ public class Connection {
 // Weight configuration.
 
 
+	// Current.
+
 	public Weight getWeight() {
 		return this.weight;
 	}
@@ -127,6 +131,20 @@ public class Connection {
                                                 " Connection's weight");
 		} else {
 			this.weight = weight;
+		}
+	}
+
+	// Previous.
+
+	public Weight getLastWeight() {
+		return this.last_weight;
+	}
+	public void setLastWeight(Weight last) {
+		if (last == null) {
+			throw new IllegalArgumentException("Bad parameter to set"+
+                                                " Connection's weight");
+		} else {
+			this.last_weight = last;
 		}
 	}
 
@@ -153,4 +171,22 @@ public class Connection {
 		return (this.source instanceof Neuron &&
 				 this.target instanceof Neuron);
 	}
+
+
+// Format
+
+
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+
+		return builder
+                .append("Connection")
+                .append("[").append(this.label).append("]")
+                .append(":")
+                .append(this.source.getLabel())
+                .append(", ")
+                .append(this.target.getLabel())
+                .toString();
+	}
+
 }

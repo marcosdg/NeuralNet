@@ -215,8 +215,9 @@ System.out.println("========= FILE =========");
 
 		neural_network.setLearningRule(backProp);
 
-// RUN
 
+// RUN
+/*
 		neural_network.learn();
 
 System.out.println("===== NEURAL NETWORK STATE AFTER FORWARD-PROPAGATION =====");
@@ -230,5 +231,6 @@ System.out.println();
 
 		System.out.println("Neuron 3 [netinput]: " + neuron3.getNetInput());
 		System.out.println("Neuron 3 [OUTPUT]: " + neuron3.getOutput());
+*/
 	}
 }

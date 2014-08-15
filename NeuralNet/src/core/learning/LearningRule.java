@@ -10,8 +10,6 @@ abstract public class LearningRule {
 	private Benchmark benchmark;
 	private NeuralNetwork neuralNetwork;
 
-	public LearningRule() {
-	}
 
 	public NeuralNetwork getNeuralNetwork() {
 		return this.neuralNetwork;
