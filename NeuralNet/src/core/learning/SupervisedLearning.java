@@ -15,17 +15,18 @@ abstract public class SupervisedLearning extends LearningRule {
 	private int current_epoch;
 	private List<StopCriteria> stop_criterias;
 
-	// Record of all the evas up to current epoch.
+	// Record of all the evas up to current epoch (life-time: entire execution).
 
 	private List<Double> evas,
 
-	// 'Buffer' with all the etrs during each strip.
+	// Record of all the etrs during each strip (life-time: strip length).
 
                           etrs;
 
 	// Record of all outputs obtained up to current epoch.
 
-	private List<List<Double>> output_vectors;
+	private List<List<Double>> training_output_vectors,
+                                validation_output_vectors;
 
 
 
@@ -115,7 +116,7 @@ abstract public class SupervisedLearning extends LearningRule {
 	public List<Double> getEvasRecord() {
 		return this.evas;
 	}
-	public void addEva(Double eva) {
+	public void saveEva(Double eva) {
 		this.evas.add(eva);
 	}
 
@@ -124,7 +125,7 @@ abstract public class SupervisedLearning extends LearningRule {
 	public List<Double> getEtrsRecord() {
 		return this.etrs;
 	}
-	public void addEtr(Double etr) {
+	public void saveEtr(Double etr) {
 		this.etrs.add(etr);
 	}
 	public void clearEtrs() {
@@ -132,13 +133,27 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 
 
-// Output vectors.
+// Training Output vectors.
 
 
-	public List<List<Double>> getOutputVectorsRecord() {
-		return this.output_vectors;
+	public List<List<Double>> getTrainingOutputVectors() {
+		return this.training_output_vectors;
 	}
-	public void addOutputVector(List<Double> output_vector) {
-		this.output_vectors.add(output_vector);
+	public void saveTrainingOutputVector(List<Double> output_vector) {
+		this.training_output_vectors.add(output_vector);
+	}
+	public void clearTrainingOutputVectors() {
+		this.training_output_vectors.clear();
+	}
+
+
+// Validation Output vectors.
+
+
+	public List<List<Double>> getValidationOutputVectors() {
+		return this.validation_output_vectors;
+	}
+	public void saveValidationOutputVector(List<Double> output_vector) {
+		this.validation_output_vectors.add(output_vector);
 	}
 }

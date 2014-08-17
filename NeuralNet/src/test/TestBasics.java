@@ -132,8 +132,8 @@ public class TestBasics {
 
 // NeuralNetwork setup.
 
-		LearningRule learning_rule = new Backpropagation(); // Not tested now.
-		NeuralNetwork neural_network = new NeuralNetwork(layers, learning_rule, "Neural Network");
+		Backpropagation backprop = new Backpropagation(0.5, 0.2); // Not tested now.
+		NeuralNetwork neural_network = new NeuralNetwork(layers, backprop, "Neural Network");
 
 		// Connections.
 
@@ -145,7 +145,7 @@ public class TestBasics {
 		neural_network.createConnection(bias3, neuron3, -1, "Connection: Bias3 -> Neuron3");
 
 		neural_network.createConnection(neuron1, neuron3, 1, "Connection: Neuron1 -> Neuron3");
-		neural_network.createConnection(neuron2, neuron3, 1, "Connection: Neuron2 -> Neuron3");
+		neural_network.createConnection(neuron2, neuron3, 100, "Connection: Neuron2 -> Neuron3");
 
 // ---------------------------------------- TEST -------------------------------------
 
@@ -396,27 +396,45 @@ System.out.println("=============[ TEST 5: NEURAL NETWORK ]==================");
 
 		System.out.println("-------- [ INPUT DATA WEIGHTS ] -------- ");
 		System.out.println("Input Node 1 -- Neuron 1: ");
-		System.out.print(neural_network.getInputDataWeight(input_node1, neuron1));
+		System.out.print(neural_network
+                         .getInputDataWeight(input_node1, neuron1)
+                         .getValue());
 		System.out.println();
 		System.out.println("Input Node 2 -- Neuron 2: ");
-		System.out.print(neural_network.getInputDataWeight(input_node2, neuron2));
+		System.out.print(neural_network
+                         .getInputDataWeight(input_node2, neuron2)
+                         .getValue());
 
 		System.out.println("-------- [ BIAS WEIGHTS ] -------- ");
 		System.out.println("Bias 1 -- Neuron 1: ");
-		System.out.print(neural_network.getBiasWeight(bias1, neuron1));
+		System.out.print(neural_network
+                         .getBiasWeight(bias1, neuron1)
+                         .getValue());
 		System.out.println();
 		System.out.println("Bias 2 -- Neuron 2: ");
-		System.out.print(neural_network.getBiasWeight(bias2, neuron2));
+		System.out.print(neural_network
+                         .getBiasWeight(bias2, neuron2)
+                         .getValue());
 		System.out.println();
 		System.out.println("Bias 3 -- Neuron 3: ");
-		System.out.print(neural_network.getBiasWeight(bias3, neuron3));
+		System.out.print(neural_network
+                         .getBiasWeight(bias3, neuron3)
+                         .getValue());
 
 		System.out.println("-------- [ NEURON WEIGHTS ] -------- ");
 		System.out.println("Neuron 1 -- Neuron 3: ");
-		System.out.print(neural_network.getWeight(neuron1, neuron2));
+		System.out.print(neural_network
+                         .getNeuroWeight(neuron1, neuron3)
+                         .getValue());
 		System.out.println();
 		System.out.println("Neuron 2 -- Neuron 3: ");
-		System.out.print(neural_network.getWeight(neuron1, neuron3));
+		System.out.print(neural_network
+                         .getNeuroWeight(neuron2, neuron3)
+                         .getValue());
+
+
+
+
 
 /*                           [DEVELOPMENT STAGE]
 

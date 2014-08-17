@@ -34,27 +34,19 @@ public class Layer {
 	}
 
 	public void resetNeurons() {
-		for (Node node: this.nodes) {
-			if (node instanceof Neuron) {
-				((Neuron) node).reset();
-			}
+		for (Neuron neuron : this.getNeurons()) {
+			neuron.reset();
 		}
 	}
+
 
 // Processing (only layers with neurons).
 
 
 	public void computeOutput() {
-
-		if (!(this.isInputDataLayer())) {
-
-			if (!(this.nodes.isEmpty())) {
-
-				for (Node node: this.nodes) {
-					((Neuron) node).computeInput();
-					((Neuron) node).computeOutput();
-				}
-			}
+		for (Neuron neuron : this.getNeurons()) {
+			neuron.computeInput();
+			neuron.computeOutput();
 		}
 	}
 
@@ -107,7 +99,7 @@ public class Layer {
 		return this.nodes.contains(node);
 	}
 
-	// About InputNodes.
+	// InputNodes.
 
 	public List<InputNode> getInputDataNodes() {
 		InputNode input_node = null;
@@ -118,11 +110,10 @@ public class Layer {
                                              " accessed in input data layers");
 		} else if (this.nodes.isEmpty()) {
 			throw new IllegalStateException("Empty input data layer");
-
 		} else {
+
 			for (Node node: this.nodes) {
 				input_node = (InputNode) node;
-
 				if (input_node.isInputDataNode()) {
 					input_data_nodes.add(input_node);
 				}
@@ -139,11 +130,10 @@ public class Layer {
                                              " accessed in input data layers");
 		} else if (this.nodes.isEmpty()) {
 			throw new IllegalStateException("Empty input data layer");
-
 		} else {
+
 			for (Node node: this.nodes) {
 				input_node = (InputNode) node;
-
 				if (input_node.isBiasNode()) {
 					biases.add(input_node);
 				}
@@ -152,20 +142,29 @@ public class Layer {
 		return biases;
 	}
 
-	// About Output nodes.
+	// Neurons.
 
-	public List<Double> getOutputsDerived() {
-		Double output_derived = 0.0;
-		List<Double> outputs_derived = new ArrayList<Double>();
+	public List<Neuron> getNeurons() {
+		List<Neuron> neurons = new ArrayList<Neuron>();
 
 		if (this.isInputDataLayer()) {
 			throw new IllegalStateException("Not applicable to input data layer");
-
+		} else if (this.nodes.isEmpty()) {
+			throw new IllegalStateException("Empty layer");
 		} else {
-			for (Node output_node: this.getNodes()) {
-				output_derived = ((Neuron) output_node).getOutputDerived();
-				outputs_derived.add(output_derived);
+
+			for (Node node: this.nodes) {
+				neurons.add((Neuron) node);
 			}
+		}
+		return neurons;
+	}
+
+	public List<Double> getOutputsDerived() {
+		List<Double> outputs_derived = new ArrayList<Double>();
+
+		for (Neuron neuron : this.getNeurons()) {
+			outputs_derived.add(neuron.getOutputDerived());
 		}
 		return outputs_derived;
 	}
@@ -199,15 +198,8 @@ public class Layer {
 
 
 	public void randomizeWeights(double min, double max, Random generator) {
-
-		if (!(this.isInputDataLayer())) {
-
-			if (!(this.nodes.isEmpty())) {
-
-				for (Node node : this.nodes) {
-					((Neuron) node).randomizeWeights(min, max, generator);
-				}
-			}
+		for (Neuron neuron : this.getNeurons()) {
+			neuron.randomizeWeights(min, max, generator);
 		}
 	}
 }

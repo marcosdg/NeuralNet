@@ -12,7 +12,7 @@ public class EarlyStop extends StopCriteria {
 
 	private SupervisedLearning supervised_learning_rule;
 
-	private static int strip_length;
+	private int strip_length;
 
 	private double max_generalization_loss,
                      min_training_progress;
@@ -25,9 +25,17 @@ public class EarlyStop extends StopCriteria {
                       double min_training_progress) {
 
 		this.supervised_learning_rule = rule;
-		EarlyStop.strip_length = strip_length;
+		this.strip_length = strip_length;
 		this.max_generalization_loss = max_generalization_loss;
 		this.min_training_progress = min_training_progress;
+	}
+
+
+// Strip.
+
+
+	public int getStripLength() {
+		return this.strip_length;
 	}
 
 
@@ -48,7 +56,7 @@ public class EarlyStop extends StopCriteria {
 		List<Double> evas = this.supervised_learning_rule.getEvasRecord();
 		List<List<Double>> output_vectors = this
                                             .supervised_learning_rule
-                                            .getOutputVectorsRecord();
+                                            .getTrainingOutputVectors();
 
 		Double loss = this.getGeneralizationLoss(output_vectors, evas);
 
@@ -144,6 +152,6 @@ public class EarlyStop extends StopCriteria {
 
 			total_etrs += etr;
 		}
-		return 1000 * ((total_etrs / (EarlyStop.strip_length * min_etr)) - 1);
+		return 1000 * ((total_etrs / (this.getStripLength() * min_etr)) - 1);
 	}
 }

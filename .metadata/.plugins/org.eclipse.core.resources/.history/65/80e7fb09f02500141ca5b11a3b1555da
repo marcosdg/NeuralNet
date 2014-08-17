@@ -1,0 +1,96 @@
+package core;
+
+import java.util.Random;
+
+/*
+ * Represents the synaptic strength of a 'Connection' with a 'value'.
+ *
+ */
+
+public class Weight {
+
+	private double value,
+                     now_change,  // correction from the now epoch.
+                     last_change; // correction from the previous epoch.
+
+
+// Creation.
+
+
+	// Simple Weight.
+
+	public Weight(double initial) {
+		this.value = initial;
+		this.now_change = 0.0;
+		this.last_change = 0.0;
+	}
+
+	// Random Weight within a given range.
+
+	public Weight(double min, double max, Random generator) {
+		if (generator != null) {
+			this.value = this.randomWithinRange(min, max, generator);
+			this.now_change = 0.0;
+			this.last_change = 0.0;
+		}
+	}
+
+	public void reset() {
+		this.value = 0.0;
+		this.now_change = 0.0;
+		this.last_change = 0.0;
+	}
+
+
+//	Configuration.
+
+
+	// Value.
+
+	public void decrease(double amount) {
+		this.value -= amount;
+	}
+	public void increase(double amount) {
+		this.value += amount;
+	}
+	public double getValue() {
+		return this.value;
+	}
+	public void setValue(double value) {
+		this.value = value;
+	}
+
+	// Current weight change.
+
+	public double getNowChange() {
+		return this.now_change;
+	}
+	public void setNowChange(double change) {
+		this.now_change = change;
+	}
+
+	// Previous weight change.
+
+	public double getLastChange() {
+		return this.last_change;
+	}
+	public void setLastChange(double change) {
+		this.last_change = change;
+	}
+
+	// Randomization.
+
+	public double randomWithinRange(double min, double max, Random generator) {
+		double random = 0.0;
+		if (generator != null) {
+
+			random = (min + (generator.nextDouble() * (max - min)));
+		}
+		return random;
+	}
+	public void randomize(double min, double max, Random generator) {
+		this.value = this.randomWithinRange(min, max, generator);
+	}
+
+	// TODO: COMPLETE 'TOSTRING' METHOD. What format?
+}

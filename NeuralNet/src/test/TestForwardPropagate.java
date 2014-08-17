@@ -167,10 +167,9 @@ System.out.println("========= FILE =========");
 
 		// NeuralNetwork setup.
 
-
-		LearningRule learning_rule = new Backpropagation(); // Not tested now.
+		Backpropagation backProp = new Backpropagation(0.5, 0.2); // Not tested now.
 		NeuralNetwork neural_network = new NeuralNetwork(layers,
-                                                         learning_rule,
+                                                         backProp,
                                                          "Neural Network");
 
 			// Connections.
@@ -198,9 +197,7 @@ System.out.println("========= FILE =========");
 		// set neural_network label
 
 
-		// LEARNING RULE
-
-		Backpropagation backProp = new Backpropagation();
+			// References.
 
 			// backProp -----> benchmark.
 

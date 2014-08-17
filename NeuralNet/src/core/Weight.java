@@ -5,16 +5,13 @@ import java.util.Random;
 /*
  * Represents the synaptic strength of a 'Connection' with a 'value'.
  *
- * It stores the 'currentWeightChange' obtained from the current learning epoch
- * and the 'previousWeightChange' obtained from the previous learning epoch;
- * which are necessary to implement 'BackPropagation with momentum'.
  */
 
 public class Weight {
 
 	private double value,
-                     currentWeightChange,
-                     previousWeightChange;
+                     correction,  // from the now epoch.
+                     last_correction; // from the previous epoch.
 
 
 // Creation.
@@ -24,8 +21,8 @@ public class Weight {
 
 	public Weight(double initial) {
 		this.value = initial;
-		this.currentWeightChange = 0.0;
-		this.previousWeightChange = 0.0;
+		this.correction = 0.0;
+		this.last_correction = 0.0;
 	}
 
 	// Random Weight within a given range.
@@ -33,15 +30,15 @@ public class Weight {
 	public Weight(double min, double max, Random generator) {
 		if (generator != null) {
 			this.value = this.randomWithinRange(min, max, generator);
-			this.currentWeightChange = 0.0;
-			this.previousWeightChange = 0.0;
+			this.correction = 0.0;
+			this.last_correction = 0.0;
 		}
 	}
 
 	public void reset() {
 		this.value = 0.0;
-		this.currentWeightChange = 0.0;
-		this.previousWeightChange = 0.0;
+		this.correction = 0.0;
+		this.last_correction = 0.0;
 	}
 
 
@@ -65,20 +62,20 @@ public class Weight {
 
 	// Current weight change.
 
-	public double getCurrentChange() {
-		return this.currentWeightChange;
+	public double getCorrection() {
+		return this.correction;
 	}
-	public void setCurrentChange(double change) {
-		this.currentWeightChange = change;
+	public void setCorrection(double value) {
+		this.correction = value;
 	}
 
 	// Previous weight change.
 
-	public double getPreviousChange() {
-		return this.previousWeightChange;
+	public double getLastCorrection() {
+		return this.last_correction;
 	}
-	public void setPreviousChange(double change) {
-		this.previousWeightChange = change;
+	public void setLastCorrection(double value) {
+		this.last_correction = value;
 	}
 
 	// Randomization.

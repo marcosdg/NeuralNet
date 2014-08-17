@@ -13,9 +13,8 @@ public class Connection {
 
 	private Node   source,
                     target;
-	private Weight weight,
-	                last_weight;
 
+	private Weight weight;
 
 	private String label;
 
@@ -131,20 +130,6 @@ public class Connection {
                                                 " Connection's weight");
 		} else {
 			this.weight = weight;
-		}
-	}
-
-	// Previous.
-
-	public Weight getLastWeight() {
-		return this.last_weight;
-	}
-	public void setLastWeight(Weight last) {
-		if (last == null) {
-			throw new IllegalArgumentException("Bad parameter to set"+
-                                                " Connection's weight");
-		} else {
-			this.last_weight = last;
 		}
 	}
 
