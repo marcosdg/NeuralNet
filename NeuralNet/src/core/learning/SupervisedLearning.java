@@ -1,5 +1,6 @@
 package core.learning;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import core.learning.stop.EarlyStop;
@@ -27,6 +28,17 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	private List<List<Double>> training_output_vectors,
                                 validation_output_vectors;
+
+
+	public SupervisedLearning(double learning_rate) {
+		this.current_epoch = 0;
+		this.learning_rate = learning_rate;
+		this.stop_criterias = new ArrayList<StopCriteria>();
+		this.evas = new ArrayList<Double>();
+		this.etrs = new ArrayList<Double>();
+		this.training_output_vectors = new ArrayList<List<Double>>();
+		this.validation_output_vectors = new ArrayList<List<Double>>();
+	}
 
 
 

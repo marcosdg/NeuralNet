@@ -29,9 +29,11 @@ public class NeuralNetwork {
 		}
 	}
 
+	/* TODO: FIX
 	public NeuralNetwork clone() {
 		return this.clone();
 	}
+	*/
 
 	public void reset() {
 		for (Layer layer: this.layers) {

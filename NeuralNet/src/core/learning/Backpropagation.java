@@ -12,6 +12,7 @@ import core.Node;
 import core.Weight;
 import core.data.Sample;
 import core.learning.stop.EarlyStop;
+import core.learning.stop.StopCriteria;
 
 
 //TODO: COMPLETE BACKPROPAGATION CLASS
@@ -26,11 +27,13 @@ public class Backpropagation extends SupervisedLearning {
 
 
 	public Backpropagation(double learning_rate, double momentum) {
+
+		// Initialize SupervisedLearning properties.
+		super(learning_rate);
+
 		if (learning_rate < 0 || momentum < 0) {
 			throw new IllegalArgumentException("Bad parameters");
 		} else {
-			this.setCurrentEpoch(0);
-			this.setLearninRate(learning_rate);
 			this.momentum = momentum;
 		}
 	}
@@ -53,13 +56,19 @@ public class Backpropagation extends SupervisedLearning {
 
 				output_errors = this.forwardPropagate(training_sample);
 				this.backwardPropagate();
+				break;
 			}
+
 			this.updateWeightsLastCorrections();
+
+			//			[TEST]
+			/*
 			this.saveEtrAndEva(validation_samples, output_errors);
 
 			// Early stop ?
 
 			if ((getCurrentEpoch() % getEarlyStop().getStripLength()) == 0) {
+
 				if (getEarlyStop().isMet()) {
 					break;
 				} else {
@@ -67,6 +76,7 @@ public class Backpropagation extends SupervisedLearning {
 					clearTrainingOutputVectors();
 				}
 			}
+			*/
 			this.setCurrentEpoch(getCurrentEpoch() + 1);
 		}
 	}
@@ -77,21 +87,25 @@ public class Backpropagation extends SupervisedLearning {
 		}
 	}
 
+	// [TEST]
 	public void saveEtrAndEva(List<Sample> validation_samples,
                                 List<Double> output_errors) {
 		List<Double> output_vector = null;
 		Double etr = 0.0,
                eva = 0.0;
 
+		/*
 		// Clone net not to mess the original one.
 
 		NeuralNetwork net_clone = getNeuralNetwork().clone();
+
 
 		// Save Etr.
 
 		etr = getEarlyStop()
               .getAverageErrorPerTrainingSample(getTrainingOutputVectors());
 		saveEtr(etr);
+
 
 		// Save Eva.
 
@@ -102,6 +116,7 @@ public class Backpropagation extends SupervisedLearning {
 		eva = getEarlyStop()
               .getAverageErrorPerValidationSample(getValidationOutputVectors());
 		saveEva(eva);
+		*/
 	}
 
 
@@ -170,8 +185,7 @@ public class Backpropagation extends SupervisedLearning {
 	public void backwardPropagate() {
 		NeuralNetwork net = getNeuralNetwork();
 
-		for (int l = (net.getNumberOfLayers() - 1); l > 0; l -= 1) {
-
+		for (int l = (net.getNumberOfLayers() - 2); l > 0; l -= 1) {
 			Layer from = net.getLayerAt(l);
 			Layer to = net.getLayerAt(l + 1);
 			this.correctWeights(from, to);
@@ -199,6 +213,7 @@ public class Backpropagation extends SupervisedLearning {
 			this.correctWeight(weight, from.getOutput(), to.getError());
 		}
 	}
+
 	public void correctWeights(Layer from, Layer to) {
 		NeuralNetwork net = getNeuralNetwork();
 		List<Neuron> to_neurons = to.getNeurons(),

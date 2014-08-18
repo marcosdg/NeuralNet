@@ -44,9 +44,13 @@ public class Layer {
 
 
 	public void computeOutput() {
-		for (Neuron neuron : this.getNeurons()) {
-			neuron.computeInput();
-			neuron.computeOutput();
+		if (!this.isInputDataLayer()) {
+			if(!this.nodes.isEmpty()) {
+				for (Node node: this.nodes) {
+					((Neuron) node).computeInput();
+					((Neuron) node).computeOutput();
+				}
+			}
 		}
 	}
 

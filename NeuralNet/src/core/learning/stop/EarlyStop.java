@@ -154,4 +154,20 @@ public class EarlyStop extends StopCriteria {
 		}
 		return 1000 * ((total_etrs / (this.getStripLength() * min_etr)) - 1);
 	}
+
+
+// Generalization Loss configuration.
+
+
+	public double getMaxGeneralizationLoss() {
+		return this.max_generalization_loss;
+	}
+
+
+// Training Progress configuration.
+
+
+	public double getMinTrainingProgress() {
+		return this.min_training_progress;
+	}
 }
