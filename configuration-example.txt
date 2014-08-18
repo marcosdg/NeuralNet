@@ -69,10 +69,10 @@ any other neurons)
  row 0:  |   -1   |    .     |  .            BIAS 1 
  row 1:  |    .   |   -1     |  .            BIAS 2 
  row 2:  |    .   |    .     | -1            BIAS 3 
- row 1:  |    1   |    .     |  .            INPUT NODE 1
- row 2:  |    .   |    1     |  .            INPUT NODE 2
- row 3:  |    .   |    .     |  1            NEURON 1
- row 4:  |    .   |    .     | 100           NEURON 2
+ row 3:  |    1   |    .     |  .            INPUT NODE 1
+ row 4:  |    .   |    1     |  .            INPUT NODE 2
+ row 5:  |    .   |    .     |  1            NEURON 1
+ row 6:  |    .   |    .     | 100           NEURON 2
                                              (from)  
 
  . means that there is no synapse between (from) and (to)
