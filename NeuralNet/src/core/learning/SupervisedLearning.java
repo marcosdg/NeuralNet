@@ -7,8 +7,6 @@ import core.learning.stop.EarlyStop;
 import core.learning.stop.MaxEpochsStop;
 import core.learning.stop.StopCriteria;
 
-//TODO: COMPLETE SUPERVISEDLEARNING CLASS
-
 abstract public class SupervisedLearning extends LearningRule {
 
 
@@ -128,6 +126,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	public List<Double> getEvasRecord() {
 		return this.evas;
 	}
+	public void setEvasRecord(List<Double> evas) {
+		this.evas = evas;
+	}
 	public void saveEva(Double eva) {
 		this.evas.add(eva);
 	}
@@ -136,6 +137,9 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	public List<Double> getEtrsRecord() {
 		return this.etrs;
+	}
+	public void setEtrsRecord(List<Double> etrs) {
+		this.etrs = etrs;
 	}
 	public void saveEtr(Double etr) {
 		this.etrs.add(etr);
@@ -151,6 +155,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	public List<List<Double>> getTrainingOutputVectors() {
 		return this.training_output_vectors;
 	}
+	public void setTrainingOutputVectors(List<List<Double>> those) {
+		this.training_output_vectors = those;
+	}
 	public void saveTrainingOutputVector(List<Double> output_vector) {
 		this.training_output_vectors.add(output_vector);
 	}
@@ -164,6 +171,9 @@ abstract public class SupervisedLearning extends LearningRule {
 
 	public List<List<Double>> getValidationOutputVectors() {
 		return this.validation_output_vectors;
+	}
+	public void setValidationOutputVectors(List<List<Double>> those) {
+		this.validation_output_vectors = those;
 	}
 	public void saveValidationOutputVector(List<Double> output_vector) {
 		this.validation_output_vectors.add(output_vector);

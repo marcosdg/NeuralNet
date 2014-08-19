@@ -17,21 +17,21 @@
 <fullyQualifiedTypeName name="core.data.Sample"/>
 <fullyQualifiedTypeName name="core.activation.Sigmoid"/>
 <fullyQualifiedTypeName name="core.learning.LearningRule"/>
-<fullyQualifiedTypeName name="core.Layer"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="core.Node"/>
-<fullyQualifiedTypeName name="core.Neuron"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="format.Message"/>
-<fullyQualifiedTypeName name="core.Weight"/>
 <fullyQualifiedTypeName name="core.Connection"/>
-<fullyQualifiedTypeName name="core.InputNode"/>
-<fullyQualifiedTypeName name="core.NeuralNetwork"/>
 <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
-<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
 <fullyQualifiedTypeName name="core.learning.stop.MaxEpochsStop"/>
 <fullyQualifiedTypeName name="core.learning.stop.EarlyStop"/>
 <fullyQualifiedTypeName name="core.learning.stop.StopCriteria"/>
 <fullyQualifiedTypeName name="core.learning.SupervisedLearning"/>
+<fullyQualifiedTypeName name="core.Weight"/>
+<fullyQualifiedTypeName name="core.Neuron"/>
+<fullyQualifiedTypeName name="core.InputNode"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="core.NeuralNetwork"/>
+<fullyQualifiedTypeName name="core.Layer"/>
+<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
 </qualifiedTypeNameHistroy>

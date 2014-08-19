@@ -26,11 +26,31 @@ public class Layer {
 // Creation.
 
 
-	public Layer(String label) {
-		if (label != null) {
+	public Layer(String kind) {
+		if (kind != null) {
 			this.nodes = new ArrayList<Node>();
-			this.kind = label;
+			this.kind = kind;
 		}
+	}
+	public Layer copy() {
+		Layer copy = new Layer(this.kind);
+		List<Node> nodes_copy = new ArrayList<Node>();
+
+		for (Node node: this.nodes) {
+
+			// copy input nodes ?
+
+			if (this.isInputDataLayer()) {
+				nodes_copy.add(((InputNode) node).copy());
+
+			// copy neurons ?
+
+			} else {
+				nodes_copy.add(((Neuron) node).copy());
+			}
+		}
+		copy.setNodes(nodes_copy);
+		return copy;
 	}
 
 	public void resetNeurons() {

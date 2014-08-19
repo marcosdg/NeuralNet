@@ -34,6 +34,13 @@ public class Weight {
 			this.last_correction = 0.0;
 		}
 	}
+	public Weight copy() {
+		Weight copy = new Weight(this.value);
+		copy.setCorrection(this.correction);
+		copy.setLastCorrection(this.last_correction);
+
+		return copy;
+	}
 
 	public void reset() {
 		this.value = 0.0;

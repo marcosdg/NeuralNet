@@ -1,7 +1,6 @@
 package core;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import core.activation.ActivationFunction;
@@ -53,6 +52,19 @@ public class Neuron extends Node {
 			this.propagationFunction = propagationFunction;
 			this.activationFunction = activationFunction;
 		}
+	}
+	public Neuron copy() {
+		Neuron copy = new Neuron(this.propagationFunction,
+                                  this.activationFunction,
+                                  getParentLayer(),
+                                  getLabel());
+		copy.setInputs(this.inputs);
+		copy.setOutputs(this.outputs);
+		copy.setNetInput(this.netInput);
+		copy.setOutput(this.output);
+		copy.setError(this.error);
+
+		return copy;
 	}
 
 	public void reset() {
@@ -111,6 +123,9 @@ public class Neuron extends Node {
 	public List<Connection> getInputs() {
 		return this.inputs;
 	}
+	public void setInputs(List<Connection> input_connections) {
+		this.inputs = input_connections;
+	}
 
 	// A Neuron may have another Neuron or InputNode as input source.
 
@@ -166,11 +181,17 @@ public class Neuron extends Node {
 	public double getOutput() {
 		return this.output;
 	}
+	public void setOutput(double output) {
+		this.output = output;
+	}
 	public double getOutputDerived() {
 		return activationFunction.getOutputDerived(this.netInput);
 	}
 	public List<Connection> getOutputs() {
 		return this.outputs;
+	}
+	public void setOutputs(List<Connection> output_connections) {
+		this.outputs = output_connections;
 	}
 
 	// A Neuron does not have outputs to InputNodes

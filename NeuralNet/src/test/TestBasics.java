@@ -10,6 +10,7 @@ import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
 import core.Node;
+import core.Weight;
 import core.activation.Linear;
 import core.learning.Backpropagation;
 import core.learning.LearningRule;
@@ -325,6 +326,115 @@ System.out.println("=============[ TEST 3: NEURONS CONFIG ]==================");
 		}
 
 System.out.println();
+System.out.println("=============[ TEST 4: CLONING ]==================");
+System.out.println();
+/*
+		System.out.println("-------- WEIGHTS ---------");
+
+		Weight w23 = neural_network.getNeuroWeight(neuron2, neuron3);
+		Weight w23_copy = w23.copy();
+
+		w23_copy.setValue(50);
+		w23_copy.setCorrection(0.15);
+
+		System.out.println("w23 value: " + w23.getValue());
+		System.out.println("w23 correction: " + w23.getCorrection());
+		System.out.println("w23_copy value: " + w23_copy.getValue());
+		System.out.println("w23_copy correction: " + w23_copy.getCorrection());
+
+		System.out.println("-------- INPUT NODES ---------");
+
+		InputNode input_node1_copy = input_node1.copy();
+		input_node1_copy.setInputData(99.0);
+		System.out.println("input_node1 input: " + input_node1.getInputData());
+		System.out.println("input_node1_copy input: " + input_node1_copy.getInputData());
+
+		System.out.println("-------- NEURONS ---------");
+
+		Neuron neuron1_copy = neuron1.copy();
+		neuron1.setNetInput(2.0);
+		neuron1_copy.setNetInput(4.0);
+
+		System.out.println("Neuron 1 netInput: " + neuron1.getNetInput());
+		System.out.println("Neuron 1 copy netInput: " + neuron1_copy.getNetInput());
+
+		System.out.println("-------- LAYERS ---------");
+
+		Layer output_layer_copy = output_layer.copy();
+
+		Neuron neuron4 = new Neuron(weightedSum, linear, output_layer_copy, "Neuron 4");
+
+		output_layer_copy.addNode(neuron4);
+
+		System.out.println("output_layer num. nodes: " + output_layer.numberOfNodes());
+		System.out.println("output_layer_copy num. nodes: " + output_layer_copy.numberOfNodes());
+
+		System.out.println("-------- BACKPROP ---------");
+
+		Backpropagation backprop_copy = backprop.copy();
+
+		backprop_copy.setCurrentEpoch(backprop_copy.getCurrentEpoch() + 1);
+		backprop_copy.setLearninRate(0.9);
+		backprop_copy.setMomentum(0.3);
+
+		backprop_copy.saveEva(0.6);
+		backprop_copy.saveEva(0.7);
+
+		List<Double> training_output_vector = new ArrayList<Double>();
+		training_output_vector.add(1.0);
+		training_output_vector.add(2.0);
+		backprop_copy.saveTrainingOutputVector(training_output_vector);
+
+
+		System.out.println("backprop epoch: " + backprop.getCurrentEpoch());
+		System.out.println("backprop_copy epoch: " + backprop_copy.getCurrentEpoch());
+		System.out.println("backprop learning rate: " + backprop.getLearningRate());
+		System.out.println("backprop_copy learning rate: " + backprop_copy.getLearningRate());
+		System.out.println("backprop momentum: " + backprop.getMomemtum());
+		System.out.println("backprop_copy momentum: " + backprop_copy.getMomemtum());
+
+		System.out.println("backprop evas record size: " + backprop.getEvasRecord().size());
+		System.out.println("backprop_copy evas record size: " + backprop_copy.getEvasRecord().size());
+
+		System.out.println("backprop training output vectors size: " + backprop.getTrainingOutputVectors().size());
+		System.out.println("backprop_copy training output vectors size: " + backprop_copy.getTrainingOutputVectors().size());
+*/
+
+		System.out.println("-------- NEURAL NETWORK ---------");
+
+		NeuralNetwork net_copy = neural_network.copy();
+		net_copy.setLabel("Neural Network copy");
+		net_copy.addLayer(new Layer(Layer.HIDDEN_LAYER)); // empty
+
+		System.out.println("net num.layers: " + neural_network.getNumberOfLayers());
+		System.out.println("net_copy num.layers: " + net_copy.getNumberOfLayers());
+		/*
+		 * Tests if learningRule's NeuralNetwork atrribute (reference)
+		 * is the copy and not the original one.
+		 *
+		 * net_copy ------getLearningRule()---------------> learningRule
+		 *          <-----getNeuralNetwork().getLabel()----
+		 *
+		 * */
+		System.out.println("Learning rule's NeuralNetwork reference: " + net_copy.getLearningRule().getNeuralNetwork().getLabel());
+		/*
+		 * Lets see if modifying the state of one instance of Backprop
+		 * affects the other.
+		 * */
+		Backpropagation backprop_copy = (Backpropagation) net_copy.getLearningRule();
+		backprop_copy.setCurrentEpoch(backprop_copy.getCurrentEpoch() + 2);
+		System.out.println("backprop epoch: " + backprop.getCurrentEpoch());
+		System.out.println("backprop_copy epoch: " + backprop_copy.getCurrentEpoch());
+
+		List<Double> training_output_vector = new ArrayList<Double>();
+		training_output_vector.add(1.0);
+		training_output_vector.add(2.0);
+		backprop_copy.saveTrainingOutputVector(training_output_vector);
+		System.out.println("backprop training output vectors size: " + backprop.getTrainingOutputVectors().size());
+		System.out.println("backprop_copy training output vectors size: " + backprop_copy.getTrainingOutputVectors().size());
+
+/*
+System.out.println();
 System.out.println("=============[ TEST 4: NEURONS PROCESSING ]==================");
 
 		System.out.println();
@@ -374,7 +484,7 @@ System.out.println("=============[ TEST 4: NEURONS PROCESSING ]=================
 		neuron3.computeOutput();
 
 		System.out.println("    - Neuron output after: " + neuron3.getOutput());
-/*
+
 		System.out.println();
 		System.out.println("-------- NEURONS RESET ---------");
 
@@ -390,7 +500,7 @@ System.out.println("=============[ TEST 4: NEURONS PROCESSING ]=================
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
 */
-
+/*
 System.out.println();
 System.out.println("=============[ TEST 5: NEURAL NETWORK ]==================");
 
@@ -404,7 +514,7 @@ System.out.println("=============[ TEST 5: NEURAL NETWORK ]==================");
 		System.out.print(neural_network
                          .getInputDataWeight(input_node2, neuron2)
                          .getValue());
-
+		System.out.println();
 		System.out.println("-------- [ BIAS WEIGHTS ] -------- ");
 		System.out.println("Bias 1 -- Neuron 1: ");
 		System.out.print(neural_network
@@ -420,7 +530,7 @@ System.out.println("=============[ TEST 5: NEURAL NETWORK ]==================");
 		System.out.print(neural_network
                          .getBiasWeight(bias3, neuron3)
                          .getValue());
-
+		System.out.println();
 		System.out.println("-------- [ NEURON WEIGHTS ] -------- ");
 		System.out.println("Neuron 1 -- Neuron 3: ");
 		System.out.print(neural_network
@@ -432,14 +542,14 @@ System.out.println("=============[ TEST 5: NEURAL NETWORK ]==================");
                          .getNeuroWeight(neuron2, neuron3)
                          .getValue());
 
-
+*/
 
 
 
 /*                           [DEVELOPMENT STAGE]
 
 System.out.println();
-System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ==================");
+System.out.println("============= TEST 6: NEURAL NETWORK PROCESSING ==================");
 
 		neural_network.computeOutput();
 
@@ -465,8 +575,8 @@ System.out.println("============= TEST 5: NEURAL NETWORK PROCESSING ============
 
 		System.out.println(" Neuron 3 netInput: " + neuron3.getNetInput());
 		System.out.println(" Neuron 3 output: " + neuron3.getOutput());
-*/
-/*
+
+
 		System.out.println();
 		System.out.println("-------- WEIGHTS RANDOM INITIALIZATION ---------");
 

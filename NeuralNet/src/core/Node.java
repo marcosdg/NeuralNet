@@ -1,9 +1,9 @@
 package core;
 
-/* 
+/*
  * We must distinguish between 'Neurons' (process data) and
  * 'Input Nodes' (capture data).
- * 
+ *
  * Represents generalization of Neurons and InputNodes.
  */
 
@@ -11,16 +11,19 @@ public class Node {
 
 	private Layer parentLayer;
 	private String label;
-	
-	
+
+
+// Creation.
+
+
 	public Node(Layer parentLayer, String label) {
 		if (parentLayer != null && label != null) {
 			this.parentLayer = parentLayer;
 			this.label = label;
 		}
 	}
-	
-	
+
+
 // Layer configuration.
 
 

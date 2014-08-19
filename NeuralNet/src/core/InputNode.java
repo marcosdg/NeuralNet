@@ -30,8 +30,17 @@ public class InputNode extends Node {
 		this.input_data = 0.0;
 		this.outputs = new ArrayList<Connection>();
 		this.kind = kind;
-
 	}
+	public InputNode copy() {
+		InputNode copy = new InputNode(getParentLayer(),
+                                        getLabel(),
+                                        this.kind);
+		copy.setInputData(this.input_data);
+		copy.setOutputConnections(this.outputs);
+
+		return copy;
+	}
+
 
 
 // Input Data configuration.
@@ -53,6 +62,9 @@ public class InputNode extends Node {
 	}
 	public List<Connection> getOutputConnections() {
 		return this.outputs;
+	}
+	public void setOutputConnections(List<Connection> outputs) {
+		this.outputs = outputs;
 	}
 
 	// An InputNode does not have outputs to InputNodes

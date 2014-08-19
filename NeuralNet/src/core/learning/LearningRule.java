@@ -3,8 +3,6 @@ package core.learning;
 import core.NeuralNetwork;
 import core.data.Benchmark;
 
-//TODO: COMPLETE LEARNINGRULE CLASS
-
 abstract public class LearningRule {
 
 	private Benchmark benchmark;
@@ -26,17 +24,4 @@ abstract public class LearningRule {
 	}
 
 	abstract public void apply();
-
-	/* ~ Manu
-	public static double getDelta(Neuron neuron, double expectedResult)
-	{
-		return (neuron.getOutputDerived() * (expectedResult - neuron.getOutput()));
-	}
-
-	public static double getDelta(Neuron neuron)
-	{
-		double delta = ConnectionHelper.getWeightedSumWithDeltas(neuron.getOutputs());
-
-		return neuron.getOutputDerived() * delta;
-	}*/
 }

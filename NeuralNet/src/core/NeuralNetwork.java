@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import core.data.Sample;
+import core.learning.Backpropagation;
 import core.learning.LearningRule;
 
 /*
@@ -29,11 +30,34 @@ public class NeuralNetwork {
 		}
 	}
 
-	/* TODO: FIX
-	public NeuralNetwork clone() {
-		return this.clone();
+	// Will allow to save a copy of the best net during learning.
+	// TODO
+
+	public NeuralNetwork copy() {
+
+		// Current state of learning process.
+
+		Backpropagation backprop_copy = ((Backpropagation) this.learningRule)
+                                        .copy();
+
+		// Network structure.
+
+		List<Layer> layers_copy = new ArrayList<Layer>();
+		for (Layer layer: this.layers) {
+			layers_copy.add(layer.copy());
+		}
+
+		// net_copy ----reference---> backprop.
+
+		NeuralNetwork net_copy = new NeuralNetwork(layers_copy,
+                                                    backprop_copy,
+                                                    this.label);
+		// net_copy <----reference--- backprop.
+
+		backprop_copy.setNeuralNetwork(net_copy);
+
+		return net_copy;
 	}
-	*/
 
 	public void reset() {
 		for (Layer layer: this.layers) {
@@ -395,8 +419,4 @@ public class NeuralNetwork {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-
-
-
-
 }

@@ -37,6 +37,42 @@ public class Backpropagation extends SupervisedLearning {
 			this.momentum = momentum;
 		}
 	}
+	public Backpropagation copy() {
+		Backpropagation backprop_copy = new Backpropagation(this.getLearningRate(),
+                                                             this.momentum);
+		// SupervisedLearning properties.
+
+		backprop_copy.setCurrentEpoch(this.getCurrentEpoch());
+		backprop_copy.setStopCriterias(this.getStopCriterias());
+
+		List<Double> evas_copy = new ArrayList<Double>(),
+                     etrs_copy = new ArrayList<Double>();
+		List<List<Double>> training_output_vectors_copy = new ArrayList<List<Double>>(),
+                           validation_output_vectors_copy = new ArrayList<List<Double>>();
+
+		for (Double eva: this.getEvasRecord()) {
+			evas_copy.add(eva);
+		}
+		for (Double etr: this.getEtrsRecord()) {
+			etrs_copy.add(etr);
+		}
+		for (List<Double> training_output_vector: this.getTrainingOutputVectors()) {
+			training_output_vectors_copy.add(new ArrayList<Double>(training_output_vector));
+		}
+		for (List<Double> validation_output_vector: this.getValidationOutputVectors()) {
+			validation_output_vectors_copy.add(new ArrayList<Double>(validation_output_vector));
+		}
+		backprop_copy.setEvasRecord(evas_copy);
+		backprop_copy.setEtrsRecord(etrs_copy);
+		backprop_copy.setTrainingOutputVectors(training_output_vectors_copy);
+		backprop_copy.setValidationOutputVectors(validation_output_vectors_copy);
+
+		// The Benchmark is the same for the copy.
+
+		backprop_copy.setBenchmark(this.getBenchmark());
+
+		return backprop_copy;
+	}
 
 
 // Processing.
