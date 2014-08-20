@@ -9,6 +9,7 @@ import core.learning.stop.StopCriteria;
 
 abstract public class SupervisedLearning extends LearningRule {
 
+
 	private double learning_rate;
 	private int current_epoch;
 	private List<StopCriteria> stop_criterias;

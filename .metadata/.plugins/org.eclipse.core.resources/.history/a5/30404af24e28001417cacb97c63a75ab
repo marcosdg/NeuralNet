@@ -6,20 +6,14 @@ import core.data.Benchmark;
 abstract public class LearningRule {
 
 	private Benchmark benchmark;
-	private NeuralNetwork neuralNetwork,
-                           best_net;
+	private NeuralNetwork neuralNetwork;
+
 
 	public NeuralNetwork getNeuralNetwork() {
 		return this.neuralNetwork;
 	}
 	public void setNeuralNetwork(NeuralNetwork that) {
 		this.neuralNetwork = that;
-	}
-	public NeuralNetwork getBestNeuralNetwork() {
-		return this.best_net;
-	}
-	public void setBestNeuralNetwork(NeuralNetwork that) {
-		this.best_net = that;
 	}
 
 	public Benchmark getBenchmark() {

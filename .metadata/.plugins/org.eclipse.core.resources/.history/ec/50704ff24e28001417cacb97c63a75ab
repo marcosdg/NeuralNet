@@ -21,7 +21,7 @@ abstract public class LearningRule {
 	public void setBestNeuralNetwork(NeuralNetwork that) {
 		this.best_net = that;
 	}
-
+	
 	public Benchmark getBenchmark() {
 		return this.benchmark;
 	}
