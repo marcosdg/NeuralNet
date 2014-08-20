@@ -27,6 +27,15 @@ public class NeuralNetwork {
 			this.layers = layers;
 			this.learningRule = learningRule;
 			this.label = label;
+
+		// Cross-references.
+
+			 //  Initially, 'best_net' will be the same object as 'neuralNetwork'.
+			 //  Because of EarlyStop that will change during the learning process.
+
+			this.learningRule.setBestNeuralNetwork(this);
+			this.learningRule.setNeuralNetwork(this);
+
 		}
 	}
 

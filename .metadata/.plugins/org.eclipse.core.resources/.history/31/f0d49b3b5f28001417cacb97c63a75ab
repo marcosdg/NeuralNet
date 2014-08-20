@@ -1,0 +1,37 @@
+package core.learning;
+
+import core.NeuralNetwork;
+import core.data.Benchmark;
+
+abstract public class LearningRule {
+
+	private Benchmark benchmark;
+	private NeuralNetwork neuralNetwork,
+	/*
+	 *  Initially, 'best_net' will be the same object as 'neuralNetwork'.
+	 *  Because of EarlyStop that will change during the learning process.
+    */
+                           best_net;
+
+	public NeuralNetwork getNeuralNetwork() {
+		return this.neuralNetwork;
+	}
+	public void setNeuralNetwork(NeuralNetwork that) {
+		this.neuralNetwork = that;
+	}
+	public NeuralNetwork getBestNeuralNetwork() {
+		return this.best_net;
+	}
+	public void setBestNeuralNetwork(NeuralNetwork that) {
+		this.best_net = that;
+	}
+
+	public Benchmark getBenchmark() {
+		return this.benchmark;
+	}
+	public void setBenchmark(Benchmark that) {
+		this.benchmark = that;
+	}
+
+	abstract public void apply();
+}

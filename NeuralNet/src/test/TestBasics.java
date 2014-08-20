@@ -12,6 +12,7 @@ import core.Neuron;
 import core.Node;
 import core.Weight;
 import core.activation.Linear;
+import core.data.Benchmark;
 import core.learning.Backpropagation;
 import core.learning.LearningRule;
 import core.propagation.WeightedSum;
@@ -133,7 +134,9 @@ public class TestBasics {
 
 // NeuralNetwork setup.
 
-		Backpropagation backprop = new Backpropagation(0.5, 0.2); // Not tested now.
+		 // Not tested now (empty benchmark).
+		Backpropagation backprop = new Backpropagation(0.5, 0.2, new Benchmark());
+
 		NeuralNetwork neural_network = new NeuralNetwork(layers, backprop, "Neural Network");
 
 		// Connections.
@@ -432,6 +435,9 @@ System.out.println();
 		backprop_copy.saveTrainingOutputVector(training_output_vector);
 		System.out.println("backprop training output vectors size: " + backprop.getTrainingOutputVectors().size());
 		System.out.println("backprop_copy training output vectors size: " + backprop_copy.getTrainingOutputVectors().size());
+
+		System.out.println(neural_network.getLearningRule().getBestNeuralNetwork().getLabel());
+
 
 /*
 System.out.println();

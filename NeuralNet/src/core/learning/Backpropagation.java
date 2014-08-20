@@ -10,6 +10,7 @@ import core.NeuralNetwork;
 import core.Neuron;
 import core.Node;
 import core.Weight;
+import core.data.Benchmark;
 import core.data.Sample;
 import core.learning.stop.EarlyStop;
 import core.learning.stop.StopCriteria;
@@ -26,12 +27,13 @@ public class Backpropagation extends SupervisedLearning {
 // Creation.
 
 
-	public Backpropagation(double learning_rate, double momentum) {
+	public Backpropagation(double learning_rate, double momentum, Benchmark bench) {
 
-		// Initialize SupervisedLearning properties.
-		super(learning_rate);
+		// SupervisedLearning and LearningRule properties.
 
-		if (learning_rate < 0 || momentum < 0) {
+		super(learning_rate, bench);
+
+		if (momentum < 0) {
 			throw new IllegalArgumentException("Bad parameters");
 		} else {
 			this.momentum = momentum;
@@ -39,7 +41,8 @@ public class Backpropagation extends SupervisedLearning {
 	}
 	public Backpropagation copy() {
 		Backpropagation backprop_copy = new Backpropagation(this.getLearningRate(),
-                                                             this.momentum);
+                                                             this.momentum,
+                                                             this.getBenchmark());
 		// SupervisedLearning properties.
 
 		backprop_copy.setCurrentEpoch(this.getCurrentEpoch());
