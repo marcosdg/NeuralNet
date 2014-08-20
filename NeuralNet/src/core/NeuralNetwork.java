@@ -18,7 +18,6 @@ public class NeuralNetwork {
 	private LearningRule learningRule;
 	private String label;
 
-
 // Creation.
 
 
@@ -35,7 +34,6 @@ public class NeuralNetwork {
 
 			this.learningRule.setBestNeuralNetwork(this);
 			this.learningRule.setNeuralNetwork(this);
-
 		}
 	}
 
@@ -60,6 +58,7 @@ public class NeuralNetwork {
 		NeuralNetwork net_copy = new NeuralNetwork(layers_copy,
                                                     backprop_copy,
                                                     this.label);
+
 		// net_copy <----reference--- backprop.
 
 		backprop_copy.setNeuralNetwork(net_copy);

@@ -403,27 +403,43 @@ System.out.println();
 		System.out.println("backprop_copy training output vectors size: " + backprop_copy.getTrainingOutputVectors().size());
 */
 
-		System.out.println("-------- NEURAL NETWORK ---------");
+		System.out.println("-------- TIME TRAVEL ---------");
 
 		NeuralNetwork net_copy = neural_network.copy();
 		net_copy.setLabel("Neural Network copy");
+
+		System.out.println("net1: " + neural_network);
+		System.out.println("net1.copy: " + net_copy);
+
+		Backpropagation original_backprop = (Backpropagation) neural_network.getLearningRule();
+		Backpropagation copy_backprop = (Backpropagation) net_copy.getLearningRule();
+
+		original_backprop.setBestNeuralNetwork(net_copy);
+		System.out.println("net1.bestNet: " + neural_network.getLearningRule().getBestNeuralNetwork());
+
+		original_backprop.setNeuralNetwork(neural_network.getLearningRule().getBestNeuralNetwork());
+
+		System.out.println("neural_network reference from LearningRule (changed to best net): " + original_backprop.getNeuralNetwork());
+		System.out.println("The original net1 won't change: " + neural_network);
+
+/*
+		System.out.println("-------- NEURAL NETWORK ---------");
 		net_copy.addLayer(new Layer(Layer.HIDDEN_LAYER)); // empty
 
 		System.out.println("net num.layers: " + neural_network.getNumberOfLayers());
 		System.out.println("net_copy num.layers: " + net_copy.getNumberOfLayers());
-		/*
-		 * Tests if learningRule's NeuralNetwork atrribute (reference)
-		 * is the copy and not the original one.
-		 *
-		 * net_copy ------getLearningRule()---------------> learningRule
-		 *          <-----getNeuralNetwork().getLabel()----
-		 *
-		 * */
+		//
+		// Tests if learningRule's NeuralNetwork atrribute (reference)
+		// is the copy and not the original one.
+		//
+		// net_copy ------getLearningRule()---------------> learningRule
+		//          <-----getNeuralNetwork().getLabel()----
+		//
 		System.out.println("Learning rule's NeuralNetwork reference: " + net_copy.getLearningRule().getNeuralNetwork().getLabel());
-		/*
-		 * Lets see if modifying the state of one instance of Backprop
-		 * affects the other.
-		 * */
+		//
+		// Lets see if modifying the state of one instance of Backprop
+		// affects the other.
+		//
 		Backpropagation backprop_copy = (Backpropagation) net_copy.getLearningRule();
 		backprop_copy.setCurrentEpoch(backprop_copy.getCurrentEpoch() + 2);
 		System.out.println("backprop epoch: " + backprop.getCurrentEpoch());
@@ -437,7 +453,7 @@ System.out.println();
 		System.out.println("backprop_copy training output vectors size: " + backprop_copy.getTrainingOutputVectors().size());
 
 		System.out.println(neural_network.getLearningRule().getBestNeuralNetwork().getLabel());
-
+*/
 
 /*
 System.out.println();

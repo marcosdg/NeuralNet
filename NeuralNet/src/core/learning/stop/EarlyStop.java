@@ -14,7 +14,10 @@ public class EarlyStop extends StopCriteria {
 
 	private int strip_length;
 
-	private double max_generalization_loss,
+	private double best_generalization_loss,
+                     now_generalization_loss,
+                     now_training_progress,
+                     max_generalization_loss,
                      min_training_progress;
 
 // Creation.
@@ -26,6 +29,14 @@ public class EarlyStop extends StopCriteria {
 
 		this.supervised_learning_rule = rule;
 		this.strip_length = strip_length;
+
+		// Any net should have more than max_generalization_loss
+		// so that's a good value to start off.
+		this.best_generalization_loss = max_generalization_loss;
+
+		this.now_generalization_loss = 0.0;
+		this.now_training_progress = 0.0;
+
 		this.max_generalization_loss = max_generalization_loss;
 		this.min_training_progress = min_training_progress;
 	}
@@ -58,15 +69,14 @@ public class EarlyStop extends StopCriteria {
                                             .supervised_learning_rule
                                             .getTrainingOutputVectors();
 
-		Double loss = this.getGeneralizationLoss(output_vectors, evas);
-
-		return (loss > this.max_generalization_loss);
+		this.computeGeneralizationLoss(output_vectors, evas);
+		return (this.now_generalization_loss > this.max_generalization_loss);
 	}
 	public boolean isMinTrainingProgressMet() {
 		List<Double> etrs = this.supervised_learning_rule.getEtrsRecord();
-		Double progress = this.getTrainingProgress(etrs);
 
-		return (progress < this.min_training_progress);
+		this.computeTrainingProgress(etrs);
+		return (this.now_training_progress < this.min_training_progress);
 	}
 
 
@@ -123,51 +133,62 @@ public class EarlyStop extends StopCriteria {
 		return min_eva;
 	}
 
-	// GL(t).
 
-	public Double getGeneralizationLoss(List<List<Double>> output_vectors,
-                                      List<Double> evas) {
-		Double eva = this.getAverageErrorPerValidationSample(output_vectors),
-               eopt = this.getMinAverageErrorPerValidationSample(evas);
 
-		return 100 * ((eva / eopt) - 1);
-	}
 
-	// Pk(t). Etrs obtained from the last k (strip length) epochs.
-
-	public Double getTrainingProgress(List<Double> etrs) {
-
-		Double total_etrs = 0.0,
-               min_etr = etrs.get(0);
-
-		for (Double etr: etrs) {
-
-			// Get the minimum etr.
-
-			if (etr < min_etr) {
-				min_etr = etr;
-			}
-
-			// Get the total of etrs.
-
-			total_etrs += etr;
-		}
-		return 1000 * ((total_etrs / (this.getStripLength() * min_etr)) - 1);
-	}
 
 
 // Generalization Loss configuration.
 
+	// GL(t).
 
+	public void computeGeneralizationLoss(List<List<Double>> output_vectors,
+			List<Double> evas) {
+		Double eva = this.getAverageErrorPerValidationSample(output_vectors),
+               eopt = this.getMinAverageErrorPerValidationSample(evas);
+
+		this.now_generalization_loss = 100 * ((eva / eopt) - 1);
+	}
 	public double getMaxGeneralizationLoss() {
 		return this.max_generalization_loss;
+	}
+	public double getCurrentGeneralizationLoss() {
+		return this.now_generalization_loss;
+	}
+	public double getBestGeneralizationLoss() {
+		return this.best_generalization_loss;
+	}
+	public void setBestGeneralizationLoss(double best){
+		this.best_generalization_loss = best;
 	}
 
 
 // Training Progress configuration.
 
 
+	// Pk(t). Etrs obtained from the last k (strip length) epochs.
+
+	public void computeTrainingProgress(List<Double> etrs) {
+		Double total_etrs = 0.0,
+               min_etr = etrs.get(0);
+
+		for (Double etr : etrs) {
+
+			// Get the minimum etr.
+
+			if (etr < min_etr) {
+				min_etr = etr;
+			}
+			// Get the total of etrs.
+
+			total_etrs += etr;
+		}
+		this.now_training_progress = 1000 * ((total_etrs / (this.getStripLength() * min_etr)) - 1);
+	}
 	public double getMinTrainingProgress() {
 		return this.min_training_progress;
+	}
+	public double getCurrentTrainingProgress() {
+		return this.now_training_progress;
 	}
 }

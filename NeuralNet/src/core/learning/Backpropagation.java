@@ -86,6 +86,8 @@ public class Backpropagation extends SupervisedLearning {
 		List<Sample> training_samples = getBenchmark().getTrainingSamples(),
                      validation_samples = getBenchmark().getValidationSamples();
 		List<Double> output_errors = new ArrayList<Double>();
+		double now_loss = 0.0,
+                best_loss = 0.0;
 
 		while (!getMaxEpochsStop().isMet()) {
 
@@ -106,6 +108,23 @@ public class Backpropagation extends SupervisedLearning {
 				if (getEarlyStop().isMet()) {
 					break;
 				} else {
+					// Better generalization loss ?
+
+					now_loss = getEarlyStop().getCurrentGeneralizationLoss();
+                    best_loss = getEarlyStop().getBestGeneralizationLoss();
+					if (now_loss < best_loss) {
+
+						// Checkpoint.
+
+						getEarlyStop().setBestGeneralizationLoss(now_loss);
+						setBestNeuralNetwork(getNeuralNetwork().copy());
+					} else {
+						// Time-travel to the past.
+
+
+
+						this.setNeuralNetwork(getBestNeuralNetwork());
+					}
 					clearEtrs();
 					clearTrainingOutputVectors();
 				}

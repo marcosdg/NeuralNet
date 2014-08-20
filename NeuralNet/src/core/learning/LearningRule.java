@@ -9,6 +9,10 @@ abstract public class LearningRule {
 	private NeuralNetwork neuralNetwork,
                            best_net;
 
+
+// Creation.
+
+
 	public LearningRule(Benchmark bench) {
 		if (bench == null) {
 			throw new IllegalArgumentException("Bad parameters");

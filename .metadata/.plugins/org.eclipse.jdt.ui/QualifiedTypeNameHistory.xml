@@ -32,6 +32,6 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="core.Layer"/>
 <fullyQualifiedTypeName name="core.learning.Backpropagation"/>
-<fullyQualifiedTypeName name="core.NeuralNetwork"/>
 <fullyQualifiedTypeName name="core.data.Benchmark"/>
+<fullyQualifiedTypeName name="core.NeuralNetwork"/>
 </qualifiedTypeNameHistroy>
