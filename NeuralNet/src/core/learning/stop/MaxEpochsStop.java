@@ -22,7 +22,7 @@ public class MaxEpochsStop extends StopCriteria {
 
 	@Override
 	public boolean isMet() {
-		return (this.supervised_learning_rule.getCurrentEpoch() >
+		return (this.supervised_learning_rule.getCurrentEpoch() >=
                  this.getMaxEpochs());
 	}
 

@@ -217,7 +217,7 @@ System.out.println("========= FILE =========");
 
 		// Stop
 
-		StopCriteria epochs_stop = new MaxEpochsStop(backProp, 1);
+		StopCriteria epochs_stop = new MaxEpochsStop(backProp, 4);
 		StopCriteria early_stop = new EarlyStop(backProp, 1, 5.0, 0.1);
 
 		backProp.addStopCriteria(epochs_stop);

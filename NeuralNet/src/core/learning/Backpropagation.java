@@ -92,13 +92,8 @@ public class Backpropagation extends SupervisedLearning {
 
 				output_errors = this.forwardPropagate(training_sample);
 				this.backwardPropagate();
-				break;
 			}
-
 			this.updateWeightsLastCorrections();
-
-			//			[TEST]
-			/*
 			this.saveEtrAndEva(validation_samples, output_errors);
 
 			// Early stop ?
@@ -112,7 +107,6 @@ public class Backpropagation extends SupervisedLearning {
 					clearTrainingOutputVectors();
 				}
 			}
-			*/
 			this.setCurrentEpoch(getCurrentEpoch() + 1);
 		}
 	}
@@ -123,18 +117,15 @@ public class Backpropagation extends SupervisedLearning {
 		}
 	}
 
-	// [TEST]
 	public void saveEtrAndEva(List<Sample> validation_samples,
                                 List<Double> output_errors) {
 		List<Double> output_vector = null;
 		Double etr = 0.0,
                eva = 0.0;
 
-		/*
-		// Clone net not to mess the original one.
+		// Clone the net not to mess the original one.
 
-		NeuralNetwork net_clone = getNeuralNetwork().clone();
-
+		NeuralNetwork net_copy = getNeuralNetwork().copy();
 
 		// Save Etr.
 
@@ -142,17 +133,15 @@ public class Backpropagation extends SupervisedLearning {
               .getAverageErrorPerTrainingSample(getTrainingOutputVectors());
 		saveEtr(etr);
 
-
 		// Save Eva.
 
 		for (Sample validation_sample: validation_samples) {
-			output_vector = net_clone.computeOutput(validation_sample);
+			output_vector = net_copy.computeOutput(validation_sample);
 			saveValidationOutputVector(output_vector);
 		}
 		eva = getEarlyStop()
               .getAverageErrorPerValidationSample(getValidationOutputVectors());
 		saveEva(eva);
-		*/
 	}
 
 

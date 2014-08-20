@@ -31,7 +31,6 @@ public class NeuralNetwork {
 	}
 
 	// Will allow to save a copy of the best net during learning.
-	// TODO
 
 	public NeuralNetwork copy() {
 
