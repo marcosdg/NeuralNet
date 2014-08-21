@@ -14,20 +14,15 @@
 <fullyQualifiedTypeName name="core.learning.error.SquaredError"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="core.data.Sample"/>
-<fullyQualifiedTypeName name="core.activation.Sigmoid"/>
 <fullyQualifiedTypeName name="core.learning.LearningRule"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="core.Node"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="format.Message"/>
 <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
-<fullyQualifiedTypeName name="core.learning.stop.MaxEpochsStop"/>
-<fullyQualifiedTypeName name="core.learning.stop.EarlyStop"/>
-<fullyQualifiedTypeName name="core.learning.stop.StopCriteria"/>
 <fullyQualifiedTypeName name="core.learning.SupervisedLearning"/>
 <fullyQualifiedTypeName name="core.Weight"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
 <fullyQualifiedTypeName name="core.data.Benchmark"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="core.data.NeuralNetworkParse"/>
@@ -36,4 +31,9 @@
 <fullyQualifiedTypeName name="core.Neuron"/>
 <fullyQualifiedTypeName name="core.InputNode"/>
 <fullyQualifiedTypeName name="core.Connection"/>
+<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
+<fullyQualifiedTypeName name="core.activation.Sigmoid"/>
+<fullyQualifiedTypeName name="core.learning.stop.EarlyStop"/>
+<fullyQualifiedTypeName name="core.learning.stop.StopCriteria"/>
+<fullyQualifiedTypeName name="core.learning.stop.MaxEpochsStop"/>
 </qualifiedTypeNameHistroy>

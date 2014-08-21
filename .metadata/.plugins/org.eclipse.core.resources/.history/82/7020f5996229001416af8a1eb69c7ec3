@@ -149,6 +149,8 @@ public class NeuralNetworkParse {
 	}
 
 	private void createBackpropagationAndNetwork() {
+
+
 		this.benchmark.setDesiredOutputValuesRange(this.o_min, this.o_max);
 
 		this.backpropagation = new Backpropagation(this.learning_rate,
@@ -166,6 +168,9 @@ public class NeuralNetworkParse {
 		this.network = new NeuralNetwork(this.layers,
                                           this.backpropagation,
                                           NeuralNetworkParse.NETWORK_LABEL);
+
+
+
 	}
 
 	// Network structure

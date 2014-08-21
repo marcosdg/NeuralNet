@@ -166,6 +166,9 @@ public class NeuralNetworkParse {
 		this.network = new NeuralNetwork(this.layers,
                                           this.backpropagation,
                                           NeuralNetworkParse.NETWORK_LABEL);
+
+
+
 	}
 
 	// Network structure

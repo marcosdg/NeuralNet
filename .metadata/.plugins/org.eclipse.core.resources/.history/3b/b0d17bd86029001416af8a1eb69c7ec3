@@ -15,9 +15,6 @@ import core.Neuron;
 import core.activation.Linear;
 import core.activation.Sigmoid;
 import core.learning.Backpropagation;
-import core.learning.stop.EarlyStop;
-import core.learning.stop.MaxEpochsStop;
-import core.learning.stop.StopCriteria;
 import core.propagation.WeightedSum;
 
 public class NeuralNetworkParse {
@@ -27,7 +24,7 @@ public class NeuralNetworkParse {
 	private List<Neuron> neurons = new ArrayList<Neuron>();
 	private Backpropagation backpropagation;
 	private NeuralNetwork network;
-	private Double momentum, learning_rate,max_generalization_loss, min_training_progress, o_min, o_max;;
+	private Double momentum, learning_rate,generalization_loss, min_training_progress, o_min, o_max;;
 	private Integer max_epochs, strip;
 	private WeightedSum weightedSum;
 	private Sigmoid sigmoid;
@@ -138,7 +135,7 @@ public class NeuralNetworkParse {
 		} else if (left.contains("STRIP")) {
 			this.strip = this.stringToInteger(left_right[1]);
 		} else if (left.contains("GL")) {
-			this.max_generalization_loss = this.stringToDouble(left_right[1]);
+			this.generalization_loss = this.stringToDouble(left_right[1]);
 		} else if (left.contains("PK")) {
 			this.min_training_progress = this.stringToDouble(left_right[1]);
 		} else if (left.contains("O_MIN")) {
@@ -149,23 +146,11 @@ public class NeuralNetworkParse {
 	}
 
 	private void createBackpropagationAndNetwork() {
+
 		this.benchmark.setDesiredOutputValuesRange(this.o_min, this.o_max);
 
-		this.backpropagation = new Backpropagation(this.learning_rate,
-                                                    this.momentum,
-                                                    this.benchmark);
-		StopCriteria epochs_stop = new MaxEpochsStop(this.backpropagation,
-                                                      this.max_epochs);
-		StopCriteria early_stop = new EarlyStop(this.backpropagation,
-                                                this.strip,
-                                                this.max_generalization_loss,
-                                                this.min_training_progress);
-		this.backpropagation.addStopCriteria(epochs_stop);
-		this.backpropagation.addStopCriteria(early_stop);
-
-		this.network = new NeuralNetwork(this.layers,
-                                          this.backpropagation,
-                                          NeuralNetworkParse.NETWORK_LABEL);
+		this.backpropagation = new Backpropagation(this.learning_rate, this.momentum, this.benchmark);
+		this.network = new NeuralNetwork(this.layers, this.backpropagation, NeuralNetworkParse.NETWORK_LABEL);
 	}
 
 	// Network structure
@@ -177,12 +162,12 @@ public class NeuralNetworkParse {
 
 		while (line != null) {
 			line = line.trim(); // clean leading/trailing spaces.
-			this.parseNetLine(line);
+			this.parseDataLine(line);
 			line = breader.readLine();
 		}
 	}
 
-	private void parseNetLine(String line) {
+	private void parseDataLine(String line) {
 		String[] left_right = line.split(SPACE);
 
 		String left = left_right[0];

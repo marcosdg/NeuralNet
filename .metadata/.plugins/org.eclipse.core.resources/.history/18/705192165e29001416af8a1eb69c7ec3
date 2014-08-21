@@ -184,21 +184,8 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 			System.out.println("Benchmark: " + backprop.getBenchmark().getLabel());
 			System.out.println("O_MIN: " + backprop.getBenchmark().getMinDesiredOutputValue());
 			System.out.println("O_MAX: " + backprop.getBenchmark().getMaxDesiredOutputValue());
-			System.out.println("MOMENTUM: " + backprop.getMomemtum());
-			System.out.println("LEARNING_RATE: " + backprop.getLearningRate());
 			System.out.println("MAX_EPOCHS: " + backprop.getMaxEpochsStop().getMaxEpochs());
-			System.out.println("STRIP: " + backprop.getEarlyStop().getStripLength());
-			System.out.println("GL: " + backprop.getEarlyStop().getMaxGeneralizationLoss());
-			System.out.println("PK: " + backprop.getEarlyStop().getMinTrainingProgress());
 
-			System.out.println();
-			System.out.println("The following identifiers must be the same: ");
-			System.out.println("  Backprop reference to best net: " + backprop.getBestNeuralNetwork());
-			System.out.println("  Backprop reference to net: " + backprop.getNeuralNetwork());
-			System.out.println("  net: " + net);
-			System.out.println("The following identifiers must be the same: ");
-			System.out.println("  Backprop reference to benchmark: " + backprop.getBenchmark());
-			System.out.println("  benchmark: " + benchmark);
 
 
 
