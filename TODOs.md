@@ -1,39 +1,26 @@
-## Tasks
+Marcos Díez García
+21-08-2014
 
-AUTHOR: Marcos Díez García
+TO-DO
+=====
 
-DATE:	05-07-2014
+General Structure
+-----------------
 
-### completed
+1. Add functionality to test the network performance
+   over the test set.
+2. Make a 'Logger' class which will report the results
+   of the learning process.
+3. NeuralNet class (main) which will serve as interface
+   to the user.
 
-1. Weight
-2. Connection
-3. Neuron
-4. Node
-5. InputNode
-6. ActivationFunction
-7. Linear
-8. Sigmoid
-9. PropagationFunction
-10. WeightedSum
-11. Layer
-12. StopCriteria
-13. MaxEpochsStop
+Metrics reported
+---------------
 
-### to
-
-1. NeuralNetwork
-2. core.learning
-	- Error
-		* SquaredError
-		* MeanSquaredError
-	- StopCriteria
-		* MaxErrorStop
-		* EarlyStopping
-	- LearningRule?
-	- IterativeLearning?
-	- SupervisedLearning?
-	- BackPropagation?
-	- BackPropagationMomentum
-3. core.data
-4. Additional commands to launch application
+1. Number of epochs trained.
+2. Max/Min/Avg error on training set.
+3. Max/Min/Avg error on test set.
+4. Overfit (generalization loss)
+5. Weight Matrix of the best network obtained.
+      same format as the configuration file
+      for the network specification.
