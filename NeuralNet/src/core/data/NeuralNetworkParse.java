@@ -27,7 +27,7 @@ public class NeuralNetworkParse {
 	private Integer max_epochs, strip;
 	private WeightedSum weightedSum;
 	private Linear linear;
-	private int currentNeuron = 1;
+	private int currentNeuron = 0;
 	private Benchmark benchmark;
 
 	public static final String EQUAL = "=";
@@ -198,23 +198,24 @@ public class NeuralNetworkParse {
 		// Output.
 
 		this.layers.add(output_layer);
+		int currentNeuron = 1;
 
 		for (int i=0; i < split.length; i++) {
 			Integer neuronsInLayer = stringToInteger(split[i]);
 			for (int j=1; j <= neuronsInLayer; j++) {
 				Neuron neuron = null;
 				if (i == 0) {
-					neuron = new Neuron(weightedSum, linear, initial_layer, "Neuron " + j);
+					neuron = new Neuron(weightedSum, linear, initial_layer, "Neuron " + currentNeuron);
 					initial_layer.addNode(neuron);
 				} else if (i == split.length - 1) {
-					neuron = new Neuron(weightedSum, linear, output_layer, "Neuron " + j);
+					neuron = new Neuron(weightedSum, linear, output_layer, "Neuron " + currentNeuron);
 					output_layer.addNode(neuron);
 				} else {
 					//Hidden Layer (i+1) because this.layers contains an extra data layer at the beginning
-					neuron = new Neuron(weightedSum, linear, this.layers.get(i+1), "Neuron " + j);
+					neuron = new Neuron(weightedSum, linear, this.layers.get(i+1), "Neuron " + currentNeuron);
 					this.layers.get(i+1).addNode(neuron);
 				}
-
+				currentNeuron++;
 				this.neurons.add(neuron);
 			}
 		}
@@ -268,7 +269,7 @@ public class NeuralNetworkParse {
 				Double weight = stringToDouble(split[i]);
 				this.network.createConnection(this.neurons.get(this.currentNeuron),
 						this.neurons.get(i), weight,
-						"Connection: Neuron " + this.currentNeuron + " -> Neuron" + (i + 1));
+						"Connection: Neuron " + (this.currentNeuron + 1) + " -> Neuron" + (i + 1));
 			}
 		}
 
