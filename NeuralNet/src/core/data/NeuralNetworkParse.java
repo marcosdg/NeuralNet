@@ -27,6 +27,7 @@ public class NeuralNetworkParse {
 	private WeightedSum weightedSum;
 	private Linear linear;
 	private int currentNeuron = 1;
+	private Benchmark benchmark;
 
 	public static final String EQUAL = "=";
 	public static final String SPACE = " ";
@@ -36,16 +37,28 @@ public class NeuralNetworkParse {
 	public static final int DATA_LAYER = 0;
 	public static final String NETWORK_LABEL = "Neural Network";
 
-	public NeuralNetworkParse(String path)
+	public NeuralNetworkParse(String config_dir, String config_file_name, Benchmark benchmark)
 	{
-		if (path == null || path.isEmpty()) {
+		if (config_file_name.isEmpty() || config_dir.isEmpty()) {
 			throw new IllegalArgumentException("Config file must not be null !");
 		} else {
-			config_file_path = path;
+			config_file_path = new StringBuilder(pathToWorkSpace())
+						            .append("/src/proben1/")
+						            .append(config_dir)
+						            .append("/")
+						            .append(config_file_name)
+						            .toString();;
 		}
 
 		weightedSum = new WeightedSum();
 		linear = new Linear(2);
+		this.benchmark = benchmark;
+	}
+
+	// To support loading files with relative paths.
+
+	private String pathToWorkSpace() {
+		return System.getProperty("user.dir");
 	}
 
 	public void parse() {
@@ -73,7 +86,7 @@ public class NeuralNetworkParse {
 	}
 
 	private void createBackpropagationAndNetwork() {
-		this.backpropagation = new Backpropagation(this.learning_rate, this.momentum);
+		this.backpropagation = new Backpropagation(this.learning_rate, this.momentum, this.benchmark);
 		this.network = new NeuralNetwork(this.layers, this.backpropagation, NETWORK_LABEL);
 	}
 
