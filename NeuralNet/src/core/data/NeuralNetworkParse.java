@@ -1,6 +1,7 @@
 package core.data;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,8 +23,8 @@ public class NeuralNetworkParse {
 	private List<Neuron> neurons = new ArrayList<Neuron>();
 	private Backpropagation backpropagation;
 	private NeuralNetwork network;
-	private Double momentum, learning_rate;
-	private Integer max_epochs, strip, generalization_loss, min_training_progress, o_min, o_max;
+	private Double momentum, learning_rate,generalization_loss, min_training_progress, o_min, o_max;;
+	private Integer max_epochs, strip;
 	private WeightedSum weightedSum;
 	private Linear linear;
 	private int currentNeuron = 1;
@@ -35,7 +36,7 @@ public class NeuralNetworkParse {
 	public static final String POINT = ".";
 
 	public static final int DATA_LAYER = 0;
-	public static final String NETWORK_LABEL = "Neural Network";
+	public static String NETWORK_LABEL;
 
 	public NeuralNetworkParse(String config_dir, String config_file_name, Benchmark benchmark)
 	{
@@ -43,16 +44,19 @@ public class NeuralNetworkParse {
 			throw new IllegalArgumentException("Config file must not be null !");
 		} else {
 			config_file_path = new StringBuilder(pathToWorkSpace())
-						            .append("/src/proben1/")
+						            .append("/src/networks/")
 						            .append(config_dir)
 						            .append("/")
 						            .append(config_file_name)
-						            .toString();;
-		}
+						            .toString();
 
-		weightedSum = new WeightedSum();
-		linear = new Linear(2);
-		this.benchmark = benchmark;
+			NeuralNetworkParse.NETWORK_LABEL = (new File(this.config_file_path)).getName();
+
+			this.weightedSum = new WeightedSum();
+			this.linear = new Linear(2);
+			this.benchmark = benchmark;
+
+		}
 	}
 
 	// To support loading files with relative paths.
@@ -60,6 +64,16 @@ public class NeuralNetworkParse {
 	private String pathToWorkSpace() {
 		return System.getProperty("user.dir");
 	}
+
+
+// Neural Network.
+
+	public NeuralNetwork getNeuralNetwork() {
+		return this.network;
+	}
+
+
+// Parsing.
 
 	public void parse() {
 		String last_line = "";
@@ -120,13 +134,13 @@ public class NeuralNetworkParse {
 		} else if (left.contains("STRIP")) {
 			this.strip = this.stringToInteger(left_right[1]);
 		} else if (left.contains("GL")) {
-			this.generalization_loss = this.stringToInteger(left_right[1]);
+			this.generalization_loss = this.stringToDouble(left_right[1]);
 		} else if (left.contains("PK")) {
-			this.min_training_progress = this.stringToInteger(left_right[1]);
+			this.min_training_progress = this.stringToDouble(left_right[1]);
 		} else if (left.contains("O_MIN")) {
-			this.o_min = this.stringToInteger(left_right[1]);
+			this.o_min = this.stringToDouble(left_right[1]);
 		} else if (left.contains("O_MAX")) {
-			this.o_max = this.stringToInteger(left_right[1]);
+			this.o_max = this.stringToDouble(left_right[1]);
 		}
 	}
 
@@ -170,16 +184,20 @@ public class NeuralNetworkParse {
 
 		Layer initial_layer = new Layer(Layer.INITIAL_LAYER);
 
+
+		Layer output_layer = new Layer(Layer.OUTPUT_LAYER);
+
 		this.layers.add(input_data_layer);
 		this.layers.add(initial_layer);
 
+		// Hidden
 		if (numOfHiddenLayers > 0) {
 			this.completeHiddenLayers(numOfHiddenLayers);
 		}
 
 		// Output.
 
-		Layer output_layer = new Layer(Layer.OUTPUT_LAYER);
+		this.layers.add(output_layer);
 
 		for (int i=0; i < split.length; i++) {
 			Integer neuronsInLayer = stringToInteger(split[i]);
@@ -238,7 +256,7 @@ public class NeuralNetworkParse {
 				input_node.setInputData(1);
 				this.layers.get(DATA_LAYER).addNode(input_node);
 				this.network.createConnection(input_node, this.neurons.get(i), inputWeight,
-						"Connection: InputNode -> Neuron" + (i + 1));
+						"Connection: " + input_node.getLabel() + " -> Neuron" + (i + 1));
 			}
 		}
 	}
@@ -250,7 +268,7 @@ public class NeuralNetworkParse {
 				Double weight = stringToDouble(split[i]);
 				this.network.createConnection(this.neurons.get(this.currentNeuron),
 						this.neurons.get(i), weight,
-						"Connection: Neuron" + this.currentNeuron + " -> Neuron" + (i + 1));
+						"Connection: Neuron " + this.currentNeuron + " -> Neuron" + (i + 1));
 			}
 		}
 

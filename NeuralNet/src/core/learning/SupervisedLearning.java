@@ -44,7 +44,6 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 
 
-
 // Learning rate configuration.
 
 
@@ -84,7 +83,7 @@ abstract public class SupervisedLearning extends LearningRule {
 		}
 	}
 
-	// Get them individually,
+	// Max Epochs.
 
 	public MaxEpochsStop getMaxEpochsStop() {
 		MaxEpochsStop max_epochs_stop = null;
@@ -97,6 +96,9 @@ abstract public class SupervisedLearning extends LearningRule {
 		}
 		return max_epochs_stop;
 	}
+
+	// Early Stop.
+
 	public EarlyStop getEarlyStop() {
 		EarlyStop early_stop = null;
 

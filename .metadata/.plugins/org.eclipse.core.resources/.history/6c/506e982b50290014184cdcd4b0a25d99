@@ -1,0 +1,15 @@
+MOMENTUM=0.2
+LEARNING_RATE=0.5
+MAX_EPOCHS=3000
+STRIP=5
+GL=5.0
+PK=0.1
+O_MIN=0.0
+O_MAX=1.0
+
+T 2,1
+B -1,-1,-1
+I 1,.,.
+I .,1,.
+N .,.,1
+N .,.,1
