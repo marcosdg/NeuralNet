@@ -244,7 +244,7 @@ public class Benchmark {
 	 * and output.
 	 */
 
-	public void calculateTotalInputs() {
+	public Integer calculateTotalInputs() {
 
 		// boolean inputs ?
 
@@ -256,8 +256,12 @@ public class Benchmark {
 		} else if (this.num_real_inputs != 0) {
 			this.total_inputs = this.num_real_inputs;
 		}
+		return this.total_inputs;
 	}
-	public void calculateTotalOutputs() {
+	public void setTotalInputs(Integer total_inputs) {
+		this.total_inputs = total_inputs;
+	}
+	public Integer calculateTotalOutputs() {
 
 		// boolean outputs ?
 
@@ -269,6 +273,10 @@ public class Benchmark {
 		} else if (this.num_real_outputs != 0) {
 			this.total_outputs = this.num_real_outputs;
 		}
+		return this.total_outputs;
+	}
+	public void setTotalOutputs(Integer total_outputs) {
+		this.total_outputs = total_outputs;
 	}
 
 

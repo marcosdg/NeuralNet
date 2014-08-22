@@ -4,30 +4,4 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 	</section>
-	<section name="TaskPropertiesDialogSettings">
-		<item value="827" key="DIALOG_WIDTH"/>
-		<item value="149" key="DIALOG_Y_ORIGIN"/>
-		<item value="271" key="DIALOG_X_ORIGIN"/>
-		<item value="317" key="DIALOG_HEIGHT"/>
-		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-	</section>
-	<section name="DialogMarkerPropertiesDialogSettings">
-		<item value="827" key="DIALOG_WIDTH"/>
-		<item value="240" key="DIALOG_Y_ORIGIN"/>
-		<item value="446" key="DIALOG_X_ORIGIN"/>
-		<item value="317" key="DIALOG_HEIGHT"/>
-		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-	</section>
-	<section name="CleanDialogSettings">
-		<item value="565" key="DIALOG_WIDTH"/>
-		<item value="137" key="DIALOG_Y_ORIGIN"/>
-		<item value="363" key="DIALOG_HEIGHT"/>
-		<item value="402" key="DIALOG_X_ORIGIN"/>
-		<item value="false" key="TOGGLE_SELECTED"/>
-	</section>
-	<section name="org.eclipse.ui.internal.views.markers.FiltersConfigurationDialog">
-		<item value="TODOs" key="SELECTED_FILTER_GROUP"/>
-		<list key="PREV_SELECTED_ELEMENTS">
-		</list>
-	</section>
 </section>

@@ -68,7 +68,7 @@ System.out.println("============= TEST: DATA FILE PARSING  ==================");
 System.out.println("============= TEST: NEURAL NETWORK PARSING  ==================");
 
 		String config_dir = "single-layer",
-               config_file_name = "net-test";
+               config_file_name = "net-default-test";
 
 		NeuralNetworkParse net_parser = new NeuralNetworkParse(config_dir,
 	                                                            config_file_name,
@@ -102,6 +102,7 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
                                                  .getInputDataLayer()
                                                  .getBiasNodes()
                                                  .size());
+		/*
 		System.out.println("Num. bias synapses: " + net
                                                     .getBiasSynapses()
                                                     .size());
@@ -111,6 +112,7 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 		System.out.println("Num. neuro synapses: " + net
                                                      .getNeuroSynapses()
                                                      .size());
+        */
 		System.out.println();
 		System.out.println("-------- [ INPUT DATA NODES] -------- ");
 		System.out.println();
@@ -177,38 +179,31 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 				System.out.println("\t Weight: "+ output_synapse.getWeight().getValue());
 				System.out.println("\t  ------");
 			}
-
-			System.out.println("-------- [ LEARNING PARAMETERS ] -------- ");
-
-			Backpropagation backprop = ((Backpropagation) net.getLearningRule());
-			System.out.println("Benchmark: " + backprop.getBenchmark().getLabel());
-			System.out.println("O_MIN: " + backprop.getBenchmark().getMinDesiredOutputValue());
-			System.out.println("O_MAX: " + backprop.getBenchmark().getMaxDesiredOutputValue());
-			System.out.println("MOMENTUM: " + backprop.getMomemtum());
-			System.out.println("LEARNING_RATE: " + backprop.getLearningRate());
-			System.out.println("MAX_EPOCHS: " + backprop.getMaxEpochsStop().getMaxEpochs());
-			System.out.println("STRIP: " + backprop.getEarlyStop().getStripLength());
-			System.out.println("GL: " + backprop.getEarlyStop().getMaxGeneralizationLoss());
-			System.out.println("PK: " + backprop.getEarlyStop().getMinTrainingProgress());
-
-			System.out.println();
-			System.out.println("The following identifiers must be the same: ");
-			System.out.println("  Backprop reference to best net: " + backprop.getBestNeuralNetwork());
-			System.out.println("  Backprop reference to net: " + backprop.getNeuralNetwork());
-			System.out.println("  net: " + net);
-			System.out.println("The following identifiers must be the same: ");
-			System.out.println("  Backprop reference to benchmark: " + backprop.getBenchmark());
-			System.out.println("  benchmark: " + benchmark);
-
-
-
-
-
-
-
-
-
-
 		}
+
+		System.out.println("-------- [ LEARNING PARAMETERS ] -------- ");
+
+		Backpropagation backprop = ((Backpropagation) net.getLearningRule());
+		System.out.println("Benchmark: " + backprop.getBenchmark().getLabel());
+		System.out.println("O_MIN: " + backprop.getBenchmark().getMinDesiredOutputValue());
+		System.out.println("O_MAX: " + backprop.getBenchmark().getMaxDesiredOutputValue());
+		System.out.println("MOMENTUM: " + backprop.getMomemtum());
+		System.out.println("LEARNING_RATE: " + backprop.getLearningRate());
+		System.out.println("MAX_EPOCHS: " + backprop.getMaxEpochsStop().getMaxEpochs());
+		System.out.println("STRIP: " + backprop.getEarlyStop().getStripLength());
+		System.out.println("GL: " + backprop.getEarlyStop().getMaxGeneralizationLoss());
+		System.out.println("PK: " + backprop.getEarlyStop().getMinTrainingProgress());
+		System.out.println("NET_DESIGN: " + net_parser.getNetworkDesign());
+
+
+		System.out.println();
+		System.out.println("The following identifiers must be the same: ");
+		System.out.println("  Backprop reference to best net: " + backprop.getBestNeuralNetwork());
+		System.out.println("  Backprop reference to net: " + backprop.getNeuralNetwork());
+		System.out.println("  net: " + net);
+		System.out.println("The following identifiers must be the same: ");
+		System.out.println("  Backprop reference to benchmark: " + backprop.getBenchmark());
+		System.out.println("  benchmark: " + benchmark);
 	}
 }
+

@@ -222,8 +222,10 @@ public class Layer {
 
 
 	public void randomizeWeights(double min, double max, Random generator) {
-		for (Neuron neuron : this.getNeurons()) {
-			neuron.randomizeWeights(min, max, generator);
+		if (!this.isInputDataLayer()) {
+			for (Neuron neuron : this.getNeurons()) {
+				neuron.randomizeWeights(min, max, generator);
+			}
 		}
 	}
 }

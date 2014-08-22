@@ -7,11 +7,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import core.InputNode;
 import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
+import core.Node;
 import core.activation.Linear;
 import core.activation.Sigmoid;
 import core.learning.Backpropagation;
@@ -22,17 +24,30 @@ import core.propagation.WeightedSum;
 
 public class NeuralNetworkParse {
 	private String config_file_path;
-	// These lists must be in order
-	private List<Layer> layers = new ArrayList<Layer>();
-	private List<Neuron> neurons = new ArrayList<Neuron>();
-	private Backpropagation backpropagation;
-	private NeuralNetwork network;
-	private Double momentum, learning_rate,max_generalization_loss, min_training_progress, o_min, o_max;;
+
+	// Header parameters.
+
+	private Double momentum,
+                    learning_rate,
+                    max_generalization_loss,
+                    min_training_progress,
+                    o_min,
+                    o_max;
 	private Integer max_epochs, strip;
+	private String net_design;
+
+	// Neural Network (layers and neurons must come ordered).
+
+	public static String NETWORK_LABEL;
+	private NeuralNetwork network;
+	private List<Layer> layers;
+	private List<Neuron> neurons;
 	private WeightedSum weightedSum;
 	private Sigmoid sigmoid;
-	private int currentNeuron = 0;
+	private Backpropagation backpropagation;
 	private Benchmark benchmark;
+
+	// Format.
 
 	public static final String EQUAL = "=";
 	public static final String SPACE = " ";
@@ -40,7 +55,8 @@ public class NeuralNetworkParse {
 	public static final String POINT = ".";
 
 	public static final int DATA_LAYER = 0;
-	public static String NETWORK_LABEL;
+	private int currentNeuron;
+
 
 	public NeuralNetworkParse(String config_dir, String config_file_name, Benchmark benchmark)
 	{
@@ -54,12 +70,26 @@ public class NeuralNetworkParse {
 						            .append(config_file_name)
 						            .toString();
 
-			NeuralNetworkParse.NETWORK_LABEL = (new File(this.config_file_path)).getName();
+			// Header.
 
+			this.momentum = 0.0;
+			this.learning_rate = 0.0;
+			this.max_generalization_loss = 0.0;
+			this.min_training_progress = 0.0;
+			this.o_min = 0.0;
+			this.o_max = 0.0;
+			this.net_design = "";
+
+			// Neural Network.
+
+			NeuralNetworkParse.NETWORK_LABEL = (new File(this.config_file_path))
+                                               .getName();
+			this.layers = new ArrayList<Layer>();
+			this.neurons = new ArrayList<Neuron>();
 			this.weightedSum = new WeightedSum();
 			this.sigmoid = new Sigmoid();
 			this.benchmark = benchmark;
-
+			this.currentNeuron = 0;
 		}
 	}
 
@@ -75,6 +105,9 @@ public class NeuralNetworkParse {
 
 	public NeuralNetwork getNeuralNetwork() {
 		return this.network;
+	}
+	public String getNetworkDesign() {
+		return this.net_design;
 	}
 
 
@@ -92,11 +125,16 @@ public class NeuralNetworkParse {
 			last_line = this.parseHeader(breader);
 
 			this.createBackpropagationAndNetwork();
-			// Prepare data parsing.
-			this.parseNetStructure(breader, last_line);
 
+			if (this.net_design.equals("CUSTOM")) {
+				this.parseCustomNetStructure(breader, last_line);
+			} else {
+				this.createDefaultInputDataLayer();
+				this.parseInitialAndHiddenLayersStructure(breader, last_line);
+				this.createDefaultOutputLayer();
+				this.fullyConnectNetwork();
+			}
 			breader.close();
-
 		} catch (FileNotFoundException file_not_found) {
 			System.out.println("File not found: " + this.config_file_path);
 			file_not_found.printStackTrace();
@@ -145,6 +183,8 @@ public class NeuralNetworkParse {
 			this.o_min = this.stringToDouble(left_right[1]);
 		} else if (left.contains("O_MAX")) {
 			this.o_max = this.stringToDouble(left_right[1]);
+		} else if (left.contains("NET_DESIGN")) {
+			this.net_design = (left_right[1]);
 		}
 	}
 
@@ -168,9 +208,145 @@ public class NeuralNetworkParse {
                                           NeuralNetworkParse.NETWORK_LABEL);
 	}
 
-	// Network structure
+	// Default Network structure.
 
-	private void parseNetStructure(BufferedReader breader, String last_line) throws IOException {
+	private void createDefaultInputDataLayer() {
+		Layer input_data_layer = new Layer(Layer.INPUT_DATA_LAYER);
+		this.layers.add(input_data_layer);
+
+		Integer num_input_data_nodes = this.benchmark.getTotalInputs();
+
+		System.out.println(this.benchmark);
+
+		for (int i = 0; i < num_input_data_nodes; i += 1) {
+			InputNode input_node = new InputNode(input_data_layer,
+					                              "Input Node " + i,
+					                              InputNode.INPUT_DATA_NODE());
+			input_node.setInputData(1);
+			input_data_layer.addNode(input_node);
+		}
+	}
+	private void parseInitialAndHiddenLayersStructure(BufferedReader breader, String last_line) throws IOException {
+		// Continue from header parsing.
+
+		String line = last_line;
+		String[] left_right = {""};
+
+		while (line != null) {
+			line = line.trim(); // clean leading/trailing spaces.
+			left_right = line.split(SPACE);
+			if (left_right[0].contains("T")) {
+				this.createDefaultInitialAndHiddenLayers(left_right[1]);
+			}
+			line = breader.readLine();
+		}
+	}
+	private void createDefaultInitialAndHiddenLayers(String right) {
+		String[] topology = right.split(COMMA);
+		int numOfHiddenLayers = topology.length - 1;
+
+		// Empty.
+
+		Layer initial_layer = new Layer(Layer.INITIAL_LAYER);
+		this.layers.add(initial_layer);
+
+		this.completeHiddenLayers(numOfHiddenLayers);
+
+		// Fill them.
+
+		String label = "";
+
+		for (int at = 0; at < topology.length; at += 1) {
+			Integer num_hidden_neurons = stringToInteger(topology[at]);
+			for (int n = 1; n <= num_hidden_neurons; n += 1) {
+				Neuron neuron = null;
+				InputNode bias = null;
+				Layer input_data_layer = this.layers.get(0);
+				// Initial.
+
+				if (at == 0) {
+					neuron = new Neuron(this.weightedSum,
+                                         this.sigmoid,
+                                         initial_layer,
+                                         "Neuron " + this.currentNeuron);
+					bias = new InputNode(input_data_layer,
+                                          "Bias for " + neuron.getLabel(),
+                                          InputNode.BIAS_NODE());
+					initial_layer.addNode(neuron);
+					input_data_layer.addNode(bias);
+
+				// Hidden.
+
+				} else {
+					neuron = new Neuron(this.weightedSum,
+                                         this.sigmoid,
+                                         this.layers.get(at + 1),
+                                         "Neuron " + this.currentNeuron);
+					bias = new InputNode(input_data_layer,
+                                          "Bias for " + neuron.getLabel(),
+                                           InputNode.BIAS_NODE());
+					this.layers.get(at + 1).addNode(neuron);
+					input_data_layer.addNode(bias);
+				}
+				label =  "Connection: " + bias.getLabel() + " -> " + neuron.getLabel();
+				this.network.createConnection(bias, neuron, -1, label);
+
+				this.currentNeuron += 1;
+			}
+		}
+	}
+	private void createDefaultOutputLayer() {
+		Layer output_layer = new Layer(Layer.OUTPUT_LAYER);
+		this.layers.add(output_layer);
+
+		Integer num_output_neurons = this.benchmark.getTotalOutputs();
+		String label = "";
+
+		for (int i = 0; i < num_output_neurons; i += 1) {
+			Layer input_data_layer = this.layers.get(0);
+			Neuron output_neuron = new Neuron(this.weightedSum,
+                                               this.sigmoid,
+                                               output_layer,
+                                               "Neuron " + this.currentNeuron);
+			InputNode bias = new InputNode(input_data_layer,
+                                            "Bias for " + output_neuron.getLabel(),
+                                            InputNode.BIAS_NODE());
+			output_layer.addNode(output_neuron);
+			input_data_layer.addNode(bias);
+
+			label =  "Connection: " + bias.getLabel() + " -> " + output_neuron.getLabel();
+			this.network.createConnection(bias, output_neuron, -1, label);
+
+			this.currentNeuron += 1;
+		}
+	}
+	private void fullyConnectNetwork() {
+		String label = "";
+		List<InputNode> bias_nodes = this.layers.get(0).getBiasNodes();
+
+		for (int i = 0; i < (this.layers.size() - 1); i += 1) {
+			Layer at = this.layers.get(i);
+			Layer next = this.layers.get(i + 1);
+
+			for (Node node : at.getNodes()) {
+
+				if (!bias_nodes.contains(node)) {
+					for (Neuron neuron : next.getNeurons()) {
+
+						label = "Connection: " + node.getLabel() + " -> "
+								+ neuron.getLabel();
+						this.network.createConnection(node, neuron, 1.0, label);
+					}
+				}
+			}
+		}
+		Random generator = new Random();
+		this.network.randomizeAllWeights(-1.0, 1.0, generator);
+	}
+
+	// Custom Network structure.
+
+	private void parseCustomNetStructure(BufferedReader breader, String last_line) throws IOException {
 		// Continue from header parsing.
 
 		String line = last_line;
@@ -181,7 +357,6 @@ public class NeuralNetworkParse {
 			line = breader.readLine();
 		}
 	}
-
 	private void parseNetLine(String line) {
 		String[] left_right = line.split(SPACE);
 
@@ -197,45 +372,40 @@ public class NeuralNetworkParse {
 			this.createConnectionBetweenNeurons(left_right[1]);
 		}
 	}
-
 	private void createLayersAndNeurons(String values) {
 		String[] split = values.split(COMMA);
 		int numOfHiddenLayers = split.length - 2;
 
-		// Data.
-
-		Layer input_data_layer = new Layer(Layer.INPUT_DATA_LAYER);
-
-		// Initial.
-
-		Layer initial_layer = new Layer(Layer.INITIAL_LAYER);
-
-
-		Layer output_layer = new Layer(Layer.OUTPUT_LAYER);
-
+		Layer input_data_layer = new Layer(Layer.INPUT_DATA_LAYER),
+              initial_layer = new Layer(Layer.INITIAL_LAYER),
+              output_layer = new Layer(Layer.OUTPUT_LAYER);
 		this.layers.add(input_data_layer);
 		this.layers.add(initial_layer);
 
-		// Hidden
-		if (numOfHiddenLayers > 0) {
-			this.completeHiddenLayers(numOfHiddenLayers);
-		}
-
-		// Output.
+		this.completeHiddenLayers(numOfHiddenLayers);
 
 		this.layers.add(output_layer);
-		int currentNeuron = 1;
 
+		int currentNeuron = 1;
 		for (int i=0; i < split.length; i++) {
 			Integer neuronsInLayer = stringToInteger(split[i]);
 			for (int j=1; j <= neuronsInLayer; j++) {
 				Neuron neuron = null;
+
+				// Initial.
+
 				if (i == 0) {
 					neuron = new Neuron(weightedSum, sigmoid, initial_layer, "Neuron " + currentNeuron);
 					initial_layer.addNode(neuron);
+
+				// Output.
+
 				} else if (i == split.length - 1) {
 					neuron = new Neuron(weightedSum, sigmoid, output_layer, "Neuron " + currentNeuron);
 					output_layer.addNode(neuron);
+
+				// Hidden.
+
 				} else {
 					//Hidden Layer (i+1) because this.layers contains an extra data layer at the beginning
 					neuron = new Neuron(weightedSum, sigmoid, this.layers.get(i+1), "Neuron " + currentNeuron);
@@ -245,18 +415,17 @@ public class NeuralNetworkParse {
 				this.neurons.add(neuron);
 			}
 		}
-
 	}
-
 	private void completeHiddenLayers(int numOfHiddenLayers) {
 		// In that case we need to add hidden layers in order
 		// Previously we have added data layer and init layer
-		for (int i = 0; i < numOfHiddenLayers; i++) {
-			Layer hiddenLayer = new Layer(Layer.HIDDEN_LAYER);
-			this.layers.add(hiddenLayer);
+		if (numOfHiddenLayers > 0) {
+			for (int i = 0; i < numOfHiddenLayers; i++) {
+				Layer hiddenLayer = new Layer(Layer.HIDDEN_LAYER);
+				this.layers.add(hiddenLayer);
+			}
 		}
 	}
-
 	private void createBias(String values) {
 		String[] split = values.split(COMMA);
 		for (int i = 0; i < split.length; i++) {
@@ -267,11 +436,10 @@ public class NeuralNetworkParse {
 				bias.setInputData(1);
 				this.layers.get(DATA_LAYER).addNode(bias);
 				this.network.createConnection(bias, this.neurons.get(i), biasWeight,
-						"Connection: Bias -> Neuron" + (i + 1));
+						"Connection: " + bias.getLabel() + " -> " + "Neuron" + (i + 1));
 			}
 		}
 	}
-
 	private void createInputNode(String values) {
 		String[] split = values.split(COMMA);
 		for (int i = 0; i < split.length; i++) {
@@ -287,7 +455,6 @@ public class NeuralNetworkParse {
 			}
 		}
 	}
-
 	private void createConnectionBetweenNeurons(String values) {
 		String[] split = values.split(COMMA);
 		for (int i = 0; i < split.length; i++) {
@@ -298,9 +465,12 @@ public class NeuralNetworkParse {
 						"Connection: Neuron " + (this.currentNeuron + 1) + " -> Neuron" + (i + 1));
 			}
 		}
-
 		this.currentNeuron++;
 	}
+
+
+// Format.
+
 
 	private Double stringToDouble(String value) {
 		return Double.parseDouble(value);

@@ -61,6 +61,8 @@ public class ProbenFileParser {
 	public void parse() {
 		List<Sample> samples = new ArrayList<Sample>();
 		String last_line = "";
+		Integer total_inputs = 0,
+                total_outputs = 0;
 		try {
 			FileReader freader = new FileReader(this.proben_file_path);
 			BufferedReader breader = new BufferedReader(freader);
@@ -69,8 +71,8 @@ public class ProbenFileParser {
 
 			// Prepare data parsing.
 
-			this.benchmark.calculateTotalInputs();
-			this.benchmark.calculateTotalOutputs();
+			total_inputs = this.benchmark.calculateTotalInputs();
+			total_outputs = this.benchmark.calculateTotalOutputs();
 
 			this.parseData(breader, last_line, samples);
 
@@ -96,8 +98,8 @@ public class ProbenFileParser {
                                  this.benchmark.getNumberOfTestSamples(),
                                  samples,
                                  this.proben_file_path));
-
-
+		this.getBenchmark().setTotalInputs(total_inputs);
+		this.getBenchmark().setTotalOutputs(total_outputs);
 	}
 
 	// Header.
