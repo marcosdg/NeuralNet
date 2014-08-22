@@ -129,7 +129,6 @@ public class Backpropagation extends SupervisedLearning {
 			}
 			this.setCurrentEpoch(getCurrentEpoch() + 1);
 		}
-		getNeuralNetwork().setTrained(true);
 	}
 
 	public void updateWeightsLastCorrections() {

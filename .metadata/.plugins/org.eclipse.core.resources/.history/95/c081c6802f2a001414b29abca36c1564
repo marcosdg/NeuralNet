@@ -16,7 +16,6 @@ public class NeuralNetwork {
 
 	private List<Layer> layers;
 	private LearningRule learningRule;
-	private boolean trained;
 	private String label;
 
 // Creation.
@@ -26,7 +25,6 @@ public class NeuralNetwork {
 		if (layers != null && learningRule != null && label != null) {
 			this.layers = layers;
 			this.learningRule = learningRule;
-			this.trained = false;
 			this.label = label;
 
 		// Cross-references.
@@ -416,12 +414,6 @@ public class NeuralNetwork {
 	}
 	public void setLearningRule(LearningRule that) {
 		this.learningRule = that;
-	}
-	public boolean isTrained() {
-		return this.trained;
-	}
-	public void setTrained(boolean is) {
-		this.trained = is;
 	}
 
 
