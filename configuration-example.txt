@@ -8,6 +8,41 @@ for:
 
 The network example we will use is the one used in TestBasics.java
 
+
+We can choose between two different options for specifying the network
+topology:
+	1. DEFAULT.
+		* The network will be fully connected, without loops.
+		* The input-data and output layers will be automatically
+		  generated. 
+		* The number of input-data nodes and output neurons
+		  are determined by the number of inputs/outputs of
+		  the  Benchmark.
+		* We can specify only: NUMBER OF NEURONS AT INITIAL LAYER,
+		  NUMBER OF HIDDEN LAYERS, NUMBER OF NEURONS PER HIDDEN
+		  LAYER. 
+	2. CUSTOM.
+
+#: comment
+
+---------------------------
+MOMENTUM=0.2
+LEARNING_RATE=0.5
+MAX_EPOCHS=3000
+STRIP=5
+GL=5
+PK=0.1
+O_MIN=0
+O_MAX=1
+NET_DESIGN=DEFAULT
+
+# 2 neurons (initial layer), 2 neurons (1st hidden layer), 1 neuron (2nd hidden layer)
+T 2,2,1
+---------------------------
+
+
+
+
 --------------------------
 MOMENTUM=0.2
 LEARNING_RATE=0.5
@@ -17,6 +52,7 @@ GL=5
 PK=0.1
 O_MIN=0
 O_MAX=1
+NET_DESIGN=CUSTOM
 
 T 5,2,1
 B -1,.,.
