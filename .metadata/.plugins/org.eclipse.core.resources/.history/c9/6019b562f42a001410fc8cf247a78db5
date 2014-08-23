@@ -246,7 +246,23 @@ System.out.println("========= STATS =========");
 		System.out.println("etts size: " + Statistics.getEtts().size());
 		System.out.println("gls size: " + Statistics.getGLs().size());
 		System.out.println("pks size: " + Statistics.getPKs().size());
-
+		
+		
+		List<Double> numbers = new ArrayList<Double>();
+		numbers.add(0.1);
+		numbers.add(0.5);
+		numbers.add(0.49);
+		numbers.add(0.001);
+		numbers.add(0.7);
+		numbers.add(0.0);
+		numbers.add(1.0);
+		
+		List<Double> rounded = SquaredError.roundAll(numbers);
+		for (Double r: rounded) {
+			System.out.println(r);
+		}
+		
+		
 /*
 		System.out.println("Neuron 1 error: " + neuron1.getError());
 		System.out.println("Neuron 2 error: " + neuron2.getError());

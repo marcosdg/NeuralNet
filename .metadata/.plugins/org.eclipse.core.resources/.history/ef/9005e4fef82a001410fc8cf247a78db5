@@ -96,17 +96,6 @@ public class Benchmark {
 	}
 
 
-// Kind.
-
-
-	public boolean isClassification() {
-		return this.num_bool_outputs > 0;
-	}
-	public boolean isApproximation() {
-		return this.num_real_outputs > 0;
-	}
-
-
 // File format.
 
 

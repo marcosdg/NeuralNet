@@ -14,7 +14,6 @@ import core.data.ProbenFileParser;
 import core.data.Sample;
 import core.learning.Backpropagation;
 import core.learning.LearningRule;
-import core.learning.error.SquaredError;
 import core.learning.stop.EarlyStop;
 import core.learning.stop.MaxEpochsStop;
 import core.learning.stop.StopCriteria;

@@ -105,7 +105,7 @@ public class SquaredError {
 	}
 
 
-// Classification / Aproximation.
+// Classification/Aproximation.
 
 
 	// Normalized Average Squared Error of all the samples.

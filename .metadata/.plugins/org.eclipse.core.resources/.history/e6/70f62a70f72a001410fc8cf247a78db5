@@ -340,10 +340,8 @@ public class NeuralNetworkParse {
 				}
 			}
 		}
-		// PROBEN1 recommends the range [-0.1, 0.1]
-
 		Random generator = new Random();
-		this.network.randomizeAllWeights(-0.1, 0.1, generator);
+		this.network.randomizeAllWeights(-1.0, 1.0, generator);
 	}
 
 	// Custom Network structure.

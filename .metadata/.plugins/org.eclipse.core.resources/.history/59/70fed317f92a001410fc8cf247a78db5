@@ -95,10 +95,10 @@ public class Benchmark {
         this.label = "";
 	}
 
-
+	
 // Kind.
-
-
+	
+	
 	public boolean isClassification() {
 		return this.num_bool_outputs > 0;
 	}

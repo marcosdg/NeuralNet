@@ -9,9 +9,6 @@ import core.data.Sample;
 public class SquaredError {
 
 
-// Classification problems.
-
-
 	public static List<Double> roundAll(List<Double> values) {
 		List<Double> rounded = new ArrayList<Double>();
 
@@ -20,6 +17,10 @@ public class SquaredError {
 		}
 		return rounded;
 	}
+
+// SUM{i,N}: (desired{i} - output{i}) ^ 2
+
+
 	public static Double getClassificationSquaredError(List<Double> desired_output_vector,
                                                          List<Double> output_vector,
                                                          int num_output_nodes) {
@@ -44,10 +45,6 @@ public class SquaredError {
 		return squared_error;
 	}
 
-
-// Approximation problems.
-
-	// SUM{i,N}: (desired{i} - output{i}) ^ 2
 
 	public static Double getSquaredError(List<Double> desired_output_vector,
                                            List<Double> output_vector,
@@ -91,7 +88,9 @@ public class SquaredError {
 		return are;
 	}
 
-	// Mean Squared Error.
+
+// Mean Squared Error
+
 
 	public 	Double getMeanSquaredError(List<Double> desired_output_vector,
                                        List<Double> output_vector,
@@ -104,16 +103,12 @@ public class SquaredError {
 		return (squared_error / N);
 	}
 
+// Normalized Average Squared Error of all the samples.
 
-// Classification / Aproximation.
-
-
-	// Normalized Average Squared Error of all the samples.
 
 	public static Double getSquaredErrorPercentage(List<Sample> samples,
                                                      List<List<Double>> output_vectors,
-                                                     int num_output_nodes,
-                                                     boolean classification) {
+                                                     int num_output_nodes) {
 		int N = num_output_nodes,
             P = samples.size();
 
@@ -131,16 +126,9 @@ public class SquaredError {
 		for (int i = 0; i < P; i += 1) {
 			desired_output_vector = samples.get(i).getDesiredOutputVector();
 			output_vector = output_vectors.get(i);
-
-			if (classification) {
-				squared_error = getClassificationSquaredError(desired_output_vector,
-                                                              output_vector,
-                                                              N);
-			} else {
-				squared_error = getSquaredError(desired_output_vector,
+			squared_error = getSquaredError(desired_output_vector,
                                             output_vector,
                                             N);
-			}
 			total_squared_error += squared_error;
 		}
 		return (norm_factor * total_squared_error);

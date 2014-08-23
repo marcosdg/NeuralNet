@@ -93,26 +93,12 @@ public class EarlyStop extends StopCriteria {
                                 .getNeuralNetwork()
                                 .getOutputLayer()
                                 .numberOfNodes();
-		boolean is_classification = this
-                                     .supervised_learning_rule
-                                     .getBenchmark()
-                                     .isClassification();
+
 		Double squared_error = 0.0;
 
-		if (is_classification) {
-			squared_error = SquaredError
-                            .getSquaredErrorPercentage(training_samples,
+		return SquaredError.getSquaredErrorPercentage(training_samples,
                                                        output_vectors,
-                                                       num_output_nodes,
-                                                       true);
-		} else {
-			squared_error = SquaredError
-                            .getSquaredErrorPercentage(training_samples,
-                                                       output_vectors,
-                                                       num_output_nodes,
-                                                       false);
-		}
-		return squared_error;
+                                                       num_output_nodes);
 	}
 
 	// Eva(t).
@@ -127,27 +113,10 @@ public class EarlyStop extends StopCriteria {
                                 .getNeuralNetwork()
                                 .getOutputLayer()
                                 .numberOfNodes();
-		boolean is_classification = this
-                                     .supervised_learning_rule
-                                     .getBenchmark()
-                                     .isClassification();
-		Double squared_error = 0.0;
 
-		if (is_classification) {
-			squared_error = SquaredError
-                            .getSquaredErrorPercentage(validation_samples,
+		return SquaredError.getSquaredErrorPercentage(validation_samples,
                                                        output_vectors,
-                                                       num_output_nodes,
-                                                       true);
-		} else {
-			squared_error = SquaredError
-                            .getSquaredErrorPercentage(validation_samples,
-                                                       output_vectors,
-                                                       num_output_nodes,
-                                                       false);
-		}
-
-		return squared_error;
+                                                       num_output_nodes);
 	}
 
 	// Eopt(t).

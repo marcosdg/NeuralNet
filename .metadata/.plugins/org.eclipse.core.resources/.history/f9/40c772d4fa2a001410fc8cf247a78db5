@@ -146,7 +146,7 @@ public class EarlyStop extends StopCriteria {
                                                        num_output_nodes,
                                                        false);
 		}
-
+		
 		return squared_error;
 	}
 

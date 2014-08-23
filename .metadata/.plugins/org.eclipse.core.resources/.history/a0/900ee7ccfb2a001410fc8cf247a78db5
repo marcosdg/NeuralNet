@@ -109,7 +109,7 @@ public class SquaredError {
 
 
 	// Normalized Average Squared Error of all the samples.
-
+/*
 	public static Double getSquaredErrorPercentage(List<Sample> samples,
                                                      List<List<Double>> output_vectors,
                                                      int num_output_nodes,
@@ -145,4 +145,5 @@ public class SquaredError {
 		}
 		return (norm_factor * total_squared_error);
 	}
+	*
 }
