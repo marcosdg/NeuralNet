@@ -2,6 +2,8 @@ package dev_tests;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import test.Statistics;
 import core.InputNode;
 import core.Layer;
 import core.NeuralNetwork;
@@ -171,6 +173,7 @@ System.out.println("========= FILE =========");
 
 		// NeuralNetwork setup.
 
+		Statistics stats = new Statistics();
 
 		Backpropagation backProp = new Backpropagation(0.5, 0.1, benchmark);
 
@@ -234,6 +237,16 @@ System.out.println("========= BACKPROP CONFIG =========");
 		neural_network.learn();
 
 		System.out.println("trained: " + backProp.getNeuralNetwork().isTrained());
+
+System.out.println("========= STATS =========");
+
+		System.out.println("etrs size: " +  Statistics.getEtrs().size());
+		System.out.println("evas size: " +  Statistics.getEvas().size());
+		System.out.println("etts size: " +  Statistics.getEtts().size());
+		System.out.println("gls size: " +  Statistics.getGLs().size());
+		System.out.println("pks size: " +  Statistics.getPKs().size());
+
+
 /*
 		System.out.println("Neuron 1 error: " + neuron1.getError());
 		System.out.println("Neuron 2 error: " + neuron2.getError());

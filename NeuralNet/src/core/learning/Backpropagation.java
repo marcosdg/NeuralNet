@@ -3,6 +3,8 @@ package core.learning;
 import java.util.ArrayList;
 import java.util.List;
 
+import test.Statistics;
+
 import core.Connection;
 import core.InputNode;
 import core.Layer;
@@ -12,11 +14,6 @@ import core.Node;
 import core.Weight;
 import core.data.Benchmark;
 import core.data.Sample;
-import core.learning.stop.EarlyStop;
-import core.learning.stop.StopCriteria;
-
-
-//TODO: COMPLETE BACKPROPAGATION CLASS
 
 
 public class Backpropagation extends SupervisedLearning {
@@ -86,12 +83,8 @@ public class Backpropagation extends SupervisedLearning {
 		List<Sample> training_samples = getBenchmark().getTrainingSamples(),
                      validation_samples = getBenchmark().getValidationSamples();
 		List<Double> output_errors = new ArrayList<Double>();
-		double now_loss = 0.0,
-                best_loss = 0.0;
 
 		while (!getMaxEpochsStop().isMet()) {
-
-			// Epoch.
 
 			for (Sample training_sample: training_samples) {
 
@@ -101,30 +94,20 @@ public class Backpropagation extends SupervisedLearning {
 			this.updateWeightsLastCorrections();
 			this.saveEtrAndEva(validation_samples, output_errors);
 
-			// Early stop ?
+			// Strip ?
 
 			if ((getCurrentEpoch() % getEarlyStop().getStripLength()) == 0) {
+				boolean early_stop = getEarlyStop().isMet();
 
-				if (getEarlyStop().isMet()) {
+				Statistics.storeGL(getEarlyStop().getCurrentGeneralizationLoss());
+				Statistics.storePK(getEarlyStop().getCurrentTrainingProgress());
+
+				// What now ?
+
+				if (early_stop) {
 					break;
 				} else {
-					// Better generalization loss ?
-
-					now_loss = getEarlyStop().getCurrentGeneralizationLoss();
-                    best_loss = getEarlyStop().getBestGeneralizationLoss();
-					if (now_loss < best_loss) {
-
-						// Checkpoint.
-
-						getEarlyStop().setBestGeneralizationLoss(now_loss);
-						setBestNeuralNetwork(getNeuralNetwork().copy());
-					} else {
-						// Time-travel to the past.
-
-						this.setNeuralNetwork(getBestNeuralNetwork());
-					}
-					clearEtrs();
-					clearTrainingOutputVectors();
+					this.updateEarlyStopState();
 				}
 			}
 			this.setCurrentEpoch(getCurrentEpoch() + 1);
@@ -137,7 +120,6 @@ public class Backpropagation extends SupervisedLearning {
 			weight.setLastCorrection(weight.getCorrection());
 		}
 	}
-
 	public void saveEtrAndEva(List<Sample> validation_samples,
                                 List<Double> output_errors) {
 		List<Double> output_vector = null;
@@ -153,6 +135,7 @@ public class Backpropagation extends SupervisedLearning {
 		etr = getEarlyStop()
               .getAverageErrorPerTrainingSample(getTrainingOutputVectors());
 		saveEtr(etr);
+		Statistics.storeEtr(etr);
 
 		// Save Eva.
 
@@ -163,6 +146,27 @@ public class Backpropagation extends SupervisedLearning {
 		eva = getEarlyStop()
               .getAverageErrorPerValidationSample(getValidationOutputVectors());
 		saveEva(eva);
+		Statistics.storeEva(eva);
+	}
+	public void updateEarlyStopState() {
+		double now_loss = getEarlyStop().getCurrentGeneralizationLoss(),
+                best_loss = getEarlyStop().getBestGeneralizationLoss();
+
+		// Better generalization loss ?
+
+		if (now_loss < best_loss) {
+
+			// Checkpoint.
+
+			getEarlyStop().setBestGeneralizationLoss(now_loss);
+			setBestNeuralNetwork(getNeuralNetwork().copy());
+		} else {
+			// Time-travel to the past.
+
+			this.setNeuralNetwork(getBestNeuralNetwork());
+		}
+		clearEtrs();
+		clearTrainingOutputVectors();
 	}
 
 

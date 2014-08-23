@@ -6,8 +6,6 @@ import core.data.Sample;
 import core.learning.SupervisedLearning;
 import core.learning.error.SquaredError;
 
-// TODO: complete EarlyStop.
-
 public class EarlyStop extends StopCriteria {
 
 	private SupervisedLearning supervised_learning_rule;

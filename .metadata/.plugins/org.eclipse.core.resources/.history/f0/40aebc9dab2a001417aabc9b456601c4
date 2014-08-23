@@ -1,0 +1,14 @@
+package test;
+
+import utils.Log;
+
+
+public class TestLog {
+
+	public static void main(String[] args) {
+		Log log = new Log(TestLog.class.getName());
+		Log.log("Hello!");
+		Log.log("This is an example");
+	}
+
+}

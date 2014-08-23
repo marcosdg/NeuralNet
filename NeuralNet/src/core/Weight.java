@@ -98,6 +98,4 @@ public class Weight {
 	public void randomize(double min, double max, Random generator) {
 		this.value = this.randomWithinRange(min, max, generator);
 	}
-
-	// TODO: COMPLETE 'TOSTRING' METHOD. What format?
 }
