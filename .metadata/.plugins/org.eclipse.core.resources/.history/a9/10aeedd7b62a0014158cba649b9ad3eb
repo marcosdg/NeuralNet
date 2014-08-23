@@ -246,6 +246,23 @@ System.out.println("========= STATS =========");
 		System.out.println("gls size: " + Statistics.getGLs().size());
 		System.out.println("pks size: " + Statistics.getPKs().size());
 
+		List<Double> numbers = new ArrayList<Double>();
+		numbers.add(2.0);
+		numbers.add(4.0);
+		numbers.add(4.0);
+		numbers.add(4.0);
+		numbers.add(5.0);
+		numbers.add(5.0);
+		numbers.add(7.0);
+		numbers.add(9.0);
+
+		System.out.println("min: " + Statistics.getMin(numbers));
+		System.out.println("max: " + Statistics.getMax(numbers));
+		System.out.println("avg: " + Statistics.getAverage(numbers));
+		System.out.println("stdev: " + Statistics.getStandarDeviation(numbers));
+
+
+
 /*
 		System.out.println("Neuron 1 error: " + neuron1.getError());
 		System.out.println("Neuron 2 error: " + neuron2.getError());
@@ -253,6 +270,8 @@ System.out.println("========= STATS =========");
 		System.out.println("Training output vectors size: " + backProp.getTrainingOutputVectors().size());
 		System.out.println("Number of Layers: " + neural_network.getNumberOfLayers());
 
+
+/*
 System.out.println("===== NEURAL NETWORK STATE AFTER FORWARD-PROPAGATION =====");
 System.out.println();
 

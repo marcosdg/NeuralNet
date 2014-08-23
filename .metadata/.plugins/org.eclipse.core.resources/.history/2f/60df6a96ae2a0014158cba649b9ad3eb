@@ -34,10 +34,13 @@ public class Log {
             fileHandler.setFormatter(formatter);
             logger.addHandler(fileHandler);
 		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

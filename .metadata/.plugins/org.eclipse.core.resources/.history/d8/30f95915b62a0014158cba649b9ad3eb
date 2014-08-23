@@ -240,11 +240,21 @@ System.out.println("========= BACKPROP CONFIG =========");
 
 System.out.println("========= STATS =========");
 
-		System.out.println("etrs size: " + Statistics.getEtrs().size());
-		System.out.println("evas size: " + Statistics.getEvas().size());
-		System.out.println("etts size: " + Statistics.getEtts().size());
-		System.out.println("gls size: " + Statistics.getGLs().size());
-		System.out.println("pks size: " + Statistics.getPKs().size());
+		System.out.println("etrs size: " +  Statistics.getEtrs().size());
+		System.out.println("evas size: " +  Statistics.getEvas().size());
+		System.out.println("etts size: " +  Statistics.getEtts().size());
+		System.out.println("gls size: " +  Statistics.getGLs().size());
+		System.out.println("pks size: " +  Statistics.getPKs().size());
+		
+		List<Double> numbers = new ArrayList<Double>();
+		numbers.add(2.0);
+		numbers.add(4.0);
+		numbers.add(4.0);
+		numbers.add(4.0);
+		numbers.add(5.0);
+		numbers.add(5.0);
+		numbers.add(7.0);
+		numbers.add(9.0);
 
 /*
 		System.out.println("Neuron 1 error: " + neuron1.getError());
@@ -253,6 +263,8 @@ System.out.println("========= STATS =========");
 		System.out.println("Training output vectors size: " + backProp.getTrainingOutputVectors().size());
 		System.out.println("Number of Layers: " + neural_network.getNumberOfLayers());
 
+
+/*
 System.out.println("===== NEURAL NETWORK STATE AFTER FORWARD-PROPAGATION =====");
 System.out.println();
 

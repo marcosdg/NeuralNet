@@ -92,14 +92,6 @@ public class Statistics {
 		}
 		return total;
 	}
-	public static Double getMin(List<Double> values) {
-		Double min = values.get(0);
-
-		for (Double value: values) {
-			min = (value < min) ? value : min;
-		}
-		return min;
-	}
 	public static Double getMax(List<Double> values) {
 		Double max = values.get(0);
 
@@ -108,7 +100,14 @@ public class Statistics {
 		}
 		return max;
 	}
+	public static Double getMin(List<Double> values) {
+		Double min = values.get(0);
 
+		for (Double value: values) {
+			min = (value < min) ? value : min;
+		}
+		return min;
+	}
 	public static Double getAverage(List<Double> values) {
 		return (sumAll(values) / values.size());
 	}

@@ -84,7 +84,7 @@ public class Statistics {
 // Stats.
 
 
-	public static Double sumAll(List<Double> values) {
+	public Double sumAll(List<Double> values) {
 		Double total = 0.0;
 
 		for (Double value: values) {
@@ -92,15 +92,16 @@ public class Statistics {
 		}
 		return total;
 	}
-	public static Double getMin(List<Double> values) {
-		Double min = values.get(0);
+	public List<Double> getSquareDifferencesFromAvg(List<Double> values,
+                                                     Double avg) {
+		List<Double> sqdiffs = new ArrayList<Double>();
 
 		for (Double value: values) {
-			min = (value < min) ? value : min;
+			sqdiffs.add(Math.pow((value - avg), 2));
 		}
-		return min;
+		return sqdiffs;
 	}
-	public static Double getMax(List<Double> values) {
+	public Double getMax(List<Double> values) {
 		Double max = values.get(0);
 
 		for (Double value: values) {
@@ -108,22 +109,31 @@ public class Statistics {
 		}
 		return max;
 	}
+	public Double getMin(List<Double> values) {
+		Double min = values.get(0);
 
-	public static Double getAverage(List<Double> values) {
+		for (Double value: values) {
+			min = (value < min) ? value : min;
+		}
+		return min;
+	}
+	public Double getAverage(List<Double> values) {
 		return (sumAll(values) / values.size());
 	}
-	public static List<Double> getSquareDifferencesFromAvg(List<Double> values) {
-		Double avg = Statistics.getAverage(values);
+	public Double getStandarDeviation(List<Double> values) {
+		Double avg = this.getAverage(values);
+
 		List<Double> sqdiffs = new ArrayList<Double>();
+		// Squared differences from average.
 
-		for (Double value : values) {
-			sqdiffs.add(Math.pow((value - avg), 2));
-		}
-		return sqdiffs;
-}
-	public static Double getStandarDeviation(List<Double> values) {
-		List<Double> sqdiffs = Statistics.getSquareDifferencesFromAvg(values);
+		for (Double )
 
-		return Math.sqrt(Statistics.getAverage(sqdiffs));
+
+
+
+
+
+
+		return 0.0;
 	}
 }

@@ -108,7 +108,7 @@ public class Statistics {
 		}
 		return max;
 	}
-
+	
 	public static Double getAverage(List<Double> values) {
 		return (sumAll(values) / values.size());
 	}

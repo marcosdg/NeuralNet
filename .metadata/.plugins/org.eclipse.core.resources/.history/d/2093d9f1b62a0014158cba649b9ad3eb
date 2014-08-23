@@ -253,6 +253,8 @@ System.out.println("========= STATS =========");
 		System.out.println("Training output vectors size: " + backProp.getTrainingOutputVectors().size());
 		System.out.println("Number of Layers: " + neural_network.getNumberOfLayers());
 
+
+/*
 System.out.println("===== NEURAL NETWORK STATE AFTER FORWARD-PROPAGATION =====");
 System.out.println();
 
