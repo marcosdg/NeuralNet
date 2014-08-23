@@ -155,6 +155,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	public void saveTrainingOutputVector(List<Double> output_vector) {
 		this.training_output_vectors.add(output_vector);
 	}
+	public void clearTrainingOutputVectors() {
+		this.training_output_vectors.clear();
+	}
 
 
 // Validation Output vectors.

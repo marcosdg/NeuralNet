@@ -166,6 +166,7 @@ public class Backpropagation extends SupervisedLearning {
 			this.setNeuralNetwork(getBestNeuralNetwork());
 		}
 		clearEtrs();
+		clearTrainingOutputVectors();
 	}
 
 
