@@ -117,6 +117,8 @@ public class SquaredError {
 		return (norm_factor * total_squared_error);
 	}
 
+	// Classification.
+
 	public static boolean isClassificationMiss(List<Double> desired_output_vector,
                                                   List<Double> output_vector) {
 		Double desired_output = null,

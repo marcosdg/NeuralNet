@@ -73,7 +73,7 @@ public class Statistics {
 
 	// General.
 
-	public Double sumAll(List<Double> values) {
+	public static Double sumAll(List<Double> values) {
 		Double total = 0.0;
 
 		for (Double value: values) {
@@ -81,7 +81,7 @@ public class Statistics {
 		}
 		return total;
 	}
-	public Double getMin(List<Double> values) {
+	public static Double getMin(List<Double> values) {
 		Double min = values.get(0);
 
 		for (Double value: values) {
@@ -89,7 +89,7 @@ public class Statistics {
 		}
 		return min;
 	}
-	public Double getMax(List<Double> values) {
+	public static Double getMax(List<Double> values) {
 		Double max = values.get(0);
 
 		for (Double value: values) {
@@ -98,11 +98,11 @@ public class Statistics {
 		return max;
 	}
 
-	public Double getAverage(List<Double> values) {
+	public static Double getAverage(List<Double> values) {
 		return (sumAll(values) / values.size());
 	}
-	public List<Double> getSquareDifferencesFromAvg(List<Double> values) {
-		Double avg = this.getAverage(values);
+	public static List<Double> getSquareDifferencesFromAvg(List<Double> values) {
+		Double avg = Statistics.getAverage(values);
 		List<Double> sqdiffs = new ArrayList<Double>();
 
 		for (Double value : values) {
@@ -110,42 +110,17 @@ public class Statistics {
 		}
 		return sqdiffs;
 	}
-	public Double getStandarDeviation(List<Double> values) {
-		List<Double> sqdiffs = this.getSquareDifferencesFromAvg(values);
+	public static Double getStandarDeviation(List<Double> values) {
+		List<Double> sqdiffs = Statistics.getSquareDifferencesFromAvg(values);
 
-		return Math.sqrt(this.getAverage(sqdiffs));
+		return Math.sqrt(Statistics.getAverage(sqdiffs));
 	}
 
 	// Classification.
 
-	public int getNumberOfClassificationMissesOnTraining() {
-		List<Sample> training_samples = this
-                                        .done_backprop
-                                        .getBenchmark()
-                                        .getTrainingSamples();
-		List<List<Double>> training_outputs = this
-                                              .done_backprop
-                                              .getTrainingOutputVectors();
+	public static int getNumberOfClassificationMissesOnTraining() {
 		return SquaredError
-                .getNumberOfClassificationMisses(training_samples,
-                                                 training_outputs);
 	}
-	public int getNumberOfClassificationMissesOnValidation() {
-		List<Sample> validation_samples = this
-                                          .done_backprop
-                                          .getBenchmark()
-                                          .getValidationSamples();
-		List<List<Double>> validation_outputs = this
-                                                .done_backprop
-                                                .getValidationOutputVectors();
-		return SquaredError
-                .getNumberOfClassificationMisses(validation_samples,
-                                                 validation_outputs);
-	}
-	/* TODO
-	public int getNumberOfClassificationMissesOnTest() {
-	}
-	*/
 
 
 

@@ -137,8 +137,8 @@ public class SquaredError {
 		}
 		return missed;
 	}
-	public static int getNumberOfClassificationMisses(List<Sample> samples,
-                                           List<List<Double>> output_vectors) {
+	public static int getNumberOfClassificationMisses(List<Sample> sample,
+                                          List<List<Double>> output_vectors) {
 		List<Double> desired_output_vector = null,
                      routput_vector = null;
         int misses = 0;

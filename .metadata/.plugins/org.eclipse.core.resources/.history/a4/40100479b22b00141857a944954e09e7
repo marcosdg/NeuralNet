@@ -142,7 +142,7 @@ public class Statistics {
                 .getNumberOfClassificationMisses(validation_samples,
                                                  validation_outputs);
 	}
-	/* TODO
+	/*
 	public int getNumberOfClassificationMissesOnTest() {
 	}
 	*/

@@ -102,7 +102,7 @@ public class Statistics {
 		return (sumAll(values) / values.size());
 	}
 	public List<Double> getSquareDifferencesFromAvg(List<Double> values) {
-		Double avg = this.getAverage(values);
+		Double avg = Statistics.getAverage(values);
 		List<Double> sqdiffs = new ArrayList<Double>();
 
 		for (Double value : values) {
@@ -111,41 +111,17 @@ public class Statistics {
 		return sqdiffs;
 	}
 	public Double getStandarDeviation(List<Double> values) {
-		List<Double> sqdiffs = this.getSquareDifferencesFromAvg(values);
+		List<Double> sqdiffs = Statistics.getSquareDifferencesFromAvg(values);
 
-		return Math.sqrt(this.getAverage(sqdiffs));
+		return Math.sqrt(Statistics.getAverage(sqdiffs));
 	}
 
 	// Classification.
 
 	public int getNumberOfClassificationMissesOnTraining() {
-		List<Sample> training_samples = this
-                                        .done_backprop
-                                        .getBenchmark()
-                                        .getTrainingSamples();
-		List<List<Double>> training_outputs = this
-                                              .done_backprop
-                                              .getTrainingOutputVectors();
-		return SquaredError
-                .getNumberOfClassificationMisses(training_samples,
-                                                 training_outputs);
+		
+		return SquaredError.getNumberOfClassificationMisses(Statistics.g, output_vectors)
 	}
-	public int getNumberOfClassificationMissesOnValidation() {
-		List<Sample> validation_samples = this
-                                          .done_backprop
-                                          .getBenchmark()
-                                          .getValidationSamples();
-		List<List<Double>> validation_outputs = this
-                                                .done_backprop
-                                                .getValidationOutputVectors();
-		return SquaredError
-                .getNumberOfClassificationMisses(validation_samples,
-                                                 validation_outputs);
-	}
-	/* TODO
-	public int getNumberOfClassificationMissesOnTest() {
-	}
-	*/
 
 
 

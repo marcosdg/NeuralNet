@@ -117,8 +117,8 @@ public class SquaredError {
 		return (norm_factor * total_squared_error);
 	}
 
-	public static boolean isClassificationMiss(List<Double> desired_output_vector,
-                                                  List<Double> output_vector) {
+	public boolean isClassificationMiss(List<Double> desired_output_vector,
+                                          List<Double> output_vector) {
 		Double desired_output = null,
                 output = null;
 			boolean missed = false;
@@ -137,10 +137,10 @@ public class SquaredError {
 		}
 		return missed;
 	}
-	public static int getNumberOfClassificationMisses(List<Sample> samples,
-                                           List<List<Double>> output_vectors) {
+	public int getNumberOfClassificationMisses(List<Sample> samples,
+                                                List<List<Double>> output_vectors) {
 		List<Double> desired_output_vector = null,
-                     routput_vector = null;
+                routput_vector = null;
         int misses = 0;
 
 		if (samples.size() != output_vectors.size()) {

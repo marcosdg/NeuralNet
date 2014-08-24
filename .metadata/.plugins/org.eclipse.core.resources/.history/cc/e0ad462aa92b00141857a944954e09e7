@@ -63,7 +63,7 @@ public class SquaredError {
 		} else if (desired_output_vector.size() != output_vector.size()) {
 
 			throw new IllegalArgumentException("Vectors of different sizes");
-
+			
 		} else {
 			are = true;
 		}
@@ -116,47 +116,50 @@ public class SquaredError {
 		}
 		return (norm_factor * total_squared_error);
 	}
-
-	public static boolean isClassificationMiss(List<Double> desired_output_vector,
-                                                  List<Double> output_vector) {
-		Double desired_output = null,
-                output = null;
-			boolean missed = false;
-
+	
+	public boolean isClassificationMiss(List<Double> desired_output_vector,
+                                          List<Double> output_vector) {
 		if (areAdequate(desired_output_vector, output_vector)) {
-
+			
 			for (int i = 0; i < output_vector.size(); i += 1) {
-				desired_output = desired_output_vector.get(i);
-				output = output_vector.get(i);
-
-				if (!desired_output.equals(output)) {
-					missed = true;
-					break;
-				}
+				
 			}
+			
 		}
-		return missed;
+		
+		
 	}
-	public static int getNumberOfClassificationMisses(List<Sample> samples,
-                                           List<List<Double>> output_vectors) {
-		List<Double> desired_output_vector = null,
-                     routput_vector = null;
-        int misses = 0;
-
+	
+	
+	
+	public int getNumberOfClassificationMisses(List<Sample> samples,
+                                                List<List<Double>> output_vectors) {
 		if (samples.size() != output_vectors.size()) {
-			throw new IllegalArgumentException("Same number of samples as" +
+			throw new IllegalArgumentException("Same number of samples as" + 
                                                 " number of output vectors" +
                                                  " is required.");
 		} else {
+			List<Double> desired_output_vector = null,
+                         routput_vector = null;
+			int misses = 0;
+			
 			for (int i = 0; i < samples.size(); i += 1) {
 				desired_output_vector = samples.get(i).getDesiredOutputVector();
 				routput_vector = SquaredError.roundAll(output_vectors.get(i));
 
-				if (isClassificationMiss(desired_output_vector, routput_vector)) {
-					misses += 1;
+				if (isClassificationMiss()) {
+
 				}
+				
+				
 			}
+			
 		}
-		return misses;
+
 	}
+	
+	
+	
+	
+	
 }
