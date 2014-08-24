@@ -43,7 +43,7 @@ public class SquaredError {
 
 				squared_error += (classification) ?
                                    Math.pow((desired_output - routput), 2)
-                                  :Math.pow((desired_output - output), 2);
+                                 : Math.pow((desired_output - output), 2);
 			}
 		}
 		return squared_error;

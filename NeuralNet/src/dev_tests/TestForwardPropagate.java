@@ -174,8 +174,6 @@ System.out.println("========= FILE =========");
 
 		// NeuralNetwork setup.
 
-		Statistics stats = new Statistics();
-
 		Backpropagation backProp = new Backpropagation(0.5, 0.1, benchmark);
 
 		NeuralNetwork neural_network = new NeuralNetwork(layers,
@@ -241,11 +239,13 @@ System.out.println("========= BACKPROP CONFIG =========");
 
 System.out.println("========= STATS =========");
 
-		System.out.println("etrs size: " + Statistics.getEtrs().size());
-		System.out.println("evas size: " + Statistics.getEvas().size());
-		System.out.println("etts size: " + Statistics.getEtts().size());
-		System.out.println("gls size: " + Statistics.getGLs().size());
-		System.out.println("pks size: " + Statistics.getPKs().size());
+		Statistics stats = new Statistics(neural_network);
+
+		System.out.println("etrs size: " + stats.getEtrs().size());
+		System.out.println("evas size: " + stats.getEvas().size());
+		System.out.println("etts size: " + stats.getEtts().size());
+		System.out.println("gls size: " + stats.getGLs().size());
+		System.out.println("pks size: " + stats.getPKs().size());
 
 /*
 		System.out.println("Neuron 1 error: " + neuron1.getError());

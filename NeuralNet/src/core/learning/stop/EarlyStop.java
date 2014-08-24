@@ -53,8 +53,10 @@ public class EarlyStop extends StopCriteria {
 
 	@Override
 	public boolean isMet() {
-		return (this.isMaxGeneralizationLossMet() ||
-	             this.isMinTrainingProgressMet());
+		boolean gl_met = this.isMaxGeneralizationLossMet(),
+				 pk_met = this.isMinTrainingProgressMet();
+
+		return (gl_met || pk_met);
 	}
 
 	/* By separating them, will be easier to check at
@@ -71,9 +73,9 @@ public class EarlyStop extends StopCriteria {
 		return (this.now_generalization_loss > this.max_generalization_loss);
 	}
 	public boolean isMinTrainingProgressMet() {
-		List<Double> etrs = this.supervised_learning_rule.getEtrsRecord();
+		List<Double> buffer_etrs = this.supervised_learning_rule.getEtrsBuffer();
 
-		this.computeTrainingProgress(etrs);
+		this.computeTrainingProgress(buffer_etrs);
 		return (this.now_training_progress < this.min_training_progress);
 	}
 

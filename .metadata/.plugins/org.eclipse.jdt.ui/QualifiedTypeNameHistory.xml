@@ -6,6 +6,9 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="core.InputNode"/>
 <fullyQualifiedTypeName name="utils.Log"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="core.learning.error.SquaredError"/>
+<fullyQualifiedTypeName name="core.NeuralNetwork"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="test.Statistics"/>
+<fullyQualifiedTypeName name="core.learning.Backpropagation"/>
 </qualifiedTypeNameHistroy>
