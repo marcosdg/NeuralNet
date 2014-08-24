@@ -7,4 +7,5 @@
 <fullyQualifiedTypeName name="core.InputNode"/>
 <fullyQualifiedTypeName name="utils.Log"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="core.learning.error.SquaredError"/>
 </qualifiedTypeNameHistroy>

@@ -9,7 +9,8 @@ import core.data.Sample;
 public class SquaredError {
 
 
-	// For classification problems.
+// Classification problems.
+
 
 	public static List<Double> roundAll(List<Double> values) {
 		List<Double> rounded = new ArrayList<Double>();
@@ -19,6 +20,31 @@ public class SquaredError {
 		}
 		return rounded;
 	}
+	public static Double getClassificationSquaredError(List<Double> desired_output_vector,
+                                                         List<Double> output_vector,
+                                                         int num_output_nodes) {
+
+		List<Double> routputs = SquaredError.roundAll(output_vector);
+		Double squared_error = 0.0,
+	           desired_output,
+	           routput;
+		int i,
+	         N = num_output_nodes;
+		if (areAdequate(desired_output_vector, output_vector)) {
+
+			for (i = 0; i < N; i += 1) {
+				desired_output = desired_output_vector.get(i);
+				routput = routputs.get(i);
+
+				squared_error += Math.pow((desired_output - routput), 2);
+			}
+		}
+
+		return squared_error;
+	}
+
+
+// Approximation problems.
 
 	// SUM{i,N}: (desired{i} - output{i}) ^ 2
 
@@ -33,14 +59,14 @@ public class SquaredError {
                routput;
 		int i,
              N = num_output_nodes;
-
+		
 		if (areAdequate(desired_output_vector, output_vector)) {
 
 			for (i = 0; i < N; i += 1) {
 				desired_output = desired_output_vector.get(i);
 				output = output_vector.get(i);
 				routput = routputs.get(i);
-
+				
 				squared_error += (classification) ?
                                    Math.pow((desired_output - routput), 2)
                                   :Math.pow((desired_output - output), 2);
@@ -71,7 +97,7 @@ public class SquaredError {
 	}
 
 	// Mean Squared Error.
-/*
+
 	public 	Double getMeanSquaredError(List<Double> desired_output_vector,
                                        List<Double> output_vector,
                                        int num_output_nodes) {
@@ -82,7 +108,10 @@ public class SquaredError {
                                                N);
 		return (squared_error / N);
 	}
-*/
+
+
+// Classification / Aproximation.
+
 
 	// Normalized Average Squared Error of all the samples.
 

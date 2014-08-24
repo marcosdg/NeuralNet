@@ -28,7 +28,7 @@ public class EarlyStop extends StopCriteria {
 		this.supervised_learning_rule = rule;
 		this.strip_length = strip_length;
 
-		// Any net should not have more than max_generalization_loss
+		// Any net should have more than max_generalization_loss
 		// so that's a good value to start off.
 		this.best_generalization_loss = max_generalization_loss;
 
