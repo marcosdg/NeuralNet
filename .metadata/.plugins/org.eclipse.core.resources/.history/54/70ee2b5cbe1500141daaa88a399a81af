@@ -1,8 +1,0 @@
-package core.learning.error;
-
-public class MeanSquaredError extends SquaredError {
-
-	public MeanSquaredError() {
-		//super();
-	}
-}
