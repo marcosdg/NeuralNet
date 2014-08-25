@@ -34,6 +34,7 @@ public class Statistics {
 
 // Neural Network configuration.
 
+
 	public NeuralNetwork getNeuralNetwork() {
 		return this.trained_net;
 	}
@@ -80,7 +81,6 @@ public class Statistics {
                 .getEarlyStop()
                 .getAverageErrorPerTestSample(output_vectors);
 	}
-
 
 	// Generalization losses.
 
@@ -143,11 +143,11 @@ public class Statistics {
 		return Math.sqrt(this.getAverage(sqdiffs));
 	}
 
-	// Classification.
-
-	/* After training the net on different PROBEN1 benchmarks (eg. horse1,
+	/* Classification.
+	 *
+	 * After training the net on different PROBEN1 benchmarks (eg. horse1,
 	 * horse2, horse3) we must say explicitly which one to use for test.
-	 * */
+	 */
 
 	public int getNumberOfClassificationMissesOnTraining(Benchmark bench) {
 		List<Sample> training_samples = bench.getTrainingSamples();
