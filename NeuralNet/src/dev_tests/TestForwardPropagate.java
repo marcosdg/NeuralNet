@@ -231,15 +231,20 @@ System.out.println("========= BACKPROP CONFIG =========");
 
 // RUN
 
-		System.out.println("trained: " + backProp.getNeuralNetwork().isTrained());
+		System.out.println("trained ? " + backProp.getNeuralNetwork().isTrained());
 		System.out.println("learning ...");
 		neural_network.learn();
 
-		System.out.println("trained: " + backProp.getNeuralNetwork().isTrained());
+		System.out.println("trained ? " + backProp.getNeuralNetwork().isTrained());
+		System.out.println("original trained ? " + neural_network.isTrained());
+
+		System.out.println("original net: " + neural_network);
+		System.out.println("backprop net: " + backProp.getNeuralNetwork());
+		System.out.println("backprop best net: " + backProp.getBestNeuralNetwork());
 
 System.out.println("========= STATS =========");
 
-		Statistics stats = new Statistics(neural_network);
+		Statistics stats = new Statistics(backProp.getNeuralNetwork());
 
 		System.out.println("etrs size: " + stats.getEtrs().size());
 		System.out.println("evas size: " + stats.getEvas().size());
@@ -247,24 +252,14 @@ System.out.println("========= STATS =========");
 		System.out.println("gls size: " + stats.getGLs().size());
 		System.out.println("pks size: " + stats.getPKs().size());
 
-/*
-		System.out.println("Neuron 1 error: " + neuron1.getError());
-		System.out.println("Neuron 2 error: " + neuron2.getError());
-		System.out.println("Neuron 3 error: " + neuron3.getError());
-		System.out.println("Training output vectors size: " + backProp.getTrainingOutputVectors().size());
-		System.out.println("Number of Layers: " + neural_network.getNumberOfLayers());
+		int training_fails = stats
+                             .getNumberOfClassificationMissesOnTraining(benchmark),
+            validation_fails = stats
+                               .getNumberOfClassificationMissesOnValidation(benchmark),
+            test_fails = stats.getNumberOfClassificationMissesOnTest(benchmark);
 
-System.out.println("===== NEURAL NETWORK STATE AFTER FORWARD-PROPAGATION =====");
-System.out.println();
-
-		System.out.println("Neuron 1 [netinput]: " + neuron1.getNetInput());
-		System.out.println("Neuron 1 [output]: " + neuron1.getOutput());
-
-		System.out.println("Neuron 2 [netinput]: " + neuron2.getNetInput());
-		System.out.println("Neuron 2 [output]: " + neuron2.getOutput());
-
-		System.out.println("Neuron 3 [netinput]: " + neuron3.getNetInput());
-		System.out.println("Neuron 3 [OUTPUT]: " + neuron3.getOutput());
-*/
+		System.out.println("training failures: " + training_fails);
+		System.out.println("validation failures: " + validation_fails);
+		System.out.println("test failures: " + test_fails);
 	}
 }

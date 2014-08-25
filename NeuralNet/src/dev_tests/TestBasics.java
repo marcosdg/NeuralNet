@@ -403,24 +403,32 @@ System.out.println();
 		System.out.println("backprop_copy training output vectors size: " + backprop_copy.getTrainingOutputVectors().size());
 */
 
-		System.out.println("-------- TIME TRAVEL ---------");
-
 		NeuralNetwork net_copy = neural_network.copy();
 		net_copy.setLabel("Neural Network copy");
+		Backpropagation original_backprop = (Backpropagation) neural_network.getLearningRule();
+		Backpropagation copy_backprop = (Backpropagation) net_copy.getLearningRule();
+/*
+		System.out.println("-------- CHECKPOINT ---------");
 
 		System.out.println("net1: " + neural_network);
 		System.out.println("net1.copy: " + net_copy);
 
-		Backpropagation original_backprop = (Backpropagation) neural_network.getLearningRule();
-		Backpropagation copy_backprop = (Backpropagation) net_copy.getLearningRule();
-
+		System.out.println("net1.bestNet BEFORE set: " + neural_network.getLearningRule().getBestNeuralNetwork());
 		original_backprop.setBestNeuralNetwork(net_copy);
-		System.out.println("net1.bestNet: " + neural_network.getLearningRule().getBestNeuralNetwork());
+		System.out.println("net1.bestNet AFTER set: " + neural_network.getLearningRule().getBestNeuralNetwork());
 
 		original_backprop.setNeuralNetwork(neural_network.getLearningRule().getBestNeuralNetwork());
 
 		System.out.println("neural_network reference from LearningRule (changed to best net): " + original_backprop.getNeuralNetwork());
 		System.out.println("The original net1 won't change: " + neural_network);
+*/
+		System.out.println("-------- TIME TRAVEL ---------");
+		System.out.println("net reference from Learning Rule BEFORE set: " +
+                             original_backprop.getNeuralNetwork());
+		original_backprop.setNeuralNetwork(net_copy);
+		System.out.println("net reference from Learning Rule AFTER set: " +
+                             original_backprop.getNeuralNetwork());
+
 
 /*
 		System.out.println("-------- NEURAL NETWORK ---------");

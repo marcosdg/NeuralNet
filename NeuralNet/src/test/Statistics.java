@@ -34,6 +34,9 @@ public class Statistics {
 
 // Neural Network configuration.
 
+	public NeuralNetwork getNeuralNetwork() {
+		return this.trained_net;
+	}
 	public void setTrainedNet(NeuralNetwork net) {
 		if (net == null || !net.isTrained()) {
 			throw new IllegalArgumentException("Empty or not a trained net");
