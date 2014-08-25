@@ -1,7 +1,7 @@
 package core.learning;
 
 import core.NeuralNetwork;
-import core.data.Benchmark;
+import experiment.data.Benchmark;
 
 abstract public class LearningRule {
 

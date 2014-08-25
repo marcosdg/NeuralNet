@@ -1,13 +1,13 @@
-package test;
+package experiment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import core.NeuralNetwork;
-import core.data.Benchmark;
-import core.data.Sample;
 import core.learning.Backpropagation;
 import core.learning.error.SquaredError;
+import experiment.data.Benchmark;
+import experiment.data.Sample;
 
 public class Statistics {
 

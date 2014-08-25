@@ -2,9 +2,9 @@ package dev_tests;
 
 import java.util.List;
 
-import core.data.Benchmark;
-import core.data.ProbenFileParser;
-import core.data.Sample;
+import experiment.data.Benchmark;
+import experiment.data.ProbenFileParser;
+import experiment.data.Sample;
 
 public class TestParse {
 	public static void main(String[] args) {

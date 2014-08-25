@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import core.data.Sample;
 import core.learning.Backpropagation;
 import core.learning.LearningRule;
+import experiment.data.Sample;
 
 /*
  * Represents a collection of Layers.

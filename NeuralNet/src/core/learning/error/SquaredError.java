@@ -3,8 +3,8 @@ package core.learning.error;
 import java.util.ArrayList;
 import java.util.List;
 
-import core.data.Benchmark;
-import core.data.Sample;
+import experiment.data.Benchmark;
+import experiment.data.Sample;
 
 public class SquaredError {
 

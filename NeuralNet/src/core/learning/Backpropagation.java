@@ -10,8 +10,8 @@ import core.NeuralNetwork;
 import core.Neuron;
 import core.Node;
 import core.Weight;
-import core.data.Benchmark;
-import core.data.Sample;
+import experiment.data.Benchmark;
+import experiment.data.Sample;
 
 
 public class Backpropagation extends SupervisedLearning {

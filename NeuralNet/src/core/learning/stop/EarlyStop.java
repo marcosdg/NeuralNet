@@ -2,9 +2,9 @@ package core.learning.stop;
 
 import java.util.List;
 
-import core.data.Sample;
 import core.learning.SupervisedLearning;
 import core.learning.error.SquaredError;
+import experiment.data.Sample;
 
 public class EarlyStop extends StopCriteria {
 

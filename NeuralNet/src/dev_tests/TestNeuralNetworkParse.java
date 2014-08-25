@@ -7,11 +7,11 @@ import core.InputNode;
 import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
-import core.data.Benchmark;
-import core.data.NeuralNetworkParse;
-import core.data.ProbenFileParser;
-import core.data.Sample;
 import core.learning.Backpropagation;
+import experiment.data.Benchmark;
+import experiment.data.NeuralNetworkParse;
+import experiment.data.ProbenFileParser;
+import experiment.data.Sample;
 
 public class TestNeuralNetworkParse {
 	public static void main(String[] args) {

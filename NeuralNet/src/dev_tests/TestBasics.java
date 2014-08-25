@@ -12,10 +12,10 @@ import core.Neuron;
 import core.Node;
 import core.Weight;
 import core.activation.Linear;
-import core.data.Benchmark;
 import core.learning.Backpropagation;
 import core.learning.LearningRule;
 import core.propagation.WeightedSum;
+import experiment.data.Benchmark;
 
 public class TestBasics {
 	public static void main(String[] args) {

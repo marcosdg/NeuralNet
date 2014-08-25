@@ -3,15 +3,11 @@ package dev_tests;
 import java.util.ArrayList;
 import java.util.List;
 
-import test.Statistics;
 import core.InputNode;
 import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
 import core.activation.Sigmoid;
-import core.data.Benchmark;
-import core.data.ProbenFileParser;
-import core.data.Sample;
 import core.learning.Backpropagation;
 import core.learning.LearningRule;
 import core.learning.error.SquaredError;
@@ -19,6 +15,10 @@ import core.learning.stop.EarlyStop;
 import core.learning.stop.MaxEpochsStop;
 import core.learning.stop.StopCriteria;
 import core.propagation.WeightedSum;
+import experiment.Statistics;
+import experiment.data.Benchmark;
+import experiment.data.ProbenFileParser;
+import experiment.data.Sample;
 
 public class TestForwardPropagate {
 

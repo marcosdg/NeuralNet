@@ -3,10 +3,10 @@ package core.learning;
 import java.util.ArrayList;
 import java.util.List;
 
-import core.data.Benchmark;
 import core.learning.stop.EarlyStop;
 import core.learning.stop.MaxEpochsStop;
 import core.learning.stop.StopCriteria;
+import experiment.data.Benchmark;
 
 abstract public class SupervisedLearning extends LearningRule {
 
