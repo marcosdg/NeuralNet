@@ -1,0 +1,6 @@
+# Eclipse general
+.metadata
+.settings/
+
+# Locally stored "launch configurations"
+*.launch
