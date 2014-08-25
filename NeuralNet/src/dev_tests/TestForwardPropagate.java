@@ -243,7 +243,7 @@ System.out.println("========= STATS =========");
 
 		System.out.println("etrs size: " + stats.getEtrs().size());
 		System.out.println("evas size: " + stats.getEvas().size());
-		System.out.println("etts size: " + stats.getEtts().size());
+		System.out.println("etts size: " + stats.getEtes().size());
 		System.out.println("gls size: " + stats.getGLs().size());
 		System.out.println("pks size: " + stats.getPKs().size());
 

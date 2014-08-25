@@ -199,7 +199,7 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 
 
-// Training Output vectors.
+// Training output vectors.
 
 
 	public List<List<Double>> getTrainingOutputVectors() {
@@ -213,7 +213,7 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 
 
-// Validation Output vectors.
+// Validation output vectors.
 
 
 	public List<List<Double>> getValidationOutputVectors() {

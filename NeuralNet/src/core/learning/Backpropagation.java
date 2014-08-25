@@ -3,8 +3,6 @@ package core.learning;
 import java.util.ArrayList;
 import java.util.List;
 
-import test.Statistics;
-
 import core.Connection;
 import core.InputNode;
 import core.Layer;

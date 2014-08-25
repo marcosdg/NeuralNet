@@ -14,7 +14,6 @@ import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
 import core.Node;
-import core.activation.Linear;
 import core.activation.Sigmoid;
 import core.learning.Backpropagation;
 import core.learning.stop.EarlyStop;

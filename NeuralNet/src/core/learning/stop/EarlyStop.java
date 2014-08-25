@@ -83,74 +83,70 @@ public class EarlyStop extends StopCriteria {
 // Error measures.
 
 
+	public Double getAverageErrorPerXsample(List<Sample> xsamples,
+                                           List<List<Double>> output_vectors) {
+		int num_output_nodes = this
+                               .supervised_learning_rule.getNeuralNetwork()
+                               .getOutputLayer()
+                               .numberOfNodes();
+		boolean is_classification = this
+                                     .supervised_learning_rule
+                                     .getBenchmark()
+                                     .isClassification();
+		Double squared_error = 0.0;
+
+		if (is_classification) {
+			squared_error = SquaredError
+                            .getSquaredErrorPercentage(xsamples,
+                                                       output_vectors,
+                                                       num_output_nodes,
+                                                       true);
+		} else {
+			squared_error = SquaredError
+                            .getSquaredErrorPercentage(xsamples,
+                                                       output_vectors,
+                                                       num_output_nodes,
+                                                       false);
+		}
+		return squared_error;
+	}
+
+
+
 	// Etr(t).
 
-	public Double getAverageErrorPerTrainingSample(List<List<Double>> output_vectors) {
+	public Double getAverageErrorPerTrainingSample(List<List<Double>>
+                                                               output_vectors) {
 		List<Sample> training_samples = this
                                         .supervised_learning_rule
                                         .getBenchmark()
                                         .getTrainingSamples();
-		int num_output_nodes = this
-                                .supervised_learning_rule
-                                .getNeuralNetwork()
-                                .getOutputLayer()
-                                .numberOfNodes();
-		boolean is_classification = this
-                                     .supervised_learning_rule
-                                     .getBenchmark()
-                                     .isClassification();
-		Double squared_error = 0.0;
-
-		if (is_classification) {
-			squared_error = SquaredError
-                            .getSquaredErrorPercentage(training_samples,
-                                                       output_vectors,
-                                                       num_output_nodes,
-                                                       true);
-		} else {
-			squared_error = SquaredError
-                            .getSquaredErrorPercentage(training_samples,
-                                                       output_vectors,
-                                                       num_output_nodes,
-                                                       false);
-		}
-		return squared_error;
+		return this.getAverageErrorPerXsample(training_samples, output_vectors);
 	}
 
 	// Eva(t).
 
-	public Double getAverageErrorPerValidationSample(List<List<Double>> output_vectors) {
+	public Double getAverageErrorPerValidationSample(List<List<Double>>
+                                                               output_vectors) {
 		List<Sample> validation_samples = this
+                                        .supervised_learning_rule
+                                        .getBenchmark()
+                                        .getValidationSamples();
+		return this.getAverageErrorPerXsample(validation_samples,
+                                                output_vectors);
+	}
+
+	// Ete(t).
+
+
+	public Double getAverageErrorPerTestSample(List<List<Double>>
+                                                               output_vectors) {
+		List<Sample> test_samples = this
                                           .supervised_learning_rule
                                           .getBenchmark()
-                                          .getValidationSamples();
-		int num_output_nodes = this
-                                .supervised_learning_rule
-                                .getNeuralNetwork()
-                                .getOutputLayer()
-                                .numberOfNodes();
-		boolean is_classification = this
-                                     .supervised_learning_rule
-                                     .getBenchmark()
-                                     .isClassification();
-		Double squared_error = 0.0;
-
-		if (is_classification) {
-			squared_error = SquaredError
-                            .getSquaredErrorPercentage(validation_samples,
-                                                       output_vectors,
-                                                       num_output_nodes,
-                                                       true);
-		} else {
-			squared_error = SquaredError
-                            .getSquaredErrorPercentage(validation_samples,
-                                                       output_vectors,
-                                                       num_output_nodes,
-                                                       false);
-		}
-
-		return squared_error;
-	}
+                                          .getTestSamples();
+		return this.getAverageErrorPerXsample(test_samples, output_vectors);
+}
 
 	// Eopt(t).
 
@@ -165,10 +161,6 @@ public class EarlyStop extends StopCriteria {
 		}
 		return min_eva;
 	}
-
-
-
-
 
 
 // Generalization Loss configuration.

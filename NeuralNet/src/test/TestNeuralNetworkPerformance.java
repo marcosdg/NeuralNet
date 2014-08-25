@@ -1,10 +1,13 @@
 package test;
 
+import java.util.List;
+
 import core.NeuralNetwork;
 
 public class TestNeuralNetworkPerformance {
 
 	private NeuralNetwork trained_net;
+	private List<Double> etts; // errors test set.
 
 
 // Creation.
@@ -17,4 +20,5 @@ public class TestNeuralNetworkPerformance {
 			this.trained_net = net;
 		}
 	}
+
 }

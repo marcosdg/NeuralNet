@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.NeuralNetwork;
+import core.data.Benchmark;
 import core.data.Sample;
 import core.learning.Backpropagation;
 import core.learning.error.SquaredError;
@@ -12,7 +13,8 @@ public class Statistics {
 
 	private Backpropagation done_backprop;
 	private NeuralNetwork trained_net;
-	private List<Double> etts; // errors test set.
+	private List<Double> etes; // errors test set.
+	private List<List<Double>> test_output_vectors;
 
 
 // Creation.
@@ -24,7 +26,19 @@ public class Statistics {
 		} else {
 			this.trained_net = net;
 			this.done_backprop = (Backpropagation) net.getLearningRule();
-			this.etts = new ArrayList<Double>();
+			this.etes = new ArrayList<Double>();
+			this.test_output_vectors = new ArrayList<List<Double>>();
+		}
+	}
+
+
+// Neural Network configuration.
+
+	public void setTrainedNet(NeuralNetwork net) {
+		if (net == null || !net.isTrained()) {
+			throw new IllegalArgumentException("Empty or not a trained net");
+		} else {
+			this.trained_net = net;
 		}
 	}
 
@@ -46,14 +60,24 @@ public class Statistics {
 
 	// Errors on test set.
 
-	public List<Double> getEtts() {
-		return this.etts;
+	public List<Double> getEtes() {
+		return this.etes;
 	}
-	public void saveEtt(Double ett) {
-		if (ett != null) {
-			this.etts.add(ett);
+	public void saveEte(Double ete) {
+		if (ete != null) {
+			this.etes.add(ete);
 		}
 	}
+	public Double computeEte(Benchmark bench) {
+		List<Sample> test_samples = bench.getTestSamples();
+		List<List<Double>> output_vectors = this
+                                            .computeTestOutputVectors(test_samples);
+		return this
+                .done_backprop
+                .getEarlyStop()
+                .getAverageErrorPerTestSample(output_vectors);
+	}
+
 
 	// Generalization losses.
 
@@ -118,35 +142,59 @@ public class Statistics {
 
 	// Classification.
 
-	public int getNumberOfClassificationMissesOnTraining() {
-		List<Sample> training_samples = this
-                                        .done_backprop
-                                        .getBenchmark()
-                                        .getTrainingSamples();
+	/* After training the net on different PROBEN1 benchmarks (eg. horse1,
+	 * horse2, horse3) we must say explicitly which one to use for test.
+	 * */
+
+	public int getNumberOfClassificationMissesOnTraining(Benchmark bench) {
+		List<Sample> training_samples = bench.getTrainingSamples();
 		List<List<Double>> training_outputs = this
                                               .done_backprop
                                               .getTrainingOutputVectors();
-		return SquaredError
-                .getNumberOfClassificationMisses(training_samples,
-                                                 training_outputs);
+
+		return SquaredError.getNumberOfClassificationMisses(training_samples,
+                                                             training_outputs);
 	}
-	public int getNumberOfClassificationMissesOnValidation() {
-		List<Sample> validation_samples = this
-                                          .done_backprop
-                                          .getBenchmark()
-                                          .getValidationSamples();
+	public int getNumberOfClassificationMissesOnValidation(Benchmark bench) {
+		List<Sample> validation_samples = bench.getValidationSamples();
 		List<List<Double>> validation_outputs = this
                                                 .done_backprop
                                                 .getValidationOutputVectors();
-		return SquaredError
-                .getNumberOfClassificationMisses(validation_samples,
-                                                 validation_outputs);
+
+		return SquaredError.getNumberOfClassificationMisses(validation_samples,
+                                                             validation_outputs);
 	}
-	/* TODO
-	public int getNumberOfClassificationMissesOnTest() {
+	public int getNumberOfClassificationMissesOnTest(Benchmark bench) {
+		List<Sample> test_samples = bench.getTestSamples();
+		List<List<Double>> test_outputs = this
+                                          .computeTestOutputVectors(test_samples);
+
+		return SquaredError.getNumberOfClassificationMisses(test_samples,
+                                                             test_outputs);
 	}
-	*/
 
 
+// Test output vectors.
 
+
+	public List<List<Double>> getTestOutputVectors() {
+		return this.test_output_vectors;
+	}
+	public void saveTestOutputVector(List<Double> output_vector) {
+		this.test_output_vectors.add(output_vector);
+	}
+	public List<List<Double>> computeTestOutputVectors(List<Sample> test_samples) {
+		List<List<Double>> output_vectors = new ArrayList<List<Double>>();
+		List<Double> output_vector = null;
+
+		// Clone the net not to mess the original one.
+
+		NeuralNetwork net_copy = this.trained_net.copy();
+
+		for (Sample test_sample: test_samples) {
+			output_vector = net_copy.computeOutput(test_sample);
+			output_vectors.add(output_vector);
+		}
+		return output_vectors;
+	}
 }
