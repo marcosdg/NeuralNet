@@ -21,7 +21,7 @@ import core.learning.stop.MaxEpochsStop;
 import core.learning.stop.StopCriteria;
 import core.propagation.WeightedSum;
 
-public class NeuralNetworkParse {
+public class NeuralNetworkParser {
 	private String config_file_path;
 
 	// Header parameters.
@@ -44,7 +44,9 @@ public class NeuralNetworkParse {
 	private WeightedSum weightedSum;
 	private Sigmoid sigmoid;
 	private Backpropagation backpropagation;
+
 	private Benchmark benchmark;
+	private boolean ready_bench;
 
 	// Format.
 
@@ -57,8 +59,7 @@ public class NeuralNetworkParse {
 	private int currentNeuron;
 
 
-	public NeuralNetworkParse(String config_dir, String config_file_name, Benchmark benchmark)
-	{
+	public NeuralNetworkParser(String config_dir, String config_file_name) {
 		if (config_file_name.isEmpty() || config_dir.isEmpty()) {
 			throw new IllegalArgumentException("Config file must not be null !");
 		} else {
@@ -81,14 +82,16 @@ public class NeuralNetworkParse {
 
 			// Neural Network.
 
-			NeuralNetworkParse.NETWORK_LABEL = (new File(this.config_file_path))
+			NeuralNetworkParser.NETWORK_LABEL = (new File(this.config_file_path))
                                                .getName();
 			this.layers = new ArrayList<Layer>();
 			this.neurons = new ArrayList<Neuron>();
 			this.weightedSum = new WeightedSum();
 			this.sigmoid = new Sigmoid();
-			this.benchmark = benchmark;
 			this.currentNeuron = 0;
+
+			// Benchmark.
+			this.ready_bench = false;
 		}
 	}
 
@@ -109,6 +112,17 @@ public class NeuralNetworkParse {
 		return this.net_design;
 	}
 
+// Benchmark.
+
+	public void setBenchmark(Benchmark bench) {
+		if (bench == null) {
+			throw new IllegalArgumentException("Benchmark does not exists");
+		} else {
+			this.benchmark = bench;
+			this.ready_bench = true;
+		}
+	}
+
 
 // Parsing.
 
@@ -117,6 +131,9 @@ public class NeuralNetworkParse {
 
 	public void parse() {
 		String last_line = "";
+		if (!this.ready_bench) {
+			throw new IllegalStateException("Must set a benchmark first");
+		}
 		try {
 			FileReader freader = new FileReader(this.config_file_path);
 			BufferedReader breader = new BufferedReader(freader);
@@ -204,7 +221,7 @@ public class NeuralNetworkParse {
 
 		this.network = new NeuralNetwork(this.layers,
                                           this.backpropagation,
-                                          NeuralNetworkParse.NETWORK_LABEL);
+                                          NeuralNetworkParser.NETWORK_LABEL);
 	}
 
 	// Default Network structure.
@@ -448,8 +465,10 @@ public class NeuralNetworkParse {
 				Double inputWeight = stringToDouble(split[i]);
 				InputNode input_node = new InputNode(this.layers.get(DATA_LAYER), "Input Node " + (i + 1),
                         InputNode.INPUT_DATA_NODE());
-				// TODO input data must be filled with sample data
+
+				// input data must be filled with sample data
 				input_node.setInputData(1);
+
 				this.layers.get(DATA_LAYER).addNode(input_node);
 				this.network.createConnection(input_node, this.neurons.get(i), inputWeight,
 						"Connection: " + input_node.getLabel() + " -> Neuron" + (i + 1));

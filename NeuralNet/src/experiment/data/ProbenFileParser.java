@@ -13,6 +13,9 @@ public class ProbenFileParser {
 	private Benchmark benchmark;
 	private String proben_file_path;
 
+	private String proben_dir,
+                    proben_file_name;
+
 
 // Creation.
 
@@ -26,6 +29,9 @@ public class ProbenFileParser {
 
 			this.benchmark = new Benchmark();
 
+			this.proben_dir = proben_dir;
+			this.proben_file_name = proben_file_name;
+
 			// Build the path to 'PROBEN1' file
 
 			this.proben_file_path = new StringBuilder(pathToWorkSpace())
@@ -37,10 +43,42 @@ public class ProbenFileParser {
 		}
 	}
 
+
+// Files.
+
 	// To support loading files with relative paths.
 
 	private String pathToWorkSpace() {
 		return System.getProperty("user.dir");
+	}
+
+	public String getProbenDirectory() {
+		return this.proben_dir;
+	}
+	public String getProbenFileName() {
+		return this.proben_file_name;
+	}
+
+	public String getProbenFilePath() {
+		return this.proben_file_path;
+	}
+	public void setProbenFilePath(String proben_dir, String proben_file) {
+		if (proben_dir == "" || proben_file == "") {
+			throw new IllegalArgumentException("PROBEN path is empty");
+		} else {
+			this.proben_file_path = new StringBuilder(pathToWorkSpace())
+                                                       .append("/src/proben1/")
+                                                       .append(proben_dir)
+                                                       .append("/")
+                                                       .append(proben_file)
+                                                       .toString();
+		}
+	}
+
+	// Uses current directory.
+
+	public void setProbenFile(String proben_file) {
+		this.setProbenFilePath(this.proben_dir, proben_file);
 	}
 
 

@@ -1,82 +1,50 @@
 package dev_tests;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import core.Connection;
-import core.InputNode;
 import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
 import core.learning.Backpropagation;
-import experiment.data.Benchmark;
-import experiment.data.NeuralNetworkParser;
-import experiment.data.ProbenFileParser;
-import experiment.data.Sample;
 
-public class TestNeuralNetworkParse {
+import experiment.Experiment;
+import experiment.data.Benchmark;
+
+public class TestExperiment {
+
 	public static void main(String[] args) {
 
+		// Data files.
 
-// Data file.
+		String net_dir = "single-layer",
+               net_file = "net-test",
+               proben_dir = "example";
 
-		String proben_dir = "example";
-		String proben_file_name = "example1.dt";
+		List<String> proben_files = new ArrayList<String>();
+		proben_files.add("example1.dt");
+		proben_files.add("example2.dt");
+		proben_files.add("example3.dt");
 
-// Parsing.
+		// Experiment.
 
-		ProbenFileParser proben_parser = new ProbenFileParser(proben_dir, proben_file_name);
+		Experiment experiment = new Experiment(net_dir, net_file, proben_dir, proben_files);
 
-		proben_parser.parse();
+		System.out.println("======= LOADING BENCHMARKS =======");
 
-		Benchmark benchmark = proben_parser.getBenchmark();
+		List<Benchmark> benchs = experiment.loadAllBenchmarks();
 
-System.out.println("============= TEST: DATA FILE PARSING  ==================");
-
-		System.out.println(" Data file parsed: " + benchmark.getLabel());
-
-		System.out.println(" Num. training samples: " +
-				benchmark.getNumberOfTrainingSamples());
-
-		System.out.println(" Num. validation samples: " +
-				benchmark.getNumberOfValidationSamples());
-
-		System.out.println(" Num. test samples: " +
-				benchmark.getNumberOfTestSamples());
-
-		List<Sample> samples = benchmark.getSamples();
-		Sample sample = null;
-
-		System.out.println("\t" + "FIRST 3 SAMPLES PARSED");
-
-		for (int i = 0; i < 3; i += 1) {
-			sample = samples.get(i);
-			System.out.println("----- SAMPLE " + i + " -----");
-
-			System.out.println("  * Inputs *");
-			for (Double input: sample.getInputVector()) {
-				System.out.print(input + " ");
-			}
-			System.out.println();
-
-			System.out.println("  * Desired Outputs *");
-			for (Double desired: sample.getDesiredOutputVector()) {
-				System.out.print(desired + " ");
-			}
-			System.out.println();
+		System.out.println("Number of benchs loaded: " + benchs.size());
+		System.out.println("Which ones ?");
+		for (Benchmark bench: benchs) {
+			System.out.println("  " + bench.getLabel());
 		}
 
-System.out.println("============= TEST: NEURAL NETWORK PARSING  ==================");
+		System.out.println();
+		System.out.println("======= LOADING NEURAL NET =======");
 
-		String config_dir = "single-layer",
-               config_file_name = "net-default-test";
-
-		NeuralNetworkParser net_parser = new NeuralNetworkParser(config_dir,
-	                                                            config_file_name);
-		net_parser.setBenchmark(benchmark);
-
-		net_parser.parse();
-
-		NeuralNetwork net = net_parser.getNeuralNetwork();
+		NeuralNetwork net = experiment.loadNeuralNetwork();
 
 		System.out.println("-------- [ NET GENERAL INFO ] -------- ");
 
@@ -103,18 +71,7 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
                                                  .getInputDataLayer()
                                                  .getBiasNodes()
                                                  .size());
-		/*
-		System.out.println("Num. bias synapses: " + net
-                                                    .getBiasSynapses()
-                                                    .size());
-		System.out.println("Num. input data synapses: " + net
-                                                          .getInputDataSynapses()
-                                                          .size());
-		System.out.println("Num. neuro synapses: " + net
-                                                     .getNeuroSynapses()
-                                                     .size());
-        */
-		System.out.println();
+
 		System.out.println("-------- [ INPUT DATA NODES] -------- ");
 		System.out.println();
 		System.out.println("SYNAPSES: ");
@@ -181,7 +138,6 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 				System.out.println("\t  ------");
 			}
 		}
-
 		System.out.println("-------- [ LEARNING PARAMETERS ] -------- ");
 
 		Backpropagation backprop = ((Backpropagation) net.getLearningRule());
@@ -194,17 +150,7 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 		System.out.println("STRIP: " + backprop.getEarlyStop().getStripLength());
 		System.out.println("GL: " + backprop.getEarlyStop().getMaxGeneralizationLoss());
 		System.out.println("PK: " + backprop.getEarlyStop().getMinTrainingProgress());
-		System.out.println("NET_DESIGN: " + net_parser.getNetworkDesign());
+		System.out.println("NET_DESIGN: " + experiment.getNeuralNetworkParser().getNetworkDesign());
 
-
-		System.out.println();
-		System.out.println("The following identifiers must be the same: ");
-		System.out.println("  Backprop reference to best net: " + backprop.getBestNeuralNetwork());
-		System.out.println("  Backprop reference to net: " + backprop.getNeuralNetwork());
-		System.out.println("  net: " + net);
-		System.out.println("The following identifiers must be the same: ");
-		System.out.println("  Backprop reference to benchmark: " + backprop.getBenchmark());
-		System.out.println("  benchmark: " + benchmark);
 	}
 }
-
