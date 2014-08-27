@@ -31,7 +31,7 @@ public class TestExperiment {
 
 		Experiment experiment = new Experiment(net_dir, net_file, proben_dir, proben_files);
 
-		System.out.println("======= LOADING BENCHMARKS =======");
+		System.out.println("=======[ LOADING BENCHMARKS ]=======");
 
 		List<Benchmark> benchs = experiment.loadAllBenchmarks();
 
@@ -42,7 +42,7 @@ public class TestExperiment {
 		}
 
 		System.out.println();
-		System.out.println("======= LOADING NEURAL NET =======");
+		System.out.println("=======[ LOADING NEURAL NET ]=======");
 
 		NeuralNetwork net = experiment.loadNeuralNetwork();
 
@@ -151,6 +151,15 @@ public class TestExperiment {
 		System.out.println("GL: " + backprop.getEarlyStop().getMaxGeneralizationLoss());
 		System.out.println("PK: " + backprop.getEarlyStop().getMinTrainingProgress());
 		System.out.println("NET_DESIGN: " + experiment.getNeuralNetworkParser().getNetworkDesign());
+
+
+		System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
+
+		experiment.setNumberOfRuns(1);
+		experiment.run();
+
+		System.out.println("Num stats saved: " + experiment.getStats().size());
+
 
 	}
 }

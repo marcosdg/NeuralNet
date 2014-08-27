@@ -173,7 +173,7 @@ public class Backpropagation extends SupervisedLearning {
 			getEarlyStop().setBestGeneralizationLoss(now_loss);
 			setBestNeuralNetwork(getNeuralNetwork().copy());
 		} else {
-			// Time-travel to the past.
+			// Time-travel to the last checkpoint.
 
 			this.setNeuralNetwork(getBestNeuralNetwork());
 		}

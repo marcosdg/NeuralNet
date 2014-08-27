@@ -112,7 +112,9 @@ public class NeuralNetworkParser {
 		return this.net_design;
 	}
 
+
 // Benchmark.
+
 
 	public void setBenchmark(Benchmark bench) {
 		if (bench == null) {

@@ -39,6 +39,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	private List<List<Double>> training_output_vectors,
                                 validation_output_vectors;
 
+	// TODO: minimum evaluation error
+	private int epochs_to_min_eva;
+
 
 	public SupervisedLearning(double learning_rate, Benchmark bench) {
 		super(bench);
@@ -57,6 +60,8 @@ abstract public class SupervisedLearning extends LearningRule {
 
 			this.training_output_vectors = new ArrayList<List<Double>>();
 			this.validation_output_vectors = new ArrayList<List<Double>>();
+
+
 		}
 	}
 
