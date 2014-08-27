@@ -186,13 +186,15 @@ public class Statistics {
 	public void saveTestOutputVector(List<Double> output_vector) {
 		this.test_output_vectors.add(output_vector);
 	}
+
+	// Considers the BestNetwork to compute the test errors at minimum GL, or
+	// equivalently, at minimum validation error.
+
 	public List<List<Double>> computeTestOutputVectors(List<Sample> test_samples) {
 		List<List<Double>> output_vectors = new ArrayList<List<Double>>();
 		List<Double> output_vector = null;
 
-		// Clone the net not to mess the original one.
-
-		NeuralNetwork net_copy = this.trained_net.copy();
+		NeuralNetwork net_copy = this.done_backprop.getBestNeuralNetwork().copy();
 
 		for (Sample test_sample: test_samples) {
 			output_vector = net_copy.computeOutput(test_sample);

@@ -140,7 +140,7 @@ public class Experiment {
 
 				// Save results.
 
-				Statistics stat = new Statistics(this.net);
+				Statistics stat = new Statistics(this.net.copy());
 				this.stats.add(stat);
 
 				// Prepare next run.

@@ -10,6 +10,7 @@ import core.Neuron;
 import core.learning.Backpropagation;
 
 import experiment.Experiment;
+import experiment.Statistics;
 import experiment.data.Benchmark;
 
 public class TestExperiment {
@@ -155,10 +156,16 @@ public class TestExperiment {
 
 		System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
 
-		experiment.setNumberOfRuns(1);
+		experiment.setNumberOfRuns(2);
 		experiment.run();
 
 		System.out.println("Num stats saved: " + experiment.getStats().size());
+
+		System.out.println("Check if the nets of the stats are different:");
+		for (Statistics stat: experiment.getStats()) {
+			System.out.println("  net: " + stat.getNeuralNetwork());
+		}
+
 
 
 	}

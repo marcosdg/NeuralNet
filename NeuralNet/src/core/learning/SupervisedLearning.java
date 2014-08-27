@@ -11,7 +11,12 @@ import experiment.data.Benchmark;
 abstract public class SupervisedLearning extends LearningRule {
 
 	private double learning_rate;
-	private int current_epoch;
+	private int current_epoch,
+
+	// Number of epochs in which GL got better
+
+                 num_relevant_epochs;
+
 	private List<StopCriteria> stop_criterias;
 
 	// Record of all the evas up to current epoch (life-time: entire execution).
@@ -39,8 +44,8 @@ abstract public class SupervisedLearning extends LearningRule {
 	private List<List<Double>> training_output_vectors,
                                 validation_output_vectors;
 
-	// TODO: minimum evaluation error
-	private int epochs_to_min_eva;
+
+// Creation.
 
 
 	public SupervisedLearning(double learning_rate, Benchmark bench) {
@@ -49,6 +54,7 @@ abstract public class SupervisedLearning extends LearningRule {
 			throw new IllegalArgumentException("Bad parameters");
 		} else {
 			this.current_epoch = 0;
+			this.num_relevant_epochs = 0;
 			this.learning_rate = learning_rate;
 			this.stop_criterias = new ArrayList<StopCriteria>();
 
@@ -60,8 +66,6 @@ abstract public class SupervisedLearning extends LearningRule {
 
 			this.training_output_vectors = new ArrayList<List<Double>>();
 			this.validation_output_vectors = new ArrayList<List<Double>>();
-
-
 		}
 	}
 
@@ -85,6 +89,12 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 	public void setCurrentEpoch(int epoch) {
 		this.current_epoch = epoch;
+	}
+	public int getNumberOfRelevantEpochs() {
+		return this.num_relevant_epochs;
+	}
+	public void setNumberOfRelevantEpochs(int elapsed) {
+		this.num_relevant_epochs = elapsed;
 	}
 
 

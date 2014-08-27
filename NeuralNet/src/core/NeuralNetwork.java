@@ -60,10 +60,13 @@ public class NeuralNetwork {
 		NeuralNetwork net_copy = new NeuralNetwork(layers_copy,
                                                     backprop_copy,
                                                     this.label);
-
 		// net_copy <----reference--- backprop.
 
 		backprop_copy.setNeuralNetwork(net_copy);
+
+		// Current state of the net.
+
+		net_copy.setTrained(this.trained);
 
 		return net_copy;
 	}

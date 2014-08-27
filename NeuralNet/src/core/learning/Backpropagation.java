@@ -41,6 +41,7 @@ public class Backpropagation extends SupervisedLearning {
 		// SupervisedLearning properties.
 
 		backprop_copy.setCurrentEpoch(this.getCurrentEpoch());
+		backprop_copy.setNumberOfRelevantEpochs(this.getNumberOfRelevantEpochs());
 		backprop_copy.setStopCriterias(this.getStopCriterias());
 
 		List<Double> evas_copy = new ArrayList<Double>(),
@@ -172,6 +173,7 @@ public class Backpropagation extends SupervisedLearning {
 
 			getEarlyStop().setBestGeneralizationLoss(now_loss);
 			setBestNeuralNetwork(getNeuralNetwork().copy());
+			setNumberOfRelevantEpochs(getNumberOfRelevantEpochs() + 1);
 		} else {
 			// Time-travel to the last checkpoint.
 
