@@ -20,7 +20,7 @@ neuralnet -load net_dir net_file proben_dir proben_file [proben_files]
 * Training the net
 
 ```bash
-neuralnet -train
+neuralnet -train number_of_runs
 ```
 
 * Printing statistics
