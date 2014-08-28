@@ -129,32 +129,28 @@ public class Experiment {
 
 	// [TEST]
 	public void trainNeuralNetwork() {
-		Statistics stat = null;
 		if (!this.net_ready) {
 			throw new IllegalStateException("Neural net must be loaded first");
 		} else {
 
-			// [TEST]
-			this.net.learn();
-			this.net.getLearningRule().setBenchmark(this.benchs.get(1));
-			this.net.learn();
-			this.net.getLearningRule().setBenchmark(this.benchs.get(2));
-			System.out.println("$$$$");
+			for (Benchmark bench: this.benchs) {
+				this.net.getLearningRule().setBenchmark(bench);
+				this.net.learn();
 
-
-			/* [ORIGINAL]
+				Statistics stat = new Statistics(this.net.copy());
+				this.saveResult(bench, stat);
+			}
+			/*
 			// Train 1st one.
-			this.net.learn();
 
+			this.net.learn();
 
 			stat = new Statistics(this.net.copy());
 			this.saveResult(this.benchs.get(0), stat);
 
-
 			// The rest of them.
 
 			List<Benchmark> left = this.benchs.subList(1, this.benchs.size());
-
 
 			for (Benchmark bench : left) {
 				this.net.getLearningRule().setBenchmark(bench);
@@ -162,9 +158,7 @@ public class Experiment {
 
 				stat = new Statistics(this.net.copy());
 				this.saveResult(bench, stat);
-
 			}*/
-
 			this.benchs_passed = true;
 		}
 	}

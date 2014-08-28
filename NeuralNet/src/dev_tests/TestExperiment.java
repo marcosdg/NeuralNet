@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import core.Connection;
 import core.Layer;
@@ -170,7 +171,28 @@ public class TestExperiment {
 
 System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
 
-		experiment.setNumberOfRuns(3);
+		experiment.setNumberOfRuns(10);
 		experiment.run();
+
+		Set<Entry<Benchmark, List<Statistics>>> results = experiment.getResults().entrySet();
+
+		for (Entry<Benchmark, List<Statistics>> entry: results) {
+
+			System.out.println(entry.getKey().getName());
+
+			for (Statistics stat: entry.getValue()) {
+				System.out.print(" * ");
+			}
+			System.out.println();
+			System.out.println("----------------------");
+		}
+
+
+
+
+
+
+
+
 	}
 }

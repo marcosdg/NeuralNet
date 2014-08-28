@@ -34,7 +34,8 @@ public class NeuralNetwork {
 			 //  Initially, 'best_net' will be the same object as 'neuralNetwork'.
 			 //  Because of EarlyStop that will change during the learning process.
 
-			this.learningRule.setBestNeuralNetwork(this);
+			//TODO: TEST
+			//this.learningRule.setBestNeuralNetwork(this);
 			this.learningRule.setNeuralNetwork(this);
 		}
 	}
@@ -110,7 +111,9 @@ public class NeuralNetwork {
 // Processing.
 
 
+	//TODO: TEST
 	public void learn() {
+		this.learningRule.setBestNeuralNetwork(this.copy());
 		this.learningRule.apply();
 	}
 
@@ -263,12 +266,14 @@ public class NeuralNetwork {
 
 
 	public Connection findSynapseWithin(Node from,
-                                         Node to,
-                                         List<Connection> synapses) {
+                                           Node to,
+                                           List<Connection> synapses) {
 		Connection lost = null;
 
 		for (Connection synapse: synapses) {
-			if (synapse.getSource() == from && synapse.getTarget() == to) {
+			if (synapse.getSource().getLabel().equals(from.getLabel()) &&
+				synapse.getTarget().getLabel().equals(to.getLabel())) {
+
 				lost = synapse;
 				break;
 			}

@@ -177,7 +177,7 @@ public class Backpropagation extends SupervisedLearning {
 		} else {
 			// Time-travel to the last checkpoint.
 
-			this.setNeuralNetwork(getBestNeuralNetwork());
+			setNeuralNetwork(getBestNeuralNetwork());
 		}
 		flushBufferEtrs();
 	}
