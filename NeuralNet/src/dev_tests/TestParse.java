@@ -25,7 +25,7 @@ public class TestParse {
 
 System.out.println("============= TEST: DATA FILE PARSING  ==================");
 
-		System.out.println(" Data file parsed: " + benchmark.getLabel());
+		System.out.println(" Data file parsed: " + benchmark.getPath());
 
 		System.out.println(" Num. training samples: " +
 				benchmark.getNumberOfTrainingSamples());

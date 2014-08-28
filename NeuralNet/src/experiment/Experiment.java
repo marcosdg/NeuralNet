@@ -1,7 +1,10 @@
 package experiment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import core.NeuralNetwork;
@@ -29,24 +32,21 @@ public class Experiment {
 
 	private List<Benchmark> benchs;
 	private List<String> proben_files;
-	private boolean benchs_ready,
-                      benchs_passed;
+	private boolean benchs_ready, benchs_passed;
 
-	// Save results from each run individually.
+	// Results from each Benchmark from each run
 
-	private List<Statistics> stats;
+	private LinkedHashMap<Benchmark, List<Statistics>> results;
 
 
 // Creation.
 
 
 	public Experiment(String net_dir, String net_file, String proben_dir,
-                         List<String> proben_files) {
-
+                        List<String> proben_files) {
 		if (proben_files.isEmpty()) {
 			throw new IllegalArgumentException("Must feed in at least one proben file");
 		} else {
-
 			this.num_runs = 0;
 			this.run_ready = false;
 
@@ -64,13 +64,11 @@ public class Experiment {
 			this.benchs_ready = false;
 			this.benchs_passed = false;
 
-			this.stats = new ArrayList<Statistics>();
+			this.results = new LinkedHashMap<Benchmark, List<Statistics>>();
 		}
 	}
 
-
 // Processing.
-
 
 	public List<Benchmark> loadAllBenchmarks() {
 
@@ -78,16 +76,20 @@ public class Experiment {
 
 		this.proben_parser.parse();
 		this.benchs.add(this.proben_parser.getBenchmark());
+		this.results.put(this.proben_parser.getBenchmark(),
+                          new ArrayList<Statistics>());
 
 		// The rest of them.
 
-		List<String> left = this.proben_files.subList(1,
-                                                      this.proben_files.size());
+		List<String> left = this.proben_files.subList(1, this.proben_files.size());
 
-		for (String proben_file: left) {
+		for (String proben_file : left) {
 			this.proben_parser.setProbenFile(proben_file);
 			this.proben_parser.parse();
-			this.benchs.add(this.proben_parser.getBenchmark());
+			Benchmark bench = this.proben_parser.getBenchmark();
+
+			this.benchs.add(bench);
+			this.results.put(bench, new ArrayList<Statistics>());
 		}
 		this.benchs_ready = true;
 		return this.benchs;
@@ -108,26 +110,6 @@ public class Experiment {
 		return this.net;
 	}
 
-	public void trainNeuralNetwork() {
-		if (!this.net_ready) {
-			throw new IllegalStateException("Neural net must be loaded first");
-		} else {
-			// Train 1st one.
-
-			this.net.learn();
-
-			// The rest of them.
-
-			List<Benchmark> left = this.benchs.subList(1, this.benchs.size());
-
-			for (Benchmark bench: left) {
-				this.net.getLearningRule().setBenchmark(bench);
-				this.net.learn();
-			}
-			this.benchs_passed = true;
-		}
-	}
-
 	public void run() {
 		if (!this.run_ready) {
 			throw new IllegalArgumentException("Set the number of runs first");
@@ -138,11 +120,6 @@ public class Experiment {
 
 				this.trainNeuralNetwork();
 
-				// Save results.
-
-				Statistics stat = new Statistics(this.net.copy());
-				this.stats.add(stat);
-
 				// Prepare next run.
 
 				this.rebootNet();
@@ -150,15 +127,58 @@ public class Experiment {
 		}
 	}
 
+	// [TEST]
+	public void trainNeuralNetwork() {
+		Statistics stat = null;
+		if (!this.net_ready) {
+			throw new IllegalStateException("Neural net must be loaded first");
+		} else {
 
-	/* TODO
+			// [TEST]
+			this.net.learn();
+			this.net.getLearningRule().setBenchmark(this.benchs.get(1));
+			this.net.learn();
+			this.net.getLearningRule().setBenchmark(this.benchs.get(2));
+			System.out.println("$$$$");
+
+
+			/* [ORIGINAL]
+			// Train 1st one.
+			this.net.learn();
+
+
+			stat = new Statistics(this.net.copy());
+			this.saveResult(this.benchs.get(0), stat);
+
+
+			// The rest of them.
+
+			List<Benchmark> left = this.benchs.subList(1, this.benchs.size());
+
+
+			for (Benchmark bench : left) {
+				this.net.getLearningRule().setBenchmark(bench);
+				this.net.learn();
+
+				stat = new Statistics(this.net.copy());
+				this.saveResult(bench, stat);
+
+			}*/
+
+			this.benchs_passed = true;
+		}
+	}
+
+
+	// TODO
+	/*
 	public void writeStatistics() {
 		if (!this.benchs_passed) {
 			throw new IllegalStateException("Neural net must be trained first");
 		} else {
 		}
 	}
-	*/
+	 */
 
 
 // Runs.
@@ -172,7 +192,8 @@ public class Experiment {
 
 	public void setNumberOfRuns(int num_runs) {
 		if (num_runs <= 0) {
-			throw new IllegalArgumentException("Experiment must be run at least once");
+			throw new IllegalArgumentException(
+					"Experiment must be run at least once");
 		} else {
 			this.num_runs = num_runs;
 			this.run_ready = true;
@@ -186,6 +207,7 @@ public class Experiment {
 	public ProbenFileParser getProbenFileParser() {
 		return this.proben_parser;
 	}
+
 	public NeuralNetworkParser getNeuralNetworkParser() {
 		return this.net_parser;
 	}
@@ -202,6 +224,7 @@ public class Experiment {
 	// to re-initialize net's weights.
 
 	public void rebootNet() {
+
 		Random generator = new Random();
 		this.net.randomizeAllWeights(-0.1, 0.1, generator);
 		this.net.getLearningRule().setBenchmark(this.benchs.get(0));
@@ -216,10 +239,29 @@ public class Experiment {
 	}
 
 
-// Stats.
+// Results.
 
 
-	public List<Statistics> getStats() {
-		return this.stats;
+	public LinkedHashMap<Benchmark, List<Statistics>> getResults() {
+		return this.results;
+	}
+
+	public List<Statistics> getBenchmarkStats(Benchmark bench) {
+		return this.results.get(bench);
+	}
+
+	public void saveResult(Benchmark bench, Statistics stat) {
+
+		// Retrieve the last run stats.
+
+		List<Statistics> stats = this.results.get(bench);
+
+		// Update it.
+
+		stats.add(stat);
+
+		// Save it.
+
+		this.results.put(bench, stats);
 	}
 }

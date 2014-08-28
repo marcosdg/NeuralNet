@@ -35,9 +35,9 @@ public class Benchmark {
 
 	private static Double output_min, output_max;
 
-    // FileParser sets it to data's file path (default).
+    // ProbenFileParser will set it up.
 
- 	private String label;
+ 	private String path;
 
 
 // Creation.
@@ -48,7 +48,7 @@ public class Benchmark {
                       Integer num_training, Integer num_validation,
                       Integer num_test,
                       List<Sample> samples,
-                      String label) {
+                      String path) {
 
 		if (num_training < 0 || num_validation < 0 || num_test < 0) {
 			throw new IllegalArgumentException("Bad header parameters" +
@@ -72,7 +72,7 @@ public class Benchmark {
 			Benchmark.output_min = 0.0;
 			Benchmark.output_max = 1.0;
 
-			this.label = label;
+			this.path = path;
 		}
 	}
 
@@ -93,7 +93,7 @@ public class Benchmark {
         Benchmark.output_min = 0.0;
 		Benchmark.output_max = 1.0;
 
-        this.label = "";
+        this.path = "";
 	}
 
 
@@ -312,13 +312,23 @@ public class Benchmark {
 	}
 
 
-// Label.
+// Path.
 
 
-	public String getLabel() {
-		return this.label;
+	public String getPath() {
+		return this.path;
 	}
-	public void setLabel(String label) {
-		this.label = label;
+	public void setPath(String path) {
+		this.path = path;
 	}
+
+	public String getName() {
+		String[] tree_nodes = this.path.split("/");
+		int last = tree_nodes.length - 1;
+
+		return tree_nodes[last];
+	}
+
+
+
 }

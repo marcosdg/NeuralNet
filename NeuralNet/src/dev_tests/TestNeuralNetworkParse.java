@@ -32,7 +32,7 @@ public class TestNeuralNetworkParse {
 
 System.out.println("============= TEST: DATA FILE PARSING  ==================");
 
-		System.out.println(" Data file parsed: " + benchmark.getLabel());
+		System.out.println(" Data file parsed: " + benchmark.getPath());
 
 		System.out.println(" Num. training samples: " +
 				benchmark.getNumberOfTrainingSamples());
@@ -185,7 +185,7 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 		System.out.println("-------- [ LEARNING PARAMETERS ] -------- ");
 
 		Backpropagation backprop = ((Backpropagation) net.getLearningRule());
-		System.out.println("Benchmark: " + backprop.getBenchmark().getLabel());
+		System.out.println("Benchmark: " + backprop.getBenchmark().getPath());
 		System.out.println("O_MIN: " + backprop.getBenchmark().getMinDesiredOutputValue());
 		System.out.println("O_MAX: " + backprop.getBenchmark().getMaxDesiredOutputValue());
 		System.out.println("MOMENTUM: " + backprop.getMomemtum());

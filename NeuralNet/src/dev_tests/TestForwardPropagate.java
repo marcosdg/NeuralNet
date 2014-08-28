@@ -45,7 +45,7 @@ public class TestForwardPropagate {
 
 System.out.println("========= FILE =========");
 
-		System.out.println(" Data file parsed: " + benchmark.getLabel());
+		System.out.println(" Data file parsed: " + benchmark.getPath());
 		System.out.println(" Num. training samples: " +
 				benchmark.getNumberOfTrainingSamples());
 		System.out.println(" Num. validation samples: " +
@@ -231,9 +231,36 @@ System.out.println("========= BACKPROP CONFIG =========");
 
 // RUN
 
+		System.out.println("========= TESTING EXPERIMENT RUNS =========");
+
 		System.out.println("trained ? " + backProp.getNeuralNetwork().isTrained());
-		System.out.println("learning ...");
-		neural_network.learn();
+		System.out.println("loading benchmarks ...");
+		proben_parser.setProbenFile("example2.dt");
+		proben_parser.parse();
+		Benchmark benchmark2 = proben_parser.getBenchmark();
+		benchmark2.setDesiredOutputValuesRange(0.0, 1.0);
+
+		proben_parser.setProbenFile("example3.dt");
+		proben_parser.parse();
+		Benchmark benchmark3 = proben_parser.getBenchmark();
+		benchmark3.setDesiredOutputValuesRange(0.0, 1.0);
+
+		System.out.println("learning...");
+
+		for (int run = 0; run < 1; run += 1) {
+			neural_network.getLearningRule().setBenchmark(benchmark);
+			neural_network.learn();
+
+			neural_network.getLearningRule().setBenchmark(benchmark2);
+			neural_network.learn();
+
+			neural_network.getLearningRule().setBenchmark(benchmark3);
+			neural_network.learn();
+		}
+
+
+
+		/*
 
 		System.out.println("trained ? " + backProp.getNeuralNetwork().isTrained());
 		System.out.println("original trained ? " + neural_network.isTrained());
@@ -261,5 +288,8 @@ System.out.println("========= STATS =========");
 		System.out.println("training failures: " + training_fails);
 		System.out.println("validation failures: " + validation_fails);
 		System.out.println("test failures: " + test_fails);
+
+		*/
+
 	}
 }
