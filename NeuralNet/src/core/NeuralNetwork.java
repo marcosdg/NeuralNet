@@ -29,13 +29,8 @@ public class NeuralNetwork {
 			this.trained = false;
 			this.label = label;
 
-		// Cross-references.
+			// Cross-references.
 
-			 //  Initially, 'best_net' will be the same object as 'neuralNetwork'.
-			 //  Because of EarlyStop that will change during the learning process.
-
-			//TODO: TEST
-			//this.learningRule.setBestNeuralNetwork(this);
 			this.learningRule.setNeuralNetwork(this);
 		}
 	}
@@ -110,10 +105,12 @@ public class NeuralNetwork {
 
 // Processing.
 
-
-	//TODO: TEST
 	public void learn() {
+
+		// Best net cannot be copied until THIS is created first.
+
 		this.learningRule.setBestNeuralNetwork(this.copy());
+
 		this.learningRule.apply();
 	}
 

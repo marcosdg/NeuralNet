@@ -7,6 +7,11 @@ abstract public class LearningRule {
 
 	private Benchmark benchmark;
 	private NeuralNetwork neuralNetwork,
+
+	/*
+	 * Initially, 'best_net' will be a copy of 'neuralNetwork'.
+	 * Because of EarlyStop, that will change during the learning process.
+	 */
                            best_net;
 
 

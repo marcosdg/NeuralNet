@@ -271,7 +271,7 @@ System.out.println("========= BACKPROP CONFIG =========");
 
 System.out.println("=========================================================");
 
-/*
+
 		NeuralNetwork best = neural_network.getLearningRule().getBestNeuralNetwork();
 
 		System.out.println(best);
