@@ -25,8 +25,8 @@ public class TestExperiment {
 
 		// Data files.
 
-		String net_dir = "single-layer",
-               net_file = "net-default-test",
+		String net_dir = "multi-layer",
+               net_file = "net-default-2-2-2",
                proben_dir = "gene";
 		List<String> proben_files = new ArrayList<String>();
 
@@ -76,6 +76,7 @@ public class TestExperiment {
 		System.out.println("Num. bias nodes: "
 				+ net.getInputDataLayer().getBiasNodes().size());
 
+		/*
 		System.out.println("-------- [ INPUT DATA NODES] -------- ");
 		System.out.println();
 
@@ -154,6 +155,7 @@ public class TestExperiment {
 				System.out.println("\t ------");
 			}
 		}
+		*/
 		System.out.println("-------- [ LEARNING PARAMETERS ] -------- ");
 
 		Backpropagation backprop = ((Backpropagation) net.getLearningRule());
@@ -172,7 +174,7 @@ public class TestExperiment {
 
 System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
 
-		experiment.setNumberOfRuns(10);
+		experiment.setNumberOfRuns(5);
 		experiment.run();
 
 		for (Benchmark bench: experiment.getBenchmarks()) {
@@ -199,6 +201,8 @@ System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
                                  experiment.getRelevantEpochsMean(bench));
 			System.out.println("relevant-epochs stdev: " +
                                  experiment.getRelevantEpochsStdev(bench));
+			System.out.println("relevant-epochs max: " +
+                                 Statistics.getMaxInteger(experiment.gatherAllRelevantEpochs(bench)));
 			System.out.println("-------------------------------------------");
 		}
 	}

@@ -111,7 +111,8 @@ public class Backpropagation extends SupervisedLearning {
 
 			// Strip ?
 
-			if ((getCurrentEpoch() % getEarlyStop().getStripLength()) == 0) {
+			if ((getCurrentEpoch() != 0) &&
+				(getCurrentEpoch() % getEarlyStop().getStripLength()) == 0) {
 				boolean early_stop = getEarlyStop().isMet();
 
 				saveGL(getEarlyStop().getCurrentGeneralizationLoss());
@@ -175,10 +176,12 @@ public class Backpropagation extends SupervisedLearning {
 			getEarlyStop().setBestGeneralizationLoss(now_loss);
 			setBestNeuralNetwork(getNeuralNetwork().copy());
 			setNumberOfRelevantEpochs(getNumberOfRelevantEpochs() + 1);
-		} else {
+
+		} else if (now_loss > best_loss) {
 			// Time-travel to the last checkpoint.
 
 			setNeuralNetwork(getBestNeuralNetwork().copy());
+
 		}
 		flushBufferEtrs();
 	}
