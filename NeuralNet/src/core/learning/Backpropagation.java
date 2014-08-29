@@ -299,9 +299,9 @@ public class Backpropagation extends SupervisedLearning {
 	public void correctWeight(Weight weight, double output, double error) {
 
 		double last_fix = this.getMomemtum() * weight.getLastCorrection(),
-               now_fix = this.getLearningRate() * output * error,
-               fix = now_fix + last_fix,
-               fresh = weight.getValue() + fix;
+                now_fix = this.getLearningRate() * output * error,
+                fix = now_fix + last_fix,
+                fresh = weight.getValue() + fix;
 
 		weight.setValue(fresh);
 		weight.setCorrection(fix);

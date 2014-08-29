@@ -58,12 +58,16 @@ public class Neuron extends Node {
                                   this.activationFunction,
                                   getParentLayer(),
                                   getLabel());
-		copy.setInputs(this.inputs);
-		copy.setOutputs(this.outputs);
+		List<Connection> inputs_copy = new ArrayList<Connection>(),
+                         outputs_copy = new ArrayList<Connection>();
+		inputs_copy.addAll(this.inputs);
+		outputs_copy.addAll(this.outputs);
+
+		copy.setInputs(inputs_copy);
+		copy.setOutputs(outputs_copy);
 		copy.setNetInput(this.netInput);
 		copy.setOutput(this.output);
 		copy.setError(this.error);
-
 		return copy;
 	}
 

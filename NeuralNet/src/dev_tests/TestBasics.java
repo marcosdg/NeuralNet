@@ -142,7 +142,7 @@ public class TestBasics {
 		// Connections.
 
 		neural_network.createConnection(input_node1, neuron1, 1, "Connection: InputNode1 -> Neuron1");
-		neural_network.createConnection(input_node2, neuron2, 1, "Connection: InputNode2 -> Neuron1");
+		neural_network.createConnection(input_node2, neuron2, 1, "Connection: InputNode2 -> Neuron2");
 
 		neural_network.createConnection(bias1, neuron1, -1, "Connection: Bias1 -> Neuron1");
 		neural_network.createConnection(bias2, neuron2, -1, "Connection: Bias2 -> Neuron2");
@@ -407,6 +407,125 @@ System.out.println();
 		net_copy.setLabel("Neural Network copy");
 		Backpropagation original_backprop = (Backpropagation) neural_network.getLearningRule();
 		Backpropagation copy_backprop = (Backpropagation) net_copy.getLearningRule();
+
+
+		System.out.println("$$$$$$$[ NET GENERAL INFO ] $$$$$$$ ");
+
+		System.out.println("Network Label: " + net_copy.getLabel());
+		System.out.println("Number of layers: " + net_copy.getNumberOfLayers());
+		System.out.println("LAYERS:");
+		for (Layer layer : net_copy.getLayers()) {
+			System.out.println("\t kind:" + layer.getKind());
+			System.out.println("\t num. nodes: " + layer.getNodes().size());
+			System.out.println("\t ------");
+		}
+		System.out.println("Num. neurons: " + net_copy.getNeurons().size());
+		System.out.println("NEURONS:");
+		for (Neuron neuron : net_copy.getNeurons()) {
+			System.out.println("\t" + neuron.getLabel());
+			System.out.println("\t" + neuron.getParentLayer().getKind());
+			System.out.println("\t ------");
+		}
+		System.out.println("Num. input data nodes: "
+				+ net_copy.getInputDataLayer().getInputDataNodes().size());
+		System.out.println("Num. bias nodes: "
+				+ net_copy.getInputDataLayer().getBiasNodes().size());
+
+		 // System.out.println("Num. bias synapses: " + net .getBiasSynapses()
+		 // .size()); System.out.println("Num. input data synapses: " + net
+		 // .getInputDataSynapses() .size());
+		 // System.out.println("Num. neuro synapses: " + net .getNeuroSynapses()
+		 // .size());
+
+		System.out.println();
+		System.out.println("-------- [ INPUT DATA NODES] -------- ");
+		System.out.println();
+		System.out.println("SYNAPSES: ");
+
+		List<Connection> input_data_synapses = net_copy.getInputDataSynapses();
+
+		for (Connection input_data_synapse : input_data_synapses) {
+			System.out.println("\t Label: " + input_data_synapse.getLabel());
+			System.out.println("\t Source: "
+					+ input_data_synapse.getSource().getLabel());
+			System.out.println("\t Target: "
+					+ input_data_synapse.getTarget().getLabel());
+			System.out.println("\t Weight: "
+					+ input_data_synapse.getWeight().getValue());
+			System.out.println("\t input node to neuron? "
+					+ input_data_synapse.isInputNodeToNeuron());
+			System.out.println("\t neuron to neuron? "
+					+ input_data_synapse.isNeuronToNeuron());
+			System.out.println("\t ------");
+		}
+
+		System.out.println();
+		System.out.println("-------- [ BIAS NODES ] -------- ");
+		System.out.println();
+		System.out.println("SYNAPSES: ");
+
+		List<Connection> bias_synapses = net_copy.getBiasSynapses();
+
+		for (Connection bias_synapse : bias_synapses) {
+			System.out.println("\t Label: " + bias_synapse.getLabel());
+			System.out.println("\t Source: "
+					+ bias_synapse.getSource().getLabel());
+			System.out.println("\t Target: "
+					+ bias_synapse.getTarget().getLabel());
+			System.out.println("\t Weight: "
+					+ bias_synapse.getWeight().getValue());
+			System.out.println("\t input node to neuron? "
+					+ bias_synapse.isInputNodeToNeuron());
+			System.out.println("\t neuron to neuron? "
+					+ bias_synapse.isNeuronToNeuron());
+			System.out.println("\t ------");
+		}
+
+		System.out.println();
+		System.out.println("-------- [ NEURONS] -------- ");
+		System.out.println();
+		System.out.println("SYNAPSES: ");
+
+		List<Neuron> neurons = net_copy.getNeurons();
+
+		for (Neuron neuron : neurons) {
+			System.out.println(" ==============");
+			System.out.println("\t Label: " + neuron.getLabel());
+			System.out
+					.println("\t Layer: " + neuron.getParentLayer().getKind());
+			System.out.println("\t Num. input synapses: "
+					+ neuron.getInputs().size());
+			System.out.println("\t Num. output synapses: "
+					+ neuron.getOutputs().size());
+
+			System.out.println("  INPUT SYNAPSES");
+			for (Connection input_synapse : neuron.getInputs()) {
+
+				System.out.println("\t  ------");
+				System.out.println("\t Source: "
+						+ input_synapse.getSource().getLabel());
+				System.out.println("\t Target: "
+						+ input_synapse.getTarget().getLabel());
+				System.out.println("\t Weight: "
+						+ input_synapse.getWeight().getValue());
+				System.out.println("\t  ------");
+			}
+			System.out.println("  OUTPUT SYNAPSES");
+			for (Connection output_synapse : neuron.getOutputs()) {
+
+				System.out.println("\t  ------");
+				System.out.println("\t Source: "
+						+ output_synapse.getSource().getLabel());
+				System.out.println("\t Target: "
+						+ output_synapse.getTarget().getLabel());
+				System.out.println("\t Weight: "
+						+ output_synapse.getWeight().getValue());
+				System.out.println("\t  ------");
+			}
+		}
+
+
+
 /*
 		System.out.println("-------- CHECKPOINT ---------");
 
@@ -421,7 +540,7 @@ System.out.println();
 
 		System.out.println("neural_network reference from LearningRule (changed to best net): " + original_backprop.getNeuralNetwork());
 		System.out.println("The original net1 won't change: " + neural_network);
-*/
+
 		System.out.println("-------- TIME TRAVEL ---------");
 		System.out.println("net reference from Learning Rule BEFORE set: " +
                              original_backprop.getNeuralNetwork());

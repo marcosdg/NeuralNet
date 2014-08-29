@@ -35,8 +35,11 @@ public class InputNode extends Node {
 		InputNode copy = new InputNode(getParentLayer(),
                                         getLabel(),
                                         this.kind);
+		List<Connection> outputs_copy = new ArrayList<Connection>();
+		outputs_copy.addAll(this.outputs);
+
 		copy.setInputData(this.input_data);
-		copy.setOutputConnections(this.outputs);
+		copy.setOutputConnections(outputs_copy);
 
 		return copy;
 	}

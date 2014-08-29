@@ -106,8 +106,8 @@ public class SquaredError {
 	public static boolean isClassificationMiss(List<Double> desired_output_vector,
                                                     List<Double> output_vector) {
 		Double desired_output = null,
-                output = null;
-			boolean missed = false;
+               output = null;
+		boolean missed = false;
 
 		if (areAdequate(desired_output_vector, output_vector)) {
 
