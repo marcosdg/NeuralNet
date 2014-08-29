@@ -1,13 +1,12 @@
 package experiment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import core.NeuralNetwork;
+import core.learning.Backpropagation;
 
 import experiment.data.Benchmark;
 import experiment.data.NeuralNetworkParser;
@@ -43,7 +42,7 @@ public class Experiment {
 
 
 	public Experiment(String net_dir, String net_file, String proben_dir,
-                        List<String> proben_files) {
+                         List<String> proben_files) {
 		if (proben_files.isEmpty()) {
 			throw new IllegalArgumentException("Must feed in at least one proben file");
 		} else {
@@ -68,7 +67,9 @@ public class Experiment {
 		}
 	}
 
+
 // Processing.
+
 
 	public List<Benchmark> loadAllBenchmarks() {
 
@@ -83,7 +84,7 @@ public class Experiment {
 
 		List<String> left = this.proben_files.subList(1, this.proben_files.size());
 
-		for (String proben_file : left) {
+		for (String proben_file: left) {
 			this.proben_parser.setProbenFile(proben_file);
 			this.proben_parser.parse();
 			Benchmark bench = this.proben_parser.getBenchmark();
@@ -94,10 +95,10 @@ public class Experiment {
 		this.benchs_ready = true;
 		return this.benchs;
 	}
-
-	// Loads the net with the the associated configuration file and the
-	// first PROBEN file.
-
+	/*
+	 * Loads the net with the the associated configuration file and the
+	 * first PROBEN file.
+	 */
 	public NeuralNetwork loadNeuralNetwork() {
 		if (!this.benchs_ready) {
 			throw new IllegalStateException("Benchmarks must be loaded first");
@@ -109,7 +110,6 @@ public class Experiment {
 		}
 		return this.net;
 	}
-
 	public void run() {
 		if (!this.run_ready) {
 			throw new IllegalArgumentException("Set the number of runs first");
@@ -123,11 +123,10 @@ public class Experiment {
 				// Prepare next run.
 
 				this.rebootNet();
+				this.rebootLearning();
 			}
 		}
 	}
-
-	// [TEST]
 	public void trainNeuralNetwork() {
 		if (!this.net_ready) {
 			throw new IllegalStateException("Neural net must be loaded first");
@@ -140,39 +139,9 @@ public class Experiment {
 				Statistics stat = new Statistics(this.net.copy());
 				this.saveResult(bench, stat);
 			}
-			/*
-			// Train 1st one.
-
-			this.net.learn();
-
-			stat = new Statistics(this.net.copy());
-			this.saveResult(this.benchs.get(0), stat);
-
-			// The rest of them.
-
-			List<Benchmark> left = this.benchs.subList(1, this.benchs.size());
-
-			for (Benchmark bench : left) {
-				this.net.getLearningRule().setBenchmark(bench);
-				this.net.learn();
-
-				stat = new Statistics(this.net.copy());
-				this.saveResult(bench, stat);
-			}*/
 			this.benchs_passed = true;
 		}
 	}
-
-
-	// TODO
-	/*
-	public void writeStatistics() {
-		if (!this.benchs_passed) {
-			throw new IllegalStateException("Neural net must be trained first");
-		} else {
-		}
-	}
-	 */
 
 
 // Runs.
@@ -201,7 +170,6 @@ public class Experiment {
 	public ProbenFileParser getProbenFileParser() {
 		return this.proben_parser;
 	}
-
 	public NeuralNetworkParser getNeuralNetworkParser() {
 		return this.net_parser;
 	}
@@ -213,15 +181,46 @@ public class Experiment {
 	public NeuralNetwork getNeuralNetwork() {
 		return this.net;
 	}
-
-	// For an appropriate distribution of statistical results is necessary
-	// to re-initialize net's weights.
-
+	/*
+	 * For an appropriate distribution of statistical results is necessary
+	 * to re-initialize net's weights.
+	 */
 	public void rebootNet() {
-
 		Random generator = new Random();
+
+		// Clear.
+
+		this.net.reset();
+
+		// Re-initialize.
+
 		this.net.randomizeAllWeights(-0.1, 0.1, generator);
 		this.net.getLearningRule().setBenchmark(this.benchs.get(0));
+	}
+	/*
+	 * We should, also, clean the errors accumulated from one run to the next
+	 * one, not to mix errors of different runs.
+	 */
+	public void rebootLearning() {
+		Backpropagation backprop = (Backpropagation) this.net.getLearningRule();
+
+		// Epochs.
+
+		backprop.setCurrentEpoch(0);
+		backprop.setNumberOfRelevantEpochs(0);
+
+		// Errors.
+
+		backprop.clearEvasRecord();
+		backprop.clearEtrsRecord();
+		backprop.flushBufferEtrs();
+		backprop.clearGLs();
+		backprop.clearPKs();
+
+		// Output vectors.
+
+		backprop.clearTrainingOutputVectors();
+		backprop.clearValidationOutputVectors();
 	}
 
 
@@ -239,11 +238,9 @@ public class Experiment {
 	public LinkedHashMap<Benchmark, List<Statistics>> getResults() {
 		return this.results;
 	}
-
 	public List<Statistics> getBenchmarkStats(Benchmark bench) {
 		return this.results.get(bench);
 	}
-
 	public void saveResult(Benchmark bench, Statistics stat) {
 
 		// Retrieve the last run stats.
@@ -257,5 +254,126 @@ public class Experiment {
 		// Save it.
 
 		this.results.put(bench, stats);
+	}
+	/*
+	 * Before computing the 'mean' and 'standar deviation' we need to gather all the
+	 * statistics from each run, for each Benchmark.
+	 */
+	public List<Double> gatherAllEtrs(Benchmark bench) {
+		List<Double> all_etrs = new ArrayList<Double>();
+		List<Statistics> stats = this.getBenchmarkStats(bench);
+
+		for (Statistics stat: stats) {
+			all_etrs.addAll(stat.getEtrs());
+		}
+		return all_etrs;
+	}
+	public List<Double> gatherAllEvas(Benchmark bench) {
+		List<Double> all_evas = new ArrayList<Double>();
+		List<Statistics> stats = this.getBenchmarkStats(bench);
+
+		for (Statistics stat: stats) {
+			all_evas.addAll(stat.getEvas());
+		}
+		return all_evas;
+	}
+	public List<Double> gatherAllEtes(Benchmark bench) {
+		List<Double> all_etes = new ArrayList<Double>();
+		List<Statistics> stats = this.getBenchmarkStats(bench);
+
+		for (Statistics stat: stats) {
+			stat.computeEte(bench);
+			all_etes.add(stat.getEte());
+		}
+		return all_etes;
+	}
+	public List<Integer> gatherAllTestClassificationMisses(Benchmark bench) {
+		List<Integer> all_misses = new ArrayList<Integer>();
+		List<Statistics> stats = this.getBenchmarkStats(bench);
+
+		for (Statistics stat: stats) {
+			all_misses.add(stat.getNumberOfClassificationMissesOnTest(bench));
+		}
+		return all_misses;
+	}
+	public List<Double> gatherAllOverfit(Benchmark bench) {
+		List<Double> all_gls = new ArrayList<Double>();
+		List<Statistics> stats = this.getBenchmarkStats(bench);
+
+		for (Statistics stat: stats) {
+			all_gls.addAll(stat.getGLs());
+		}
+		return all_gls;
+	}
+	public List<Integer> gatherAllTrainedEpochs(Benchmark bench) {
+		List<Integer> all_trained_epochs = new ArrayList<Integer>();
+		List<Statistics> stats = this.getBenchmarkStats(bench);
+
+		for (Statistics stat: stats) {
+			all_trained_epochs.add(stat.getNumberOfTrainingEpochs());
+		}
+		return all_trained_epochs;
+	}
+	public List<Integer> gatherAllRelevantEpochs(Benchmark bench) {
+		List<Integer> all_trained_epochs = new ArrayList<Integer>();
+		List<Statistics> stats = this.getBenchmarkStats(bench);
+
+		for (Statistics stat: stats) {
+			all_trained_epochs.add(stat.getNumberOfRelevantEpochs());
+		}
+		return all_trained_epochs;
+	}
+
+	// Means.
+
+	public Double getEtrsMean(Benchmark bench) {
+		return Statistics.getDoubleAverage(this.gatherAllEtrs(bench));
+	}
+	public Double getEvasMean(Benchmark bench) {
+		return Statistics.getDoubleAverage(this.gatherAllEvas(bench));
+	}
+	public Double getEtesMean(Benchmark bench) {
+		return Statistics.getDoubleAverage(this.gatherAllEtes(bench));
+	}
+	public Integer getTestClassificationMissesMean(Benchmark bench) {
+		return Statistics
+                .getIntegerAverage(this.gatherAllTestClassificationMisses(bench));
+	}
+	public Double getOverfitMean(Benchmark bench) {
+		return Statistics.getDoubleAverage(this.gatherAllOverfit(bench));
+	}
+	public Integer getTrainedEpochsMean(Benchmark bench) {
+		return Statistics.getIntegerAverage(this.gatherAllTrainedEpochs(bench));
+	}
+	public Integer getRelevantEpochsMean(Benchmark bench) {
+		return Statistics.getIntegerAverage(this.gatherAllRelevantEpochs(bench));
+	}
+
+	// Standard Deviations.
+
+	public Double getEtrsStdev(Benchmark bench) {
+		return Statistics.getDoubleStandarDeviation(this.gatherAllEtrs(bench));
+	}
+	public Double getEvasStdev(Benchmark bench) {
+		return Statistics.getDoubleStandarDeviation(this.gatherAllEvas(bench));
+	}
+	public Double getEtesStdev(Benchmark bench) {
+		return Statistics.getDoubleStandarDeviation(this.gatherAllEtes(bench));
+	}
+	public Double getTestClassificationMissesStdev(Benchmark bench) {
+		return Statistics
+                .getIntegerStandarDeviation
+                (this.gatherAllTestClassificationMisses(bench));
+	}
+	public Double getOverfitStdev(Benchmark bench) {
+		return Statistics.getDoubleStandarDeviation(this.gatherAllOverfit(bench));
+	}
+	public Double getTrainedEpochsStdev(Benchmark bench) {
+		return Statistics
+                .getIntegerStandarDeviation(this.gatherAllTrainedEpochs(bench));
+	}
+	public Double getRelevantEpochsStdev(Benchmark bench) {
+		return Statistics
+               .getIntegerStandarDeviation(this.gatherAllRelevantEpochs(bench));
 	}
 }

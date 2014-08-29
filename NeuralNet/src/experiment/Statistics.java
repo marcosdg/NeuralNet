@@ -13,7 +13,7 @@ public class Statistics {
 
 	private Backpropagation done_backprop;
 	private NeuralNetwork trained_net;
-	private List<Double> etes; // errors test set.
+	private Double ete; // error test set.
 	private List<List<Double>> test_output_vectors;
 
 
@@ -26,7 +26,7 @@ public class Statistics {
 		} else {
 			this.trained_net = net;
 			this.done_backprop = (Backpropagation) net.getLearningRule();
-			this.etes = new ArrayList<Double>();
+			this.ete = 0.0;
 			this.test_output_vectors = new ArrayList<List<Double>>();
 		}
 	}
@@ -64,22 +64,24 @@ public class Statistics {
 
 	// Errors on test set.
 
-	public List<Double> getEtes() {
-		return this.etes;
+	public Double getEte() {
+		return this.ete;
 	}
+	/*
 	public void saveEte(Double ete) {
 		if (ete != null) {
 			this.etes.add(ete);
 		}
 	}
-	public Double computeEte(Benchmark bench) {
+	*/
+	public void computeEte(Benchmark bench) {
 		List<Sample> test_samples = bench.getTestSamples();
 		List<List<Double>> output_vectors = this
                                             .computeTestOutputVectors(test_samples);
-		return this
-                .done_backprop
-                .getEarlyStop()
-                .getAverageErrorPerTestSample(output_vectors);
+		this.ete = this
+                   .done_backprop
+                   .getEarlyStop()
+                   .getAverageErrorPerTestSample(output_vectors);
 	}
 
 	// Generalization losses.
@@ -100,7 +102,7 @@ public class Statistics {
 
 	// General.
 
-	public Double sumAll(List<Double> values) {
+	public static Double sumAllDoubles(List<Double> values) {
 		Double total = 0.0;
 
 		for (Double value: values) {
@@ -108,7 +110,15 @@ public class Statistics {
 		}
 		return total;
 	}
-	public Double getMin(List<Double> values) {
+	public static Integer sumAllIntegers(List<Integer> values) {
+		Integer total = 0;
+
+		for (Integer value: values) {
+			total += value;
+		}
+		return total;
+	}
+	public static Double getMinDouble(List<Double> values) {
 		Double min = values.get(0);
 
 		for (Double value: values) {
@@ -116,7 +126,15 @@ public class Statistics {
 		}
 		return min;
 	}
-	public Double getMax(List<Double> values) {
+	public static Integer getMinInteger(List<Integer> values) {
+		Integer min = values.get(0);
+
+		for (Integer value: values) {
+			min = (value < min) ? value : min;
+		}
+		return min;
+	}
+	public static Double getMaxDouble(List<Double> values) {
 		Double max = values.get(0);
 
 		for (Double value: values) {
@@ -124,12 +142,22 @@ public class Statistics {
 		}
 		return max;
 	}
+	public static Integer getMaxInteger(List<Integer> values) {
+		Integer max = values.get(0);
 
-	public Double getAverage(List<Double> values) {
-		return (sumAll(values) / values.size());
+		for (Integer value: values) {
+			max = (value > max) ? value : max;
+		}
+		return max;
 	}
-	public List<Double> getSquareDifferencesFromAvg(List<Double> values) {
-		Double avg = this.getAverage(values);
+	public static Double getDoubleAverage(List<Double> values) {
+		return (Statistics.sumAllDoubles(values) / values.size());
+	}
+	public static Integer getIntegerAverage(List<Integer> values) {
+		return (Statistics.sumAllIntegers(values) / values.size());
+	}
+	public static List<Double> getDoubleSquareDifferencesFromAvg(List<Double> values) {
+		Double avg = Statistics.getDoubleAverage(values);
 		List<Double> sqdiffs = new ArrayList<Double>();
 
 		for (Double value : values) {
@@ -137,18 +165,31 @@ public class Statistics {
 		}
 		return sqdiffs;
 	}
-	public Double getStandarDeviation(List<Double> values) {
-		List<Double> sqdiffs = this.getSquareDifferencesFromAvg(values);
+	public static List<Double> getIntegerSquareDifferencesFromAvg(List<Integer> values) {
+		Integer avg = Statistics.getIntegerAverage(values);
+		List<Double> sqdiffs = new ArrayList<Double>();
 
-		return Math.sqrt(this.getAverage(sqdiffs));
+		for (Integer value : values) {
+			sqdiffs.add(Math.pow((value - avg), 2));
+		}
+		return sqdiffs;
 	}
+	public static Double getDoubleStandarDeviation(List<Double> values) {
+		List<Double> sqdiffs = Statistics.getDoubleSquareDifferencesFromAvg(values);
 
-	/* Classification.
+		return Math.sqrt(Statistics.getDoubleAverage(sqdiffs));
+	}
+	public static Double getIntegerStandarDeviation(List<Integer> values) {
+		List<Double> sqdiffs = Statistics.getIntegerSquareDifferencesFromAvg(values);
+
+		return Math.sqrt(Statistics.getDoubleAverage(sqdiffs));
+	}
+	/*
+	 * Classification.
 	 *
 	 * After training the net on different PROBEN1 benchmarks (eg. horse1,
 	 * horse2, horse3) we must say explicitly which one to use for test.
 	 */
-
 	public int getNumberOfClassificationMissesOnTraining(Benchmark bench) {
 		List<Sample> training_samples = bench.getTrainingSamples();
 		List<List<Double>> training_outputs = this
@@ -194,7 +235,7 @@ public class Statistics {
 		List<List<Double>> output_vectors = new ArrayList<List<Double>>();
 		List<Double> output_vector = null;
 
-		NeuralNetwork net_copy = this.done_backprop.getBestNeuralNetwork().copy();
+		NeuralNetwork net_copy = this.trained_net.copy();
 
 		for (Sample test_sample: test_samples) {
 			output_vector = net_copy.computeOutput(test_sample);
@@ -202,4 +243,18 @@ public class Statistics {
 		}
 		return output_vectors;
 	}
+
+
+// Epochs.
+
+
+	public int getNumberOfTrainingEpochs() {
+		return this.done_backprop.getCurrentEpoch();
+	}
+	public int getNumberOfRelevantEpochs() {
+		return this.done_backprop.getNumberOfRelevantEpochs();
+	}
+
+
+
 }

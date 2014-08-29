@@ -158,6 +158,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	public void saveEva(Double eva) {
 		this.evas.add(eva);
 	}
+	public void clearEvasRecord() {
+		this.evas.clear();
+	}
 
 	// Etrs Buffer.
 
@@ -200,6 +203,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	public void saveGL(Double gl) {
 		this.gls.add(gl);
 	}
+	public void clearGLs() {
+		this.gls.clear();
+	}
 
 	// PKs.
 
@@ -211,6 +217,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 	public void savePK(Double pk) {
 		this.pks.add(pk);
+	}
+	public void clearPKs() {
+		this.pks.clear();
 	}
 
 
@@ -226,6 +235,9 @@ abstract public class SupervisedLearning extends LearningRule {
 	public void saveTrainingOutputVector(List<Double> output_vector) {
 		this.training_output_vectors.add(output_vector);
 	}
+	public void clearTrainingOutputVectors() {
+		this.training_output_vectors.clear();
+	}
 
 
 // Validation output vectors.
@@ -239,5 +251,8 @@ abstract public class SupervisedLearning extends LearningRule {
 	}
 	public void saveValidationOutputVector(List<Double> output_vector) {
 		this.validation_output_vectors.add(output_vector);
+	}
+	public void clearValidationOutputVectors() {
+		this.validation_output_vectors.clear();
 	}
 }

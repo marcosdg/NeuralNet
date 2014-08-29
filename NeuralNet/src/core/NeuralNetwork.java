@@ -69,7 +69,9 @@ public class NeuralNetwork {
 
 	public void reset() {
 		for (Layer layer: this.layers) {
-			layer.resetNeurons();
+			if (!layer.isInputDataLayer()) {
+				layer.resetNeurons();
+			}
 		}
 	}
 

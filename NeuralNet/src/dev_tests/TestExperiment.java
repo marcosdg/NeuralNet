@@ -13,6 +13,7 @@ import core.Connection;
 import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
+import core.Weight;
 import core.learning.Backpropagation;
 
 import experiment.Experiment;
@@ -25,7 +26,7 @@ public class TestExperiment {
 		// Data files.
 
 		String net_dir = "single-layer",
-               net_file = "net-test",
+               net_file = "net-default-test",
                proben_dir = "example";
 		List<String> proben_files = new ArrayList<String>();
 
@@ -174,17 +175,31 @@ System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
 		experiment.setNumberOfRuns(10);
 		experiment.run();
 
-		Set<Entry<Benchmark, List<Statistics>>> results = experiment.getResults().entrySet();
-
-		for (Entry<Benchmark, List<Statistics>> entry: results) {
-
-			System.out.println(entry.getKey().getName());
-
-			for (Statistics stat: entry.getValue()) {
-				System.out.print(" * ");
-			}
-			System.out.println();
-			System.out.println("----------------------");
+		for (Benchmark bench: experiment.getBenchmarks()) {
+			System.out.println(bench.getName());
+			System.out.println("etrs mean: " + experiment.getEtrsMean(bench));
+			System.out.println("etrs stdev: " + experiment.getEtrsStdev(bench));
+			System.out.println("evas mean: " + experiment.getEvasMean(bench));
+			System.out.println("evas stdev: " + experiment.getEvasStdev(bench));
+			System.out.println("etes mean: " + experiment.getEtesMean(bench));
+			System.out.println("etes stev: " + experiment.getEtesStdev(bench));
+			System.out.println("test misses mean: " +
+	                             experiment.getTestClassificationMissesMean(bench));
+			System.out.println("test misses stdev: " +
+                                 experiment.getTestClassificationMissesStdev(bench));
+			System.out.println("overfit mean: " +
+                                 experiment.getOverfitMean(bench));
+			System.out.println("overfit stdev: " +
+                                 experiment.getOverfitStdev(bench));
+			System.out.println("epochs mean: " +
+                                 experiment.getTrainedEpochsMean(bench));
+			System.out.println("epochs stdev: " +
+                                 experiment.getTrainedEpochsStdev(bench));
+			System.out.println("relevant-epochs mean: " +
+                                 experiment.getRelevantEpochsMean(bench));
+			System.out.println("relevant-epochs stdev: " +
+                                 experiment.getRelevantEpochsStdev(bench));
+			System.out.println("-------------------------------------------");
 		}
 	}
 }
