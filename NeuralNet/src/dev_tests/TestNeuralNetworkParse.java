@@ -8,6 +8,7 @@ import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
 import core.learning.Backpropagation;
+import experiment.Statistics;
 import experiment.data.Benchmark;
 import experiment.data.NeuralNetworkParser;
 import experiment.data.ProbenFileParser;
@@ -19,8 +20,8 @@ public class TestNeuralNetworkParse {
 
 // Data file.
 
-		String proben_dir = "example";
-		String proben_file_name = "example1.dt";
+		String proben_dir = "gene";
+		String proben_file_name = "gene1.dt";
 
 // Parsing.
 
@@ -46,6 +47,7 @@ System.out.println("============= TEST: DATA FILE PARSING  ==================");
 		List<Sample> samples = benchmark.getSamples();
 		Sample sample = null;
 
+		/*
 		System.out.println("\t" + "FIRST 3 SAMPLES PARSED");
 
 		for (int i = 0; i < 3; i += 1) {
@@ -64,6 +66,7 @@ System.out.println("============= TEST: DATA FILE PARSING  ==================");
 			}
 			System.out.println();
 		}
+		*/
 
 System.out.println("============= TEST: NEURAL NETWORK PARSING  ==================");
 
@@ -78,6 +81,7 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 
 		NeuralNetwork net = net_parser.getNeuralNetwork();
 
+		/*
 		System.out.println("-------- [ NET GENERAL INFO ] -------- ");
 
 		System.out.println("Network Label: " + net.getLabel());
@@ -103,7 +107,7 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
                                                  .getInputDataLayer()
                                                  .getBiasNodes()
                                                  .size());
-		/*
+
 		System.out.println("Num. bias synapses: " + net
                                                     .getBiasSynapses()
                                                     .size());
@@ -113,7 +117,6 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 		System.out.println("Num. neuro synapses: " + net
                                                      .getNeuroSynapses()
                                                      .size());
-        */
 		System.out.println();
 		System.out.println("-------- [ INPUT DATA NODES] -------- ");
 		System.out.println();
@@ -205,6 +208,22 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 		System.out.println("The following identifiers must be the same: ");
 		System.out.println("  Backprop reference to benchmark: " + backprop.getBenchmark());
 		System.out.println("  benchmark: " + benchmark);
+		*/
+
+		net.learn();
+
+		System.out.println("trained ? " + net.isTrained());
+
+		Backpropagation backprop = ((Backpropagation) net.getLearningRule());
+
+		System.out.println("current epoch : " + backprop.getCurrentEpoch());
+
+		System.out.println(Statistics.getDoubleAverage(backprop.getEvasRecord()));
+
+
+
+
+
 	}
 }
 

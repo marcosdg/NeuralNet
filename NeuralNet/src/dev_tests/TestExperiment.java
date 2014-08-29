@@ -27,12 +27,12 @@ public class TestExperiment {
 
 		String net_dir = "single-layer",
                net_file = "net-default-test",
-               proben_dir = "example";
+               proben_dir = "gene";
 		List<String> proben_files = new ArrayList<String>();
 
-		proben_files.add("example1.dt");
-		proben_files.add("example2.dt");
-		proben_files.add("example3.dt");
+		proben_files.add("gene1.dt");
+		//proben_files.add("example2.dt");
+		//proben_files.add("example3.dt");
 
 		// Experiment.
 

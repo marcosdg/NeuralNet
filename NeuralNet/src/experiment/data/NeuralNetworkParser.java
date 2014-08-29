@@ -234,8 +234,6 @@ public class NeuralNetworkParser {
 
 		Integer num_input_data_nodes = this.benchmark.getTotalInputs();
 
-		System.out.println(this.benchmark);
-
 		for (int i = 0; i < num_input_data_nodes; i += 1) {
 			InputNode input_node = new InputNode(input_data_layer,
 					                              "Input Node " + i,

@@ -139,7 +139,6 @@ public class Experiment {
 				this.net.getLearningRule().setBenchmark(bench);
 				this.net.learn();
 
-				System.out.println("$$$$$$ " + this.net.isTrained());
 				Statistics stat = new Statistics(this.net.copy());
 				this.saveResult(bench, stat);
 			}

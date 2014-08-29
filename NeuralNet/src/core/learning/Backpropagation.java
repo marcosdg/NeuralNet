@@ -81,7 +81,8 @@ public class Backpropagation extends SupervisedLearning {
 		backprop_copy.setTrainingOutputVectors(training_output_vectors_copy);
 		backprop_copy.setValidationOutputVectors(validation_output_vectors_copy);
 
-		// The Benchmark is the same for the copy.
+		// LearningRule properties:
+		// The Benchmark is the same (at copy-time) for the copy.
 
 		backprop_copy.setBenchmark(this.getBenchmark());
 

@@ -70,26 +70,12 @@ public class SquaredError {
 		return are;
 	}
 
-	// Mean Squared Error.
-/*
-	public 	Double getMeanSquaredError(List<Double> desired_output_vector,
-                                       List<Double> output_vector,
-                                       int num_output_nodes) {
-
-		int N = num_output_nodes;
-		Double squared_error = getSquaredError(desired_output_vector,
-                                               output_vector,
-                                               N);
-		return (squared_error / N);
-	}
-*/
-
 	// Normalized Average Squared Error of all the samples.
 
 	public static Double getSquaredErrorPercentage(List<Sample> samples,
-                                                     List<List<Double>> output_vectors,
-                                                     int num_output_nodes,
-                                                     boolean classification) {
+                                                List<List<Double>> output_vectors,
+                                                int num_output_nodes,
+                                                boolean classification) {
 		int N = num_output_nodes,
             P = samples.size();
 
@@ -118,7 +104,7 @@ public class SquaredError {
 	}
 
 	public static boolean isClassificationMiss(List<Double> desired_output_vector,
-                                                  List<Double> output_vector) {
+                                                    List<Double> output_vector) {
 		Double desired_output = null,
                 output = null;
 			boolean missed = false;
@@ -138,7 +124,7 @@ public class SquaredError {
 		return missed;
 	}
 	public static int getNumberOfClassificationMisses(List<Sample> samples,
-                                           List<List<Double>> output_vectors) {
+                                             List<List<Double>> output_vectors) {
 		List<Double> desired_output_vector = null,
                      routput_vector = null;
         int misses = 0;

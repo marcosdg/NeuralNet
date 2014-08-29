@@ -13,6 +13,7 @@ public class Statistics {
 
 	private Backpropagation done_backprop;
 	private NeuralNetwork trained_net;
+
 	private Double ete; // error test set.
 	private List<List<Double>> test_output_vectors;
 
@@ -67,13 +68,6 @@ public class Statistics {
 	public Double getEte() {
 		return this.ete;
 	}
-	/*
-	public void saveEte(Double ete) {
-		if (ete != null) {
-			this.etes.add(ete);
-		}
-	}
-	*/
 	public void computeEte(Benchmark bench) {
 		List<Sample> test_samples = bench.getTestSamples();
 		List<List<Double>> output_vectors = this
@@ -227,10 +221,10 @@ public class Statistics {
 	public void saveTestOutputVector(List<Double> output_vector) {
 		this.test_output_vectors.add(output_vector);
 	}
-
-	// Considers the BestNetwork to compute the test errors at minimum GL, or
-	// equivalently, at minimum validation error.
-
+	/*
+	 * Now, the 'trained net' will be at its minimum GL, or equivalently,
+	 * at its minimum validation error.
+	 */
 	public List<List<Double>> computeTestOutputVectors(List<Sample> test_samples) {
 		List<List<Double>> output_vectors = new ArrayList<List<Double>>();
 		List<Double> output_vector = null;
@@ -254,7 +248,4 @@ public class Statistics {
 	public int getNumberOfRelevantEpochs() {
 		return this.done_backprop.getNumberOfRelevantEpochs();
 	}
-
-
-
 }
