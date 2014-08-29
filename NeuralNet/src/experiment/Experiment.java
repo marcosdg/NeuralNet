@@ -1,6 +1,7 @@
 package experiment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
@@ -31,7 +32,8 @@ public class Experiment {
 
 	private List<Benchmark> benchs;
 	private List<String> proben_files;
-	private boolean benchs_ready, benchs_passed;
+	private boolean benchs_ready,
+                      experiment_done;
 
 	// Results from each Benchmark from each run
 
@@ -61,7 +63,7 @@ public class Experiment {
 			this.benchs = new ArrayList<Benchmark>();
 			this.proben_files = proben_files;
 			this.benchs_ready = false;
-			this.benchs_passed = false;
+			this.experiment_done = false;
 
 			this.results = new LinkedHashMap<Benchmark, List<Statistics>>();
 		}
@@ -125,6 +127,7 @@ public class Experiment {
 				this.rebootNet();
 				this.rebootLearning();
 			}
+			this.experiment_done = true;
 		}
 	}
 	public void trainNeuralNetwork() {
@@ -136,11 +139,19 @@ public class Experiment {
 				this.net.getLearningRule().setBenchmark(bench);
 				this.net.learn();
 
+				System.out.println("$$$$$$ " + this.net.isTrained());
 				Statistics stat = new Statistics(this.net.copy());
 				this.saveResult(bench, stat);
 			}
-			this.benchs_passed = true;
 		}
+	}
+
+
+// Experiment.
+
+
+	public boolean isDone() {
+		return this.experiment_done;
 	}
 
 
