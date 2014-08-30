@@ -26,7 +26,7 @@ public class TestExperiment {
 		// Data files.
 
 		String net_dir = "multi-layer",
-               net_file = "net-default-2-4-2",
+               net_file = "net-default-2-2-2",
                proben_dir = "gene";
 		List<String> proben_files = new ArrayList<String>();
 
@@ -174,7 +174,7 @@ public class TestExperiment {
 
 System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
 
-		experiment.setNumberOfRuns(5);
+		experiment.setNumberOfRuns(10);
 		experiment.run();
 
 		for (Benchmark bench: experiment.getBenchmarks()) {

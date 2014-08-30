@@ -125,7 +125,7 @@ public class Experiment {
 				// Prepare next run.
 
 				this.rebootNet();
-				this.rebootLearning();
+				this.clearLearningErrors();
 			}
 			this.experiment_done = true;
 		}
@@ -141,6 +141,8 @@ public class Experiment {
 
 				Statistics stat = new Statistics(this.net.copy());
 				this.saveResult(bench, stat);
+
+				this.clearEpochs();
 			}
 		}
 	}
@@ -211,13 +213,8 @@ public class Experiment {
 	 * We should, also, clean the errors accumulated from one run to the next
 	 * one, not to mix errors of different runs.
 	 */
-	public void rebootLearning() {
+	public void clearLearningErrors() {
 		Backpropagation backprop = (Backpropagation) this.net.getLearningRule();
-
-		// Epochs.
-
-		backprop.setCurrentEpoch(0);
-		backprop.setNumberOfRelevantEpochs(0);
 
 		// Errors.
 
@@ -231,6 +228,11 @@ public class Experiment {
 
 		backprop.clearTrainingOutputVectors();
 		backprop.clearValidationOutputVectors();
+	}
+	public void clearEpochs() {
+		Backpropagation backprop = (Backpropagation) this.net.getLearningRule();
+		backprop.setCurrentEpoch(0);
+		backprop.setNumberOfRelevantEpochs(0);
 	}
 
 
