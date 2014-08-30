@@ -65,11 +65,11 @@ public class EarlyStop extends StopCriteria {
 
 	public boolean isMaxGeneralizationLossMet() {
 		List<Double> evas = this.supervised_learning_rule.getEvasRecord();
-		List<List<Double>> output_vectors = this
-                                            .supervised_learning_rule
-                                            .getTrainingOutputVectors();
+		List<List<Double>> validation_output_vectors = this
+                                                       .supervised_learning_rule
+                                                       .getValidationOutputVectors();
 
-		this.computeGeneralizationLoss(output_vectors, evas);
+		this.computeGeneralizationLoss(validation_output_vectors, evas);
 		return (this.now_generalization_loss > this.max_generalization_loss);
 	}
 	public boolean isMinTrainingProgressMet() {
@@ -142,9 +142,9 @@ public class EarlyStop extends StopCriteria {
 	public Double getAverageErrorPerTestSample(List<List<Double>>
                                                                output_vectors) {
 		List<Sample> test_samples = this
-                                          .supervised_learning_rule
-                                          .getBenchmark()
-                                          .getTestSamples();
+                                    .supervised_learning_rule
+                                    .getBenchmark()
+                                    .getTestSamples();
 		return this.getAverageErrorPerXsample(test_samples, output_vectors);
 }
 
@@ -208,7 +208,8 @@ public class EarlyStop extends StopCriteria {
 
 			total_etrs += etr;
 		}
-		this.now_training_progress = 1000 * ((total_etrs / (this.getStripLength() * min_etr)) - 1);
+		this.now_training_progress
+                     = 1000 * ((total_etrs / (this.strip_length * min_etr)) - 1);
 	}
 	public double getMinTrainingProgress() {
 		return this.min_training_progress;

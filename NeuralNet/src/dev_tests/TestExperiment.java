@@ -26,13 +26,13 @@ public class TestExperiment {
 		// Data files.
 
 		String net_dir = "multi-layer",
-               net_file = "net-default-2-2-2",
+               net_file = "net-default-2-4-2",
                proben_dir = "gene";
 		List<String> proben_files = new ArrayList<String>();
 
 		proben_files.add("gene1.dt");
-		//proben_files.add("example2.dt");
-		//proben_files.add("example3.dt");
+		proben_files.add("gene2.dt");
+		proben_files.add("gene3.dt");
 
 		// Experiment.
 

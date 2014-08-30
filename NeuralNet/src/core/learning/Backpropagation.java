@@ -142,21 +142,18 @@ public class Backpropagation extends SupervisedLearning {
 		Double etr = 0.0,
                eva = 0.0;
 
-		// Clone the net not to mess the original one.
-
-		NeuralNetwork net_copy = getNeuralNetwork().copy();
-
 		// Save Etr in buffer & record.
 
 		etr = getEarlyStop()
               .getAverageErrorPerTrainingSample(getTrainingOutputVectors());
 		pushEtr(etr);
 		saveEtr(etr);
+		clearTrainingOutputVectors();
 
 		// Record Eva.
 
 		for (Sample validation_sample: validation_samples) {
-			output_vector = net_copy.computeOutput(validation_sample);
+			output_vector = getNeuralNetwork().computeOutput(validation_sample);
 			saveValidationOutputVector(output_vector);
 		}
 		eva = getEarlyStop()

@@ -184,24 +184,6 @@ public class Statistics {
 	 * After training the net on different PROBEN1 benchmarks (eg. horse1,
 	 * horse2, horse3) we must say explicitly which one to use for test.
 	 */
-	public int getNumberOfClassificationMissesOnTraining(Benchmark bench) {
-		List<Sample> training_samples = bench.getTrainingSamples();
-		List<List<Double>> training_outputs = this
-                                              .done_backprop
-                                              .getTrainingOutputVectors();
-
-		return SquaredError.getNumberOfClassificationMisses(training_samples,
-                                                             training_outputs);
-	}
-	public int getNumberOfClassificationMissesOnValidation(Benchmark bench) {
-		List<Sample> validation_samples = bench.getValidationSamples();
-		List<List<Double>> validation_outputs = this
-                                                .done_backprop
-                                                .getValidationOutputVectors();
-
-		return SquaredError.getNumberOfClassificationMisses(validation_samples,
-                                                             validation_outputs);
-	}
 	public int getNumberOfClassificationMissesOnTest(Benchmark bench) {
 		List<Sample> test_samples = bench.getTestSamples();
 		List<List<Double>> test_outputs = this
@@ -229,7 +211,7 @@ public class Statistics {
 		List<List<Double>> output_vectors = new ArrayList<List<Double>>();
 		List<Double> output_vector = null;
 
-		NeuralNetwork net_copy = this.trained_net.copy();
+		NeuralNetwork net_copy = this.trained_net;
 
 		for (Sample test_sample: test_samples) {
 			output_vector = net_copy.computeOutput(test_sample);

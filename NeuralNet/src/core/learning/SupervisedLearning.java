@@ -124,6 +124,7 @@ abstract public class SupervisedLearning extends LearningRule {
 
 			if (StopCriteria.isMaxEpochsStop(criteria)) {
 				max_epochs_stop = (MaxEpochsStop) criteria;
+				break;
 			}
 		}
 		return max_epochs_stop;
@@ -138,6 +139,7 @@ abstract public class SupervisedLearning extends LearningRule {
 
 			if (StopCriteria.isEarlyStop(criteria)) {
 				early_stop = (EarlyStop) criteria;
+				break;
 			}
 		}
 		return early_stop;
