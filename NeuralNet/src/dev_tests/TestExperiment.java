@@ -9,13 +9,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import utils.CSVWriter;
 import core.Connection;
 import core.Layer;
 import core.NeuralNetwork;
 import core.Neuron;
 import core.Weight;
 import core.learning.Backpropagation;
-
 import experiment.Experiment;
 import experiment.Statistics;
 import experiment.data.Benchmark;
@@ -205,5 +205,7 @@ System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
                                  Statistics.getMaxInteger(experiment.gatherAllRelevantEpochs(bench)));
 			System.out.println("-------------------------------------------");
 		}
+
+		CSVWriter csv = new CSVWriter(experiment);
 	}
 }
