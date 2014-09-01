@@ -17,7 +17,7 @@ public class CSVWriter {
 	private static final String[] header = {
 		"Problem", "Training set mean", "Training set stddev",
 		"Validation set mean", "Validation set stddev",
-		"Test set mean", "Test set stddev", "p", "Test set classificaction mean",
+		"Test set mean", "Test set stddev", "Test set classificaction mean",
 		"Test set classification stddev", "Overfit mean", "Overfit stddev",
 		"Total epochs mean", "Total epochs stddev", "Relevant epochs mean", "Relevant epochs stddev"
 	};
@@ -49,6 +49,7 @@ public class CSVWriter {
 	private void writeCSVLine(String[] line) {
 		try {
 			this.writer.write(this.prepareString(line));
+			this.writer.newLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -82,20 +83,18 @@ public class CSVWriter {
 			/* Test set */
 			csvLine[5] = this.experiment.getEtesMean(bench).toString();
 			csvLine[6] = this.experiment.getEtesStdev(bench).toString();
-			/* p */
-			csvLine[7] = "TODO";
 			/* Test set classification */
-			csvLine[8] = this.experiment.getTestClassificationMissesMean(bench).toString();
-			csvLine[9] = this.experiment.getTestClassificationMissesStdev(bench).toString();
+			csvLine[7] = this.experiment.getTestClassificationMissesMean(bench).toString();
+			csvLine[8] = this.experiment.getTestClassificationMissesStdev(bench).toString();
 			/* Overfit */
-			csvLine[10] = this.experiment.getOverfitMean(bench).toString();
-			csvLine[11] = this.experiment.getOverfitStdev(bench).toString();
+			csvLine[9] = this.experiment.getOverfitMean(bench).toString();
+			csvLine[10] = this.experiment.getOverfitStdev(bench).toString();
 			/* Total epochs */
-			csvLine[12] = this.experiment.getTrainedEpochsMean(bench).toString();
-			csvLine[13] = this.experiment.getTrainedEpochsStdev(bench).toString();
+			csvLine[11] = this.experiment.getTrainedEpochsMean(bench).toString();
+			csvLine[12] = this.experiment.getTrainedEpochsStdev(bench).toString();
 			/* Relevant epochs */
-			csvLine[14] = this.experiment.getRelevantEpochsMean(bench).toString();
-			csvLine[15] = this.experiment.getRelevantEpochsStdev(bench).toString();
+			csvLine[13] = this.experiment.getRelevantEpochsMean(bench).toString();
+			csvLine[14] = this.experiment.getRelevantEpochsStdev(bench).toString();
 
 			/* Write line in csv */
 			this.writeCSVLine(csvLine);
