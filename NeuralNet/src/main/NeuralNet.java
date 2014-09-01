@@ -48,6 +48,7 @@ public class NeuralNet {
 				printFilesInfo(experiment);
 				confirm(reader);
 
+
 			} else if (name.equals("-train") && files_loaded) {
 				train(experiment, params, reader);
 
@@ -147,6 +148,7 @@ public class NeuralNet {
 		String choice = reader.readLine();
 
 		if (choice.startsWith("y")) {
+			System.out.println("Now execute -train");
 			whichCommand(reader);
 		} else {
 			goodBye();
@@ -181,6 +183,7 @@ public class NeuralNet {
 
 			System.out.println("Check 'results.csv' in your home folder");
 			System.out.println("Ready for the next experiment");
+			files_loaded = false;
 			whichCommand(reader);
 		}
 	}
