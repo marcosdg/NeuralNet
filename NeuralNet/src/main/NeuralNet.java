@@ -6,11 +6,14 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
+import utils.CSVWriter;
+
 import experiment.Experiment;
 import experiment.data.Benchmark;
 
 public class NeuralNet {
 
+	public static Experiment experiment;
 	public static boolean files_loaded = false;
 
 	public static void main(String[] args) {
@@ -25,7 +28,6 @@ public class NeuralNet {
 	}
 
 	public static void whichCommand(BufferedReader reader) {
-		Experiment experiment = null;
 		try {
 			String input = reader.readLine();
 			List<String> command = Arrays.asList(input.split(" "));
@@ -47,7 +49,7 @@ public class NeuralNet {
 				confirm(reader);
 
 			} else if (name.equals("-train") && files_loaded) {
-				// TODO
+				train(experiment, params, reader);
 
 			} else if (name.equals("-q")) {
 
@@ -154,18 +156,33 @@ public class NeuralNet {
 
 // Train.
 
-	// TODO: integrate CSV writer to print statistics.
 
-	public static void train(Experiment experiment, List<String> params) {
-		/*
+	public static void train(Experiment experiment, List<String> params,
+                                BufferedReader reader) {
+		int num_runs = Integer.parseInt(params.get(0));
+
 		if (experiment == null) {
 			System.out.println("Something went wrong. Quiting now ...");
 			goodBye();
+		} else if (num_runs <= 0) {
+			System.out.println("The number of runs must be greater than zero");
+			System.out.println("Please, repeat your command.");
+			whichCommand(reader);
 		} else {
-		    experiment.setNumberOfRuns();
-			experiment.run();
+			System.out.println("Training ...");
+		    experiment.setNumberOfRuns(num_runs);
+
+		    experiment.run();
+
+		    System.out.println("Training finished.");
+			System.out.println("Computing statistics ...");
+
+			CSVWriter csv = new CSVWriter(experiment);
+
+			System.out.println("Check 'results.csv' in your home folder");
+			System.out.println("Ready for the next experiment");
+			whichCommand(reader);
 		}
-		*/
 	}
 
 

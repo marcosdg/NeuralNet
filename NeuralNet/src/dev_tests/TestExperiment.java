@@ -174,7 +174,7 @@ public class TestExperiment {
 
 System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
 
-		experiment.setNumberOfRuns(10);
+		experiment.setNumberOfRuns(1);
 		experiment.run();
 
 		for (Benchmark bench: experiment.getBenchmarks()) {
@@ -206,6 +206,6 @@ System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
 			System.out.println("-------------------------------------------");
 		}
 
-		//CSVWriter csv = new CSVWriter(experiment);
+		CSVWriter csv = new CSVWriter(experiment);
 	}
 }

@@ -34,7 +34,7 @@ public class CSVWriter {
 			this.experiment = experiment;
 		}
 		try {
-			String userHomeFolder = System.getProperty("user.home");
+			String userHomeFolder = (System.getProperty("user.home"));
 			File file = new File(userHomeFolder, "results.csv");
 			this.writer = new BufferedWriter(new FileWriter(file));
 			writeCSVLine(this.header);
