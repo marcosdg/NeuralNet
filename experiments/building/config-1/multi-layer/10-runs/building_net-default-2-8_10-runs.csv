@@ -1,0 +1,4 @@
+Problem,Training set mean,Training set stddev,Validation set mean,Validation set stddev,Test set mean,Test set stddev,Test set classificaction mean,Test set classification stddev,Overfit mean,Overfit stddev,Total epochs mean,Total epochs stddev,Relevant epochs mean,Relevant epochs stddev
+building1.dt,0.4250784174849877,0.0,3.1123542766637695,0.0,1.3757740882127132,0.0,1052,0.0,0.0,0.0,0,1.5811388300841898,0,0.0
+building2.dt,0.4862380117982133,0.032833347619645965,2.8323666730708656,0.23161678250032283,1.3757740882127132,0.0,1052,0.0,0.0,0.0,0,0.0,0,0.0
+building3.dt,1.3338030743019762,0.8482087928812099,2.1707864352447896,0.6843103111260211,1.3757740882127132,0.0,1052,0.0,0.0,0.0,0,0.0,0,0.0

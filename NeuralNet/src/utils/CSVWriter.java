@@ -61,7 +61,7 @@ public class CSVWriter {
 		for (int i = 0; i < line.length; i++) {
 			result += line[i];
 			if (i != line.length - 1) {
-				result += ";";
+				result += ",";
 			}
 		}
 		return result;

@@ -57,9 +57,7 @@ public class NeuralNet {
 				goodBye();
 
 			} else {
-
-				System.out.println("Please, repeat your command.");
-				whichCommand(reader);
+				pleaseRepeat(reader);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -166,10 +164,12 @@ public class NeuralNet {
 		if (experiment == null) {
 			System.out.println("Something went wrong. Quiting now ...");
 			goodBye();
+		} else if (params.get(0).equals("")) {
+			System.out.println("To train the net you must type the number of runs");
+			pleaseRepeat(reader);
 		} else if (num_runs <= 0) {
 			System.out.println("The number of runs must be greater than zero");
-			System.out.println("Please, repeat your command.");
-			whichCommand(reader);
+			pleaseRepeat(reader);
 		} else {
 			System.out.println("Training ...");
 		    experiment.setNumberOfRuns(num_runs);
@@ -189,8 +189,13 @@ public class NeuralNet {
 	}
 
 
-// Exit.
+// Be polite.
 
+	public static void pleaseRepeat(BufferedReader reader) {
+		System.out.println("Please, repeat your command.");
+		whichCommand(reader);
+
+	}
 
 	public static void  goodBye() {
 		System.out.println("Goodbye.");
