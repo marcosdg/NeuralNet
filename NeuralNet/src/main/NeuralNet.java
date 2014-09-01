@@ -148,7 +148,7 @@ public class NeuralNet {
 		String choice = reader.readLine();
 
 		if (choice.startsWith("y")) {
-			System.out.println("Now execute -train");
+			System.out.println("Now train the net");
 			whichCommand(reader);
 		} else {
 			goodBye();
