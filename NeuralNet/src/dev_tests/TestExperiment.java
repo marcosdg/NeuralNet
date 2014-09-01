@@ -26,7 +26,7 @@ public class TestExperiment {
 		// Data files.
 
 		String net_dir = "multi-layer",
-               net_file = "net-default-2-2-2",
+               net_file = "net-default-4-4",
                proben_dir = "gene";
 		List<String> proben_files = new ArrayList<String>();
 
@@ -206,6 +206,6 @@ System.out.println("=======[ RUNNING THE EXPERIMENT ]=======");
 			System.out.println("-------------------------------------------");
 		}
 
-		CSVWriter csv = new CSVWriter(experiment);
+		//CSVWriter csv = new CSVWriter(experiment);
 	}
 }

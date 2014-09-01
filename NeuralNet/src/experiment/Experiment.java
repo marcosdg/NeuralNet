@@ -131,6 +131,7 @@ public class Experiment {
 		}
 	}
 	public void trainNeuralNetwork() {
+		NeuralNetwork best_net = null;
 		if (!this.net_ready) {
 			throw new IllegalStateException("Neural net must be loaded first");
 		} else {
@@ -139,7 +140,8 @@ public class Experiment {
 				this.net.getLearningRule().setBenchmark(bench);
 				this.net.learn();
 
-				Statistics stat = new Statistics(this.net.copy());
+				best_net = this.net.getLearningRule().getBestNeuralNetwork().copy();
+				Statistics stat = new Statistics(best_net);
 				this.saveResult(bench, stat);
 
 				this.clearEpochs();

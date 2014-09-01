@@ -129,6 +129,7 @@ public class Backpropagation extends SupervisedLearning {
 			this.setCurrentEpoch(getCurrentEpoch() + 1);
 		}
 		getNeuralNetwork().setTrained(true);
+		getBestNeuralNetwork().setTrained(true);
 	}
 
 	public void updateWeightsLastCorrections() {
@@ -177,7 +178,6 @@ public class Backpropagation extends SupervisedLearning {
 			// Time-travel to the last checkpoint.
 
 			setNeuralNetwork(getBestNeuralNetwork().copy());
-
 		}
 		flushBufferEtrs();
 	}

@@ -145,9 +145,15 @@ public class Statistics {
 		return max;
 	}
 	public static Double getDoubleAverage(List<Double> values) {
+		if (values.isEmpty()) {
+			throw new IllegalArgumentException("No values to average");
+		}
 		return (Statistics.sumAllDoubles(values) / values.size());
 	}
 	public static Integer getIntegerAverage(List<Integer> values) {
+		if (values.isEmpty()) {
+			throw new IllegalArgumentException("No values to average");
+		}
 		return (Statistics.sumAllIntegers(values) / values.size());
 	}
 	public static List<Double> getDoubleSquareDifferencesFromAvg(List<Double> values) {

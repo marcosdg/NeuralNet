@@ -70,8 +70,8 @@ System.out.println("============= TEST: DATA FILE PARSING  ==================");
 
 System.out.println("============= TEST: NEURAL NETWORK PARSING  ==================");
 
-		String config_dir = "single-layer",
-               config_file_name = "net-default-test";
+		String config_dir = "multi-layer",
+               config_file_name = "net-default-4-4";
 
 		NeuralNetworkParser net_parser = new NeuralNetworkParser(config_dir,
 	                                                            config_file_name);
@@ -218,7 +218,7 @@ System.out.println("============= TEST: NEURAL NETWORK PARSING  ================
 
 		System.out.println("current epoch : " + backprop.getCurrentEpoch());
 
-		System.out.println(Statistics.getDoubleAverage(backprop.getEvasRecord()));
+		System.out.println(backprop.getGLsRecord());
 
 
 
