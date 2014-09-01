@@ -124,7 +124,7 @@ public class Experiment {
 
 				// Prepare next run.
 
-				this.rebootNet();
+				//this.rebootNet();
 				this.clearLearningErrors();
 			}
 			this.experiment_done = true;

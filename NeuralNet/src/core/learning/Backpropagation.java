@@ -148,7 +148,6 @@ public class Backpropagation extends SupervisedLearning {
               .getAverageErrorPerTrainingSample(getTrainingOutputVectors());
 		pushEtr(etr);
 		saveEtr(etr);
-		clearTrainingOutputVectors();
 
 		// Record Eva.
 
@@ -207,7 +206,7 @@ public class Backpropagation extends SupervisedLearning {
 			output_error = output_errors.get(i);
 			((Neuron) output_nodes.get(i)).setError(output_error);
 		}
-		// Etr management.
+		// To measure Etr after backpropagate.
 
 		saveTrainingOutputVector(output_vector);
 
