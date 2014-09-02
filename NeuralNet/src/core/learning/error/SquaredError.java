@@ -125,7 +125,7 @@ public class SquaredError {
 	}
 	public static int getNumberOfClassificationMisses(List<Sample> samples,
                                              List<List<Double>> output_vectors) {
-		List<Double> desired_output_vector = null,
+		List<Double> rdesired_output_vector = null,
                      routput_vector = null;
         int misses = 0;
 
@@ -135,10 +135,13 @@ public class SquaredError {
                                                  " is required.");
 		} else {
 			for (int i = 0; i < samples.size(); i += 1) {
-				desired_output_vector = samples.get(i).getDesiredOutputVector();
+				rdesired_output_vector = SquaredError
+                                         .roundAll(samples
+                                                   .get(i)
+                                                   .getDesiredOutputVector());
 				routput_vector = SquaredError.roundAll(output_vectors.get(i));
 
-				if (isClassificationMiss(desired_output_vector, routput_vector)) {
+				if (isClassificationMiss(rdesired_output_vector, routput_vector)) {
 					misses += 1;
 				}
 			}
