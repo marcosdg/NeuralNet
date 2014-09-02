@@ -1,0 +1,4 @@
+Problem,Training set mean,Training set stddev,Validation set mean,Validation set stddev,Test set mean,Test set stddev,Test set classificaction mean,Test set classification stddev,Overfit mean,Overfit stddev,Total epochs mean,Total epochs stddev,Relevant epochs mean,Relevant epochs stddev
+gene1.dt,32.682619647355175,7.105427357601002E-15,22.586062132661628,0.0,49.72677595628415,0.0,793,0.0,0.0,0.0,0,1.5811388300841898,0,0.0
+gene2.dt,39.01553316540726,4.621077973541947,39.36188077246015,8.131404773153466,49.72677595628415,0.0,793,0.0,0.0,0.0,0,0.0,0,0.0
+gene3.dt,42.11376994122586,7.216804777656493,41.79187040055311,8.310927129378133,49.72677595628415,0.0,793,0.0,6.6260443204819675,11.51371820757873,0,0.0,0,0.0

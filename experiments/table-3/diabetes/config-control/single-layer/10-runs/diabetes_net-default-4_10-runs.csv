@@ -1,0 +1,4 @@
+Problem,Training set mean,Training set stddev,Validation set mean,Validation set stddev,Test set mean,Test set stddev,Test set classificaction mean,Test set classification stddev,Overfit mean,Overfit stddev,Total epochs mean,Total epochs stddev,Relevant epochs mean,Relevant epochs stddev
+diabetes1.dt,33.59374999999999,0.0,36.979166666666664,0.0,35.93749999999999,0.0,70,0.0,0.0,0.0,0,1.5811388300841898,0,0.0
+diabetes2.dt,33.12499999999995,0.15624999999999886,36.97916666666661,5.6843418860808015E-14,35.93749999999999,0.0,78,0.0,0.0,0.0,0,0.0,0,0.0
+diabetes3.dt,32.48697916666665,0.6683886858182608,36.19791666666678,0.7812499999999999,35.93749999999999,0.0,69,0.0,0.0,0.0,0,0.0,0,0.0
