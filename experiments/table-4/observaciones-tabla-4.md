@@ -49,8 +49,9 @@ Aunque también cabe señalar que, para el caso de **multi-layer, ha sido algo m
 para single-layer. Pues el promedio en el sobreajuste está alrededor de 15%, mientras
 que en single-layer está más cerca del 25%.
 
-Podemos decir, entonces, que el rendimiento ha sido "bueno" aunque el proceso de
-aprendizaje fue algo más inestable.
+A pesar de tal inestabilidad, los errores en los conjuntos de "training", "validation" y "test"
+fueron realmente bajos, en promedio **ninguno supero el 3%**. Podemos decir, entonces, que el 
+rendimiento ha sido "bueno" aunque el proceso de aprendizaje fue algo más inestable.
 
 ### hearta
 
