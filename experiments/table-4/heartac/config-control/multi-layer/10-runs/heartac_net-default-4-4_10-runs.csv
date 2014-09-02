@@ -1,0 +1,4 @@
+Problem,Training set mean,Training set stddev,Validation set mean,Validation set stddev,Test set mean,Test set stddev,Test set classificaction mean,Test set classification stddev,Overfit mean,Overfit stddev,Total epochs mean,Total epochs stddev,Relevant epochs mean,Relevant epochs stddev
+heartac1.dt,22.368421052631604,0.0,27.07894736842106,0.0,21.906666666666663,0.0,34,0.0,0.0,0.0,0,1.5811388300841898,0,0.0
+heartac2.dt,14.868421052631584,3.7861827815626867,13.21052631578945,6.979441516204317,21.906666666666663,0.0,38,0.0,0.0,0.0,0,0.0,0,0.0
+heartac3.dt,21.334064327485372,9.022171975710544,19.668128654970783,10.776677759877344,21.906666666666663,0.0,32,0.0,64.80683664981389,113.39167236646706,0,0.0,0,0.0

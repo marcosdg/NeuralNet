@@ -159,20 +159,20 @@ public class NeuralNet {
 
 	public static void train(Experiment experiment, List<String> params,
                                 BufferedReader reader) {
-		int num_runs = Integer.parseInt(params.get(0));
+		String num_runs = params.get(0) ;
 
 		if (experiment == null) {
 			System.out.println("Something went wrong. Quiting now ...");
 			goodBye();
-		} else if (params.get(0).equals("")) {
+		} else if (num_runs.equals("")) {
 			System.out.println("To train the net you must type the number of runs");
 			pleaseRepeat(reader);
-		} else if (num_runs <= 0) {
+		} else if (Integer.parseInt(num_runs) <= 0) {
 			System.out.println("The number of runs must be greater than zero");
 			pleaseRepeat(reader);
 		} else {
 			System.out.println("Training ...");
-		    experiment.setNumberOfRuns(num_runs);
+		    experiment.setNumberOfRuns(Integer.parseInt(num_runs));
 
 		    experiment.run();
 
