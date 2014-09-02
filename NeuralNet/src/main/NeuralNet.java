@@ -44,7 +44,7 @@ public class NeuralNet {
 				experiment = load(params);
 				System.out.println("Loaded and ready for training.");
 
-				printFilesInfo(experiment);
+				printFilesInfo(experiment, params);
 				confirm(reader);
 
 
@@ -202,7 +202,8 @@ public class NeuralNet {
 // Log.
 
 
-	public static void printFilesInfo(Experiment experiment) {
+	public static void printFilesInfo(Experiment experiment,
+                                          List<String> params) {
 		System.out.println();
 		System.out.println("------[ EXPERIMENT SETUP ]-------");
 		System.out.println();
@@ -213,7 +214,8 @@ public class NeuralNet {
 			System.out.println(bench.getPath());
 		}
 		System.out.println("[NEURAL NETWORK] ");
-		System.out.println(experiment.getNeuralNetwork().getLabel());
+		System.out.println("configuration: " + params.get(0));
+		System.out.println("topology: " + experiment.getNeuralNetwork().getLabel());
 		System.out.println();
 		System.out.println("---------------------------------");
 		System.out.println();

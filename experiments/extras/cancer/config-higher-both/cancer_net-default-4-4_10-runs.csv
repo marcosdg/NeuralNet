@@ -1,0 +1,4 @@
+Problem,Training set mean,Training set stddev,Validation set mean,Validation set stddev,Test set mean,Test set stddev,Test set classificaction mean,Test set classification stddev,Overfit mean,Overfit stddev,Total epochs mean,Total epochs stddev,Relevant epochs mean,Relevant epochs stddev
+cancer1.dt,34.857142857142854,0.0,31.428571428571427,0.0,50.0,0.0,174,0.0,0.0,0.0,0,1.5811388300841898,0,0.0
+cancer2.dt,48.48571428571429,4.542857142857161,48.142857142857146,5.571428571428565,50.0,0.0,174,0.0,0.0,0.0,0,0.0,0,0.0
+cancer3.dt,48.81063122923588,4.059234046511657,48.611295681063126,4.75486667297165,50.0,0.0,174,0.0,0.2331002331002329,1.4369263410184079,0,0.0,0,0.0
