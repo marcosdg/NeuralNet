@@ -1,0 +1,4 @@
+Problem,Training set mean,Training set stddev,Validation set mean,Validation set stddev,Test set mean,Test set stddev,Test set classificaction mean,Test set classification stddev,Overfit mean,Overfit stddev,Total epochs mean,Total epochs stddev,Relevant epochs mean,Relevant epochs stddev
+flare1.dt,0.8691264608267023,0.0,0.39656836695516134,0.0,0.4148859213945396,0.0,2,0.0,0.0,0.0,0,1.5811388300841898,0,0.0
+flare2.dt,0.5240022709499035,0.11617135629217093,0.3985796901438181,0.02234107964433948,0.4148859213945396,0.0,0,0.0,0.0,0.0,0,0.0,0,0.0
+flare3.dt,0.5616605798796426,0.12191291184252517,0.4589527974273353,0.08412817768141828,0.4148859213945396,0.0,1,0.0,14.43469126781053,20.872502999686677,0,0.0,0,0.0

@@ -26,7 +26,6 @@ public class NeuralNet {
 		whichCommand(reader);
 
 	}
-
 	public static void whichCommand(BufferedReader reader) {
 		try {
 			String input = reader.readLine();
@@ -159,20 +158,18 @@ public class NeuralNet {
 
 	public static void train(Experiment experiment, List<String> params,
                                 BufferedReader reader) {
-		String num_runs = params.get(0) ;
-
 		if (experiment == null) {
 			System.out.println("Something went wrong. Quiting now ...");
 			goodBye();
-		} else if (num_runs.equals("")) {
+		} else if (params.isEmpty()) {
 			System.out.println("To train the net you must type the number of runs");
 			pleaseRepeat(reader);
-		} else if (Integer.parseInt(num_runs) <= 0) {
+		} else if (Integer.parseInt(params.get(0)) <= 0) {
 			System.out.println("The number of runs must be greater than zero");
 			pleaseRepeat(reader);
 		} else {
 			System.out.println("Training ...");
-		    experiment.setNumberOfRuns(Integer.parseInt(num_runs));
+		    experiment.setNumberOfRuns(Integer.parseInt(params.get(0)));
 
 		    experiment.run();
 
@@ -207,7 +204,7 @@ public class NeuralNet {
 
 	public static void printFilesInfo(Experiment experiment) {
 		System.out.println();
-		System.out.println("------[ EXPERIMENT SETUP ]------- ");
+		System.out.println("------[ EXPERIMENT SETUP ]-------");
 		System.out.println();
 
 		System.out.println("[BENCHMARKS]");
@@ -218,6 +215,7 @@ public class NeuralNet {
 		System.out.println("[NEURAL NETWORK] ");
 		System.out.println(experiment.getNeuralNetwork().getLabel());
 		System.out.println();
-
+		System.out.println("---------------------------------");
+		System.out.println();
 	}
 }
