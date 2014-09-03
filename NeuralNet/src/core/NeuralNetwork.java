@@ -29,7 +29,9 @@ public class NeuralNetwork {
 			this.trained = false;
 			this.label = label;
 
-			// Cross-references.
+			// Cross-references:
+			// The best_net reference will change during learning due to
+			// 'Early Stopping'.
 
 			this.learningRule.setNeuralNetwork(this);
 		}

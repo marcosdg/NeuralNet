@@ -83,6 +83,7 @@ public class Backpropagation extends SupervisedLearning {
 
 		// LearningRule properties:
 		// The Benchmark is the same (at copy-time) for the copy.
+		// The best net will be set during training.
 
 		backprop_copy.setBenchmark(this.getBenchmark());
 
@@ -126,7 +127,7 @@ public class Backpropagation extends SupervisedLearning {
 					this.updateEarlyStopState();
 				}
 			}
-			this.setCurrentEpoch(getCurrentEpoch() + 1);
+			setCurrentEpoch(getCurrentEpoch() + 1);
 		}
 		getNeuralNetwork().setTrained(true);
 		getBestNeuralNetwork().setTrained(true);
@@ -171,8 +172,8 @@ public class Backpropagation extends SupervisedLearning {
 			// Checkpoint.
 
 			getEarlyStop().setBestGeneralizationLoss(now_loss);
-			setBestNeuralNetwork(getNeuralNetwork().copy());
 			setNumberOfRelevantEpochs(getNumberOfRelevantEpochs() + 1);
+			setBestNeuralNetwork(getNeuralNetwork().copy());
 
 		} else if (now_loss > best_loss) {
 			// Time-travel to the last checkpoint.
