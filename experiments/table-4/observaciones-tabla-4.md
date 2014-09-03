@@ -1,6 +1,6 @@
 Marcos Díez García
 
-2-09-2014
+3-09-2014
 
 # Tabla 4 - Observaciones
 
@@ -119,5 +119,5 @@ neuronas. Y en casi todos los casos las multicapa han reducido ligeramente los e
 El motivo de por qué han funcionado mejor las multicapa puede deberse al hecho de que
 tanto en problemas de clasificación como aproximación, si nuestra red tiene que adoptar
 un comportamiento no-lineal, necesitaremos introducir más capas con el objetivo de
-hacer una mejor separación de los datos en categorías (clasificación) o conseguir una 
-función más ajustada a la deseada (aproximación).
+hacer una correcta separación de los datos en categorías (clasificación) o conseguir una 
+función mejor ajustada a la deseada (aproximación).
