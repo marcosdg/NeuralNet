@@ -203,7 +203,37 @@ proben1/
 
 NeuralNet/
 
-	contiene el código fuente del programa en lenguaje JAVA.
+	core/
+		activation/ :función de activación de una neurona
+		
+		propagation/ :función de propagación de una neurona
+
+		learning/ : definición del proceso de aprendizaje
+
+		Connection.java
+		InputNode.java
+		Layer.java
+		NeuralNetwork.java
+		Neuron.java
+		Node.java
+		Weight.java
+
+
+	experiment/ 
+
+		data/ :definición de Benchmark, Sample y Parseadores
+		
+		Experiment.java : automatización de la carga de redes
+		                  de benchmarks y cálculo de estadísticas
+		Statistics.java : definición de las métricas usadas en las
+			          pruebas.
+
+
+	main/NeuralNet.java : interfaz de usuario
+
+	utils/
+		CSVWriter.java : para obtener las estadísticas en un fichero
+		                 CSV
 
 LICENSE
 
@@ -335,7 +365,7 @@ N .,.,1
 
 
 9. CONSULTANDO LAS ESTADÍSTICAS
------------------------------------
+-------------------------------------
 
 Una vez haya terminado la ejecución del programa, las estadísticas se
 imprimirán en formato CSV en el directorio home/
@@ -343,3 +373,20 @@ imprimirán en formato CSV en el directorio home/
 Es un formato estándar de representación de datos tabulados que puede
 visualizarse con procesadores de texto como LibreOffice o Microsoft Excel
 
+10. REPRODUCIENDO LOS EXPERIMENTOS
+--------------------------------------
+
+Para reproducir cada una de las pruebas realizadas basta con elegir la 
+arquitectura de red y la configuración de entre las sugeridas en "networks/" 
+y los ficheros de PROBEN1 del ejemplo que queramos probar.
+
+Por ejemplo si queremos probar el ejemplo cancer/ con una arquitectura
+monocapa con 8 neuronas con la configuración por defecto haríamos:
+
+-load config-control net-default-8 cancer cancer1.dt cancer2.dt cancer3.dt
+
+* Al menos tenemos que indicar 1 fichero de PROBEN para realizar la prueba
+
+
+
+ 
