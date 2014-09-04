@@ -1,0 +1,345 @@
+
+                           NEURALNET
+                 
+                      Manuel Casas Barrado
+                       Marcos Díez García
+
+                     mancasbar<EN>alum.us.es
+                     mardiegar<EN>alumn.us.es
+
+
+                     4 de Septiembre de 2014
+
+
+1. ¿QUÉ ES NEURALNET?
+---------------------------------------
+
+NeuralNet es un programa que permite al usuario contruir redes neuronales,
+entrenarlas y observar su rendimiento mediante un conjunto de métricas.
+Para la experimentación, incluye el conjunto de benchmarks "PROBEN1", que
+pueden obtenerse en la siguiente dirección URL:
+
+ftp://ftp.ira.uka.de/pub/neuron/
+
+* Antes de comenzar a usar éste programa se recomienda leer la documentación
+de PROBEN1 para un mejor entendimiento.
+
+
+2. ¿CÓMO PUEDO OBTENER NEURALNET?
+---------------------------------------
+
+El código fuente puede consultarse en la plataforma web "Github", 
+a través del siguiente enlace:
+
+https://github.com/marcosdg/NeuralNet
+
+El cuál puede descargarse como .zip o también si usted tiene instalada la 
+herramienta de control de versiones "Git", puede usar el siguiente comando:
+
+git clone https://github.com/marcosdg/NeuralNet.git
+
+Y comenzará la descarga del proyecto en el directorio en el que haya
+abierto la terminal.
+
+3. ¿QUÉ TIENE DE ESPECIAL NEURALNET?
+---------------------------------------
+
+Lo que distingue este proyecto de otros es que emplea "PROBEN1", que
+consiste en una colección de diversos problemas para el entrenamiento de
+redes neuronales con muestras de ejemplos reales proporcionados al autor
+de PROBEN1 por distintas instituciones e investigadores.
+
+El autor de PROBEN1 recomienda su uso para la investigación porque además
+proporciona las pautas o reglas para reproducir los experimentos de una
+forma coherente y uniforme, lo cual permite que distintos investigadores
+puedan contrastar sus resultados adecuadamente. Evitando así, los errores
+introducidos por usar distintas representaciones en los experimentos.
+
+4. ¿CÓMO EJECUTO NEURALNET?
+---------------------------------------
+
+Hay dos opciones:
+
+(a) Utilizar el código fuente y compilar el proyecto.
+(b) Utilizar el .jar que viene incluido.
+
+En caso de utilizar la opción (a) podemos utilizar los siguientes comandos
+para hacer el proceso de compilación:
+
+  1. Extraer el código fuente del .zip
+  2. Abrir una terminal dentro la carpeta extraída.
+  3. cd NeuralNet/
+  4. javac -d bin -sourcepath src/main/NeuralNet.java
+  5. jar -cvf neuralnet.jar bin/*
+
+A continuación, para ejecutar el jar:
+
+  6. java -jar neuralnet.jar
+
+
+5. DETALLE DE CONFIGURACIÓN
+--------------------------------------
+
+Para la correcta ejecucción es necesario que los directorios:
+
+networks/
+proben1/
+
+los ubiquemos en el directorio home/ una vez hayamos extraído el .zip, pues
+el programa asumirá que estarán ahí cuando intentemos cargar los benchmark
+y la red neuronal.
+
+
+6. ¿CÓMO USO NEURALNET?
+-------------------------------------
+
+Tras ejecutar el .jar, aparecerá la pantalla de presentación y desde la
+cuál podemos ejecutar los siguientes comandos:
+
+-help
+
+      muestra una ayuda rápida de los comandos
+-q
+
+      sale del programa
+
+-load <net_dir> <net_file> <proben_dir> <proben_file> [<proben_files>]
+
+      permite cargar la red neuronal <net_file> ubicada en el directorio
+      de configuración networks/<net_dir>, y cargar los ficheros de proben
+      indicados ubicados en proben1/<proben_dir>.
+
+      Ejemplo:
+ 
+      -load config-control net-default-8 flare flare1.dt flare2.dt flare3.dt
+
+
+-train <number_of_runs>
+
+      permite lanzar un número de veces igual a <number_of_runs> el
+      experimento, con el objetivo de obtener unas estadísticas más
+      fiables al usar un mayor número de datos para generarlas.
+
+
+7. ESTRUCTURA DEL PROYECTO
+------------------------------------
+
+En el primer nivel de la jerarquía del proyecto podemos encontrar los
+siguientes directorios:
+
+Doc/
+experiments/
+ideas/
+networks/
+proben1/
+NeuralNet/
+LICENSE
+README.md
+neuralnet.jar
+
+
+A continuación, se explica el objetivo de cada uno:
+
+Doc/
+
+	Contiene la documentación del proyecto.
+
+experiments/
+
+	contiene todas las pruebas que se han realizado para llevar
+	a cabo el desarrollo del trabajo y obtener las estadísticas que
+	nos permitieron extraer las conclusiones.
+
+
+ideas/
+	
+	contiene 3 ficheros que nos fueron de ayuda para el desarrollo de
+	algunas partes clave del trabajo:
+	
+		command-line.md
+		configuration-example.txt
+		earlystop.txt
+
+networks/
+
+	contiene todas las configuraciones de redes neuronales que se han
+	utilizado en las pruebas requeridas por el trabajo más otras
+	adicionales incluídas para juzgar mejor el funcionamiento de las
+	redes
+
+        config-control
+	config-higher-learning-rate
+	config-higher-momentum
+	config-higher-both
+	config-larger-strip
+	config-more-layers
+	config-test
+
+	* "config-control" sirve como configuración de referencia con la que
+        comparar el resto.
+
+	* "config-test" no forma parte de las pruebas realizadas, pero
+	sirvió para realizar el desarrollo del programa
+
+proben1/
+
+	contiene todos los benchmarks utilizados en las pruebas.
+
+	PROBLEMAS DE CLASIFICACIÓN
+
+	cancer/
+	card/
+	diabetes/
+	gene/
+	glass/
+
+	PROBLEMAS DE APROXIMACIÓN
+
+	building/
+	flare/
+	hearta/
+	heartac/
+
+
+NeuralNet/
+
+	contiene el código fuente del programa en lenguaje JAVA.
+
+LICENSE
+
+	licencia General Pública de GNU (GPL v2).
+
+README.md
+	
+	README de presentación del proyecto en la plataforma Github
+	escrito en el lenguaje Markdown.
+
+neuralnet.jar
+
+	fichero ejecutable de JAVA listo para probar el programa.
+
+
+8. CONFIGURANDO MI PROPIA RED
+--------------------------------
+
+El programa ya cuenta con una serie de arquitecturas, pero se le ofrece
+la posibilidad al usuario de editar estos ficheros sí quiere probar otras
+configuraciones.
+
+Hay dos tipos de diseño de red en estos ficheros: DEFAULT y CUSTOM.
+DEFAULT es el que se ha utilizado en todas las pruebas del trabajo, y 
+CUSTOM queda como una alternativa para probar nuestros propios ejemplos
+
+A continuación se muestra un ejemplo de cada:
+
+-------------------
+MOMENTUM=0.2
+LEARNING_RATE=0.5
+MAX_EPOCHS=3000
+STRIP=5
+GL=5.0
+PK=0.01
+O_MIN=0.0
+O_MAX=1.0
+NET_DESIGN=DEFAULT
+
+T 2,4,2
+------------------
+
+------------------
+MOMENTUM=0.3
+LEARNING_RATE=0.5
+MAX_EPOCHS=3000
+STRIP=5
+GL=5.0
+PK=0.01
+O_MIN=0.0
+O_MAX=1.0
+NET_DESIGN=CUSTOM
+
+T 2,1
+B -1,-1,-1
+I 1,.,.
+I .,1,.
+N .,.,1
+N .,.,1
+-----------------
+
+Lo que sigue son los parámetros del algoritmo "Backpropagation con momento"
+y "EarlyStop" (ver documentación adjunta en el .zip)
+
+MOMENTUM y LEARNING_RATE
+	Modifican el "ajuste" en los pesos sinápticos.
+MAX_EPOCHS
+	Número máximo de iteraciones sobre las muestras de cada benchmark
+STRIP
+	Indica el número de épocas que transcurren entre una comprobación
+	y la siguiente del criterio EarlyStop (GL y PK).
+GL
+	Sobreajuste de la red máximo permitido.
+PK
+	Progreso de entrenamiento mínimo permitido.
+O_MIN y O_MAX
+	Indican el mínimo valor y máximo valor de salida del Benchmark
+	de PROBEN1 sobre el cuál probaremos la red.
+NET_DESIGN
+	Configuración por defecto (DEFAULT) o personalizada (CUSTOM)
+
+
+			 CONFIGURACIÓN POR DEFECTO
+
+Sólo podemos indicar los siguientes parámetros de la topología:
+
+* Número de neuronas en la capa inicial.
+* Número de neuronas por cada capa oculta.
+* Número de capas ocultas.
+
+El número de entradas y salidas queda establecido por el propio benchmark
+de PROBEN1. 
+
+T 2,4,2
+	2 neuronas en la capa inicial, 4 en la primera capa oculta y 
+	2 en la seguna capa oculta
+
+			CONFIGURACIÓN PERSONALIZADA
+
+Podemos indicar los siguientes parámetros de la topología.
+
+* Número de nodos de entrada: Nodos bias (umbral) y nodos de entrada (datos)
+* Número de neuronas en la capa inicial
+* Número de neuronas por capa oculta
+* Número de neuronas en la capa de salida
+* Sinapsis
+* Pesos de cada sinapsis
+
+T 2,1
+	2 neuronas en la capa inicial, 0 capas ocultas, 1 neurona en la 
+	capa de salida
+
+B -1,-1,-1
+	
+	1 nodo bias para la neurona 1 con peso -1
+	1 nodo bias para la neurona 2 con peso -1
+	1 nodo bias para la neurona 3 con peso -1
+I 1,.,.
+	Nodo 1 de entrada de datos conectado a la neurona 1 con sinapsis
+	de peso 1
+I .,1,.
+	Nodo 2 de entrada de datos conectado a la neurona 2 con sinapsis
+	de peso 1.
+N .,.,1
+
+	Neurona 1 conectada con la neurona 3 con sinapsis de peso 1
+N .,.,1
+	Neurona 2 conectada con la neurona 3 con sinapsis de peso 1
+
+
+9. CONSULTANDO LAS ESTADÍSTICAS
+-----------------------------------
+
+Una vez haya terminado la ejecución del programa, las estadísticas se
+imprimirán en formato CSV en el directorio home/
+
+Es un formato estándar de representación de datos tabulados que puede
+visualizarse con procesadores de texto como LibreOffice o Microsoft Excel
+
