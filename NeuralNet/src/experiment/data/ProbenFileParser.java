@@ -34,8 +34,8 @@ public class ProbenFileParser {
 
 			// Build the path to 'PROBEN1' file
 
-			this.proben_file_path = new StringBuilder(pathToWorkSpace())
-                                               .append("/src/proben1/")
+			this.proben_file_path = new StringBuilder(pathToHomeDir())
+                                               .append("/proben1/")
                                                .append(proben_dir)
                                                .append("/")
                                                .append(proben_file_name)
@@ -48,8 +48,8 @@ public class ProbenFileParser {
 
 	// To support loading files with relative paths.
 
-	private String pathToWorkSpace() {
-		return System.getProperty("user.dir");
+	private String pathToHomeDir() {
+		return System.getProperty("user.home");
 	}
 
 	public String getProbenDirectory() {
@@ -66,8 +66,8 @@ public class ProbenFileParser {
 		if (proben_dir == "" || proben_file == "") {
 			throw new IllegalArgumentException("PROBEN path is empty");
 		} else {
-			this.proben_file_path = new StringBuilder(pathToWorkSpace())
-                                                       .append("/src/proben1/")
+			this.proben_file_path = new StringBuilder(pathToHomeDir())
+                                                       .append("/proben1/")
                                                        .append(proben_dir)
                                                        .append("/")
                                                        .append(proben_file)

@@ -63,8 +63,8 @@ public class NeuralNetworkParser {
 		if (config_file_name.isEmpty() || config_dir.isEmpty()) {
 			throw new IllegalArgumentException("Config file must not be null !");
 		} else {
-			config_file_path = new StringBuilder(pathToWorkSpace())
-						            .append("/src/networks/")
+			config_file_path = new StringBuilder(pathToHomeDir())
+						            .append("/networks/")
 						            .append(config_dir)
 						            .append("/")
 						            .append(config_file_name)
@@ -97,8 +97,8 @@ public class NeuralNetworkParser {
 
 	// To support loading files with relative paths.
 
-	private String pathToWorkSpace() {
-		return System.getProperty("user.dir");
+	private String pathToHomeDir() {
+		return System.getProperty("user.home");
 	}
 
 
