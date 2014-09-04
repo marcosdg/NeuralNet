@@ -390,10 +390,4 @@ monocapa con 8 neuronas con la configuración por defecto haríamos:
 A continuación entrenamos la red y obtenemos los resultados en la carpeta personal
 en forma de archivo .csv:
 
--train <num>
-
-*<num> número de ejecuciones a realizar
-
-
-
- 
+-train <numero_de_ejecuciones>
