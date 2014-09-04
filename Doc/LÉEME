@@ -387,6 +387,13 @@ monocapa con 8 neuronas con la configuración por defecto haríamos:
 
 * Al menos tenemos que indicar 1 fichero de PROBEN para realizar la prueba
 
+A continuación entrenamos la red y obtenemos los resultados en la carpeta personal
+en forma de archivo .csv:
+
+-train <num>
+
+*<num> número de ejecuciones a realizar
+
 
 
  
