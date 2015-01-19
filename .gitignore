@@ -1,5 +1,16 @@
 # Eclipse general
+
+bin/**
+tmp/**
+
+*.bak
+*.swp
+*.tmp
+
+.classpath
+.loadpath
 .metadata
+.project
 .settings/
 
 # Locally stored "launch configurations"
