@@ -1,4 +1,4 @@
-#NeuralNet
+# NeuralNet
 
 This program was implemented for an academic class project in Artificial Intelligence.
 
